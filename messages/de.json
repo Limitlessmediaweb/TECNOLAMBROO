@@ -556,7 +556,7 @@
   "legal": {
     "privacy": {
       "title": "Datenschutzerklärung",
-      "updated": "8. Oktober 2026",
+      "updated": "15. Oktober 2026",
       "sections": [
         {
           "h": "1. Verantwortlicher",
@@ -570,7 +570,8 @@
           "p": [
             "In der Angebotsanfrage eingegebene Daten: Unternehmen, Vor- und Nachname, E-Mail, Telefon (optional), Land, USt-IdNr. (optional), angefragte Teile mit Mengen und Notizen.",
             "Mit der Anfrage hochgeladene Dateien (Zeichnungen und Modelle in PDF, DWG, DXF, STEP, IGES oder STL). Zeichnungen können personenbezogene Daten enthalten, zum Beispiel den Namen des Konstrukteurs im Schriftfeld.",
-            "Nutzungsdaten: IP-Adresse und technische Informationen, die der Server aus Sicherheits- und Betriebsgründen protokolliert. Aggregierte, anonyme Besuchsstatistiken ohne Cookies (siehe Abschnitt 7)."
+            "Nutzungsdaten: IP-Adresse und technische Informationen, die der Server aus Sicherheits- und Betriebsgründen protokolliert. Aggregierte, anonyme Besuchsstatistiken ohne Cookies (siehe Abschnitt 7).",
+            "Zusammen mit der Anfrage erhalten wir die Seite, von der sie gesendet wurde, die Sprache der Website und, sofern vorhanden, die Einstiegsseite des ersten Besuchs, die verweisende Website und die Kampagnenparameter (UTM): Sie helfen uns zu verstehen, wie Sie uns gefunden haben."
           ]
         },
         {
@@ -608,8 +609,8 @@
         {
           "h": "7. Statistik und Cookies",
           "p": [
-            "Sofern aktiviert, nutzen wir Plausible Analytics, einen Statistikdienst ohne Cookies, der keine personenbezogenen Daten erhebt und Nutzer nicht websiteübergreifend verfolgt. Die Daten sind aggregiert und anonym.",
-            "Die Website nutzt nur technische Speicherung im Browser (gewähltes Design, bereits angesehene Intro-Animation). Details in der Cookie-Richtlinie."
+            "Wir nutzen Vercel Web Analytics (Vercel Inc.), einen Statistikdienst ohne Cookies: Er zählt Besuche in aggregierter Form, ohne Besucher zu identifizieren oder websiteübergreifend zu verfolgen.",
+            "Die Website verwendet keine Cookies. Sie speichert nur lokal im Browser Informationen (Design, Sprache, die Teileliste Ihrer Anfrage, die bereits im Formular eingegebenen Daten und die Herkunft des ersten Besuchs). Details in der Cookie-Richtlinie."
           ]
         },
         {
@@ -668,7 +669,7 @@
     },
     "cookie": {
       "title": "Cookie-Richtlinie",
-      "updated": "8. Oktober 2026",
+      "updated": "15. Oktober 2026",
       "sections": [
         {
           "h": "Keine Profiling-Cookies",
@@ -677,15 +678,17 @@
           ]
         },
         {
-          "h": "Technische Speicherung",
+          "h": "Speicherung im Browser",
           "p": [
-            "Wir speichern einige technische Informationen in Ihrem Browser: das gewählte helle oder dunkle Design und die Liste „Ihre Anfrage“ mit Teilen, Mengen und Notizen (localStorage) sowie die Information, ob die Intro-Animation in dieser Sitzung bereits abgespielt wurde (sessionStorage). Diese Informationen bleiben auf Ihrem Gerät, bis Sie die Anfrage senden oder sie in den Browsereinstellungen löschen."
+            "Wir speichern einige Informationen in Ihrem Browser, ohne Cookies: das gewählte helle oder dunkle Design und die gewählte Sprache sowie die Information, ob der Sprachhinweis bereits angezeigt wurde; die Liste „Ihre Anfrage“ mit Teilen, Mengen und Notizen sowie die bereits im Formular eingegebenen Daten, damit Sie sie nicht erneut eingeben müssen (localStorage); die Zusammenfassung der zuletzt gesendeten Anfrage und die Information, ob die Intro-Animation bereits abgespielt wurde (sessionStorage, wird beim Schließen des Tabs gelöscht).",
+            "Beim ersten Besuch speichern wir außerdem die Einstiegsseite, die verweisende Website und etwaige Kampagnenparameter (UTM). Sie bleiben auf Ihrem Gerät und erreichen uns nur, wenn Sie eine Angebotsanfrage senden.",
+            "Die Teileliste und die Formulardaten werden nach dem Senden geleert; alles andere können Sie jederzeit in den Browsereinstellungen löschen."
           ]
         },
         {
           "h": "Statistik ohne Cookies",
           "p": [
-            "Sofern aktiviert, zählt Plausible Analytics die Besuche in aggregierter Form, ohne Cookies und ohne dauerhafte Kennungen."
+            "Vercel Web Analytics zählt Besuche in aggregierter Form, ohne Cookies und ohne dauerhafte Kennungen."
           ]
         },
         {

@@ -556,7 +556,7 @@
   "legal": {
     "privacy": {
       "title": "Privacy policy",
-      "updated": "8 October 2026",
+      "updated": "15 October 2026",
       "sections": [
         {
           "h": "1. Data controller",
@@ -570,7 +570,8 @@
           "p": [
             "Data entered in the quote request: company, first and last name, email, phone (optional), country, VAT number (optional), requested parts with quantities and notes.",
             "Files uploaded with the request (drawings and models in PDF, DWG, DXF, STEP, IGES or STL). Drawings may contain personal data, for example the designer’s name in the title block.",
-            "Browsing data: IP address and technical information logged by the server for security and operation. Aggregate, anonymous visit statistics without cookies (see section 7)."
+            "Browsing data: IP address and technical information logged by the server for security and operation. Aggregate, anonymous visit statistics without cookies (see section 7).",
+            "Together with the request we receive the page it was sent from, the website language and, if available, the landing page of the first visit, the referring website and the campaign parameters (UTM): they help us understand how you found us."
           ]
         },
         {
@@ -608,8 +609,8 @@
         {
           "h": "7. Analytics and cookies",
           "p": [
-            "If enabled, we use Plausible Analytics, a cookie-free analytics service that collects no personal data and does not track users across sites. Data is aggregate and anonymous.",
-            "The website uses only technical browser storage (chosen theme, intro animation already seen). Details in the cookie policy."
+            "We use Vercel Web Analytics (Vercel Inc.), a cookie-free analytics service: it counts visits in aggregate form, without identifying visitors or tracking them across other websites.",
+            "The website does not use cookies. It only stores information locally in your browser (theme, language, the parts list of your request, the data already entered in the form and the source of your first visit). Details in the cookie policy."
           ]
         },
         {
@@ -668,7 +669,7 @@
     },
     "cookie": {
       "title": "Cookie policy",
-      "updated": "8 October 2026",
+      "updated": "15 October 2026",
       "sections": [
         {
           "h": "No profiling cookies",
@@ -677,15 +678,17 @@
           ]
         },
         {
-          "h": "Technical storage",
+          "h": "Storage in your browser",
           "p": [
-            "We store some technical information in your browser: the light or dark theme you chose and the “Your request” list with parts, quantities and notes (localStorage), and whether the intro animation has already played in this session (sessionStorage). It stays on your device until you send the request or clear it in your browser settings."
+            "We store some information in your browser, without cookies: the light or dark theme and the language you chose, and whether the language suggestion has already been shown; the “Your request” list with parts, quantities and notes and the data already entered in the form, so you don’t have to type it again (localStorage); the summary of the last request sent and whether the intro animation has already played (sessionStorage, deleted when you close the tab).",
+            "On your first visit we also store the landing page, the referring website and any campaign parameters (UTM). They stay on your device and reach us only if you send a quote request.",
+            "The parts list and the form data are cleared after sending; everything else can be deleted at any time in your browser settings."
           ]
         },
         {
           "h": "Cookie-free analytics",
           "p": [
-            "If enabled, Plausible Analytics counts visits in aggregate form without cookies and without persistent identifiers."
+            "Vercel Web Analytics counts visits in aggregate form, without cookies and without persistent identifiers."
           ]
         },
         {
