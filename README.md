@@ -38,7 +38,7 @@ Script utili:
 | `CANONICAL_REDIRECT`, `REDIRECT_HOSTS` | vuote | al lancio: redirect 308 da www e da *.vercel.app al dominio (vedi [docs/messa-online.md](docs/messa-online.md)) |
 | `NEXT_PUBLIC_ALLOW_INDEXING` | `false` | `false` = `noindex` globale + robots.txt `Disallow: /`. **Mettere a `true` solo al lancio.** |
 | `NEXT_PUBLIC_NEW_LOCALES_NOINDEX` | `true` | ES, ZH, DE in noindex e fuori dalla sitemap finché le traduzioni non sono riviste |
-| `NEXT_PUBLIC_DEMO` | `true` | `true` = badge "Versione demo" e segnaposto gialli ("manca: …", `[DA COMPLETARE]`). **Al lancio `false`**: nessun segnaposto visibile |
+| `NEXT_PUBLIC_DEMO` | `false` | `true` = badge "Versione demo" e segnaposto gialli ("manca: …", `[DA COMPLETARE]`), solo nelle anteprime. **Se manca vale `false`, e nel deploy di produzione Vercel è sempre spenta** (next.config.ts → `TL_DEMO`) |
 | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | vuota | facoltativa: Plausible in aggiunta a Vercel Web Analytics |
 | `NEXT_PUBLIC_LIMITLESS_URL` | `https://www.limitlessmedia.it` | credito nel footer |
 | `QUOTE_TO_EMAIL` | `info@tecnolambro.it` | casella che riceve le richieste |
@@ -109,7 +109,7 @@ Branch `modifiche-v2`, un commit per blocco. Nessun merge su `main`, nessuna pub
 
 | Comando | Cosa controlla |
 |---|---|
-| `npm run check:placeholders` | con `NEXT_PUBLIC_DEMO=false`, nessun segnaposto visibile su tutte le pagine IT/EN |
+| `npm run check:placeholders` | versione pubblica: nessun segnaposto, badge "● manca", nota "Bozza…", "Elenco da confermare…" o `%segnaposto%` non sostituito, nel testo e nel markup di tutte le pagine nelle 5 lingue |
 | `npm run test:configurator` | ogni tipo: link condivisibile, opzioni, 3D senza errori, ≤ 60.000 triangoli, download PDF/STL/GLB e bounding box |
 | `npm run test:request` | flusso completo in modalità test: 3 pezzi, modulo breve, errore di invio, anti-spam |
 | `npm run check:links`, `npm run check:a11y` | link interni, redirect, axe WCAG 2.1 AA (chiaro e scuro) |
