@@ -113,7 +113,7 @@ function cleanMeta(v: unknown): QuoteMeta | undefined {
   const m = v as Record<string, unknown>;
   const utmRaw = (m.utm && typeof m.utm === "object" ? m.utm : {}) as Record<string, unknown>;
   const utm: Record<string, string> = {};
-  for (const k of ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid"]) {
+  for (const k of ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"]) {
     const s = str(utmRaw[k], 120);
     if (s) utm[k] = s;
   }

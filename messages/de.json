@@ -571,7 +571,7 @@
             "In der Angebotsanfrage eingegebene Daten: Unternehmen, Vor- und Nachname, E-Mail, Telefon (optional), Land, USt-IdNr. (optional), angefragte Teile mit Mengen und Notizen.",
             "Mit der Anfrage hochgeladene Dateien (Zeichnungen und Modelle in PDF, DWG, DXF, STEP, IGES oder STL). Zeichnungen können personenbezogene Daten enthalten, zum Beispiel den Namen des Konstrukteurs im Schriftfeld.",
             "Nutzungsdaten: IP-Adresse und technische Informationen, die der Server aus Sicherheits- und Betriebsgründen protokolliert. Aggregierte, anonyme Besuchsstatistiken ohne Cookies (siehe Abschnitt 7).",
-            "Zusammen mit der Anfrage erhalten wir die Seite, von der sie gesendet wurde, die Sprache der Website und, sofern vorhanden, die Einstiegsseite des ersten Besuchs, die verweisende Website und die Kampagnenparameter (UTM): Sie helfen uns zu verstehen, wie Sie uns gefunden haben."
+            "Zusammen mit der Anfrage erhalten wir die Seite, von der sie gesendet wurde, und die Sprache der Website. Nur wenn Sie über einen Kampagnenlink auf die Website gekommen sind (mit utm_*-, gclid- oder fbclid-Parametern in der Adresse), erhalten wir außerdem die Einstiegsseite, die verweisende Website und die Kampagnenparameter: Sie helfen uns zu verstehen, wie Sie uns gefunden haben."
           ]
         },
         {
@@ -610,7 +610,7 @@
           "h": "7. Statistik und Cookies",
           "p": [
             "Wir nutzen Vercel Web Analytics (Vercel Inc.), einen Statistikdienst ohne Cookies: Er zählt Besuche in aggregierter Form, ohne Besucher zu identifizieren oder websiteübergreifend zu verfolgen.",
-            "Die Website verwendet keine Cookies. Sie speichert nur lokal im Browser Informationen (Design, Sprache, die Teileliste Ihrer Anfrage, die bereits im Formular eingegebenen Daten und die Herkunft des ersten Besuchs). Details in der Cookie-Richtlinie."
+            "Die Website verwendet keine Cookies. Sie speichert nur lokal im Browser Informationen (Design, Sprache, die Teileliste Ihrer Anfrage, die bereits im Formular eingegebenen Daten und, nur wenn Sie über einen Kampagnenlink kommen, die Herkunft des Besuchs). Details in der Cookie-Richtlinie."
           ]
         },
         {
@@ -681,7 +681,7 @@
           "h": "Speicherung im Browser",
           "p": [
             "Wir speichern einige Informationen in Ihrem Browser, ohne Cookies: das gewählte helle oder dunkle Design und die gewählte Sprache sowie die Information, ob der Sprachhinweis bereits angezeigt wurde; die Liste „Ihre Anfrage“ mit Teilen, Mengen und Notizen sowie die bereits im Formular eingegebenen Daten, damit Sie sie nicht erneut eingeben müssen (localStorage); die Zusammenfassung der zuletzt gesendeten Anfrage und die Information, ob die Intro-Animation bereits abgespielt wurde (sessionStorage, wird beim Schließen des Tabs gelöscht).",
-            "Beim ersten Besuch speichern wir außerdem die Einstiegsseite, die verweisende Website und etwaige Kampagnenparameter (UTM). Sie bleiben auf Ihrem Gerät und erreichen uns nur, wenn Sie eine Angebotsanfrage senden.",
+            "Nur wenn Sie über einen Kampagnenlink auf die Website kommen, also mit utm_*-, gclid- oder fbclid-Parametern in der Adresse, speichern wir außerdem die Einstiegsseite, die verweisende Website und die Kampagnenparameter. Ohne diese Parameter speichern wir nichts über Ihre Herkunft. Sie bleiben auf Ihrem Gerät und erreichen uns nur, wenn Sie eine Angebotsanfrage senden.",
             "Die Teileliste und die Formulardaten werden nach dem Senden geleert; alles andere können Sie jederzeit in den Browsereinstellungen löschen."
           ]
         },

@@ -571,7 +571,7 @@
             "Dati inseriti nella richiesta di preventivo: azienda, nome e cognome, email, telefono (facoltativo), paese, partita IVA (facoltativa), pezzi richiesti con quantità e note.",
             "File caricati con la richiesta (disegni e modelli in PDF, DWG, DXF, STEP, IGES o STL). I disegni possono contenere dati personali, per esempio il nome del progettista nel cartiglio.",
             "Dati di navigazione: indirizzo IP e informazioni tecniche registrati dal server per sicurezza e funzionamento. Statistiche aggregate e anonime sulle visite, senza cookie (vedi punto 7).",
-            "Insieme alla richiesta riceviamo la pagina del sito da cui è partita, la lingua del sito e, se disponibili, la pagina d’ingresso della prima visita, il sito di provenienza e i parametri della campagna (UTM): ci servono per capire come ci avete trovato."
+            "Insieme alla richiesta riceviamo la pagina del sito da cui è partita e la lingua del sito. Solo se siete arrivati al sito da un link di una campagna (con parametri utm_*, gclid o fbclid nell’indirizzo) riceviamo anche la pagina d’ingresso, il sito di provenienza e i parametri della campagna: ci servono per capire come ci avete trovato."
           ]
         },
         {
@@ -610,7 +610,7 @@
           "h": "7. Statistiche e cookie",
           "p": [
             "Usiamo Vercel Web Analytics (Vercel Inc.), una statistica che non usa cookie: conta le visite in forma aggregata, senza identificare chi visita il sito e senza seguirlo su altri siti.",
-            "Il sito non usa cookie. Salva nel browser solo informazioni locali (tema, lingua, la lista dei pezzi della richiesta, i dati già scritti nel modulo e la provenienza della prima visita). Dettagli nella cookie policy."
+            "Il sito non usa cookie. Salva nel browser solo informazioni locali (tema, lingua, la lista dei pezzi della richiesta, i dati già scritti nel modulo e, solo se arrivate da un link di una campagna, la provenienza della visita). Dettagli nella cookie policy."
           ]
         },
         {
@@ -681,7 +681,7 @@
           "h": "Memorizzazione nel browser",
           "p": [
             "Salviamo nel vostro browser, senza cookie, alcune informazioni: il tema chiaro o scuro e la lingua scelti, e se il suggerimento della lingua è già stato mostrato; la lista “La tua richiesta” con pezzi, quantità e note e i dati già scritti nel modulo, così non vanno riscritti (localStorage); il riepilogo dell’ultima richiesta inviata e il fatto che l’animazione iniziale sia già stata vista (sessionStorage, si cancellano alla chiusura della scheda).",
-            "Alla prima visita salviamo anche la pagina d’ingresso, il sito di provenienza e gli eventuali parametri della campagna (UTM). Restano sul vostro dispositivo e ci arrivano solo se inviate una richiesta di preventivo.",
+            "Solo se arrivate al sito da un link di una campagna, cioè con parametri utm_*, gclid o fbclid nell’indirizzo, salviamo anche la pagina d’ingresso, il sito di provenienza e i parametri della campagna. Senza questi parametri non salviamo nulla sulla provenienza. Restano sul vostro dispositivo e ci arrivano solo se inviate una richiesta di preventivo.",
             "La lista dei pezzi e i dati del modulo si svuotano dopo l’invio; il resto si può cancellare in ogni momento dalle impostazioni del browser."
           ]
         },

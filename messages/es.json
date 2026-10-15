@@ -571,7 +571,7 @@
             "Datos introducidos en la solicitud de presupuesto: empresa, nombre y apellidos, correo electrónico, teléfono (opcional), país, NIF-IVA (opcional), piezas solicitadas con cantidades y notas.",
             "Archivos cargados con la solicitud (planos y modelos en PDF, DWG, DXF, STEP, IGES o STL). Los planos pueden contener datos personales, por ejemplo el nombre del proyectista en el cajetín.",
             "Datos de navegación: dirección IP e información técnica registradas por el servidor por motivos de seguridad y funcionamiento. Estadísticas de visitas agregadas y anónimas, sin cookies (véase el apartado 7).",
-            "Junto con la solicitud recibimos la página desde la que se envió, el idioma del sitio y, si están disponibles, la página de entrada de la primera visita, el sitio de procedencia y los parámetros de la campaña (UTM): nos sirven para saber cómo nos ha encontrado."
+            "Junto con la solicitud recibimos la página desde la que se envió y el idioma del sitio. Solo si ha llegado al sitio desde un enlace de una campaña (con parámetros utm_*, gclid o fbclid en la dirección) recibimos también la página de entrada, el sitio de procedencia y los parámetros de la campaña: nos sirven para saber cómo nos ha encontrado."
           ]
         },
         {
@@ -610,7 +610,7 @@
           "h": "7. Estadísticas y cookies",
           "p": [
             "Utilizamos Vercel Web Analytics (Vercel Inc.), un servicio de estadísticas que no usa cookies: cuenta las visitas de forma agregada, sin identificar a quien visita el sitio y sin rastrearlo en otros sitios web.",
-            "El sitio web no utiliza cookies. Solo guarda información local en el navegador (tema, idioma, la lista de piezas de la solicitud, los datos ya escritos en el formulario y la procedencia de la primera visita). Más detalles en la política de cookies."
+            "El sitio web no utiliza cookies. Solo guarda información local en el navegador (tema, idioma, la lista de piezas de la solicitud, los datos ya escritos en el formulario y, solo si llega desde un enlace de una campaña, la procedencia de la visita). Más detalles en la política de cookies."
           ]
         },
         {
@@ -681,7 +681,7 @@
           "h": "Almacenamiento en el navegador",
           "p": [
             "Guardamos en su navegador, sin cookies, cierta información: el tema claro u oscuro y el idioma elegidos, y si ya se ha mostrado la sugerencia de idioma; la lista “Su solicitud” con las piezas, las cantidades y las notas y los datos ya escritos en el formulario, para que no tenga que volver a escribirlos (localStorage); el resumen de la última solicitud enviada y si la animación de introducción ya se ha mostrado (sessionStorage, se borran al cerrar la pestaña).",
-            "En la primera visita guardamos también la página de entrada, el sitio de procedencia y los posibles parámetros de la campaña (UTM). Permanecen en su dispositivo y solo nos llegan si envía una solicitud de presupuesto.",
+            "Solo si llega al sitio desde un enlace de una campaña, es decir, con parámetros utm_*, gclid o fbclid en la dirección, guardamos también la página de entrada, el sitio de procedencia y los parámetros de la campaña. Sin estos parámetros no guardamos nada sobre la procedencia. Permanecen en su dispositivo y solo nos llegan si envía una solicitud de presupuesto.",
             "La lista de piezas y los datos del formulario se vacían tras el envío; todo lo demás puede borrarse en cualquier momento desde la configuración del navegador."
           ]
         },
