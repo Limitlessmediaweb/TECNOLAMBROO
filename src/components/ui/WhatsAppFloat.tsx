@@ -8,8 +8,10 @@ import { whatsappHref } from "@/data/site";
 
 /**
  * WhatsApp fisso in basso a sinistra, solo su telefono e tablet (su desktop sta in footer e contatti).
- * Compare dopo 600 px di scroll, così non copre l'hero e la barra di fiducia; si nasconde quando c'è
- * una barra fissa in basso (configuratore, "La tua richiesta": html[data-fixed-bar], vedi globals.css).
+ * Compare dopo 600 px di scroll e solo quando si torna indietro (scroll verso l'alto) o si arriva in
+ * fondo alla pagina: mentre si legge scorrendo verso il basso resta nascosto, così non copre il testo.
+ * In fondo il footer ha lo spazio riservato (pb-[5.5rem] su telefono). Si nasconde anche con una barra
+ * fissa in basso (configuratore, "La tua richiesta": html[data-fixed-bar], vedi globals.css).
  */
 export function WhatsAppFloat() {
   const t = useT("common");
@@ -18,7 +20,15 @@ export function WhatsAppFloat() {
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setShown(window.scrollY > 600);
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      const atBottom = window.innerHeight + y >= document.documentElement.scrollHeight - 160;
+      if (y <= 600) setShown(false);
+      else if (atBottom || y < last - 8) setShown(true);
+      else if (y > last + 8) setShown(false);
+      if (Math.abs(y - last) > 8) last = y;
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);

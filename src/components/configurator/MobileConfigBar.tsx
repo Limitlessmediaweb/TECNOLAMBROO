@@ -6,8 +6,8 @@ import type { PartSpec } from "@/data/configurator/types";
 
 /**
  * Telefono e tablet (sotto 1024 px): barra fissa in basso con il riferimento corto del pezzo e
- * "Aggiungi alla richiesta", visibile mentre il configuratore è sullo schermo. Sopra, una
- * mini-anteprima statica (96×72) che si aggiorna col pezzo e scompare quando la vista grande è
+ * "Aggiungi alla richiesta", visibile mentre il configuratore è sullo schermo. A sinistra, dentro la
+ * barra, una mini-anteprima statica che si aggiorna col pezzo e scompare quando la vista grande è
  * visibile; toccandola si torna alla vista grande.
  */
 export function MobileConfigBar({
@@ -85,20 +85,21 @@ export function MobileConfigBar({
   if (!inView) return null;
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 lg:hidden" data-config-bar>
-      {showMini && src ? (
-        <button
-          type="button"
-          onClick={() => figureRef.current?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" })}
-          className="mb-2 ml-4 block h-[72px] w-24 overflow-hidden rounded-sm border border-line-strong bg-surface shadow-[0_6px_20px_var(--c-shadow)]"
-          aria-label={previewLabel}
-          data-mini-preview
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={src} alt="" width={96} height={72} className="h-full w-full object-contain" />
-        </button>
-      ) : null}
       <div className="flex items-center justify-between gap-3 border-t border-line bg-bg/95 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur">
-        <span className="min-w-0 truncate font-mono text-sm" data-bar-label>
+        {/* Miniatura dentro la barra (non sopra): non copre mai il contenuto della pagina */}
+        {showMini && src ? (
+          <button
+            type="button"
+            onClick={() => figureRef.current?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" })}
+            className="-my-1 block h-11 w-[3.75rem] shrink-0 overflow-hidden rounded-sm border border-line-strong bg-surface"
+            aria-label={previewLabel}
+            data-mini-preview
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={src} alt="" width={60} height={44} className="h-full w-full object-contain" />
+          </button>
+        ) : null}
+        <span className="min-w-0 flex-1 truncate font-mono text-sm" data-bar-label>
           {label}
         </span>
         <button type="button" className="btn btn-primary btn-sm shrink-0" onClick={onAdd} disabled={disabled} data-bar-add>
