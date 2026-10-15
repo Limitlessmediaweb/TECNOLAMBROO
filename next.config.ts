@@ -91,8 +91,9 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         headers: [
-          // Niente "preload": iscrive il dominio nella lista dei browser ed è difficile da togliere.
-          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
+          // Niente "includeSubDomains" né "preload": webmail.tecnolambro.it (Aruba) risponde solo in HTTP
+          // e i browser la renderebbero irraggiungibile dopo una visita al sito (verificato il 15/10/2026).
+          { key: "Strict-Transport-Security", value: "max-age=63072000" },
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
