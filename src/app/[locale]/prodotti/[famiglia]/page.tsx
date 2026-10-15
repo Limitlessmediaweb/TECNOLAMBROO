@@ -40,13 +40,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildMetadata({
     locale: locale as Locale,
     href: Object.fromEntries(routing.locales.map((l) => [l, { pathname: "/prodotti/[famiglia]" as const, params: { famiglia: familySlug(family, l) } }])) as Record<Locale, { pathname: "/prodotti/[famiglia]"; params: { famiglia: string } }>,
-    title: fitTitle(m("title", { name }), name),
+    title: m("title", { name }),
     description: fitDescription(description),
   });
-}
-
-function fitTitle(full: string, name: string): string {
-  return full.length <= 60 ? full : `${name} | Tecnolambro`;
 }
 
 /** ≤ 155 caratteri: frasi intere se bastano a una buona lunghezza, altrimenti taglio a fine parola. */
