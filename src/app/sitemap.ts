@@ -1,10 +1,18 @@
 import type { MetadataRoute } from "next";
-import { routing, type StaticPathname } from "@/i18n/routing";
+import { routing, type Locale, type StaticPathname } from "@/i18n/routing";
 import { absoluteUrl, indexedLocales } from "@/lib/seo";
 import { LOCALE_META } from "@/i18n/locales";
 import { VISIBLE_FAMILIES, familySlug } from "@/data/families";
 import { SIZES } from "@/data/waveguides";
 import { wrSlug } from "@/lib/wr-page";
+
+type Href = Parameters<typeof absoluteUrl>[0];
+
+/** hreflang delle lingue indicizzate + x-default (italiano), come nei metadati delle pagine. */
+function languagesFor(hrefFor: (l: Locale) => Href): Record<string, string> {
+  const languages = Object.fromEntries(indexedLocales().map((l) => [LOCALE_META[l].hreflang, absoluteUrl(hrefFor(l), l)]));
+  return { ...languages, "x-default": absoluteUrl(hrefFor(routing.defaultLocale), routing.defaultLocale) };
+}
 
 const STATIC: { href: StaticPathname; priority: number; changeFrequency: "monthly" | "yearly" }[] = [
   { href: "/", priority: 1, changeFrequency: "monthly" },
@@ -27,15 +35,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
   for (const page of STATIC) {
-    const languages = Object.fromEntries(indexedLocales().map((l) => [LOCALE_META[l].hreflang, absoluteUrl(page.href, l)]));
+    const languages = languagesFor(() => page.href);
     for (const locale of indexedLocales()) {
       entries.push({ url: absoluteUrl(page.href, locale), lastModified, changeFrequency: page.changeFrequency, priority: page.priority, alternates: { languages } });
     }
   }
 
   for (const family of VISIBLE_FAMILIES) {
-    const hrefFor = (l: (typeof routing.locales)[number]) => ({ pathname: "/prodotti/[famiglia]" as const, params: { famiglia: familySlug(family, l) } });
-    const languages = Object.fromEntries(indexedLocales().map((l) => [LOCALE_META[l].hreflang, absoluteUrl(hrefFor(l), l)]));
+    const hrefFor = (l: Locale) => ({ pathname: "/prodotti/[famiglia]" as const, params: { famiglia: familySlug(family, l) } });
+    const languages = languagesFor(hrefFor);
     for (const locale of indexedLocales()) {
       entries.push({ url: absoluteUrl(hrefFor(locale), locale), lastModified, changeFrequency: "monthly", priority: 0.8, alternates: { languages } });
     }
@@ -44,7 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // una pagina per ogni misura WR
   for (const size of SIZES) {
     const href = { pathname: "/prodotti/guida-flessibile/[wr]" as const, params: { wr: wrSlug(size.wr) } };
-    const languages = Object.fromEntries(indexedLocales().map((l) => [LOCALE_META[l].hreflang, absoluteUrl(href, l)]));
+    const languages = languagesFor(() => href);
     for (const locale of indexedLocales()) {
       entries.push({ url: absoluteUrl(href, locale), lastModified, changeFrequency: "monthly", priority: 0.7, alternates: { languages } });
     }
