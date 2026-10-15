@@ -3,18 +3,18 @@
     "siteName": "Tecnolambro Microwave Components",
     "home": {
       "title": "Guide d’onda flessibili e componenti | Tecnolambro",
-      "description": "Guida d’onda flessibile twistabile e seamless, curve, twist e disassati. Progettiamo, costruiamo e collaudiamo dal 1987. Preventivo entro 24 ore."
+      "description": "Guida d’onda flessibile twistabile e seamless, curve, twist e disassati. Progettiamo, costruiamo e collaudiamo dal 1987. Preventivo entro %quoteTime%."
     },
     "products": {
       "title": "Prodotti in guida d’onda flessibile | Tecnolambro",
-      "description": "Guida d’onda flessibile twistabile e seamless da WR-22 a WR-284, curve, twist e disassati su richiesta. Tabelle tecniche e preventivo entro 24 ore."
+      "description": "Guida d’onda flessibile twistabile e seamless da WR-22 a WR-284, curve, twist e disassati su richiesta. Tabelle tecniche e preventivo entro %quoteTime%."
     },
     "family": {
       "title": "{name} | Tecnolambro Microwave Components"
     },
     "custom": {
       "title": "Componenti a microonde su disegno | Tecnolambro",
-      "description": "Inviate il disegno in PDF, DWG, DXF, STEP, IGES o STL: progettiamo, costruiamo e collaudiamo il pezzo. Preventivo entro 24 ore."
+      "description": "Inviate il disegno in PDF, DWG, DXF, STEP, IGES o STL: progettiamo, costruiamo e collaudiamo il pezzo. Preventivo entro %quoteTime%."
     },
     "about": {
       "title": "Dal 1987 a Miradolo Terme | Tecnolambro",
@@ -26,7 +26,7 @@
     },
     "contact": {
       "title": "Contatti e preventivi | Tecnolambro",
-      "description": "Richiedi un preventivo per guide d’onda e componenti a microonde: risposta entro 24 ore. +39 375 577 1084, info@tecnolambro.it, Miradolo Terme (PV)."
+      "description": "Richiedi un preventivo per guide d’onda e componenti a microonde: risposta entro %quoteTime%. %phone%, info@tecnolambro.it, Miradolo Terme (PV)."
     },
     "faq": {
       "title": "Domande frequenti | Tecnolambro",
@@ -34,7 +34,7 @@
     },
     "privacy": {
       "title": "Privacy policy | Tecnolambro",
-      "description": "Come Tecnolambro S.a.s. tratta i dati personali raccolti dal sito e dal form di richiesta preventivo, ai sensi del Regolamento UE 2016/679."
+      "description": "Come %legalNameShort% tratta i dati personali raccolti dal sito e dal form di richiesta preventivo, ai sensi del Regolamento UE 2016/679."
     },
     "terms": {
       "title": "Termini d’uso | Tecnolambro",
@@ -50,7 +50,7 @@
     },
     "shop": {
       "title": "Configura il tuo pezzo in guida d’onda | Tecnolambro",
-      "description": "Componi la guida d’onda flessibile: misura, lunghezza e flange, con disegno quotato e modello 3D. Prezzi su richiesta, preventivo entro 24 ore."
+      "description": "Componi la guida d’onda flessibile: misura, lunghezza e flange, con disegno quotato e modello 3D. Prezzi su richiesta, preventivo entro %quoteTime%."
     },
     "tables": {
       "title": "Tabelle tecniche guida d’onda flessibile | Tecnolambro",
@@ -108,8 +108,8 @@
     "pauseMotion": "Metti in pausa l’animazione",
     "playMotion": "Riprendi l’animazione",
     "hoursTitle": "Orari",
-    "hoursWeek": "Lunedì–venerdì: 8:00–12:00 e 13:30–17:30",
-    "hoursWeekend": "Sabato e domenica: chiuso",
+    "hoursWeek": "%officeDays%: %officeHours%",
+    "hoursWeekend": "%closedDays%: chiuso",
     "missing": "manca: {what}",
     "whatsappLabel": "Scrivici su WhatsApp"
   },
@@ -138,8 +138,8 @@
     "factYears": "Anni di lavoro sulle microonde",
     "factFlexValue": "100%",
     "factFlex": "Pezzi collaudati prima della spedizione",
-    "factReplyValue": "24 h",
-    "factReply": "Preventivo entro 24 ore",
+    "factReplyValue": "%quoteTimeShort%",
+    "factReply": "Preventivo entro %quoteTime%",
     "cta": "Scopri l’azienda"
   },
   "productsSection": {
@@ -218,12 +218,12 @@
       "tableTitle": "Caratteristiche tecniche",
       "tablesLink": "Tutte le tabelle tecniche",
       "onRequestTitle": "Su richiesta o su disegno",
-      "onRequestBody": "Indicate tipo di pezzo, misura, angolo o disassamento e flange, oppure caricate il disegno: vi mandiamo il preventivo entro 24 ore.",
+      "onRequestBody": "Indicate tipo di pezzo, misura, angolo o disassamento e flange, oppure caricate il disegno: vi mandiamo il preventivo entro %quoteTime%.",
       "applicationsTitle": "Dove si usa",
       "quoteTitle": "Serve una misura o una versione diversa?",
-      "quoteBody": "Indicate misura, lunghezza, flange e quantità: preventivo entro 24 ore. Prezzi su richiesta: ogni preventivo è personalizzato.",
+      "quoteBody": "Indicate misura, lunghezza, flange e quantità: preventivo entro %quoteTime%. Prezzi su richiesta: ogni preventivo è personalizzato.",
       "shopTitle": "Configura il tuo pezzo",
-      "shopBody": "Misura, lunghezza e flange: disegno quotato e modello 3D subito, preventivo entro 24 ore.",
+      "shopBody": "Misura, lunghezza e flange: disegno quotato e modello 3D subito, preventivo entro %quoteTime%.",
       "others": "Altre famiglie",
       "demoTitle": "Il pezzo in 3D",
       "demoBody": "Il pezzo standard in WR-90: ruotalo, guarda le quote e il disegno, poi personalizzalo nel configuratore.",
@@ -320,7 +320,7 @@
     "title": "Configura il pezzo, richiedi il preventivo.",
     "body": "Scegli tipo, misura, lunghezza e flange: vedi subito il disegno quotato e il modello 3D. Prezzi su richiesta: ogni preventivo è personalizzato.",
     "points": [
-      "Preventivo entro 24 ore",
+      "Preventivo entro %quoteTime%",
       "Disegno PDF e modello 3D da scaricare",
       "Spedizione in tutto il mondo"
     ],
@@ -378,7 +378,7 @@
       },
       "shopVsQuote": {
         "q": "Posso acquistare online?",
-        "a": "No: ogni ordine parte da una richiesta di preventivo, perché i prezzi sono personalizzati. Configurate il pezzo o sceglietelo tra i prodotti pronti, aggiungete quantità e note e inviate la richiesta: rispondiamo entro 24 ore."
+        "a": "No: ogni ordine parte da una richiesta di preventivo, perché i prezzi sono personalizzati. Configurate il pezzo o sceglietelo tra i prodotti pronti, aggiungete quantità e note e inviate la richiesta: rispondiamo entro %quoteTime%."
       },
       "drawing3d": {
         "q": "Fornite il disegno 3D?",
@@ -386,17 +386,17 @@
       },
       "clientDrawing": {
         "q": "Lavorate su disegno del cliente?",
-        "a": "Sì. Caricate STEP, IGES, STL, PDF, DWG o DXF nella richiesta di preventivo: l’ufficio tecnico lo valuta e vi risponde entro 24 ore lavorative."
+        "a": "Sì. Caricate STEP, IGES, STL, PDF, DWG o DXF nella richiesta di preventivo: l’ufficio tecnico lo valuta e vi risponde entro %quoteTimeWorking%."
       },
       "hours": {
         "q": "Quali sono gli orari dell’ufficio?",
-        "a": "Dal lunedì al venerdì, dalle 8:00 alle 12:00 e dalle 13:30 alle 17:30. Sabato e domenica chiuso. Le richieste dal sito arrivano anche fuori orario."
+        "a": "%officeDays%, %officeHours%. %closedDays% chiuso. Le richieste dal sito arrivano anche fuori orario."
       }
     }
   },
   "quote": {
     "title": "Mandateci il disegno.",
-    "body": "Due righe e, se lo avete, il file: vi rispondiamo con il preventivo entro 24 ore lavorative.",
+    "body": "Due righe e, se lo avete, il file: vi rispondiamo con il preventivo entro %quoteTimeWorking%.",
     "formLabel": "Richiesta di preventivo",
     "required": "obbligatorio",
     "optional": "facoltativo",
@@ -444,7 +444,7 @@
     }
   },
   "finalCta": {
-    "title": "Preventivo entro 24 ore.",
+    "title": "Preventivo entro %quoteTime%.",
     "body": "Prezzi su richiesta: ogni preventivo è personalizzato.",
     "quote": "Richiedi un preventivo",
     "shop": "Configura il tuo pezzo"
@@ -460,7 +460,7 @@
     "vat": "P.IVA",
     "credit": "Realizzato e gestito da",
     "distinct": "Tecnolambro Microwave Components, Miradolo Terme (PV). Nessun legame con altre aziende con nome simile.",
-    "rights": "© {year} Tecnolambro S.a.s. di Pasquini Marco & C.",
+    "rights": "© {year} %legalName%",
     "logoAlt": "Logo Tecnolambro: produttore di guida d’onda flessibile twistabile e senza saldature, componenti per applicazioni a microonde",
     "pec": "PEC"
   },
@@ -489,7 +489,7 @@
     "formatsTitle": "Formati accettati",
     "formatsBody": "PDF per disegni quotati, DWG e DXF per il 2D, STEP, IGES e STL per i modelli 3D.",
     "timeTitle": "Tempi",
-    "timeBody": "Preventivo entro 24 ore: tempi e modalità di consegna li stabiliamo nel preventivo.",
+    "timeBody": "Preventivo entro %quoteTime%: tempi e modalità di consegna li stabiliamo nel preventivo.",
     "testTitle": "Collaudo",
     "testBody": "Collaudiamo il 100% dei pezzi prima della spedizione.",
     "stepsTitle": "Dal disegno al pezzo",
@@ -535,7 +535,7 @@
   },
   "contactPage": {
     "title": "Contatti e preventivi",
-    "intro": "Scriveteci, chiamateci o inviate direttamente il disegno. Preventivo entro 24 ore.",
+    "intro": "Scriveteci, chiamateci o inviate direttamente il disegno. Preventivo entro %quoteTime%.",
     "hoursTitle": "Orari",
     "company": "Dati societari"
   },
@@ -561,8 +561,8 @@
         {
           "h": "1. Titolare del trattamento",
           "p": [
-            "Il titolare del trattamento è Tecnolambro S.a.s. di Pasquini Marco & C., P.IVA 08639310153, sede legale in Via Privata delle Betulle 1, 20078 San Colombano al Lambro (MI), sede operativa in Via degli Spinedi 20, 27010 Miradolo Terme (PV).",
-            "Per qualsiasi richiesta sulla privacy: info@tecnolambro.it, PEC tecnolambrosnc@pec.it, telefono +39 375 577 1084."
+            "Il titolare del trattamento è %legalName%, P.IVA 08639310153, sede legale in Via Privata delle Betulle 1, 20078 San Colombano al Lambro (MI), sede operativa in Via degli Spinedi 20, 27010 Miradolo Terme (PV).",
+            "Per qualsiasi richiesta sulla privacy: info@tecnolambro.it, PEC %pec%, telefono %phone%."
           ]
         },
         {
@@ -628,7 +628,7 @@
         {
           "h": "1. Uso del sito",
           "p": [
-            "Questo sito presenta i prodotti e i servizi di Tecnolambro S.a.s. di Pasquini Marco & C. (P.IVA 08639310153). Le informazioni tecniche sono indicative: caratteristiche, misure e prestazioni valide sono quelle confermate nell’offerta scritta."
+            "Questo sito presenta i prodotti e i servizi di %legalName% (P.IVA 08639310153). Le informazioni tecniche sono indicative: caratteristiche, misure e prestazioni valide sono quelle confermate nell’offerta scritta."
           ]
         },
         {
@@ -661,7 +661,7 @@
         {
           "h": "6. Legge applicabile e contatti",
           "p": [
-            "Si applica la legge italiana. Foro competente: Pavia. Per domande: info@tecnolambro.it, +39 375 577 1084.",
+            "Si applica la legge italiana. Foro competente: Pavia. Per domande: info@tecnolambro.it, %phone%.",
             "Le condizioni di fornitura sono indicate in ogni preventivo."
           ]
         }
@@ -702,13 +702,13 @@
   },
   "shop": {
     "title": "Configura il tuo pezzo",
-    "intro": "Hai la misura? Componi il pezzo e vedilo in 3D. Hai un disegno? Caricalo. Niente prezzi online: il preventivo personalizzato arriva entro 24 ore.",
+    "intro": "Hai la misura? Componi il pezzo e vedilo in 3D. Hai un disegno? Caricalo. Niente prezzi online: il preventivo personalizzato arriva entro %quoteTime%.",
     "breadcrumb": "Configura",
     "howTitle": "Come funziona",
     "how": [
       "Scegli o componi il pezzo",
       "Quantità e note",
-      "Invia: preventivo entro 24 ore"
+      "Invia: preventivo entro %quoteTime%"
     ],
     "readyTitle": "Prodotti pronti",
     "readyBody": "Le misure standard: flessibili, curve E e H a 90° e twist a 90°. Aggiungile alla richiesta o personalizzale.",
@@ -803,7 +803,7 @@
       "L": "L lunghezza"
     },
     "sheetTitle": "Scheda tecnica",
-    "sheetFooter": "Richiedi un preventivo: tecnolambro.it/shop · +39 375 577 1084",
+    "sheetFooter": "Richiedi un preventivo: tecnolambro.it/shop · %phone%",
     "indicative": "Dati indicativi: i valori definitivi sono nel preventivo."
   },
   "configurator": {
@@ -927,7 +927,7 @@
     "notesTitle": "Note",
     "notesPlaceholder": "Es. pressurizzazione, finitura, consegna richiesta…",
     "customTitle": "Il tuo pezzo su disegno",
-    "customBody": "Descrivi il pezzo e carica il disegno o il modello 3D: lo valutiamo e ti mandiamo il preventivo entro 24 ore.",
+    "customBody": "Descrivi il pezzo e carica il disegno o il modello 3D: lo valutiamo e ti mandiamo il preventivo entro %quoteTime%.",
     "customDescription": "Descrizione del pezzo",
     "customPlaceholder": "Es. curva piano H 45° con flange UG-39/U, uscita a 300 mm",
     "customDescriptionError": "Descrivi il pezzo in qualche parola.",
@@ -971,7 +971,7 @@
   },
   "request": {
     "title": "La tua richiesta",
-    "intro": "Controlla i pezzi, aggiungi quantità, note e file, poi invia: ti rispondiamo con il preventivo entro 24 ore lavorative.",
+    "intro": "Controlla i pezzi, aggiungi quantità, note e file, poi invia: ti rispondiamo con il preventivo entro %quoteTimeWorking%.",
     "open": "La tua richiesta",
     "openWithCount": "La tua richiesta, {count} pezzi",
     "openWithOne": "La tua richiesta, 1 pezzo",
@@ -1047,13 +1047,13 @@
   },
   "requestSent": {
     "title": "Richiesta ricevuta.",
-    "body": "Vi rispondiamo con il preventivo entro 24 ore lavorative.",
+    "body": "Vi rispondiamo con il preventivo entro %quoteTimeWorking%.",
     "number": "Numero di richiesta",
     "copy": "Vi abbiamo mandato una conferma per email con il riepilogo e i disegni dei pezzi configurati.",
     "nextTitle": "Cosa succede adesso",
     "next": [
       {
-        "title": "Preventivo entro 24 ore",
+        "title": "Preventivo entro %quoteTime%",
         "body": "L’ufficio tecnico controlla i pezzi e i file e ti manda il preventivo personalizzato, con tempi e modalità di spedizione."
       },
       {
@@ -1080,7 +1080,7 @@
     "since": "Dal {year}",
     "ownProduction": "Produzione propria",
     "tested": "Collaudo al 100%",
-    "quote24": "Preventivo in 24 ore",
+    "quote24": "Preventivo in %quoteTime%",
     "worldwide": "Spedizione nel mondo"
   },
   "owner": {
@@ -1115,7 +1115,7 @@
   "wrPage": {
     "title": "{wr} guida d’onda flessibile",
     "metaTitle": "{wr} guida d’onda flessibile {band} GHz | Tecnolambro",
-    "metaDescription": "Guida d’onda flessibile {wr} ({iec}, {wg}) per {band} GHz, twistabile e seamless: dimensioni, dati elettrici, flange. Preventivo entro 24 ore.",
+    "metaDescription": "Guida d’onda flessibile {wr} ({iec}, {wg}) per {band} GHz, twistabile e seamless: dimensioni, dati elettrici, flange. Preventivo entro %quoteTime%.",
     "intro": "La guida d’onda flessibile {wr} ({iec} · {wg}) lavora da {band} GHz. La costruiamo twistabile e seamless, con le flange e la lunghezza che vi servono.",
     "category": "Guida d’onda flessibile",
     "configureTwistable": "Configura la twistabile",
@@ -1147,7 +1147,7 @@
     "flangesTitle": "Flange",
     "flangesBody": "Le flange IEC più comuni per questa misura. Altri tipi su richiesta: indicateli nelle note.",
     "ctaTitle": "Vi serve la {wr}?",
-    "ctaBody": "Mandateci misura, lunghezza e flange, oppure il disegno: il preventivo arriva entro 24 ore lavorative.",
+    "ctaBody": "Mandateci misura, lunghezza e flange, oppure il disegno: il preventivo arriva entro %quoteTimeWorking%.",
     "neighbours": "Misure vicine",
     "lower": "Frequenza più bassa",
     "higher": "Frequenza più alta",

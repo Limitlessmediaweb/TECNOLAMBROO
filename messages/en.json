@@ -3,18 +3,18 @@
     "siteName": "Tecnolambro Microwave Components",
     "home": {
       "title": "Flexible waveguides and microwave parts | Tecnolambro",
-      "description": "Twistable and seamless flexible waveguide, bends, twists and offsets. Designed, built and tested by us since 1987. Quote within 24 hours."
+      "description": "Twistable and seamless flexible waveguide, bends, twists and offsets. Designed, built and tested by us since 1987. Quote within %quoteTime%."
     },
     "products": {
       "title": "Flexible waveguide products | Tecnolambro",
-      "description": "Twistable and seamless flexible waveguide from WR-22 to WR-284, bends, twists and offsets on request. Technical tables and a quote within 24 hours."
+      "description": "Twistable and seamless flexible waveguide from WR-22 to WR-284, bends, twists and offsets on request. Technical tables and a quote within %quoteTime%."
     },
     "family": {
       "title": "{name} | Tecnolambro Microwave Components"
     },
     "custom": {
       "title": "Custom microwave components | Tecnolambro",
-      "description": "Send your drawing as PDF, DWG, DXF, STEP, IGES or STL: we design, build and test the part. Quote within 24 hours."
+      "description": "Send your drawing as PDF, DWG, DXF, STEP, IGES or STL: we design, build and test the part. Quote within %quoteTime%."
     },
     "about": {
       "title": "Since 1987 in Miradolo Terme | Tecnolambro",
@@ -26,7 +26,7 @@
     },
     "contact": {
       "title": "Contact & quotes | Tecnolambro",
-      "description": "Request a quote for waveguides and microwave components: reply within 24 hours. +39 375 577 1084, info@tecnolambro.it, Miradolo Terme, Italy."
+      "description": "Request a quote for waveguides and microwave components: reply within %quoteTime%. %phone%, info@tecnolambro.it, Miradolo Terme, Italy."
     },
     "faq": {
       "title": "FAQ | Tecnolambro",
@@ -34,7 +34,7 @@
     },
     "privacy": {
       "title": "Privacy policy | Tecnolambro",
-      "description": "How Tecnolambro S.a.s. processes personal data collected by the website and the quote request form, under Regulation (EU) 2016/679."
+      "description": "How %legalNameShort% processes personal data collected by the website and the quote request form, under Regulation (EU) 2016/679."
     },
     "terms": {
       "title": "Terms of use | Tecnolambro",
@@ -50,7 +50,7 @@
     },
     "shop": {
       "title": "Configure your waveguide part | Tecnolambro",
-      "description": "Build your flexible waveguide: size, length and flanges, with a dimensioned drawing and 3D model. Prices on request, quote within 24 hours."
+      "description": "Build your flexible waveguide: size, length and flanges, with a dimensioned drawing and 3D model. Prices on request, quote within %quoteTime%."
     },
     "tables": {
       "title": "Flexible waveguide technical tables | Tecnolambro",
@@ -108,8 +108,8 @@
     "pauseMotion": "Pause animation",
     "playMotion": "Play animation",
     "hoursTitle": "Opening hours",
-    "hoursWeek": "Monday–Friday: 8:00–12:00 and 13:30–17:30",
-    "hoursWeekend": "Saturday and Sunday: closed",
+    "hoursWeek": "%officeDays%: %officeHours%",
+    "hoursWeekend": "%closedDays%: closed",
     "missing": "missing: {what}",
     "whatsappLabel": "Message us on WhatsApp"
   },
@@ -138,8 +138,8 @@
     "factYears": "Years building microwave parts",
     "factFlexValue": "100%",
     "factFlex": "Parts tested before shipping",
-    "factReplyValue": "24 h",
-    "factReply": "Quote within 24 hours",
+    "factReplyValue": "%quoteTimeShort%",
+    "factReply": "Quote within %quoteTime%",
     "cta": "About the company"
   },
   "productsSection": {
@@ -218,12 +218,12 @@
       "tableTitle": "Technical data",
       "tablesLink": "All technical tables",
       "onRequestTitle": "On request or to your drawing",
-      "onRequestBody": "Tell us the type of part, size, angle or offset and flanges, or upload your drawing: we send a quote within 24 hours.",
+      "onRequestBody": "Tell us the type of part, size, angle or offset and flanges, or upload your drawing: we send a quote within %quoteTime%.",
       "applicationsTitle": "Where it is used",
       "quoteTitle": "Need a different size or version?",
-      "quoteBody": "Tell us size, length, flanges and quantity: quote within 24 hours. Prices on request: every quote is tailored.",
+      "quoteBody": "Tell us size, length, flanges and quantity: quote within %quoteTime%. Prices on request: every quote is tailored.",
       "shopTitle": "Configure your part",
-      "shopBody": "Size, length and flanges: dimensioned drawing and 3D model straight away, quote within 24 hours.",
+      "shopBody": "Size, length and flanges: dimensioned drawing and 3D model straight away, quote within %quoteTime%.",
       "others": "Other families",
       "demoTitle": "The part in 3D",
       "demoBody": "The standard WR-90 part: rotate it, check the dimensions and the drawing, then customize it in the configurator.",
@@ -320,7 +320,7 @@
     "title": "Configure the part, request a quote.",
     "body": "Choose type, size, length and flanges: see the dimensioned drawing and the 3D model straight away. Prices on request: every quote is tailored.",
     "points": [
-      "Quote within 24 hours",
+      "Quote within %quoteTime%",
       "PDF drawing and 3D model to download",
       "Worldwide shipping"
     ],
@@ -378,7 +378,7 @@
       },
       "shopVsQuote": {
         "q": "Can I buy online?",
-        "a": "No: every order starts from a quote request, because prices are tailored. Configure the part or pick a ready-made one, add quantity and notes and send the request: we reply within 24 hours."
+        "a": "No: every order starts from a quote request, because prices are tailored. Configure the part or pick a ready-made one, add quantity and notes and send the request: we reply within %quoteTime%."
       },
       "drawing3d": {
         "q": "Do you provide 3D drawings?",
@@ -386,17 +386,17 @@
       },
       "clientDrawing": {
         "q": "Do you work from customer drawings?",
-        "a": "Yes. Upload STEP, IGES, STL, PDF, DWG or DXF with your quote request: our engineering office reviews it and replies within 24 working hours."
+        "a": "Yes. Upload STEP, IGES, STL, PDF, DWG or DXF with your quote request: our engineering office reviews it and replies within %quoteTimeWorking%."
       },
       "hours": {
         "q": "What are your office hours?",
-        "a": "Monday to Friday, 8:00–12:00 and 13:30–17:30 (CET). Closed on Saturday and Sunday. Website requests are received outside office hours too."
+        "a": "%officeDays%, %officeHours% (CET). Closed on %closedDays%. Website requests are received outside office hours too."
       }
     }
   },
   "quote": {
     "title": "Send us your drawing.",
-    "body": "A couple of lines and, if you have it, the file: we reply with a quote within 24 working hours.",
+    "body": "A couple of lines and, if you have it, the file: we reply with a quote within %quoteTimeWorking%.",
     "formLabel": "Quote request",
     "required": "required",
     "optional": "optional",
@@ -444,7 +444,7 @@
     }
   },
   "finalCta": {
-    "title": "Quote within 24 hours.",
+    "title": "Quote within %quoteTime%.",
     "body": "Prices on request: every quote is tailored.",
     "quote": "Request a quote",
     "shop": "Configure your part"
@@ -460,7 +460,7 @@
     "vat": "VAT",
     "credit": "Built and managed by",
     "distinct": "Tecnolambro Microwave Components, Miradolo Terme (PV), Italy. Not affiliated with other companies with a similar name.",
-    "rights": "© {year} Tecnolambro S.a.s. di Pasquini Marco & C.",
+    "rights": "© {year} %legalName%",
     "logoAlt": "Tecnolambro logo: manufacturer of twistable flexible and seamless flexible waveguide, components for microwave applications",
     "pec": "PEC"
   },
@@ -489,7 +489,7 @@
     "formatsTitle": "Accepted formats",
     "formatsBody": "PDF for dimensioned drawings, DWG and DXF for 2D, STEP, IGES and STL for 3D models.",
     "timeTitle": "Timing",
-    "timeBody": "Quote within 24 hours: delivery time and method are set in the quote.",
+    "timeBody": "Quote within %quoteTime%: delivery time and method are set in the quote.",
     "testTitle": "Testing",
     "testBody": "We test 100% of parts before shipping.",
     "stepsTitle": "From drawing to part",
@@ -535,7 +535,7 @@
   },
   "contactPage": {
     "title": "Contact & quotes",
-    "intro": "Write, call or send your drawing straight away. Quote within 24 hours.",
+    "intro": "Write, call or send your drawing straight away. Quote within %quoteTime%.",
     "hoursTitle": "Opening hours",
     "company": "Company details"
   },
@@ -561,8 +561,8 @@
         {
           "h": "1. Data controller",
           "p": [
-            "The data controller is Tecnolambro S.a.s. di Pasquini Marco & C., VAT IT08639310153, registered office at Via Privata delle Betulle 1, 20078 San Colombano al Lambro (MI), Italy, factory at Via degli Spinedi 20, 27010 Miradolo Terme (PV), Italy.",
-            "For any privacy request: info@tecnolambro.it, certified email tecnolambrosnc@pec.it, phone +39 375 577 1084."
+            "The data controller is %legalName%, VAT IT08639310153, registered office at Via Privata delle Betulle 1, 20078 San Colombano al Lambro (MI), Italy, factory at Via degli Spinedi 20, 27010 Miradolo Terme (PV), Italy.",
+            "For any privacy request: info@tecnolambro.it, certified email %pec%, phone %phone%."
           ]
         },
         {
@@ -628,7 +628,7 @@
         {
           "h": "1. Use of the website",
           "p": [
-            "This website presents the products and services of Tecnolambro S.a.s. di Pasquini Marco & C. (VAT IT08639310153). Technical information is indicative: the binding characteristics, sizes and performance are those confirmed in the written offer."
+            "This website presents the products and services of %legalName% (VAT IT08639310153). Technical information is indicative: the binding characteristics, sizes and performance are those confirmed in the written offer."
           ]
         },
         {
@@ -661,7 +661,7 @@
         {
           "h": "6. Governing law and contact",
           "p": [
-            "Italian law applies. Competent court: Pavia, Italy. Questions: info@tecnolambro.it, +39 375 577 1084.",
+            "Italian law applies. Competent court: Pavia, Italy. Questions: info@tecnolambro.it, %phone%.",
             "Supply conditions are stated in each quote."
           ]
         }
@@ -702,13 +702,13 @@
   },
   "shop": {
     "title": "Configure your part",
-    "intro": "Know the size? Build the part and see it in 3D. Have a drawing? Upload it. No online prices: your tailored quote arrives within 24 hours.",
+    "intro": "Know the size? Build the part and see it in 3D. Have a drawing? Upload it. No online prices: your tailored quote arrives within %quoteTime%.",
     "breadcrumb": "Configure",
     "howTitle": "How it works",
     "how": [
       "Pick or build the part",
       "Quantity and notes",
-      "Send: quote within 24 hours"
+      "Send: quote within %quoteTime%"
     ],
     "readyTitle": "Ready-made parts",
     "readyBody": "Standard sizes: flexibles, 90° E and H bends and 90° twists. Add them to your request or customize them.",
@@ -803,7 +803,7 @@
       "L": "L length"
     },
     "sheetTitle": "Datasheet",
-    "sheetFooter": "Request a quote: tecnolambro.it/shop · +39 375 577 1084",
+    "sheetFooter": "Request a quote: tecnolambro.it/shop · %phone%",
     "indicative": "Indicative data: final values are stated in the quote."
   },
   "configurator": {
@@ -927,7 +927,7 @@
     "notesTitle": "Notes",
     "notesPlaceholder": "E.g. pressurization, finish, required delivery…",
     "customTitle": "Your part to drawing",
-    "customBody": "Describe the part and upload the drawing or 3D model: we’ll assess it and send you a quote within 24 hours.",
+    "customBody": "Describe the part and upload the drawing or 3D model: we’ll assess it and send you a quote within %quoteTime%.",
     "customDescription": "Part description",
     "customPlaceholder": "E.g. H-plane 45° bend with UG-39/U flanges, 300 mm exit",
     "customDescriptionError": "Describe the part in a few words.",
@@ -971,7 +971,7 @@
   },
   "request": {
     "title": "Your request",
-    "intro": "Check your parts, add quantities, notes and files, then send: we reply with a quote within 24 working hours.",
+    "intro": "Check your parts, add quantities, notes and files, then send: we reply with a quote within %quoteTimeWorking%.",
     "open": "Your request",
     "openWithCount": "Your request, {count} parts",
     "openWithOne": "Your request, 1 part",
@@ -1047,13 +1047,13 @@
   },
   "requestSent": {
     "title": "Request received.",
-    "body": "We will reply with a quote within 24 working hours.",
+    "body": "We will reply with a quote within %quoteTimeWorking%.",
     "number": "Request number",
     "copy": "We have emailed you a confirmation with the summary and the drawings of the configured parts.",
     "nextTitle": "What happens next",
     "next": [
       {
-        "title": "Quote within 24 hours",
+        "title": "Quote within %quoteTime%",
         "body": "The technical office checks the parts and files and sends you a tailored quote, with lead time and shipping method."
       },
       {
@@ -1080,7 +1080,7 @@
     "since": "Since {year}",
     "ownProduction": "Own production",
     "tested": "100% tested",
-    "quote24": "Quote in 24 hours",
+    "quote24": "Quote in %quoteTime%",
     "worldwide": "Worldwide shipping"
   },
   "owner": {
@@ -1115,7 +1115,7 @@
   "wrPage": {
     "title": "{wr} flexible waveguide",
     "metaTitle": "{wr} flexible waveguide {band} GHz | Tecnolambro",
-    "metaDescription": "{wr} flexible waveguide ({iec}, {wg}) for {band} GHz, twistable and seamless: dimensions, electrical data, flanges. Quote within 24 hours.",
+    "metaDescription": "{wr} flexible waveguide ({iec}, {wg}) for {band} GHz, twistable and seamless: dimensions, electrical data, flanges. Quote within %quoteTime%.",
     "intro": "The {wr} flexible waveguide ({iec} · {wg}) covers {band} GHz. We build it twistable and seamless, with the flanges and length you need.",
     "category": "Flexible waveguide",
     "configureTwistable": "Configure twistable",
@@ -1147,7 +1147,7 @@
     "flangesTitle": "Flanges",
     "flangesBody": "The most common IEC flanges for this size. Other types on request: add them to the notes.",
     "ctaTitle": "Need {wr}?",
-    "ctaBody": "Send us size, length and flanges, or your drawing: the quote arrives within 24 working hours.",
+    "ctaBody": "Send us size, length and flanges, or your drawing: the quote arrives within %quoteTimeWorking%.",
     "neighbours": "Nearby sizes",
     "lower": "Lower frequency",
     "higher": "Higher frequency",

@@ -9,7 +9,7 @@ import { routing, type Locale } from "@/i18n/routing";
 import { LOCALE_META, isReviewLocale } from "@/i18n/locales";
 import { fontVariables } from "../fonts";
 import "../globals.css";
-import { ENV } from "@/data/site";
+import { COMPANY, ENV } from "@/data/site";
 import { THEME } from "@/data/brand";
 import { organizationJsonLd } from "@/lib/seo";
 import { Header } from "@/components/ui/Header";
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
     // Lingue nuove (ES, ZH, DE) fuori dai motori finché non sono riviste: NEXT_PUBLIC_NEW_LOCALES_NOINDEX=true
     robots: ENV.allowIndexing && !isReviewLocale(locale) ? { index: true, follow: true } : { index: false, follow: false, googleBot: { index: false, follow: false } },
     formatDetection: { telephone: false, email: false, address: false },
-    authors: [{ name: "Tecnolambro S.a.s." }],
+    authors: [{ name: COMPANY.legalNameShort }],
     creator: "LIMITLESS",
   };
 }

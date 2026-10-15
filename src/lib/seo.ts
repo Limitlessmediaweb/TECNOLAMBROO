@@ -101,7 +101,7 @@ export function organizationJsonLd(locale: Locale) {
       "@id": ORG_ID,
       name: COMPANY.brandFull,
       legalName: COMPANY.legalName,
-      alternateName: "Tecnolambro S.a.s.",
+      alternateName: COMPANY.legalNameShort,
       url: ENV.siteUrl,
       logo: `${ENV.siteUrl}/brand/logo.png`,
       foundingDate: String(COMPANY.founded),

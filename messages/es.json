@@ -3,18 +3,18 @@
     "siteName": "Tecnolambro Microwave Components",
     "home": {
       "title": "Guías de ondas flexibles y componentes | Tecnolambro",
-      "description": "Guía de ondas flexible torsionable y sin costura, codos, torsiones y desplazamientos. Diseño, fabricación y prueba desde 1987. Presupuesto en 24 horas."
+      "description": "Guía de ondas flexible torsionable y sin costura, codos, torsiones y desplazamientos. Diseño, fabricación y prueba desde 1987. Presupuesto en %quoteTime%."
     },
     "products": {
       "title": "Productos en guía de ondas flexible | Tecnolambro",
-      "description": "Guía de ondas flexible torsionable y sin costura de WR-22 a WR-284, codos, torsiones y desplazamientos a petición. Tablas técnicas y presupuesto en 24 h."
+      "description": "Guía de ondas flexible torsionable y sin costura de WR-22 a WR-284, codos, torsiones y desplazamientos a petición. Tablas técnicas y presupuesto en %quoteTimeShort%."
     },
     "family": {
       "title": "{name} | Tecnolambro Microwave Components"
     },
     "custom": {
       "title": "Componentes de microondas según plano | Tecnolambro",
-      "description": "Envíe su plano en PDF, DWG, DXF, STEP, IGES o STL: diseñamos, fabricamos y probamos la pieza. Presupuesto en 24 horas."
+      "description": "Envíe su plano en PDF, DWG, DXF, STEP, IGES o STL: diseñamos, fabricamos y probamos la pieza. Presupuesto en %quoteTime%."
     },
     "about": {
       "title": "Desde 1987 en Miradolo Terme | Tecnolambro",
@@ -26,7 +26,7 @@
     },
     "contact": {
       "title": "Contacto y presupuestos | Tecnolambro",
-      "description": "Solicite un presupuesto de guías de ondas y componentes de microondas: respuesta en 24 horas. +39 375 577 1084, info@tecnolambro.it, Miradolo Terme."
+      "description": "Solicite un presupuesto de guías de ondas y componentes de microondas: respuesta en %quoteTime%. %phone%, info@tecnolambro.it, Miradolo Terme."
     },
     "faq": {
       "title": "Preguntas frecuentes | Tecnolambro",
@@ -34,7 +34,7 @@
     },
     "privacy": {
       "title": "Política de privacidad | Tecnolambro",
-      "description": "Cómo trata Tecnolambro S.a.s. los datos personales recogidos por el sitio web y el formulario de presupuesto, según el Reglamento (UE) 2016/679."
+      "description": "Cómo trata %legalNameShort% los datos personales recogidos por el sitio web y el formulario de presupuesto, según el Reglamento (UE) 2016/679."
     },
     "terms": {
       "title": "Condiciones de uso | Tecnolambro",
@@ -50,7 +50,7 @@
     },
     "shop": {
       "title": "Configure su pieza en guía de ondas | Tecnolambro",
-      "description": "Configure su guía de ondas flexible: tamaño, longitud y bridas, con plano acotado y modelo 3D. Precios a petición, presupuesto en 24 horas."
+      "description": "Configure su guía de ondas flexible: tamaño, longitud y bridas, con plano acotado y modelo 3D. Precios a petición, presupuesto en %quoteTime%."
     },
     "tables": {
       "title": "Tablas técnicas de guía de ondas flexible | Tecnolambro",
@@ -108,8 +108,8 @@
     "pauseMotion": "Pausar la animación",
     "playMotion": "Reanudar la animación",
     "hoursTitle": "Horario",
-    "hoursWeek": "Lunes–viernes: 8:00–12:00 y 13:30–17:30",
-    "hoursWeekend": "Sábado y domingo: cerrado",
+    "hoursWeek": "%officeDays%: %officeHours%",
+    "hoursWeekend": "%closedDays%: cerrado",
     "missing": "falta: {what}",
     "whatsappLabel": "Escríbanos por WhatsApp"
   },
@@ -138,8 +138,8 @@
     "factYears": "Años fabricando componentes de microondas",
     "factFlexValue": "100 %",
     "factFlex": "Piezas probadas antes del envío",
-    "factReplyValue": "24 h",
-    "factReply": "Presupuesto en 24 horas",
+    "factReplyValue": "%quoteTimeShort%",
+    "factReply": "Presupuesto en %quoteTime%",
     "cta": "Conozca la empresa"
   },
   "productsSection": {
@@ -218,12 +218,12 @@
       "tableTitle": "Datos técnicos",
       "tablesLink": "Todas las tablas técnicas",
       "onRequestTitle": "A petición o según plano",
-      "onRequestBody": "Indíquenos el tipo de pieza, tamaño, ángulo o desplazamiento y bridas, o cargue su plano: le enviamos el presupuesto en 24 horas.",
+      "onRequestBody": "Indíquenos el tipo de pieza, tamaño, ángulo o desplazamiento y bridas, o cargue su plano: le enviamos el presupuesto en %quoteTime%.",
       "applicationsTitle": "Dónde se utiliza",
       "quoteTitle": "¿Necesita otro tamaño o versión?",
-      "quoteBody": "Indíquenos tamaño, longitud, bridas y cantidad: presupuesto en 24 horas. Precios a petición: cada presupuesto es personalizado.",
+      "quoteBody": "Indíquenos tamaño, longitud, bridas y cantidad: presupuesto en %quoteTime%. Precios a petición: cada presupuesto es personalizado.",
       "shopTitle": "Configure su pieza",
-      "shopBody": "Tamaño, longitud y bridas: plano acotado y modelo 3D al instante, presupuesto en 24 horas.",
+      "shopBody": "Tamaño, longitud y bridas: plano acotado y modelo 3D al instante, presupuesto en %quoteTime%.",
       "others": "Otras familias",
       "demoTitle": "La pieza en 3D",
       "demoBody": "La pieza estándar en WR-90: gírela, consulte las cotas y el plano y, después, personalícela en el configurador.",
@@ -320,7 +320,7 @@
     "title": "Configure la pieza y solicite el presupuesto.",
     "body": "Elija tipo, tamaño, longitud y bridas: vea al instante el plano acotado y el modelo 3D. Precios a petición: cada presupuesto es personalizado.",
     "points": [
-      "Presupuesto en 24 horas",
+      "Presupuesto en %quoteTime%",
       "Plano PDF y modelo 3D descargables",
       "Envíos a todo el mundo"
     ],
@@ -378,7 +378,7 @@
       },
       "shopVsQuote": {
         "q": "¿Puedo comprar en línea?",
-        "a": "No: cada pedido parte de una solicitud de presupuesto, porque los precios son personalizados. Configure la pieza o elíjala entre los productos estándar, añada cantidad y notas y envíe la solicitud: respondemos en 24 horas."
+        "a": "No: cada pedido parte de una solicitud de presupuesto, porque los precios son personalizados. Configure la pieza o elíjala entre los productos estándar, añada cantidad y notas y envíe la solicitud: respondemos en %quoteTime%."
       },
       "drawing3d": {
         "q": "¿Facilitan el plano 3D?",
@@ -386,17 +386,17 @@
       },
       "clientDrawing": {
         "q": "¿Trabajan según el plano del cliente?",
-        "a": "Sí. Cargue STEP, IGES, STL, PDF, DWG o DXF en la solicitud de presupuesto: nuestra oficina técnica lo estudia y le responde en 24 horas laborables."
+        "a": "Sí. Cargue STEP, IGES, STL, PDF, DWG o DXF en la solicitud de presupuesto: nuestra oficina técnica lo estudia y le responde en %quoteTimeWorking%."
       },
       "hours": {
         "q": "¿Cuál es el horario de oficina?",
-        "a": "De lunes a viernes, de 8:00 a 12:00 y de 13:30 a 17:30 (CET). Sábados y domingos, cerrado. Las solicitudes desde el sitio web se reciben también fuera del horario."
+        "a": "%officeDays%, %officeHours% (CET). %closedDays%: cerrado. Las solicitudes desde el sitio web se reciben también fuera del horario."
       }
     }
   },
   "quote": {
     "title": "Envíenos su plano.",
-    "body": "Un par de líneas y, si lo tiene, el archivo: le respondemos con el presupuesto en 24 horas laborables.",
+    "body": "Un par de líneas y, si lo tiene, el archivo: le respondemos con el presupuesto en %quoteTimeWorking%.",
     "formLabel": "Solicitud de presupuesto",
     "required": "obligatorio",
     "optional": "opcional",
@@ -444,7 +444,7 @@
     }
   },
   "finalCta": {
-    "title": "Presupuesto en 24 horas.",
+    "title": "Presupuesto en %quoteTime%.",
     "body": "Precios a petición: cada presupuesto es personalizado.",
     "quote": "Solicitar presupuesto",
     "shop": "Configure su pieza"
@@ -460,7 +460,7 @@
     "vat": "NIF-IVA",
     "credit": "Realizado y gestionado por",
     "distinct": "Tecnolambro Microwave Components, Miradolo Terme (PV), Italia. Sin vínculo con otras empresas de nombre similar.",
-    "rights": "© {year} Tecnolambro S.a.s. di Pasquini Marco & C.",
+    "rights": "© {year} %legalName%",
     "logoAlt": "Logotipo de Tecnolambro: fabricante de guía de ondas flexible torsionable y sin costura, componentes para aplicaciones de microondas",
     "pec": "PEC"
   },
@@ -489,7 +489,7 @@
     "formatsTitle": "Formatos admitidos",
     "formatsBody": "PDF para planos acotados, DWG y DXF para 2D, STEP, IGES y STL para modelos 3D.",
     "timeTitle": "Plazos",
-    "timeBody": "Presupuesto en 24 horas: el plazo y el método de entrega se fijan en el presupuesto.",
+    "timeBody": "Presupuesto en %quoteTime%: el plazo y el método de entrega se fijan en el presupuesto.",
     "testTitle": "Pruebas",
     "testBody": "Probamos el 100 % de las piezas antes del envío.",
     "stepsTitle": "Del plano a la pieza",
@@ -535,7 +535,7 @@
   },
   "contactPage": {
     "title": "Contacto y presupuestos",
-    "intro": "Escríbanos, llámenos o envíe directamente su plano. Presupuesto en 24 horas.",
+    "intro": "Escríbanos, llámenos o envíe directamente su plano. Presupuesto en %quoteTime%.",
     "hoursTitle": "Horario",
     "company": "Datos de la empresa"
   },
@@ -561,8 +561,8 @@
         {
           "h": "1. Responsable del tratamiento",
           "p": [
-            "El responsable del tratamiento es Tecnolambro S.a.s. di Pasquini Marco & C., NIF-IVA IT08639310153, con domicilio social en Via Privata delle Betulle 1, 20078 San Colombano al Lambro (MI), Italia, y sede operativa en Via degli Spinedi 20, 27010 Miradolo Terme (PV), Italia.",
-            "Para cualquier solicitud relativa a la privacidad: info@tecnolambro.it, correo electrónico certificado (PEC) tecnolambrosnc@pec.it, teléfono +39 375 577 1084."
+            "El responsable del tratamiento es %legalName%, NIF-IVA IT08639310153, con domicilio social en Via Privata delle Betulle 1, 20078 San Colombano al Lambro (MI), Italia, y sede operativa en Via degli Spinedi 20, 27010 Miradolo Terme (PV), Italia.",
+            "Para cualquier solicitud relativa a la privacidad: info@tecnolambro.it, correo electrónico certificado (PEC) %pec%, teléfono %phone%."
           ]
         },
         {
@@ -628,7 +628,7 @@
         {
           "h": "1. Uso del sitio web",
           "p": [
-            "Este sitio web presenta los productos y servicios de Tecnolambro S.a.s. di Pasquini Marco & C. (NIF-IVA IT08639310153). La información técnica es orientativa: las características, tamaños y prestaciones vinculantes son los confirmados en la oferta escrita."
+            "Este sitio web presenta los productos y servicios de %legalName% (NIF-IVA IT08639310153). La información técnica es orientativa: las características, tamaños y prestaciones vinculantes son los confirmados en la oferta escrita."
           ]
         },
         {
@@ -661,7 +661,7 @@
         {
           "h": "6. Legislación aplicable y contacto",
           "p": [
-            "Se aplica la legislación italiana. Tribunal competente: Pavía (Italia). Consultas: info@tecnolambro.it, +39 375 577 1084.",
+            "Se aplica la legislación italiana. Tribunal competente: Pavía (Italia). Consultas: info@tecnolambro.it, %phone%.",
             "Las condiciones de suministro se indican en cada presupuesto."
           ]
         }
@@ -702,13 +702,13 @@
   },
   "shop": {
     "title": "Configure su pieza",
-    "intro": "¿Conoce el tamaño? Configure la pieza y véala en 3D. ¿Tiene un plano? Cárguelo. Sin precios en línea: su presupuesto personalizado llega en 24 horas.",
+    "intro": "¿Conoce el tamaño? Configure la pieza y véala en 3D. ¿Tiene un plano? Cárguelo. Sin precios en línea: su presupuesto personalizado llega en %quoteTime%.",
     "breadcrumb": "Configurar",
     "howTitle": "Cómo funciona",
     "how": [
       "Elija o configure la pieza",
       "Cantidad y notas",
-      "Envíe: presupuesto en 24 horas"
+      "Envíe: presupuesto en %quoteTime%"
     ],
     "readyTitle": "Productos estándar",
     "readyBody": "Los tamaños estándar: flexibles, codos E y H a 90° y torsiones a 90°. Añádalos a su solicitud o personalícelos.",
@@ -803,7 +803,7 @@
       "L": "L longitud"
     },
     "sheetTitle": "Ficha técnica",
-    "sheetFooter": "Solicite un presupuesto: tecnolambro.it/shop · +39 375 577 1084",
+    "sheetFooter": "Solicite un presupuesto: tecnolambro.it/shop · %phone%",
     "indicative": "Datos orientativos: los valores definitivos figuran en el presupuesto."
   },
   "configurator": {
@@ -927,7 +927,7 @@
     "notesTitle": "Notas",
     "notesPlaceholder": "Ej.: presurización, acabado, entrega requerida…",
     "customTitle": "Su pieza según plano",
-    "customBody": "Describa la pieza y cargue el plano o el modelo 3D: lo estudiamos y le enviamos el presupuesto en 24 horas.",
+    "customBody": "Describa la pieza y cargue el plano o el modelo 3D: lo estudiamos y le enviamos el presupuesto en %quoteTime%.",
     "customDescription": "Descripción de la pieza",
     "customPlaceholder": "Ej.: codo plano H 45° con bridas UG-39/U, salida a 300 mm",
     "customDescriptionError": "Describa la pieza en pocas palabras.",
@@ -971,7 +971,7 @@
   },
   "request": {
     "title": "Su solicitud",
-    "intro": "Revise las piezas, añada cantidades, notas y archivos y, después, envíe: le respondemos con el presupuesto en 24 horas laborables.",
+    "intro": "Revise las piezas, añada cantidades, notas y archivos y, después, envíe: le respondemos con el presupuesto en %quoteTimeWorking%.",
     "open": "Su solicitud",
     "openWithCount": "Su solicitud, {count} piezas",
     "openWithOne": "Su solicitud, 1 pieza",
@@ -1047,13 +1047,13 @@
   },
   "requestSent": {
     "title": "Solicitud recibida.",
-    "body": "Le responderemos con el presupuesto en 24 horas laborables.",
+    "body": "Le responderemos con el presupuesto en %quoteTimeWorking%.",
     "number": "Número de solicitud",
     "copy": "Le hemos enviado por correo electrónico una confirmación con el resumen y los planos de las piezas configuradas.",
     "nextTitle": "Próximos pasos",
     "next": [
       {
-        "title": "Presupuesto en 24 horas",
+        "title": "Presupuesto en %quoteTime%",
         "body": "La oficina técnica revisa las piezas y los archivos y le envía un presupuesto personalizado, con plazo y método de envío."
       },
       {
@@ -1080,7 +1080,7 @@
     "since": "Desde {year}",
     "ownProduction": "Fabricación propia",
     "tested": "Prueba al 100 %",
-    "quote24": "Presupuesto en 24 h",
+    "quote24": "Presupuesto en %quoteTimeShort%",
     "worldwide": "Envíos a todo el mundo"
   },
   "owner": {
@@ -1115,7 +1115,7 @@
   "wrPage": {
     "title": "Guía de ondas flexible {wr}",
     "metaTitle": "Guía de ondas flexible {wr} {band} GHz | Tecnolambro",
-    "metaDescription": "Guía de ondas flexible {wr} ({iec}, {wg}) para {band} GHz, torsionable y sin costura: dimensiones, datos eléctricos, bridas. Presupuesto en 24 horas.",
+    "metaDescription": "Guía de ondas flexible {wr} ({iec}, {wg}) para {band} GHz, torsionable y sin costura: dimensiones, datos eléctricos, bridas. Presupuesto en %quoteTime%.",
     "intro": "La guía de ondas flexible {wr} ({iec} · {wg}) cubre {band} GHz. La fabricamos torsionable y sin costura, con las bridas y la longitud que necesite.",
     "category": "Guía de ondas flexible",
     "configureTwistable": "Configurar torsionable",
@@ -1147,7 +1147,7 @@
     "flangesTitle": "Bridas",
     "flangesBody": "Las bridas IEC más habituales para este tamaño. Otros tipos a petición: indíquelos en las notas.",
     "ctaTitle": "¿Necesita la {wr}?",
-    "ctaBody": "Envíenos tamaño, longitud y bridas, o su plano: el presupuesto llega en 24 horas laborables.",
+    "ctaBody": "Envíenos tamaño, longitud y bridas, o su plano: el presupuesto llega en %quoteTimeWorking%.",
     "neighbours": "Tamaños cercanos",
     "lower": "Frecuencia más baja",
     "higher": "Frecuencia más alta",

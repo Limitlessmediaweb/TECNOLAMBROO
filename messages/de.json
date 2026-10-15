@@ -3,18 +3,18 @@
     "siteName": "Tecnolambro Microwave Components",
     "home": {
       "title": "Flexible Hohlleiter und Mikrowellenteile | Tecnolambro",
-      "description": "Flexibler verdrehbarer und nahtloser Hohlleiter, Bögen, Twists und Versätze. Seit 1987 von uns entwickelt, gefertigt und geprüft. Angebot in 24 Stunden."
+      "description": "Flexibler verdrehbarer und nahtloser Hohlleiter, Bögen, Twists und Versätze. Seit 1987 von uns entwickelt, gefertigt und geprüft. Angebot in %quoteTime%."
     },
     "products": {
       "title": "Produkte aus flexiblem Hohlleiter | Tecnolambro",
-      "description": "Flexibler verdrehbarer und nahtloser Hohlleiter von WR-22 bis WR-284, Bögen, Twists und Versätze auf Anfrage. Technische Tabellen, Angebot in 24 h."
+      "description": "Flexibler verdrehbarer und nahtloser Hohlleiter von WR-22 bis WR-284, Bögen, Twists und Versätze auf Anfrage. Technische Tabellen, Angebot in %quoteTimeShort%."
     },
     "family": {
       "title": "{name} | Tecnolambro Microwave Components"
     },
     "custom": {
       "title": "Mikrowellenkomponenten nach Zeichnung | Tecnolambro",
-      "description": "Senden Sie Ihre Zeichnung als PDF, DWG, DXF, STEP, IGES oder STL: Wir entwickeln, fertigen und prüfen das Teil. Angebot in 24 Stunden."
+      "description": "Senden Sie Ihre Zeichnung als PDF, DWG, DXF, STEP, IGES oder STL: Wir entwickeln, fertigen und prüfen das Teil. Angebot in %quoteTime%."
     },
     "about": {
       "title": "Seit 1987 in Miradolo Terme | Tecnolambro",
@@ -26,7 +26,7 @@
     },
     "contact": {
       "title": "Kontakt und Angebote | Tecnolambro",
-      "description": "Angebot für Hohlleiter und Mikrowellenteile anfragen: Antwort in 24 Stunden. +39 375 577 1084, info@tecnolambro.it, Miradolo Terme, Italien."
+      "description": "Angebot für Hohlleiter und Mikrowellenteile anfragen: Antwort in %quoteTime%. %phone%, info@tecnolambro.it, Miradolo Terme, Italien."
     },
     "faq": {
       "title": "FAQ | Tecnolambro",
@@ -34,7 +34,7 @@
     },
     "privacy": {
       "title": "Datenschutzerklärung | Tecnolambro",
-      "description": "Wie Tecnolambro S.a.s. personenbezogene Daten aus der Website und dem Formular für Angebotsanfragen gemäß Verordnung (EU) 2016/679 verarbeitet."
+      "description": "Wie %legalNameShort% personenbezogene Daten aus der Website und dem Formular für Angebotsanfragen gemäß Verordnung (EU) 2016/679 verarbeitet."
     },
     "terms": {
       "title": "Nutzungsbedingungen | Tecnolambro",
@@ -50,7 +50,7 @@
     },
     "shop": {
       "title": "Hohlleiter-Teil konfigurieren | Tecnolambro",
-      "description": "Stellen Sie Ihren flexiblen Hohlleiter zusammen: Größe, Länge und Flansche, mit bemaßter Zeichnung und 3D-Modell. Preise auf Anfrage, Angebot in 24 h."
+      "description": "Stellen Sie Ihren flexiblen Hohlleiter zusammen: Größe, Länge und Flansche, mit bemaßter Zeichnung und 3D-Modell. Preise auf Anfrage, Angebot in %quoteTimeShort%."
     },
     "tables": {
       "title": "Technische Tabellen flexibler Hohlleiter | Tecnolambro",
@@ -108,8 +108,8 @@
     "pauseMotion": "Animation anhalten",
     "playMotion": "Animation abspielen",
     "hoursTitle": "Öffnungszeiten",
-    "hoursWeek": "Montag–Freitag: 8:00–12:00 und 13:30–17:30",
-    "hoursWeekend": "Samstag und Sonntag: geschlossen",
+    "hoursWeek": "%officeDays%: %officeHours%",
+    "hoursWeekend": "%closedDays%: geschlossen",
     "missing": "fehlt: {what}",
     "whatsappLabel": "Schreiben Sie uns auf WhatsApp"
   },
@@ -138,8 +138,8 @@
     "factYears": "Jahre Erfahrung mit Mikrowellen",
     "factFlexValue": "100%",
     "factFlex": "Teile vor dem Versand geprüft",
-    "factReplyValue": "24 h",
-    "factReply": "Angebot in 24 Stunden",
+    "factReplyValue": "%quoteTimeShort%",
+    "factReply": "Angebot in %quoteTime%",
     "cta": "Über das Unternehmen"
   },
   "productsSection": {
@@ -218,12 +218,12 @@
       "tableTitle": "Technische Daten",
       "tablesLink": "Alle technischen Tabellen",
       "onRequestTitle": "Auf Anfrage oder nach Zeichnung",
-      "onRequestBody": "Nennen Sie uns Teiletyp, Größe, Winkel oder Versatz und Flansche oder laden Sie Ihre Zeichnung hoch: Sie erhalten ein Angebot innerhalb von 24 Stunden.",
+      "onRequestBody": "Nennen Sie uns Teiletyp, Größe, Winkel oder Versatz und Flansche oder laden Sie Ihre Zeichnung hoch: Sie erhalten ein Angebot innerhalb von %quoteTime%.",
       "applicationsTitle": "Einsatzbereiche",
       "quoteTitle": "Andere Größe oder Ausführung?",
-      "quoteBody": "Nennen Sie Größe, Länge, Flansche und Menge: Angebot innerhalb von 24 Stunden. Preise auf Anfrage: Jedes Angebot ist individuell.",
+      "quoteBody": "Nennen Sie Größe, Länge, Flansche und Menge: Angebot innerhalb von %quoteTime%. Preise auf Anfrage: Jedes Angebot ist individuell.",
       "shopTitle": "Teil konfigurieren",
-      "shopBody": "Größe, Länge und Flansche: bemaßte Zeichnung und 3D-Modell sofort, Angebot innerhalb von 24 Stunden.",
+      "shopBody": "Größe, Länge und Flansche: bemaßte Zeichnung und 3D-Modell sofort, Angebot innerhalb von %quoteTime%.",
       "others": "Weitere Familien",
       "demoTitle": "Das Teil in 3D",
       "demoBody": "Das Standardteil in WR-90: Drehen Sie es, prüfen Sie Maße und Zeichnung und passen Sie es dann im Konfigurator an.",
@@ -320,7 +320,7 @@
     "title": "Teil konfigurieren, Angebot anfordern.",
     "body": "Wählen Sie Typ, Größe, Länge und Flansche: Sie sehen sofort die bemaßte Zeichnung und das 3D-Modell. Preise auf Anfrage: Jedes Angebot ist individuell.",
     "points": [
-      "Angebot in 24 Stunden",
+      "Angebot in %quoteTime%",
       "PDF-Zeichnung und 3D-Modell zum Download",
       "Weltweiter Versand"
     ],
@@ -378,7 +378,7 @@
       },
       "shopVsQuote": {
         "q": "Kann ich online kaufen?",
-        "a": "Nein: Jede Bestellung beginnt mit einer Angebotsanfrage, da die Preise individuell sind. Konfigurieren Sie das Teil oder wählen Sie ein Standardprodukt, ergänzen Sie Menge und Notizen und senden Sie die Anfrage: Wir antworten innerhalb von 24 Stunden."
+        "a": "Nein: Jede Bestellung beginnt mit einer Angebotsanfrage, da die Preise individuell sind. Konfigurieren Sie das Teil oder wählen Sie ein Standardprodukt, ergänzen Sie Menge und Notizen und senden Sie die Anfrage: Wir antworten innerhalb von %quoteTime%."
       },
       "drawing3d": {
         "q": "Stellen Sie 3D-Zeichnungen bereit?",
@@ -386,17 +386,17 @@
       },
       "clientDrawing": {
         "q": "Arbeiten Sie nach Kundenzeichnung?",
-        "a": "Ja. Laden Sie STEP, IGES, STL, PDF, DWG oder DXF mit Ihrer Angebotsanfrage hoch: Unsere Technikabteilung prüft die Zeichnung und antwortet innerhalb von 24 Arbeitsstunden."
+        "a": "Ja. Laden Sie STEP, IGES, STL, PDF, DWG oder DXF mit Ihrer Angebotsanfrage hoch: Unsere Technikabteilung prüft die Zeichnung und antwortet innerhalb von %quoteTimeWorking%."
       },
       "hours": {
         "q": "Wann ist Ihr Büro besetzt?",
-        "a": "Montag bis Freitag, 8:00–12:00 und 13:30–17:30 Uhr (MEZ). Samstag und Sonntag geschlossen. Anfragen über die Website gehen auch außerhalb der Bürozeiten ein."
+        "a": "%officeDays%, %officeHours% Uhr (MEZ). %closedDays% geschlossen. Anfragen über die Website gehen auch außerhalb der Bürozeiten ein."
       }
     }
   },
   "quote": {
     "title": "Senden Sie uns Ihre Zeichnung.",
-    "body": "Ein paar Zeilen und, falls vorhanden, die Datei: Wir antworten mit einem Angebot innerhalb von 24 Arbeitsstunden.",
+    "body": "Ein paar Zeilen und, falls vorhanden, die Datei: Wir antworten mit einem Angebot innerhalb von %quoteTimeWorking%.",
     "formLabel": "Angebotsanfrage",
     "required": "Pflichtfeld",
     "optional": "optional",
@@ -444,7 +444,7 @@
     }
   },
   "finalCta": {
-    "title": "Angebot in 24 Stunden.",
+    "title": "Angebot in %quoteTime%.",
     "body": "Preise auf Anfrage: Jedes Angebot ist individuell.",
     "quote": "Angebot anfordern",
     "shop": "Teil konfigurieren"
@@ -460,7 +460,7 @@
     "vat": "USt-IdNr.",
     "credit": "Erstellt und betreut von",
     "distinct": "Tecnolambro Microwave Components, Miradolo Terme (PV), Italien. Keine Verbindung zu anderen Unternehmen mit ähnlichem Namen.",
-    "rights": "© {year} Tecnolambro S.a.s. di Pasquini Marco & C.",
+    "rights": "© {year} %legalName%",
     "logoAlt": "Tecnolambro-Logo: Hersteller von flexiblem verdrehbarem und nahtlosem Hohlleiter, Komponenten für Mikrowellenanwendungen",
     "pec": "PEC"
   },
@@ -489,7 +489,7 @@
     "formatsTitle": "Akzeptierte Formate",
     "formatsBody": "PDF für bemaßte Zeichnungen, DWG und DXF für 2D, STEP, IGES und STL für 3D-Modelle.",
     "timeTitle": "Termine",
-    "timeBody": "Angebot innerhalb von 24 Stunden: Lieferzeit und Versandart legen wir im Angebot fest.",
+    "timeBody": "Angebot innerhalb von %quoteTime%: Lieferzeit und Versandart legen wir im Angebot fest.",
     "testTitle": "Prüfung",
     "testBody": "Wir prüfen 100% der Teile vor dem Versand.",
     "stepsTitle": "Von der Zeichnung zum Teil",
@@ -535,7 +535,7 @@
   },
   "contactPage": {
     "title": "Kontakt und Angebote",
-    "intro": "Schreiben Sie uns, rufen Sie an oder senden Sie direkt Ihre Zeichnung. Angebot innerhalb von 24 Stunden.",
+    "intro": "Schreiben Sie uns, rufen Sie an oder senden Sie direkt Ihre Zeichnung. Angebot innerhalb von %quoteTime%.",
     "hoursTitle": "Öffnungszeiten",
     "company": "Firmendaten"
   },
@@ -561,8 +561,8 @@
         {
           "h": "1. Verantwortlicher",
           "p": [
-            "Verantwortlicher ist die Tecnolambro S.a.s. di Pasquini Marco & C., USt-IdNr. IT08639310153, Firmensitz Via Privata delle Betulle 1, 20078 San Colombano al Lambro (MI), Italien, Werk Via degli Spinedi 20, 27010 Miradolo Terme (PV), Italien.",
-            "Für alle Anfragen zum Datenschutz: info@tecnolambro.it, zertifizierte E-Mail (PEC) tecnolambrosnc@pec.it, Telefon +39 375 577 1084."
+            "Verantwortlicher ist die %legalName%, USt-IdNr. IT08639310153, Firmensitz Via Privata delle Betulle 1, 20078 San Colombano al Lambro (MI), Italien, Werk Via degli Spinedi 20, 27010 Miradolo Terme (PV), Italien.",
+            "Für alle Anfragen zum Datenschutz: info@tecnolambro.it, zertifizierte E-Mail (PEC) %pec%, Telefon %phone%."
           ]
         },
         {
@@ -628,7 +628,7 @@
         {
           "h": "1. Nutzung der Website",
           "p": [
-            "Diese Website stellt die Produkte und Leistungen der Tecnolambro S.a.s. di Pasquini Marco & C. (USt-IdNr. IT08639310153) vor. Technische Angaben sind unverbindlich: Verbindlich sind die im schriftlichen Angebot bestätigten Eigenschaften, Größen und Leistungsdaten."
+            "Diese Website stellt die Produkte und Leistungen der %legalName% (USt-IdNr. IT08639310153) vor. Technische Angaben sind unverbindlich: Verbindlich sind die im schriftlichen Angebot bestätigten Eigenschaften, Größen und Leistungsdaten."
           ]
         },
         {
@@ -661,7 +661,7 @@
         {
           "h": "6. Anwendbares Recht und Kontakt",
           "p": [
-            "Es gilt italienisches Recht. Gerichtsstand: Pavia, Italien. Fragen: info@tecnolambro.it, +39 375 577 1084.",
+            "Es gilt italienisches Recht. Gerichtsstand: Pavia, Italien. Fragen: info@tecnolambro.it, %phone%.",
             "Die Lieferbedingungen sind in jedem Angebot angegeben."
           ]
         }
@@ -702,13 +702,13 @@
   },
   "shop": {
     "title": "Teil konfigurieren",
-    "intro": "Größe bekannt? Stellen Sie das Teil zusammen und sehen Sie es in 3D. Zeichnung vorhanden? Laden Sie sie hoch. Keine Online-Preise: Ihr individuelles Angebot erhalten Sie innerhalb von 24 Stunden.",
+    "intro": "Größe bekannt? Stellen Sie das Teil zusammen und sehen Sie es in 3D. Zeichnung vorhanden? Laden Sie sie hoch. Keine Online-Preise: Ihr individuelles Angebot erhalten Sie innerhalb von %quoteTime%.",
     "breadcrumb": "Konfigurieren",
     "howTitle": "So funktioniert es",
     "how": [
       "Teil wählen oder zusammenstellen",
       "Menge und Notizen",
-      "Senden: Angebot in 24 Stunden"
+      "Senden: Angebot in %quoteTime%"
     ],
     "readyTitle": "Standardprodukte",
     "readyBody": "Standardgrößen: flexible Hohlleiter, 90°-E- und -H-Bögen und 90°-Twists. Fügen Sie sie Ihrer Anfrage hinzu oder passen Sie sie an.",
@@ -803,7 +803,7 @@
       "L": "L Länge"
     },
     "sheetTitle": "Datenblatt",
-    "sheetFooter": "Angebot anfordern: tecnolambro.it/shop · +39 375 577 1084",
+    "sheetFooter": "Angebot anfordern: tecnolambro.it/shop · %phone%",
     "indicative": "Richtwerte: Die endgültigen Werte stehen im Angebot."
   },
   "configurator": {
@@ -927,7 +927,7 @@
     "notesTitle": "Notizen",
     "notesPlaceholder": "z. B. Druckbeaufschlagung, Oberfläche, gewünschter Liefertermin…",
     "customTitle": "Ihr Teil nach Zeichnung",
-    "customBody": "Beschreiben Sie das Teil und laden Sie die Zeichnung oder das 3D-Modell hoch: Wir prüfen es und senden Ihnen innerhalb von 24 Stunden ein Angebot.",
+    "customBody": "Beschreiben Sie das Teil und laden Sie die Zeichnung oder das 3D-Modell hoch: Wir prüfen es und senden Ihnen innerhalb von %quoteTime% ein Angebot.",
     "customDescription": "Teilebeschreibung",
     "customPlaceholder": "z. B. H-Bogen 45° mit UG-39/U-Flanschen, Ausgang 300 mm",
     "customDescriptionError": "Beschreiben Sie das Teil in wenigen Worten.",
@@ -971,7 +971,7 @@
   },
   "request": {
     "title": "Ihre Anfrage",
-    "intro": "Prüfen Sie Ihre Teile, ergänzen Sie Mengen, Notizen und Dateien und senden Sie dann ab: Wir antworten mit einem Angebot innerhalb von 24 Arbeitsstunden.",
+    "intro": "Prüfen Sie Ihre Teile, ergänzen Sie Mengen, Notizen und Dateien und senden Sie dann ab: Wir antworten mit einem Angebot innerhalb von %quoteTimeWorking%.",
     "open": "Ihre Anfrage",
     "openWithCount": "Ihre Anfrage, {count} Teile",
     "openWithOne": "Ihre Anfrage, 1 Teil",
@@ -1047,13 +1047,13 @@
   },
   "requestSent": {
     "title": "Anfrage erhalten.",
-    "body": "Wir antworten mit einem Angebot innerhalb von 24 Arbeitsstunden.",
+    "body": "Wir antworten mit einem Angebot innerhalb von %quoteTimeWorking%.",
     "number": "Anfragenummer",
     "copy": "Wir haben Ihnen eine Bestätigung mit der Übersicht und den Zeichnungen der konfigurierten Teile per E-Mail gesendet.",
     "nextTitle": "Wie es weitergeht",
     "next": [
       {
-        "title": "Angebot in 24 Stunden",
+        "title": "Angebot in %quoteTime%",
         "body": "Das technische Büro prüft Teile und Dateien und sendet Ihnen ein individuelles Angebot mit Lieferzeit und Versandart."
       },
       {
@@ -1080,7 +1080,7 @@
     "since": "Seit {year}",
     "ownProduction": "Eigene Fertigung",
     "tested": "100% geprüft",
-    "quote24": "Angebot in 24 Stunden",
+    "quote24": "Angebot in %quoteTime%",
     "worldwide": "Weltweiter Versand"
   },
   "owner": {
@@ -1115,7 +1115,7 @@
   "wrPage": {
     "title": "Flexibler Hohlleiter {wr}",
     "metaTitle": "Flexibler Hohlleiter {wr} {band} GHz | Tecnolambro",
-    "metaDescription": "Flexibler Hohlleiter {wr} ({iec}, {wg}) für {band} GHz, verdrehbar und nahtlos: Abmessungen, elektrische Daten, Flansche. Angebot in 24 Stunden.",
+    "metaDescription": "Flexibler Hohlleiter {wr} ({iec}, {wg}) für {band} GHz, verdrehbar und nahtlos: Abmessungen, elektrische Daten, Flansche. Angebot in %quoteTime%.",
     "intro": "Der flexible Hohlleiter {wr} ({iec} · {wg}) deckt {band} GHz ab. Wir fertigen ihn verdrehbar und nahtlos, mit den Flanschen und der Länge, die Sie benötigen.",
     "category": "Flexibler Hohlleiter",
     "configureTwistable": "Verdrehbar konfigurieren",
@@ -1147,7 +1147,7 @@
     "flangesTitle": "Flansche",
     "flangesBody": "Die gängigsten IEC-Flansche für diese Größe. Andere Typen auf Anfrage: Vermerken Sie diese in den Notizen.",
     "ctaTitle": "Benötigen Sie {wr}?",
-    "ctaBody": "Senden Sie uns Größe, Länge und Flansche oder Ihre Zeichnung: Das Angebot erhalten Sie innerhalb von 24 Arbeitsstunden.",
+    "ctaBody": "Senden Sie uns Größe, Länge und Flansche oder Ihre Zeichnung: Das Angebot erhalten Sie innerhalb von %quoteTimeWorking%.",
     "neighbours": "Benachbarte Größen",
     "lower": "Niedrigere Frequenz",
     "higher": "Höhere Frequenz",

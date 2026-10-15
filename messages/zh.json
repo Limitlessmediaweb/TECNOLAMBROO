@@ -3,18 +3,18 @@
     "siteName": "Tecnolambro Microwave Components",
     "home": {
       "title": "软波导及微波元件 | Tecnolambro",
-      "description": "可扭转软波导和无缝软波导、弯波导、扭波导和偏移波导。自1987年起自主设计、制造和检测。24小时内报价。"
+      "description": "可扭转软波导和无缝软波导、弯波导、扭波导和偏移波导。自1987年起自主设计、制造和检测。%quoteTime%内报价。"
     },
     "products": {
       "title": "软波导产品 | Tecnolambro",
-      "description": "WR-22 至 WR-284 可扭转软波导和无缝软波导，弯波导、扭波导和偏移波导可按需定制。提供技术参数表，24小时内报价。"
+      "description": "WR-22 至 WR-284 可扭转软波导和无缝软波导，弯波导、扭波导和偏移波导可按需定制。提供技术参数表，%quoteTime%内报价。"
     },
     "family": {
       "title": "{name} | Tecnolambro Microwave Components"
     },
     "custom": {
       "title": "定制微波元件 | Tecnolambro",
-      "description": "发送 PDF、DWG、DXF、STEP、IGES 或 STL 格式的图纸：我们负责设计、制造和检测部件。24小时内报价。"
+      "description": "发送 PDF、DWG、DXF、STEP、IGES 或 STL 格式的图纸：我们负责设计、制造和检测部件。%quoteTime%内报价。"
     },
     "about": {
       "title": "自1987年起扎根 Miradolo Terme | Tecnolambro",
@@ -26,7 +26,7 @@
     },
     "contact": {
       "title": "联系与报价 | Tecnolambro",
-      "description": "波导及微波元件询价：24小时内回复。+39 375 577 1084，info@tecnolambro.it，意大利 Miradolo Terme。"
+      "description": "波导及微波元件询价：%quoteTime%内回复。%phone%，info@tecnolambro.it，意大利 Miradolo Terme。"
     },
     "faq": {
       "title": "常见问题 | Tecnolambro",
@@ -34,7 +34,7 @@
     },
     "privacy": {
       "title": "隐私政策 | Tecnolambro",
-      "description": "Tecnolambro S.a.s. 如何依据欧盟第2016/679号条例，处理通过网站及询价表单收集的个人数据。"
+      "description": "%legalNameShort% 如何依据欧盟第2016/679号条例，处理通过网站及询价表单收集的个人数据。"
     },
     "terms": {
       "title": "使用条款 | Tecnolambro",
@@ -50,7 +50,7 @@
     },
     "shop": {
       "title": "配置您的波导部件 | Tecnolambro",
-      "description": "定制您的软波导：规格、长度和法兰，附带标注尺寸的图纸和3D模型。价格面议，24小时内报价。"
+      "description": "定制您的软波导：规格、长度和法兰，附带标注尺寸的图纸和3D模型。价格面议，%quoteTime%内报价。"
     },
     "tables": {
       "title": "软波导技术参数表 | Tecnolambro",
@@ -108,8 +108,8 @@
     "pauseMotion": "暂停动画",
     "playMotion": "播放动画",
     "hoursTitle": "营业时间",
-    "hoursWeek": "周一至周五：8:00–12:00，13:30–17:30",
-    "hoursWeekend": "周六、周日：休息",
+    "hoursWeek": "%officeDays%：%officeHours%",
+    "hoursWeekend": "%closedDays%：休息",
     "missing": "缺少：{what}",
     "whatsappLabel": "通过 WhatsApp 联系我们"
   },
@@ -138,8 +138,8 @@
     "factYears": "深耕微波部件的年数",
     "factFlexValue": "100%",
     "factFlex": "部件发货前经过检测",
-    "factReplyValue": "24小时",
-    "factReply": "24小时内报价",
+    "factReplyValue": "%quoteTimeShort%",
+    "factReply": "%quoteTime%内报价",
     "cta": "了解公司"
   },
   "productsSection": {
@@ -218,12 +218,12 @@
       "tableTitle": "技术数据",
       "tablesLink": "全部技术参数表",
       "onRequestTitle": "按需或按图定制",
-      "onRequestBody": "告诉我们部件类型、规格、角度或偏移量以及法兰，或上传图纸：我们将在24小时内发送报价。",
+      "onRequestBody": "告诉我们部件类型、规格、角度或偏移量以及法兰，或上传图纸：我们将在%quoteTime%内发送报价。",
       "applicationsTitle": "应用场景",
       "quoteTitle": "需要其他规格或版本？",
-      "quoteBody": "告诉我们规格、长度、法兰和数量：24小时内报价。价格面议：每份报价均量身定制。",
+      "quoteBody": "告诉我们规格、长度、法兰和数量：%quoteTime%内报价。价格面议：每份报价均量身定制。",
       "shopTitle": "配置您的部件",
-      "shopBody": "规格、长度和法兰：即时生成标注尺寸的图纸和3D模型，24小时内报价。",
+      "shopBody": "规格、长度和法兰：即时生成标注尺寸的图纸和3D模型，%quoteTime%内报价。",
       "others": "其他产品系列",
       "demoTitle": "部件3D展示",
       "demoBody": "WR-90 标准部件：旋转查看，检查尺寸和图纸，然后在配置器中定制。",
@@ -320,7 +320,7 @@
     "title": "配置部件，申请报价。",
     "body": "选择类型、规格、长度和法兰：即时查看标注尺寸的图纸和3D模型。价格面议：每份报价均量身定制。",
     "points": [
-      "24小时内报价",
+      "%quoteTime%内报价",
       "可下载 PDF 图纸和3D模型",
       "全球发货"
     ],
@@ -378,7 +378,7 @@
       },
       "shopVsQuote": {
         "q": "可以在线购买吗？",
-        "a": "不可以：所有订单均从询价开始，因为价格需量身定制。配置部件或选择标准产品，填写数量和备注后提交询价单：我们将在24小时内回复。"
+        "a": "不可以：所有订单均从询价开始，因为价格需量身定制。配置部件或选择标准产品，填写数量和备注后提交询价单：我们将在%quoteTime%内回复。"
       },
       "drawing3d": {
         "q": "你们提供3D图纸吗？",
@@ -386,17 +386,17 @@
       },
       "clientDrawing": {
         "q": "你们可以根据客户图纸加工吗？",
-        "a": "可以。在询价单中上传 STEP、IGES、STL、PDF、DWG 或 DXF 文件：我们的技术部门将进行评估，并在24个工作小时内回复。"
+        "a": "可以。在询价单中上传 STEP、IGES、STL、PDF、DWG 或 DXF 文件：我们的技术部门将进行评估，并在%quoteTimeWorking%内回复。"
       },
       "hours": {
         "q": "办公时间是？",
-        "a": "周一至周五，8:00–12:00 和 13:30–17:30（欧洲中部时间）。周六、周日休息。非办公时间也可通过网站提交询价。"
+        "a": "%officeDays%，%officeHours%（欧洲中部时间）。%closedDays%休息。非办公时间也可通过网站提交询价。"
       }
     }
   },
   "quote": {
     "title": "请发送您的图纸。",
-    "body": "简单几句说明，如有文件请一并附上：我们将在24个工作小时内回复报价。",
+    "body": "简单几句说明，如有文件请一并附上：我们将在%quoteTimeWorking%内回复报价。",
     "formLabel": "询价",
     "required": "必填",
     "optional": "选填",
@@ -444,7 +444,7 @@
     }
   },
   "finalCta": {
-    "title": "24小时内报价。",
+    "title": "%quoteTime%内报价。",
     "body": "价格面议：每份报价均量身定制。",
     "quote": "立即询价",
     "shop": "配置您的部件"
@@ -460,7 +460,7 @@
     "vat": "增值税号",
     "credit": "网站制作与管理",
     "distinct": "Tecnolambro Microwave Components，意大利 Miradolo Terme（PV）。与其他名称相似的公司无任何关联。",
-    "rights": "© {year} Tecnolambro S.a.s. di Pasquini Marco & C.",
+    "rights": "© {year} %legalName%",
     "logoAlt": "Tecnolambro 标志：可扭转软波导和无缝软波导制造商，微波应用元件",
     "pec": "PEC"
   },
@@ -489,7 +489,7 @@
     "formatsTitle": "支持的格式",
     "formatsBody": "PDF 用于标注尺寸的图纸，DWG 和 DXF 用于2D图纸，STEP、IGES 和 STL 用于3D模型。",
     "timeTitle": "时间",
-    "timeBody": "24小时内报价：交货时间和方式在报价中确定。",
+    "timeBody": "%quoteTime%内报价：交货时间和方式在报价中确定。",
     "testTitle": "检测",
     "testBody": "我们在发货前对100%的部件进行检测。",
     "stepsTitle": "从图纸到部件",
@@ -535,7 +535,7 @@
   },
   "contactPage": {
     "title": "联系与报价",
-    "intro": "发邮件、打电话或直接发送图纸。24小时内报价。",
+    "intro": "发邮件、打电话或直接发送图纸。%quoteTime%内报价。",
     "hoursTitle": "营业时间",
     "company": "公司信息"
   },
@@ -561,8 +561,8 @@
         {
           "h": "1. 数据控制者",
           "p": [
-            "数据控制者为 Tecnolambro S.a.s. di Pasquini Marco & C.，增值税号 IT08639310153，注册地址：Via Privata delle Betulle 1, 20078 San Colombano al Lambro (MI)，意大利；工厂地址：Via degli Spinedi 20, 27010 Miradolo Terme (PV)，意大利。",
-            "如有任何隐私相关请求：info@tecnolambro.it，认证电子邮箱（PEC）tecnolambrosnc@pec.it，电话 +39 375 577 1084。"
+            "数据控制者为 %legalName%，增值税号 IT08639310153，注册地址：Via Privata delle Betulle 1, 20078 San Colombano al Lambro (MI)，意大利；工厂地址：Via degli Spinedi 20, 27010 Miradolo Terme (PV)，意大利。",
+            "如有任何隐私相关请求：info@tecnolambro.it，认证电子邮箱（PEC）%pec%，电话 %phone%。"
           ]
         },
         {
@@ -628,7 +628,7 @@
         {
           "h": "1. 网站使用",
           "p": [
-            "本网站介绍 Tecnolambro S.a.s. di Pasquini Marco & C.（增值税号 IT08639310153）的产品和服务。技术信息仅供参考：具有约束力的特性、规格和性能以书面报价中确认的为准。"
+            "本网站介绍 %legalName%（增值税号 IT08639310153）的产品和服务。技术信息仅供参考：具有约束力的特性、规格和性能以书面报价中确认的为准。"
           ]
         },
         {
@@ -661,7 +661,7 @@
         {
           "h": "6. 适用法律及联系方式",
           "p": [
-            "适用意大利法律。管辖法院：意大利 Pavia。如有疑问：info@tecnolambro.it，+39 375 577 1084。",
+            "适用意大利法律。管辖法院：意大利 Pavia。如有疑问：info@tecnolambro.it，%phone%。",
             "供货条件在每份报价中注明。"
           ]
         }
@@ -702,13 +702,13 @@
   },
   "shop": {
     "title": "配置您的部件",
-    "intro": "已知规格？定制部件并查看3D模型。已有图纸？直接上传。网站不显示价格：24小时内为您提供量身定制的报价。",
+    "intro": "已知规格？定制部件并查看3D模型。已有图纸？直接上传。网站不显示价格：%quoteTime%内为您提供量身定制的报价。",
     "breadcrumb": "配置",
     "howTitle": "使用方法",
     "how": [
       "选择或定制部件",
       "数量和备注",
-      "提交：24小时内报价"
+      "提交：%quoteTime%内报价"
     ],
     "readyTitle": "标准产品",
     "readyBody": "标准规格：软波导、90° E面和H面弯波导以及90°扭波导。可加入询价单或进行定制。",
@@ -803,7 +803,7 @@
       "L": "L 长度"
     },
     "sheetTitle": "技术参数表",
-    "sheetFooter": "询价：tecnolambro.it/shop · +39 375 577 1084",
+    "sheetFooter": "询价：tecnolambro.it/shop · %phone%",
     "indicative": "参考数据：最终数值以报价为准。"
   },
   "configurator": {
@@ -927,7 +927,7 @@
     "notesTitle": "备注",
     "notesPlaceholder": "例如：充气加压、表面处理、要求交期…",
     "customTitle": "您的按图定制部件",
-    "customBody": "描述部件并上传图纸或3D模型：我们评估后将在24小时内向您发送报价。",
+    "customBody": "描述部件并上传图纸或3D模型：我们评估后将在%quoteTime%内向您发送报价。",
     "customDescription": "部件描述",
     "customPlaceholder": "例如：H面45°弯波导，UG-39/U 法兰，出口 300 mm",
     "customDescriptionError": "请简要描述部件。",
@@ -971,7 +971,7 @@
   },
   "request": {
     "title": "您的询价单",
-    "intro": "检查部件，添加数量、备注和文件后提交：我们将在24个工作小时内回复报价。",
+    "intro": "检查部件，添加数量、备注和文件后提交：我们将在%quoteTimeWorking%内回复报价。",
     "open": "您的询价单",
     "openWithCount": "您的询价单，{count} 个部件",
     "openWithOne": "您的询价单，1 个部件",
@@ -1047,13 +1047,13 @@
   },
   "requestSent": {
     "title": "询价已收到。",
-    "body": "我们将在24个工作小时内回复报价。",
+    "body": "我们将在%quoteTimeWorking%内回复报价。",
     "number": "询价编号",
     "copy": "我们已通过电子邮件向您发送确认函，内含概要及已配置部件的图纸。",
     "nextTitle": "后续流程",
     "next": [
       {
-        "title": "24小时内报价",
+        "title": "%quoteTime%内报价",
         "body": "技术部门核对部件和文件后，向您发送量身定制的报价，包括交货期和运输方式。"
       },
       {
@@ -1080,7 +1080,7 @@
     "since": "始于{year}年",
     "ownProduction": "自主生产",
     "tested": "100%检测",
-    "quote24": "24小时内报价",
+    "quote24": "%quoteTime%内报价",
     "worldwide": "全球发货"
   },
   "owner": {
@@ -1115,7 +1115,7 @@
   "wrPage": {
     "title": "{wr} 软波导",
     "metaTitle": "{wr} 软波导 {band} GHz | Tecnolambro",
-    "metaDescription": "{wr} 软波导（{iec}，{wg}），适用于 {band} GHz，可扭转型及无缝型：尺寸、电气数据、法兰。24小时内报价。",
+    "metaDescription": "{wr} 软波导（{iec}，{wg}），适用于 {band} GHz，可扭转型及无缝型：尺寸、电气数据、法兰。%quoteTime%内报价。",
     "intro": "{wr} 软波导（{iec} · {wg}）覆盖 {band} GHz。我们可按您所需的法兰和长度，制造可扭转型和无缝型。",
     "category": "软波导",
     "configureTwistable": "配置可扭转型",
@@ -1147,7 +1147,7 @@
     "flangesTitle": "法兰",
     "flangesBody": "该规格最常用的 IEC 法兰。其他类型可按需提供：请在备注中注明。",
     "ctaTitle": "需要 {wr}？",
-    "ctaBody": "请发送规格、长度和法兰，或您的图纸：我们将在24个工作小时内报价。",
+    "ctaBody": "请发送规格、长度和法兰，或您的图纸：我们将在%quoteTimeWorking%内报价。",
     "neighbours": "相邻规格",
     "lower": "较低频率",
     "higher": "较高频率",

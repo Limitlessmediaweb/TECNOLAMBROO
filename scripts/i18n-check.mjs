@@ -26,7 +26,15 @@ function flatten(obj, prefix = "", out = new Map()) {
   else out.set(prefix, obj);
   return out;
 }
-const tokens = (s) => (typeof s === "string" ? (s.match(/\{\w+\}|<\/?\w+>/g) ?? []).sort().join(" ") : "");
+// argomenti ICU {x}, tag <link> e segnaposto dei dati aziendali %phone% (data/site.ts → siteTokens): devono coincidere in tutte le lingue
+// (le tre forme del tempo di risposta, %quoteTime%, %quoteTimeWorking% e %quoteTimeShort%, valgono come una sola)
+const tokens = (s) =>
+  typeof s === "string"
+    ? (s.match(/\{\w+\}|<\/?\w+>|%[a-zA-Z]+%/g) ?? [])
+        .map((t) => t.replace(/^%quoteTime\w*%$/, "%quoteTime*%"))
+        .sort()
+        .join(" ")
+    : "";
 
 // testi che restano uguali in tutte le lingue: sigle, codici, nomi, numeri
 const SAME_OK = /^([\d\s.,:–\-+()/%°×·]*|[A-Z0-9][A-Z0-9 ·\-/.:()]*|.*(Tecnolambro|LIMITLESS|PJR|ISO \d|WR-|TLFX|UBR|@|https?:).*|FAQ|Cookie|Cookies|Radar|Broadcast|Twist|Twists|Email|E-mail|Partner|Shop|Online|Hub|Seamless|PDF|STEP|STL|GLB|DWG|DXF|IGES)$/;
@@ -50,7 +58,7 @@ for (const loc of locales) {
           if (typeof v !== "string" || !v.trim()) return false;
           if (/(^|\.)legal\./.test(k) && /Garante|Via |Betulle|Spinedi/.test(v)) return false;
           // le parole brevi uguali all'italiano sono spesso giuste (es. "Banda", "Tipo" in spagnolo)
-          return (v === itFlat.get(k) && !SAME_OK.test(v) && v.length > 24) || ITALIAN.test(v.replace(/Via [^,]+|San Colombano al Lambro|Miradolo Terme|Garante per la protezione dei dati personali|Tecnolambro S\.a\.s\.[^,]*/g, ""));
+          return (v === itFlat.get(k) && !SAME_OK.test(v.replace(/%[a-zA-Z]+%/g, "")) && v.length > 24) || ITALIAN.test(v.replace(/Via [^,]+|San Colombano al Lambro|Miradolo Terme|Garante per la protezione dei dati personali|Tecnolambro S\.a\.s\.[^,]*/g, ""));
         });
   console.log(`\n${loc}: ${flat.size} testi`);
   for (const k of missing) console.log(`  ✗ manca: ${k}`);

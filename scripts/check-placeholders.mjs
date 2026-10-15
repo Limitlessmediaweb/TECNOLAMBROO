@@ -32,7 +32,11 @@ const PATTERNS = [
   /Valori da verificare/i,
   /da confermare con l.ufficio tecnico/i,
   /to be confirmed by the engineering office/i,
+  // segnaposto dei dati aziendali non sostituito (data/site.ts → siteTokens)
+  /%[a-zA-Z]+%/,
 ];
+// cercati solo nel testo visibile: nel markup "placeholder" è un attributo dei campi e "%EF%" compare nei link codificati
+const TEXT_ONLY = new Set(["/placeholder/i", "/%[a-zA-Z]+%/"]);
 
 // anche le stesse diciture nelle altre lingue: badge demo, "manca: …", "DA COMPLETARE", nota "bozza",
 // "valori da verificare" delle tabelle (testi che esistono solo per l'anteprima)
@@ -65,7 +69,7 @@ while (queue.length) {
     return { text: document.body.innerText, html: body.innerHTML };
   });
   const found = (re, s) => (re.test(s) ? s.match(re)?.[0] : null);
-  const hits = PATTERNS.map((re) => found(re, text) ?? (String(re) === "/placeholder/i" ? null : found(re, html))).filter(Boolean);
+  const hits = PATTERNS.map((re) => found(re, text) ?? (TEXT_ONLY.has(String(re)) ? null : found(re, html))).filter(Boolean);
   if (hits.length) problems.push({ path, hits });
   const links = await page.$$eval("a[href]", (as) => as.map((a) => a.getAttribute("href") ?? ""));
   for (const href of links) {

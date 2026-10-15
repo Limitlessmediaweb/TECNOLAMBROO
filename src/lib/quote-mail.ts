@@ -2,7 +2,7 @@ import "server-only";
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { QuotePayload } from "./quote-schema";
-import { COMPANY, whatsappHref } from "@/data/site";
+import { COMPANY, quoteTime, whatsappHref } from "@/data/site";
 import { THEME } from "@/data/brand";
 
 /** Colori delle email (le variabili CSS non arrivano nei client di posta): tema chiaro del sito. */
@@ -196,7 +196,7 @@ const OUT = {
     hello: (name: string) => `Buongiorno ${name},`,
     thanks: "grazie per la richiesta di preventivo.",
     number: "Numero di richiesta",
-    reply: "Vi rispondiamo con il preventivo entro 24 ore lavorative.",
+    reply: `Vi rispondiamo con il preventivo entro ${quoteTime("it", "working")}.`,
     recap: "Riepilogo",
     code: "Pezzo",
     qty: "Quantità",
@@ -212,7 +212,7 @@ const OUT = {
     hello: (name: string) => `Hello ${name},`,
     thanks: "thank you for your quote request.",
     number: "Request number",
-    reply: "We will reply with a quote within 24 working hours.",
+    reply: `We will reply with a quote within ${quoteTime("en", "working")}.`,
     recap: "Summary",
     code: "Part",
     qty: "Quantity",
@@ -228,7 +228,7 @@ const OUT = {
     hello: (name: string) => `Estimado/a ${name}:`,
     thanks: "gracias por su solicitud de presupuesto.",
     number: "Número de solicitud",
-    reply: "Le enviaremos el presupuesto en un plazo de 24 horas laborables.",
+    reply: `Le enviaremos el presupuesto en un plazo de ${quoteTime("es", "working")}.`,
     recap: "Resumen",
     code: "Pieza",
     qty: "Cantidad",
@@ -244,7 +244,7 @@ const OUT = {
     hello: (name: string) => `${name}，您好：`,
     thanks: "感谢您的询价。",
     number: "询价编号",
-    reply: "我们将在24个工作小时内向您发送报价。",
+    reply: `我们将在${quoteTime("zh", "working")}内向您发送报价。`,
     recap: "摘要",
     code: "零件",
     qty: "数量",
@@ -260,7 +260,7 @@ const OUT = {
     hello: (name: string) => `Guten Tag ${name},`,
     thanks: "vielen Dank für Ihre Angebotsanfrage.",
     number: "Anfragenummer",
-    reply: "Sie erhalten unser Angebot innerhalb von 24 Arbeitsstunden.",
+    reply: `Sie erhalten unser Angebot innerhalb von ${quoteTime("de", "working")}.`,
     recap: "Zusammenfassung",
     code: "Teil",
     qty: "Menge",
