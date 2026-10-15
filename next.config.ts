@@ -18,6 +18,31 @@ const HOST_REDIRECTS =
         .map((host) => ({ source: "/:path*", has: [{ type: "host" as const, value: host }], destination: `${SITE_URL}/:path*`, permanent: true }))
     : [];
 
+/**
+ * CSP in due parti. Quella applicata contiene solo direttive che non possono rompere il sito
+ * (niente iframe esterni, plugin, <base> o form verso altri domini). Quella "Report-Only" è la
+ * politica completa: non blocca nulla, segnala in console cosa bloccherebbe. Da provare sulla
+ * preview Vercel (configuratore 3D, upload su Blob, statistiche) e poi spostare nella CSP applicata.
+ * 'unsafe-inline' sugli script resta finché lo script del tema e il JSON-LD non hanno nonce o hash.
+ */
+const CSP_ENFORCED = ["base-uri 'self'", "object-src 'none'", "frame-ancestors 'self'", "form-action 'self'", "upgrade-insecure-requests"].join("; ");
+const CSP_REPORT_ONLY = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com https://plausible.io",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob:",
+  "font-src 'self' data:",
+  "connect-src 'self' blob: data: https://vitals.vercel-insights.com https://plausible.io https://vercel.com https://*.blob.vercel-storage.com",
+  "media-src 'self' blob:",
+  "worker-src 'self' blob:",
+  "frame-src 'none'",
+  "manifest-src 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+  "frame-ancestors 'self'",
+  "form-action 'self'",
+].join("; ");
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   // Pagine tolte o rinominate nella versione 2 (riunione del 7 ottobre 2026): redirect permanenti 308.
@@ -61,18 +86,21 @@ const nextConfig: NextConfig = {
       ]),
     ];
   },
-  // Intestazioni di sicurezza per tutte le risposte. La CSP rigorosa va definita al deploy
-  // (script inline del tema/intro e JSON-LD richiedono nonce o hash).
   async headers() {
     return [
       {
         source: "/:path*",
         headers: [
-          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
+          // Niente "preload": iscrive il dominio nella lista dei browser ed è difficile da togliere.
+          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
-          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
+          // "interest-cohort" non esiste più: Chrome segnalava un errore in console su ogni pagina.
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()" },
+          { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+          { key: "Content-Security-Policy", value: CSP_ENFORCED },
+          { key: "Content-Security-Policy-Report-Only", value: CSP_REPORT_ONLY },
         ],
       },
     ];
