@@ -8,6 +8,7 @@ import { MobileMenu, NavList } from "./HeaderClient";
 import { RequestButton, RequestMenuLink } from "@/components/request/RequestButton";
 import { Phone } from "lucide-react";
 import { COMPANY } from "@/data/site";
+import { HAS_TREATMENTS } from "@/data/treatments";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { cn } from "@/lib/cn";
 
@@ -22,6 +23,8 @@ const PRIMARY: { href: StaticPathname; key: string }[] = [
 
 const SECONDARY: { href: StaticPathname; key: string }[] = [
   { href: "/prodotti/tabelle", key: "tables" },
+  // solo se data/treatments.ts ha almeno un trattamento
+  ...(HAS_TREATMENTS ? [{ href: "/trattamenti" as const, key: "treatments" }] : []),
   { href: "/faq", key: "faq" },
 ];
 

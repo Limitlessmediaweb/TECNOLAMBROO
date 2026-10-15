@@ -63,6 +63,10 @@
     "requestSent": {
       "title": "询价已发送 | Tecnolambro",
       "description": "询价确认。"
+    },
+    "treatments": {
+      "title": "表面处理 | Tecnolambro",
+      "description": "我们为波导产品提供的表面处理及适用部件。%quoteTime%内报价。"
     }
   },
   "nav": {
@@ -90,7 +94,8 @@
     "menuLabel": "菜单",
     "shopShort": "配置",
     "tables": "技术参数表",
-    "call": "致电"
+    "call": "致电",
+    "treatments": "表面处理"
   },
   "common": {
     "demoBadge": "演示版",
@@ -230,7 +235,12 @@
       "composeBends": "定制您的弯波导",
       "composeTwists": "定制您的扭波导",
       "composeOffsets": "定制您的偏移波导",
-      "requestFamily": "询价：{name}"
+      "requestFamily": "询价：{name}",
+      "rigidTitle": "各规格数据",
+      "rigidSize": "规格",
+      "rigidRadiusE": "最小弯曲半径（E面）",
+      "rigidRadiusH": "最小弯曲半径（H面）",
+      "rigidWall": "壁厚"
     }
   },
   "bandFinder": {
@@ -1190,5 +1200,12 @@
     "qrSize": "规格页面",
     "qrFamily": "产品页面",
     "sizesTitle": "可选规格"
+  },
+  "treatmentsPage": {
+    "title": "表面处理",
+    "intro": "波导的表面精加工与处理：我们会根据部件用途，在报价中与您共同确定。",
+    "appliesTo": "适用部件",
+    "notes": "备注",
+    "formTitle": "咨询表面处理"
   }
 }

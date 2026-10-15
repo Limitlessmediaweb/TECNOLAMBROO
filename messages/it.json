@@ -63,6 +63,10 @@
     "requestSent": {
       "title": "Richiesta inviata | Tecnolambro",
       "description": "Conferma della richiesta di preventivo."
+    },
+    "treatments": {
+      "title": "Trattamenti superficiali | Tecnolambro",
+      "description": "I trattamenti superficiali che eseguiamo sulle guide d’onda e i pezzi su cui si fanno. Preventivo entro %quoteTime%."
     }
   },
   "nav": {
@@ -90,7 +94,8 @@
     "menuLabel": "Menu",
     "shopShort": "Configura",
     "tables": "Tabelle tecniche",
-    "call": "Chiama"
+    "call": "Chiama",
+    "treatments": "Trattamenti"
   },
   "common": {
     "demoBadge": "Versione demo",
@@ -230,7 +235,12 @@
       "composeBends": "Componi la tua curva",
       "composeTwists": "Componi il tuo twist",
       "composeOffsets": "Componi il tuo disassato",
-      "requestFamily": "Richiedi {name}"
+      "requestFamily": "Richiedi {name}",
+      "rigidTitle": "Dati per misura",
+      "rigidSize": "Misura",
+      "rigidRadiusE": "Raggio minimo, piano E",
+      "rigidRadiusH": "Raggio minimo, piano H",
+      "rigidWall": "Spessore di parete"
     }
   },
   "bandFinder": {
@@ -1190,5 +1200,12 @@
     "qrSize": "Pagina della misura",
     "qrFamily": "Pagina del prodotto",
     "sizesTitle": "Misure disponibili"
+  },
+  "treatmentsPage": {
+    "title": "Trattamenti",
+    "intro": "Finiture e trattamenti superficiali delle guide d’onda: li definiamo insieme nel preventivo, in base all’uso del pezzo.",
+    "appliesTo": "Su quali pezzi",
+    "notes": "Note",
+    "formTitle": "Chiedi un trattamento"
   }
 }

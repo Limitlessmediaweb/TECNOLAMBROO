@@ -18,6 +18,7 @@ import { MagneticButton } from "@/components/motion/MagneticButton";
 import { ExplodedPart } from "@/components/domain/ExplodedPart";
 import { ProductGrid } from "@/components/sections/ProductsSection";
 import { SpecTables } from "@/components/tables/SpecTables";
+import { RigidGeometryTable } from "@/components/tables/RigidGeometryTable";
 import { FamilyGallery } from "@/components/sections/PeopleAndPhotos";
 import { AddCustomButton } from "@/components/request/AddCustomButton";
 import { FamilyDemo3D } from "@/components/configurator/FamilyDemo3D";
@@ -159,6 +160,8 @@ export default async function FamilyPage({ params }: Props) {
               />
             </div>
           )}
+          {/* curve, twist, disassati: raggio minimo e spessore per misura (nascosta finché data/rigid.ts è vuoto) */}
+          {family.partType === "bend" || family.partType === "twist" || family.partType === "offset" ? <RigidGeometryTable /> : null}
         </div>
       </section>
 

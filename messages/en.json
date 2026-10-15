@@ -63,6 +63,10 @@
     "requestSent": {
       "title": "Request sent | Tecnolambro",
       "description": "Quote request confirmation."
+    },
+    "treatments": {
+      "title": "Surface treatments | Tecnolambro",
+      "description": "The surface treatments we apply to our waveguides and the parts they apply to. Quote within %quoteTime%."
     }
   },
   "nav": {
@@ -90,7 +94,8 @@
     "menuLabel": "Menu",
     "shopShort": "Configure",
     "tables": "Technical tables",
-    "call": "Call"
+    "call": "Call",
+    "treatments": "Treatments"
   },
   "common": {
     "demoBadge": "Demo version",
@@ -230,7 +235,12 @@
       "composeBends": "Build your bend",
       "composeTwists": "Build your twist",
       "composeOffsets": "Build your offset",
-      "requestFamily": "Request {name}"
+      "requestFamily": "Request {name}",
+      "rigidTitle": "Data by size",
+      "rigidSize": "Size",
+      "rigidRadiusE": "Minimum radius, E-plane",
+      "rigidRadiusH": "Minimum radius, H-plane",
+      "rigidWall": "Wall thickness"
     }
   },
   "bandFinder": {
@@ -1190,5 +1200,12 @@
     "qrSize": "Size page",
     "qrFamily": "Product page",
     "sizesTitle": "Available sizes"
+  },
+  "treatmentsPage": {
+    "title": "Treatments",
+    "intro": "Finishes and surface treatments for waveguides: we agree them with you in the quote, based on how the part will be used.",
+    "appliesTo": "Applies to",
+    "notes": "Notes",
+    "formTitle": "Ask about a treatment"
   }
 }

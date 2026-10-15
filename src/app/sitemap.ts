@@ -3,6 +3,7 @@ import { routing, type Locale, type StaticPathname } from "@/i18n/routing";
 import { absoluteUrl, indexedLocales } from "@/lib/seo";
 import { LOCALE_META } from "@/i18n/locales";
 import { VISIBLE_FAMILIES, familySlug } from "@/data/families";
+import { HAS_TREATMENTS } from "@/data/treatments";
 import { SIZES } from "@/data/waveguides";
 import { wrSlug } from "@/lib/wr-page";
 
@@ -22,6 +23,8 @@ const STATIC: { href: StaticPathname; priority: number; changeFrequency: "monthl
   { href: "/contatti", priority: 0.8, changeFrequency: "yearly" },
   { href: "/azienda", priority: 0.7, changeFrequency: "yearly" },
   { href: "/qualita", priority: 0.6, changeFrequency: "yearly" },
+  // solo se data/treatments.ts ha almeno un trattamento (altrimenti la pagina è 404)
+  ...(HAS_TREATMENTS ? [{ href: "/trattamenti" as const, priority: 0.7, changeFrequency: "monthly" as const }] : []),
   { href: "/faq", priority: 0.6, changeFrequency: "monthly" },
   { href: "/shop", priority: 0.9, changeFrequency: "monthly" },
   { href: "/privacy", priority: 0.2, changeFrequency: "yearly" },

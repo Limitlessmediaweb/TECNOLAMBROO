@@ -19,9 +19,9 @@ Aggiungi un oggetto all'elenco `FAMILIES`:
 | `drawing` | il disegno a linee: `"flexible"`, `"bend"`, `"twist"` o `"offset"` |
 | `sizes` | le misure disponibili, es. `WR_LIST` (tutte e 14) oppure `["WR-75", "WR-90"]` |
 
-### 2. I testi in `messages/it.json` e `messages/en.json`
+### 2. I testi in `messages/*.json`
 
-Sotto `products.items.<key>`, in entrambe le lingue:
+Sotto `products.items.<key>`, in tutte e 5 le lingue (`it`, `en`, `es`, `zh`, `de`; `npm run i18n:check` segnala quelle mancanti):
 
 ```json
 "transitions": {
@@ -65,7 +65,47 @@ In `src/data/families.ts`:
 },
 ```
 
-Poi aggiungi i testi del passo 2 in tutte e due le lingue, copia le foto in `public/foto/prodotti/transitions/` e fai la build.
+Poi aggiungi i testi del passo 2 in tutte le lingue, copia le foto in `public/foto/prodotti/transitions/` e fai la build.
+
+## Trattamenti superficiali (pagina /trattamenti)
+
+La pagina legge `src/data/treatments.ts`. **Finché l'elenco `SURFACE_TREATMENTS` è vuoto la pagina non esiste**: risponde 404, non è nella sitemap e non compare nel menu né nel footer. Con la prima voce compare ovunque, in tutte le lingue (`/trattamenti`, `/en/treatments`, `/es/tratamientos`, `/de/oberflaechenbehandlungen`, `/zh/treatments`).
+
+Ogni voce:
+
+| Campo | Cosa mettere |
+|---|---|
+| `key` | identificativo minuscolo, es. `"argentatura"` |
+| `name` | nome per lingua; servono almeno `it` ed `en` (le lingue senza testo usano l'inglese) |
+| `description` | facoltativa: una o due frasi |
+| `families` | facoltativo: le famiglie su cui si fa, con le chiavi di `families.ts` (`twistable`, `seamless`, `bends`, `twists`, `offsets`); diventano link alle pagine famiglia |
+| `parts` | facoltativo: altri pezzi in testo libero, es. "Flange e transizioni su disegno" |
+| `notes` | facoltative |
+
+```ts
+export const SURFACE_TREATMENTS: readonly SurfaceTreatment[] = [
+  {
+    key: "argentatura",
+    name: { it: "Argentatura", en: "Silver plating", de: "Versilberung" },
+    families: ["twistable", "seamless"],
+    notes: { it: "Spessore da definire nel preventivo.", en: "Thickness agreed in the quote." },
+  },
+];
+```
+
+Solo trattamenti che Tecnolambro fa davvero, con i testi confermati dal titolare. Dopo la modifica: `npm run build`.
+
+## Raggio minimo e spessore delle guide rigide
+
+Curve, twist e disassati hanno una tabella "Dati per misura" alimentata da `src/data/rigid.ts`, con una riga per misura (`minRadiusE`, `minRadiusH`, `wall`, in millimetri).
+
+```ts
+"WR-90": { minRadiusE: 25, minRadiusH: 40, wall: 1.27 },
+```
+
+- **Quali righe e colonne si vedono:** le colonne tutte `null` non compaiono, e nemmeno le misure senza nessun valore. Se è tutto `null` la tabella non c'è.
+- **Effetto sul 3D e sui disegni:** lo spessore reale sostituisce quello indicativo. Il raggio "standard" non scende sotto il raggio minimo inserito.
+- **Schede tecniche:** dopo la modifica rigenera le schede PDF con `npm run datasheets`.
 
 ## Un tipo nuovo nel configuratore
 

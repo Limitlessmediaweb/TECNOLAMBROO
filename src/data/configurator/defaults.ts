@@ -1,4 +1,5 @@
 import { SIZE_BY_WR } from "@/data/waveguides";
+import { RIGID_GEOMETRY } from "@/data/rigid";
 import { flangesFor, OTHER_FLANGE } from "@/data/flanges";
 import { FINISHES, TREATMENTS, TYPE_DEF, type Finish, type PartSpec, type PartType, type Plane, type Treatment, type TwistDirection } from "./types";
 
@@ -31,12 +32,18 @@ export function defaultSpec(type: PartType, wr = "WR-90"): PartSpec {
   }
 }
 
-/** Raggio indicativo per disegno e 3D quando il raggio è "standard": 2 volte la dimensione interna nel piano di curvatura. */
+/**
+ * Raggio indicativo per disegno e 3D quando il raggio è "standard": 2 volte la dimensione interna nel
+ * piano di curvatura, mai sotto il raggio minimo reale della misura se l'ufficio tecnico l'ha fornito
+ * (data/rigid.ts).
+ */
 export function visualBendRadius(spec: PartSpec): number {
   if (spec.radius) return spec.radius;
   const s = SIZE_BY_WR.get(spec.wr);
   if (!s) return 40;
-  return Math.max(10, Math.round((spec.plane === "H" ? s.a : s.b) * 2));
+  const geo = RIGID_GEOMETRY[spec.wr];
+  const min = (spec.plane === "H" ? geo?.minRadiusH : geo?.minRadiusE) ?? 0;
+  return Math.max(10, min, Math.round((spec.plane === "H" ? s.a : s.b) * 2));
 }
 
 /* -------------------------------------------------------- link condivisibile */

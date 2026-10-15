@@ -1,4 +1,5 @@
 import { intlLocale } from "@/i18n/locales";
+import { RIGID_GEOMETRY } from "@/data/rigid";
 /**
  * Tabelle tecniche ufficiali Tecnolambro della guida d'onda flessibile.
  *
@@ -199,7 +200,8 @@ const WALL: Readonly<Record<string, number>> = {
 };
 
 export function rigidOuter(s: Size): { w: number; h: number; wall: number } {
-  const wall = WALL[s.wr] ?? 1.27;
+  // spessore reale dall'ufficio tecnico (data/rigid.ts) se c'è, altrimenti quello indicativo
+  const wall = RIGID_GEOMETRY[s.wr]?.wall ?? WALL[s.wr] ?? 1.27;
   return { w: s.a + 2 * wall, h: s.b + 2 * wall, wall };
 }
 

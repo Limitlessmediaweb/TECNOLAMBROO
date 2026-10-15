@@ -63,6 +63,10 @@
     "requestSent": {
       "title": "Solicitud enviada | Tecnolambro",
       "description": "Confirmación de la solicitud de presupuesto."
+    },
+    "treatments": {
+      "title": "Tratamientos superficiales | Tecnolambro",
+      "description": "Los tratamientos superficiales que aplicamos a nuestras guías de ondas y las piezas en las que se realizan. Presupuesto en %quoteTime%."
     }
   },
   "nav": {
@@ -90,7 +94,8 @@
     "menuLabel": "Menú",
     "shopShort": "Configurar",
     "tables": "Tablas técnicas",
-    "call": "Llamar"
+    "call": "Llamar",
+    "treatments": "Tratamientos"
   },
   "common": {
     "demoBadge": "Versión demo",
@@ -230,7 +235,12 @@
       "composeBends": "Configure su codo",
       "composeTwists": "Configure su torsión",
       "composeOffsets": "Configure su desplazamiento",
-      "requestFamily": "Solicitar {name}"
+      "requestFamily": "Solicitar {name}",
+      "rigidTitle": "Datos por medida",
+      "rigidSize": "Medida",
+      "rigidRadiusE": "Radio mínimo, plano E",
+      "rigidRadiusH": "Radio mínimo, plano H",
+      "rigidWall": "Espesor de pared"
     }
   },
   "bandFinder": {
@@ -1190,5 +1200,12 @@
     "qrSize": "Página del tamaño",
     "qrFamily": "Página del producto",
     "sizesTitle": "Tamaños disponibles"
+  },
+  "treatmentsPage": {
+    "title": "Tratamientos",
+    "intro": "Acabados y tratamientos superficiales para guías de ondas: los definimos con usted en el presupuesto, según el uso de la pieza.",
+    "appliesTo": "En qué piezas",
+    "notes": "Notas",
+    "formTitle": "Consulte un tratamiento"
   }
 }

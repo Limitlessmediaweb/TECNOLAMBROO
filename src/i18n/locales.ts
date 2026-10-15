@@ -74,6 +74,7 @@ export const ROUTE_SLUGS: Record<string, Partial<Record<Locale, string>> & { it:
   "/su-misura": { it: "/su-misura", en: "/custom", es: "/a-medida", de: "/sonderanfertigung" },
   "/azienda": { it: "/azienda", en: "/company", es: "/empresa", de: "/unternehmen" },
   "/qualita": { it: "/qualita", en: "/quality", es: "/calidad", de: "/qualitaet" },
+  "/trattamenti": { it: "/trattamenti", en: "/treatments", es: "/tratamientos", de: "/oberflaechenbehandlungen" },
   "/contatti": { it: "/contatti", en: "/contact", es: "/contacto", de: "/kontakt" },
   "/faq": { it: "/faq", en: "/faq" },
   "/privacy": { it: "/privacy", en: "/privacy", es: "/privacidad", de: "/datenschutz" },

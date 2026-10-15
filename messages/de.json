@@ -63,6 +63,10 @@
     "requestSent": {
       "title": "Anfrage gesendet | Tecnolambro",
       "description": "Bestätigung der Angebotsanfrage."
+    },
+    "treatments": {
+      "title": "Oberflächenbehandlungen | Tecnolambro",
+      "description": "Die Oberflächenbehandlungen für unsere Hohlleiter und die Teile, auf die sie angewendet werden. Angebot innerhalb von %quoteTime%."
     }
   },
   "nav": {
@@ -90,7 +94,8 @@
     "menuLabel": "Menü",
     "shopShort": "Konfigurieren",
     "tables": "Technische Tabellen",
-    "call": "Anrufen"
+    "call": "Anrufen",
+    "treatments": "Oberflächenbehandlungen"
   },
   "common": {
     "demoBadge": "Demoversion",
@@ -230,7 +235,12 @@
       "composeBends": "Bogen konfigurieren",
       "composeTwists": "Twist konfigurieren",
       "composeOffsets": "Versatz konfigurieren",
-      "requestFamily": "{name} anfragen"
+      "requestFamily": "{name} anfragen",
+      "rigidTitle": "Daten je Größe",
+      "rigidSize": "Größe",
+      "rigidRadiusE": "Mindestradius, E-Ebene",
+      "rigidRadiusH": "Mindestradius, H-Ebene",
+      "rigidWall": "Wandstärke"
     }
   },
   "bandFinder": {
@@ -1190,5 +1200,12 @@
     "qrSize": "Seite der Größe",
     "qrFamily": "Produktseite",
     "sizesTitle": "Verfügbare Größen"
+  },
+  "treatmentsPage": {
+    "title": "Oberflächenbehandlungen",
+    "intro": "Oberflächen und Behandlungen für Hohlleiter: Wir legen sie gemeinsam im Angebot fest, je nach Einsatz des Teils.",
+    "appliesTo": "Für welche Teile",
+    "notes": "Hinweise",
+    "formTitle": "Behandlung anfragen"
   }
 }

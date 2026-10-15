@@ -32,6 +32,7 @@ export const routing = defineRouting({
     "/su-misura": Record<Locale, string>;
     "/azienda": Record<Locale, string>;
     "/qualita": Record<Locale, string>;
+    "/trattamenti": Record<Locale, string>;
     "/contatti": Record<Locale, string>;
     "/faq": Record<Locale, string>;
     "/privacy": Record<Locale, string>;
