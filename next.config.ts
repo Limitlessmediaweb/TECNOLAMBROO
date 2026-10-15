@@ -4,14 +4,14 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 /**
- * Al lancio (docs/messa-online.md): con CANONICAL_REDIRECT=true gli host secondari (www e l'indirizzo
- * *.vercel.app di produzione, in REDIRECT_HOSTS separati da virgola) portano al dominio di
- * NEXT_PUBLIC_SITE_URL con un redirect 308. Spento finché la variabile non è impostata.
+ * Al lancio (docs/messa-online.md): con CANONICAL_REDIRECT=true gli host secondari (www, il vecchio
+ * tecnolambro.com e l'indirizzo *.vercel.app di produzione, in REDIRECT_HOSTS separati da virgola)
+ * portano al dominio di NEXT_PUBLIC_SITE_URL con un redirect 308. Spento finché la variabile non è impostata.
  */
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://tecnolambro.it").replace(/\/$/, "");
 const HOST_REDIRECTS =
   process.env.CANONICAL_REDIRECT === "true"
-    ? (process.env.REDIRECT_HOSTS ?? "www.tecnolambro.it,tecnolambroooo.vercel.app")
+    ? (process.env.REDIRECT_HOSTS ?? "www.tecnolambro.it,tecnolambro.com,www.tecnolambro.com,tecnolambroooo.vercel.app")
         .split(",")
         .map((h) => h.trim())
         .filter((h) => h && h !== new URL(SITE_URL).host)
@@ -72,6 +72,26 @@ const nextConfig: NextConfig = {
       ["/radioamatori", "/prodotti/guida-flessibile/wr-90"],
       ["/en/ham-radio", "/en/products/flexible-waveguide/wr-90"],
     ];
+    // Vecchio sito WordPress su tecnolambro.com (pagine indicizzate al 15/10/2026, molte sono demo del tema):
+    // ogni indirizzo porta alla pagina nuova più vicina invece che a una 404.
+    const oldSite: [string, string][] = [
+      ["/about", "/azienda"],
+      ["/about-2", "/azienda"],
+      ["/contact", "/contatti"],
+      ["/appointment", "/contatti"],
+      ["/service", "/prodotti"],
+      ["/service-type", "/prodotti"],
+      ["/cart", "/shop"],
+      ["/checkout", "/shop"],
+      ["/my-account", "/shop"],
+      ["/wishlist", "/shop"],
+      ["/blog", "/"],
+      ["/blog-type", "/"],
+      ["/pagina-di-esempio", "/"],
+      ["/feed", "/"],
+      ["/category/:path*", "/"],
+      ["/:year(\\d{4})/:month(\\d{2})/:day(\\d{2})/:slug*", "/"],
+    ];
     // Vecchie schede dello shop con i prezzi: ora c'è il configuratore
     const handles = [
       "flex-twist-wr75-600", "flex-twist-wr90-600", "bend-e-wr90-90", "bend-h-wr90-90", "twist-wr75-90", "straight-wr90-300",
@@ -80,6 +100,7 @@ const nextConfig: NextConfig = {
     return [
       ...HOST_REDIRECTS,
       ...family.map(([source, destination]) => ({ source, destination, permanent: true })),
+      ...oldSite.map(([source, destination]) => ({ source, destination, permanent: true })),
       ...handles.flatMap((h) => [
         { source: `/shop/${h}`, destination: "/shop", permanent: true },
         { source: `/en/shop/${h}`, destination: "/en/shop", permanent: true },

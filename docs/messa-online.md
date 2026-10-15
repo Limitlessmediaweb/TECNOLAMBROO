@@ -31,6 +31,7 @@ La propagazione richiede da pochi minuti a qualche ora. Vercel emette il certifi
 
 - **www → tecnolambro.it**: lo fa Vercel (punto 1).
 - **tecnolambroooo.vercel.app → tecnolambro.it**: imposta le variabili del punto 4. Il sito risponde con un 308 verso il dominio. Le anteprime dei branch (`*-git-*.vercel.app`) restano raggiungibili.
+- **Vecchio sito tecnolambro.com** (WordPress con pagine demo del tema, ancora indicizzato su Google): aggiungi `tecnolambro.com` e `www.tecnolambro.com` allo stesso progetto Vercel e punta lì i loro DNS. Le vecchie pagine (`/about/`, `/contact/`, `/category/…`, gli articoli datati…) portano già alla pagina nuova più vicina (`next.config.ts`, blocco `oldSite`). Spegni l'hosting WordPress solo dopo aver controllato i redirect.
 
 ## 4. Variabili d'ambiente (Production)
 
@@ -40,7 +41,7 @@ La propagazione richiede da pochi minuti a qualche ora. Vercel emette il certifi
 | `NEXT_PUBLIC_DEMO` | `false` |
 | `NEXT_PUBLIC_ALLOW_INDEXING` | `true` |
 | `CANONICAL_REDIRECT` | `true` |
-| `REDIRECT_HOSTS` | `www.tecnolambro.it,tecnolambroooo.vercel.app` |
+| `REDIRECT_HOSTS` | `www.tecnolambro.it,tecnolambro.com,www.tecnolambro.com,tecnolambroooo.vercel.app` |
 | `QUOTE_TO_EMAIL` | `info@tecnolambro.it` |
 | `QUOTE_FROM_EMAIL` | `Tecnolambro <info@tecnolambro.it>` |
 | `QUOTE_BCC_EMAIL` | facoltativa |
@@ -55,7 +56,8 @@ Dopo aver cambiato le variabili: **Deployments → Redeploy**.
 - [ ] `NEXT_PUBLIC_ALLOW_INDEXING=true`: robots.txt consente l'indicizzazione
 - [ ] Variabili email impostate; dominio verificato su Resend (record nel README)
 - [ ] **Test di invio reale**: una richiesta da "La tua richiesta" e una dal modulo breve. Controlla che info@ riceva l'email con allegati e `richiesta.json`, e che arrivi la conferma al cliente
-- [ ] Prova i redirect: `www.tecnolambro.it`, `tecnolambroooo.vercel.app`, `/radioamatori`
+- [ ] Prova i redirect: `www.tecnolambro.it`, `tecnolambroooo.vercel.app`, `/radioamatori`, `www.tecnolambro.com/about/`, `www.tecnolambro.com/2020/12/25/hello-world/`
+- [ ] Prova che `http://webmail.tecnolambro.it` si apra ancora dopo aver visitato il sito (HSTS senza includeSubDomains)
 - [ ] **Google Search Console**: aggiungi la proprietà `tecnolambro.it` (verifica con un record TXT su Aruba) e invia la sitemap `https://tecnolambro.it/sitemap.xml`
 - [ ] **Scheda Google Business** di Tecnolambro: aggiorna il sito con `https://tecnolambro.it` e controlla gli orari (lun–ven 8:00–12:00 e 13:30–17:30)
 - [ ] Vercel → Analytics → Enable
