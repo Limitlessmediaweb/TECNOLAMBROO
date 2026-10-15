@@ -20,7 +20,8 @@
     "check:placeholders": "node scripts/check-placeholders.mjs",
     "screenshots:v3": "node scripts/screenshots-v3.mjs",
     "i18n:check": "node scripts/i18n-check.mjs",
-    "datasheets": "node scripts/datasheets.mjs"
+    "datasheets": "node scripts/datasheets.mjs",
+    "foto": "node scripts/foto.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

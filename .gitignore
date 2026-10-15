@@ -68,3 +68,6 @@ next-env.d.ts
 /video/*/assets/*.hdr
 /video/*/scenes/part3d.bundle.js
 /video/*/out-build-log.txt
+
+# originali delle foto convertite da npm run foto (le WebP stanno in public/foto/)
+/foto-originali/
