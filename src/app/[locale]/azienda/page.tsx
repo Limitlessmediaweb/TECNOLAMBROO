@@ -83,10 +83,13 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/azienda
                   <br />
                   {address.postalCode} {address.city} ({address.province})
                 </address>
-                <a href={mapsUrl(address)} target="_blank" rel="noopener" className="mt-2 self-start text-sm underline decoration-accent underline-offset-4 hover:text-accent">
-                  {t("mapLink")}
-                  <span className="sr-only"> {common("opensNewTab")}</span>
-                </a>
+                {/* La mappa solo per la sede operativa: la sede legale non riceve visite */}
+                {main ? (
+                  <a href={mapsUrl(address)} target="_blank" rel="noopener" className="mt-2 self-start text-sm underline decoration-accent underline-offset-4 hover:text-accent">
+                    {t("mapLink")}
+                    <span className="sr-only"> {common("opensNewTab")}</span>
+                  </a>
+                ) : null}
               </li>
             ))}
           </ul>
