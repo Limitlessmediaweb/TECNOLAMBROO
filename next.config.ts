@@ -43,8 +43,16 @@ const CSP_REPORT_ONLY = [
   "form-action 'self'",
 ].join("; ");
 
+/**
+ * Modalità anteprima (badge "Versione demo", "manca: …", note interne): solo con NEXT_PUBLIC_DEMO=true
+ * esplicito, e MAI nel deploy di produzione Vercel. Calcolata qui una volta sola e inserita uguale nel
+ * codice del server e del browser, così non può differire tra i due.
+ */
+const DEMO = process.env.NEXT_PUBLIC_DEMO === "true" && process.env.VERCEL_ENV !== "production";
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  env: { TL_DEMO: DEMO ? "true" : "false" },
   // Pagine tolte o rinominate nella versione 2 (riunione del 7 ottobre 2026): redirect permanenti 308.
   async redirects() {
     const family: [string, string][] = [

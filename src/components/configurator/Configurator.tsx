@@ -3,7 +3,6 @@
 import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from "react";
 import NextLink from "next/link";
 import { Box, Check, Download, FileDown, Info, Mail, PencilRuler, Plus, Share2, Smartphone } from "lucide-react";
-import { ENV } from "@/data/site";
 import { useClientLocale, useT } from "@/lib/client-i18n";
 import { BEND_ANGLES, FINISHES, PART_TYPES, TREATMENTS, TWIST_ROTATIONS, TYPE_DEF, isFlexible, type PartSpec, type PartType } from "@/data/configurator/types";
 import { defaultSpec, specFromParams, specToParams } from "@/data/configurator/defaults";
@@ -616,11 +615,7 @@ export function Configurator({ requestPath }: { requestPath: string }) {
                       </select>
                     </div>
                   ))}
-                  {ENV.demo ? (
-                    <p className="annot text-muted sm:col-span-2">
-                      <span className="todo">{t("flangeNote")}</span>
-                    </p>
-                  ) : null}
+                  <p className="annot text-muted sm:col-span-2">{t("flangeNote")}</p>
                 </div>,
               )}
 

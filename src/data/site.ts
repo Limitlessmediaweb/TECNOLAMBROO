@@ -67,5 +67,6 @@ export const ENV = {
   allowIndexing: process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true",
   plausibleDomain: process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN ?? "",
   limitlessUrl: process.env.NEXT_PUBLIC_LIMITLESS_URL ?? "https://www.limitlessmedia.it",
-  demo: (process.env.NEXT_PUBLIC_DEMO ?? "true") === "true",
+  /** Anteprima: vedi next.config.ts (false se NEXT_PUBLIC_DEMO manca, sempre false in produzione) */
+  demo: process.env.TL_DEMO === "true",
 } as const;
