@@ -1,6 +1,6 @@
 import { MailNotConfigured, customerMail, internalMail, mailProvider, sendMail, type Attachment, type MailFiles } from "@/lib/quote-mail";
 import { MAX_FILE_BYTES, MAX_MODEL_ATTACH_BYTES, MIN_FILL_MS, isAcceptedFile, isModelFile, validatePayload, type QuoteResponse } from "@/lib/quote-schema";
-import { blobHost, clientIp, rateLimited } from "@/lib/rate-limit";
+import { blobHost, clientIp, rateLimited, sameOrigin } from "@/lib/rate-limit";
 import { randomInt } from "node:crypto";
 
 /**
@@ -15,6 +15,8 @@ export const runtime = "nodejs";
 /** Corpo massimo accettato: Vercel rifiuta già sopra 4,5 MB. */
 const MAX_BODY = 4.5 * 1024 * 1024;
 const RATE = { windowMs: 10 * 60 * 1000, max: 5 };
+/** Conferme allo stesso indirizzo: il modulo non deve diventare un modo per spedire email a terzi dal nostro dominio. */
+const CONFIRM_RATE = { windowMs: 60 * 60 * 1000, max: 3 };
 
 function json(body: QuoteResponse, status = 200) {
   return Response.json(body, { status, headers: { "Cache-Control": "no-store" } });
@@ -42,6 +44,8 @@ function safeDrawing(buf: Buffer): boolean {
 const safeName = (name: string) => name.replace(/[\\/:*?"<>|\r\n]/g, "_").slice(0, 180);
 
 export async function POST(request: Request) {
+  // Solo dalle pagine del sito: blocca i form di altri siti e gli invii diretti più banali.
+  if (!sameOrigin(request)) return json({ ok: false, error: "invalid" }, 403);
   const length = Number(request.headers.get("content-length") ?? 0);
   if (length > MAX_BODY) return json({ ok: false, error: "tooLarge" }, 413);
 
@@ -126,10 +130,14 @@ export async function POST(request: Request) {
   }
 
   // Conferma al cliente, con i disegni: se fallisce la richiesta è comunque arrivata all'ufficio
-  const outbound = customerMail(payload, number, drawings.length > 0);
-  await sendMail({ to: payload.customer.email, subject: outbound.subject, html: outbound.html, text: outbound.text, attachments: drawings }, { folder: number, name: "cliente" }).catch((err) =>
-    console.error("[quote] conferma al cliente non inviata", err),
-  );
+  if (rateLimited("confirm", payload.customer.email.toLowerCase(), CONFIRM_RATE.max, CONFIRM_RATE.windowMs)) {
+    console.warn("[quote] troppe conferme allo stesso indirizzo: conferma non inviata", number);
+  } else {
+    const outbound = customerMail(payload, number, drawings.length > 0);
+    await sendMail({ to: payload.customer.email, subject: outbound.subject, html: outbound.html, text: outbound.text, attachments: drawings }, { folder: number, name: "cliente" }).catch((err) =>
+      console.error("[quote] conferma al cliente non inviata", err),
+    );
+  }
 
   const webhook = process.env.QUOTE_WEBHOOK_URL;
   if (webhook) {

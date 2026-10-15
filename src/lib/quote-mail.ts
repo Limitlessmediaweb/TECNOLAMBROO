@@ -61,6 +61,7 @@ export async function sendMail(mail: Mail, test?: { folder: string; name: string
   if (provider === "resend") {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
+      signal: AbortSignal.timeout(20_000),
       headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
       body: JSON.stringify({
         from: from(),
@@ -83,6 +84,10 @@ export async function sendMail(mail: Mail, test?: { folder: string; name: string
     port,
     secure: port === 465,
     auth: { user: SMTP.user(), pass: process.env.SMTP_PASS },
+    // senza limiti un server SMTP lento tiene appesa la funzione fino al suo timeout
+    connectionTimeout: 15_000,
+    greetingTimeout: 15_000,
+    socketTimeout: 30_000,
   });
   await transport.sendMail({ from: from(), to: mail.to, bcc: mail.bcc, replyTo: mail.replyTo, subject: mail.subject, html: mail.html, text: mail.text, attachments: mail.attachments });
 }
