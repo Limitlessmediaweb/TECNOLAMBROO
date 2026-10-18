@@ -100,6 +100,8 @@ function glbBox(buf) {
 
 const browser = await chromium.launch({ args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"] });
 const ctx = await browser.newContext({ acceptDownloads: true, viewport: { width: 1440, height: 900 } });
+// banner cookie già risolto (rifiuto): non copre i pulsanti
+await ctx.addInitScript(() => localStorage.setItem("tl-consent", JSON.stringify({ v: 1, stats: false, at: new Date().toISOString() })));
 const page = await ctx.newPage();
 const errors = [];
 page.on("console", (m) => m.type() === "error" && errors.push(m.text()));

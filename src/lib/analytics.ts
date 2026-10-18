@@ -1,4 +1,5 @@
 import { track as vercelTrack } from "@vercel/analytics";
+import { hasStatsConsent } from "@/lib/consent";
 
 /**
  * Eventi del sito: Vercel Web Analytics (senza cookie) e, se configurato, anche Plausible.
@@ -35,7 +36,8 @@ declare global {
 }
 
 export function track(event: AnalyticsEvent, props?: Props): void {
-  if (typeof window === "undefined") return;
+  // senza consenso alle statistiche nessun evento parte (lib/consent.ts)
+  if (typeof window === "undefined" || !hasStatsConsent()) return;
   try {
     vercelTrack(event, props);
     window.plausible?.(event, props ? { props } : undefined);
@@ -52,11 +54,15 @@ export const CAMPAIGN_PARAMS = ["utm_source", "utm_medium", "utm_campaign", "utm
 
 /**
  * Salva pagina d'ingresso, referrer e parametri della campagna della prima visita, una sola volta e
- * SOLO se l'indirizzo contiene parametri di campagna (utm_*, gclid, fbclid): per tutte le altre visite
- * non si salva niente (privacy, voce 1.3 della checklist).
+ * SOLO se l'indirizzo contiene parametri di campagna (utm_*, gclid, fbclid) e SOLO con il consenso
+ * alle statistiche (lib/consent.ts): senza consenso si cancella anche quanto salvato in passato.
  */
 export function captureFirstVisit(): void {
   try {
+    if (!hasStatsConsent()) {
+      localStorage.removeItem(UTM_KEY);
+      return;
+    }
     const saved = firstVisit();
     if (saved?.utm) return;
     // voci salvate dalle versioni precedenti per visite senza campagna: si tolgono
@@ -85,8 +91,17 @@ export function firstVisit(): FirstVisit | null {
   }
 }
 
-/** Provenienza della richiesta: pagina attuale + prima visita (UTM, referrer, pagina d'ingresso). */
+/**
+ * Provenienza della richiesta: pagina attuale + prima visita (UTM, referrer, pagina d'ingresso).
+ * Senza consenso alle statistiche niente prima visita, e dalla pagina attuale si tolgono i parametri di campagna.
+ */
 export function requestMeta(): { page: string; landing?: string; referrer?: string; utm?: Record<string, string> } {
-  const fv = firstVisit();
-  return { page: typeof window !== "undefined" ? window.location.pathname + window.location.search : "", landing: fv?.landing, referrer: fv?.referrer, utm: fv?.utm };
+  if (typeof window === "undefined") return { page: "" };
+  const consent = hasStatsConsent();
+  const params = new URLSearchParams(window.location.search);
+  if (!consent) for (const k of CAMPAIGN_PARAMS) params.delete(k);
+  const query = params.toString();
+  const page = window.location.pathname + (query ? `?${query}` : "");
+  const fv = consent ? firstVisit() : null;
+  return { page, landing: fv?.landing, referrer: fv?.referrer, utm: fv?.utm };
 }

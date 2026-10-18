@@ -566,7 +566,7 @@
   "legal": {
     "privacy": {
       "title": "Privacy policy",
-      "updated": "15 ottobre 2026",
+      "updated": "18 ottobre 2026",
       "sections": [
         {
           "h": "1. Titolare del trattamento",
@@ -580,8 +580,9 @@
           "p": [
             "Dati inseriti nella richiesta di preventivo: azienda, nome e cognome, email, telefono (facoltativo), paese, partita IVA (facoltativa), pezzi richiesti con quantità e note.",
             "File caricati con la richiesta (disegni e modelli in PDF, DWG, DXF, STEP, IGES o STL). I disegni possono contenere dati personali, per esempio il nome del progettista nel cartiglio.",
-            "Dati di navigazione: indirizzo IP e informazioni tecniche registrati dal server per sicurezza e funzionamento. Statistiche aggregate e anonime sulle visite, senza cookie (vedi punto 7).",
-            "Insieme alla richiesta riceviamo la pagina del sito da cui è partita e la lingua del sito. Solo se siete arrivati al sito da un link di una campagna (con parametri utm_*, gclid o fbclid nell’indirizzo) riceviamo anche la pagina d’ingresso, il sito di provenienza e i parametri della campagna: ci servono per capire come ci avete trovato."
+            "Dati di navigazione: indirizzo IP e informazioni tecniche registrati dal server per sicurezza e funzionamento. Solo con il vostro consenso, statistiche aggregate sulle visite, senza cookie (vedi punto 7).",
+            "Insieme alla richiesta riceviamo la pagina del sito da cui è partita e la lingua del sito. Solo con il vostro consenso, e solo se siete arrivati al sito da un link di una campagna (parametri utm_*, gclid o fbclid nell’indirizzo), riceviamo anche la pagina d’ingresso, il sito di provenienza e i parametri della campagna: ci servono per capire come ci avete trovato.",
+            "I dati obbligatori del modulo servono a rispondere alla richiesta: senza, non possiamo preparare il preventivo. Gli altri sono facoltativi."
           ]
         },
         {
@@ -589,8 +590,9 @@
           "p": [
             "Rispondere alla richiesta di preventivo e gestire le trattative precontrattuali: base giuridica art. 6.1.b GDPR (misure precontrattuali richieste dall’interessato).",
             "Adempiere obblighi di legge, per esempio fiscali e contabili, se la richiesta diventa un ordine: art. 6.1.c GDPR.",
-            "Garantire la sicurezza del sito e misurarne l’uso in forma aggregata: legittimo interesse del titolare, art. 6.1.f GDPR.",
-            "Non usiamo i dati per marketing senza un consenso separato e non li vendiamo a terzi."
+            "Garantire la sicurezza del sito: legittimo interesse del titolare, art. 6.1.f GDPR.",
+            "Misurare l’uso del sito in forma aggregata e conoscere la provenienza delle visite dalle campagne: consenso, art. 6.1.a GDPR, dato o negato dal banner e revocabile in ogni momento da “Preferenze cookie”.",
+            "Non usiamo i dati per marketing senza un consenso separato, non li vendiamo a terzi e non prendiamo decisioni automatizzate né facciamo profilazione."
           ]
         },
         {
@@ -605,13 +607,13 @@
           "h": "5. A chi comunichiamo i dati",
           "p": [
             "I dati sono trattati dal personale autorizzato di Tecnolambro e, solo se necessario, da fornitori che agiscono come responsabili del trattamento: hosting del sito, servizio di invio del form ed email, consulenti fiscali, corrieri per le spedizioni.",
-            "Fornitori: Vercel Inc. (hosting del sito e statistiche anonime, Stati Uniti: il trasferimento avviene sulla base delle clausole contrattuali standard approvate dalla Commissione europea); Resend o Aruba S.p.A. (invio delle email della richiesta di preventivo)."
+            "Fornitori: Vercel Inc. (hosting del sito e, con il vostro consenso, statistiche aggregate) e Resend (invio delle email della richiesta di preventivo), con sede negli Stati Uniti: il trasferimento avviene sulla base delle clausole contrattuali standard approvate dalla Commissione europea. In alternativa a Resend, l’invio può avvenire tramite Aruba S.p.A. (Italia)."
           ]
         },
         {
           "h": "6. I vostri diritti",
           "p": [
-            "Potete chiedere in ogni momento accesso, rettifica, cancellazione, limitazione del trattamento, portabilità dei dati e opporvi al trattamento basato sul legittimo interesse (artt. 15-22 GDPR).",
+            "Potete chiedere in ogni momento accesso, rettifica, cancellazione, limitazione del trattamento, portabilità dei dati e opporvi al trattamento basato sul legittimo interesse (artt. 15-22 GDPR). Potete revocare il consenso in ogni momento da “Preferenze cookie”, senza pregiudicare la liceità del trattamento svolto prima della revoca.",
             "Per esercitarli scrivete a info@tecnolambro.it. Rispondiamo entro 30 giorni.",
             "Avete diritto di proporre reclamo al Garante per la protezione dei dati personali (www.garanteprivacy.it)."
           ]
@@ -619,8 +621,8 @@
         {
           "h": "7. Statistiche e cookie",
           "p": [
-            "Usiamo Vercel Web Analytics (Vercel Inc.), una statistica che non usa cookie: conta le visite in forma aggregata, senza identificare chi visita il sito e senza seguirlo su altri siti.",
-            "Il sito non usa cookie. Salva nel browser solo informazioni locali (tema, lingua, la lista dei pezzi della richiesta, i dati già scritti nel modulo e, solo se arrivate da un link di una campagna, la provenienza della visita). Dettagli nella cookie policy."
+            "Solo con il vostro consenso usiamo Vercel Web Analytics (Vercel Inc.): conta le visite in forma aggregata, senza cookie, senza identificare chi visita il sito e senza seguirlo su altri siti.",
+            "Il sito non usa cookie. Salva nel browser informazioni tecniche (tema, lingua, la lista dei pezzi della richiesta, i dati già scritti nel modulo, la vostra scelta sul banner) e, solo con il vostro consenso, la provenienza della visita da una campagna. Dettagli nella cookie policy."
           ]
         },
         {
@@ -679,26 +681,34 @@
     },
     "cookie": {
       "title": "Cookie policy",
-      "updated": "15 ottobre 2026",
+      "updated": "18 ottobre 2026",
       "sections": [
         {
-          "h": "Nessun cookie di profilazione",
+          "h": "Cookie e strumenti di tracciamento",
           "p": [
-            "Il sito non usa cookie di profilazione né cookie pubblicitari di terze parti. Per questo non mostriamo un banner di consenso."
+            "Il sito non installa cookie: né tecnici, né di profilazione, né pubblicitari di terze parti.",
+            "Al primo accesso un banner vi chiede il consenso per gli unici strumenti non tecnici: le statistiche sulle visite e la provenienza dalle campagne. Finché non scegliete non partono. “Accetta” e “Rifiuta” hanno lo stesso peso e la X chiude il banner senza accettare."
           ]
         },
         {
-          "h": "Memorizzazione nel browser",
+          "h": "Memorizzazione tecnica (sempre attiva)",
           "p": [
-            "Salviamo nel vostro browser, senza cookie, alcune informazioni: il tema chiaro o scuro e la lingua scelti, e se il suggerimento della lingua è già stato mostrato; la lista “La tua richiesta” con pezzi, quantità e note e i dati già scritti nel modulo, così non vanno riscritti (localStorage); il riepilogo dell’ultima richiesta inviata e il fatto che l’animazione iniziale sia già stata vista (sessionStorage, si cancellano alla chiusura della scheda).",
-            "Solo se arrivate al sito da un link di una campagna, cioè con parametri utm_*, gclid o fbclid nell’indirizzo, salviamo anche la pagina d’ingresso, il sito di provenienza e i parametri della campagna. Senza questi parametri non salviamo nulla sulla provenienza. Restano sul vostro dispositivo e ci arrivano solo se inviate una richiesta di preventivo.",
+            "Salviamo nel vostro browser, senza cookie, le informazioni necessarie al funzionamento: il tema chiaro o scuro e la lingua scelti, e se il suggerimento della lingua è già stato mostrato; la lista “La tua richiesta” con pezzi, quantità e note e i dati già scritti nel modulo, così non vanno riscritti; la vostra scelta sul banner dei cookie, per 6 mesi (localStorage); il riepilogo dell’ultima richiesta inviata e il fatto che l’animazione iniziale sia già stata vista (sessionStorage, si cancellano alla chiusura della scheda).",
             "La lista dei pezzi e i dati del modulo si svuotano dopo l’invio; il resto si può cancellare in ogni momento dalle impostazioni del browser."
           ]
         },
         {
-          "h": "Statistiche senza cookie",
+          "h": "Statistiche e provenienza (solo con il consenso)",
           "p": [
-            "Vercel Web Analytics conta le visite in forma aggregata, senza cookie e senza identificatori persistenti."
+            "Statistiche: Vercel Web Analytics (Vercel Inc.) conta le visite in forma aggregata, senza cookie e senza identificatori persistenti.",
+            "Provenienza: solo se arrivate al sito da un link di una campagna, cioè con parametri utm_*, gclid o fbclid nell’indirizzo, salviamo nel browser la pagina d’ingresso, il sito di provenienza e i parametri della campagna. Restano sul vostro dispositivo e ci arrivano solo se inviate una richiesta di preventivo.",
+            "Senza consenso nessuno dei due strumenti viene caricato."
+          ]
+        },
+        {
+          "h": "Come cambiare la scelta",
+          "p": [
+            "Potete cambiare idea in ogni momento con il link “Preferenze cookie” in fondo a ogni pagina. Se revocate il consenso, la provenienza salvata viene cancellata. La scelta vale 6 mesi, poi ve la chiediamo di nuovo."
           ]
         },
         {
@@ -1207,5 +1217,14 @@
     "appliesTo": "Su quali pezzi",
     "notes": "Note",
     "formTitle": "Chiedi un trattamento"
+  },
+  "consent": {
+    "title": "Statistiche e cookie",
+    "body": "Il sito usa solo gli strumenti tecnici necessari al suo funzionamento. Con il vostro consenso misuriamo le visite in forma aggregata (Vercel Web Analytics, senza cookie) e, se arrivate da un link di una campagna, ne registriamo la provenienza. Potete cambiare idea in ogni momento da “Preferenze cookie”, in fondo alla pagina.",
+    "policy": "Cookie policy",
+    "accept": "Accetta",
+    "reject": "Rifiuta",
+    "close": "Chiudi senza accettare",
+    "preferences": "Preferenze cookie"
   }
 }

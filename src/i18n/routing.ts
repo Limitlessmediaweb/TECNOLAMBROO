@@ -21,6 +21,8 @@ export const routing = defineRouting({
   // browser si propone con un banner, vedi components/ui/LanguageBanner.tsx).
   localePrefix: "as-needed",
   localeDetection: false,
+  // Senza rilevamento il cookie NEXT_LOCALE non serve: spento, così il sito resta senza cookie (cookie policy).
+  localeCookie: false,
   // Gli hreflang li generiamo noi (metadata + sitemap) con NEXT_PUBLIC_SITE_URL, non con l'host della richiesta.
   alternateLinks: false,
   pathnames: localizedPathnames() as {

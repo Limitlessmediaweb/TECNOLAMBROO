@@ -17,6 +17,8 @@ import { Footer } from "@/components/ui/Footer";
 import { DemoBadge } from "@/components/ui/Bits";
 import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
 import { LanguageBanner } from "@/components/ui/LanguageBanner";
+import { CookieBanner } from "@/components/ui/CookieBanner";
+import { localizedHref } from "@/components/ui/TrackedLink";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Analytics } from "@/components/ui/Analytics";
 import { InlineScript, BOOT_SCRIPT } from "@/components/ui/InlineScript";
@@ -56,7 +58,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
 }
 
 /** Solo i namespace usati dai componenti client: il resto dei testi resta sul server. */
-const CLIENT_NAMESPACES = ["nav", "common", "bandFinder", "quote", "intro", "request"] as const;
+const CLIENT_NAMESPACES = ["nav", "common", "bandFinder", "quote", "intro", "request", "consent"] as const;
 
 export default async function LocaleLayout({ children, params }: LayoutProps<"/[locale]">) {
   const { locale } = await params;
@@ -97,6 +99,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
           <DemoBadge />
           <WhatsAppFloat />
           <LanguageBanner />
+          <CookieBanner policyHref={await localizedHref("/cookie")} />
         </ClientI18nProvider>
         <ClickTracker />
         <JsonLd data={organizationJsonLd(locale as Locale)} />

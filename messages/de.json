@@ -566,7 +566,7 @@
   "legal": {
     "privacy": {
       "title": "Datenschutzerklärung",
-      "updated": "15. Oktober 2026",
+      "updated": "18. Oktober 2026",
       "sections": [
         {
           "h": "1. Verantwortlicher",
@@ -580,17 +580,19 @@
           "p": [
             "In der Angebotsanfrage eingegebene Daten: Unternehmen, Vor- und Nachname, E-Mail, Telefon (optional), Land, USt-IdNr. (optional), angefragte Teile mit Mengen und Notizen.",
             "Mit der Anfrage hochgeladene Dateien (Zeichnungen und Modelle in PDF, DWG, DXF, STEP, IGES oder STL). Zeichnungen können personenbezogene Daten enthalten, zum Beispiel den Namen des Konstrukteurs im Schriftfeld.",
-            "Nutzungsdaten: IP-Adresse und technische Informationen, die der Server aus Sicherheits- und Betriebsgründen protokolliert. Aggregierte, anonyme Besuchsstatistiken ohne Cookies (siehe Abschnitt 7).",
-            "Zusammen mit der Anfrage erhalten wir die Seite, von der sie gesendet wurde, und die Sprache der Website. Nur wenn Sie über einen Kampagnenlink auf die Website gekommen sind (mit utm_*-, gclid- oder fbclid-Parametern in der Adresse), erhalten wir außerdem die Einstiegsseite, die verweisende Website und die Kampagnenparameter: Sie helfen uns zu verstehen, wie Sie uns gefunden haben."
+            "Nutzungsdaten: IP-Adresse und technische Informationen, die der Server aus Sicherheits- und Betriebsgründen protokolliert. Nur mit Ihrer Einwilligung aggregierte Besuchsstatistiken ohne Cookies (siehe Abschnitt 7).",
+            "Zusammen mit der Anfrage erhalten wir die Seite, von der sie gesendet wurde, und die Sprache der Website. Nur mit Ihrer Einwilligung und nur wenn Sie über einen Kampagnenlink auf die Website gekommen sind (mit utm_*-, gclid- oder fbclid-Parametern in der Adresse), erhalten wir außerdem die Einstiegsseite, die verweisende Website und die Kampagnenparameter: Sie helfen uns zu verstehen, wie Sie uns gefunden haben.",
+            "Die Pflichtangaben des Formulars sind nötig, um die Anfrage zu beantworten: Ohne sie können wir kein Angebot erstellen. Alle anderen Angaben sind freiwillig."
           ]
         },
         {
           "h": "3. Zwecke und Rechtsgrundlage",
           "p": [
-            "Beantwortung der Angebotsanfrage und Durchführung vorvertraglicher Verhandlungen: Rechtsgrundlage Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen auf Anfrage der betroffenen Person).",
-            "Erfüllung rechtlicher Verpflichtungen, zum Beispiel steuerlicher und buchhalterischer Art, wenn aus der Anfrage ein Auftrag wird: Art. 6 Abs. 1 lit. c DSGVO.",
-            "Gewährleistung der Sicherheit der Website und Messung ihrer Nutzung in aggregierter Form: berechtigtes Interesse des Verantwortlichen, Art. 6 Abs. 1 lit. f DSGVO.",
-            "Wir nutzen die Daten ohne gesonderte Einwilligung nicht für Marketingzwecke und verkaufen sie nicht an Dritte."
+            "Beantwortung der Angebotsanfrage und vorvertragliche Verhandlungen: Rechtsgrundlage Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen auf Anfrage der betroffenen Person).",
+            "Erfüllung gesetzlicher Pflichten, zum Beispiel steuerlicher und buchhalterischer Art, wenn aus der Anfrage ein Auftrag wird: Art. 6 Abs. 1 lit. c DSGVO.",
+            "Sicherheit der Website: berechtigtes Interesse des Verantwortlichen, Art. 6 Abs. 1 lit. f DSGVO.",
+            "Aggregierte Messung der Website-Nutzung und Herkunft von Kampagnenbesuchen: Einwilligung, Art. 6 Abs. 1 lit. a DSGVO, im Banner erteilt oder verweigert und jederzeit über „Cookie-Einstellungen“ widerrufbar.",
+            "Wir nutzen die Daten nicht ohne gesonderte Einwilligung für Marketing, verkaufen sie nicht an Dritte und treffen keine automatisierten Entscheidungen und erstellen keine Profile."
           ]
         },
         {
@@ -605,13 +607,13 @@
           "h": "5. Empfänger der Daten",
           "p": [
             "Die Daten werden von befugten Mitarbeitern von Tecnolambro und, nur soweit erforderlich, von Dienstleistern verarbeitet, die als Auftragsverarbeiter tätig sind: Hosting der Website, Dienst für den Formular- und E-Mail-Versand, Steuerberater, Kurierdienste für den Versand.",
-            "Dienstleister: Vercel Inc. (Hosting der Website und anonyme Statistiken, Vereinigte Staaten: Die Übermittlung erfolgt auf Grundlage der von der Europäischen Kommission genehmigten Standardvertragsklauseln); Resend oder Aruba S.p.A. (Versand der E-Mails zur Angebotsanfrage)."
+            "Anbieter: Vercel Inc. (Hosting der Website und, mit Ihrer Einwilligung, aggregierte Statistiken) und Resend (Versand der E-Mails zur Angebotsanfrage), mit Sitz in den USA: Die Übermittlung erfolgt auf Grundlage der von der Europäischen Kommission genehmigten Standardvertragsklauseln. Alternativ zu Resend kann der Versand über Aruba S.p.A. (Italien) erfolgen."
           ]
         },
         {
           "h": "6. Ihre Rechte",
           "p": [
-            "Sie können jederzeit Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung und Datenübertragbarkeit verlangen sowie der auf berechtigtem Interesse beruhenden Verarbeitung widersprechen (Art. 15-22 DSGVO).",
+            "Sie können jederzeit Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung und Datenübertragbarkeit verlangen sowie der Verarbeitung auf Grundlage des berechtigten Interesses widersprechen (Art. 15-22 DSGVO). Ihre Einwilligung können Sie jederzeit über „Cookie-Einstellungen“ widerrufen, ohne dass die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung berührt wird.",
             "Zur Ausübung dieser Rechte schreiben Sie an info@tecnolambro.it. Wir antworten innerhalb von 30 Tagen.",
             "Sie haben das Recht, Beschwerde bei der italienischen Datenschutzbehörde Garante per la protezione dei dati personali (www.garanteprivacy.it) oder bei der Aufsichtsbehörde Ihres EU-Mitgliedstaats einzulegen."
           ]
@@ -619,8 +621,8 @@
         {
           "h": "7. Statistik und Cookies",
           "p": [
-            "Wir nutzen Vercel Web Analytics (Vercel Inc.), einen Statistikdienst ohne Cookies: Er zählt Besuche in aggregierter Form, ohne Besucher zu identifizieren oder websiteübergreifend zu verfolgen.",
-            "Die Website verwendet keine Cookies. Sie speichert nur lokal im Browser Informationen (Design, Sprache, die Teileliste Ihrer Anfrage, die bereits im Formular eingegebenen Daten und, nur wenn Sie über einen Kampagnenlink kommen, die Herkunft des Besuchs). Details in der Cookie-Richtlinie."
+            "Nur mit Ihrer Einwilligung nutzen wir Vercel Web Analytics (Vercel Inc.): Es zählt Besuche in aggregierter Form, ohne Cookies, ohne Besucher zu identifizieren und ohne sie websiteübergreifend zu verfolgen.",
+            "Die Website verwendet keine Cookies. Sie speichert technische Informationen im Browser (Design, Sprache, die Teileliste Ihrer Anfrage, die bereits im Formular eingegebenen Daten, Ihre Wahl im Banner) und nur mit Ihrer Einwilligung die Herkunft eines Kampagnenbesuchs. Details in der Cookie-Richtlinie."
           ]
         },
         {
@@ -679,26 +681,34 @@
     },
     "cookie": {
       "title": "Cookie-Richtlinie",
-      "updated": "15. Oktober 2026",
+      "updated": "18. Oktober 2026",
       "sections": [
         {
-          "h": "Keine Profiling-Cookies",
+          "h": "Cookies und Tracking-Werkzeuge",
           "p": [
-            "Die Website verwendet weder Profiling-Cookies noch Werbe-Cookies von Drittanbietern. Deshalb zeigen wir kein Einwilligungsbanner an."
+            "Die Website setzt keine Cookies: weder technische noch Profiling- oder Werbe-Cookies von Drittanbietern.",
+            "Beim ersten Besuch bittet ein Banner um Ihre Einwilligung für die einzigen nicht technischen Werkzeuge: Besuchsstatistik und Kampagnenherkunft. Solange Sie nicht wählen, laufen sie nicht. „Akzeptieren“ und „Ablehnen“ sind gleichwertig, das X schließt das Banner ohne Zustimmung."
           ]
         },
         {
-          "h": "Speicherung im Browser",
+          "h": "Technische Speicherung (immer aktiv)",
           "p": [
-            "Wir speichern einige Informationen in Ihrem Browser, ohne Cookies: das gewählte helle oder dunkle Design und die gewählte Sprache sowie die Information, ob der Sprachhinweis bereits angezeigt wurde; die Liste „Ihre Anfrage“ mit Teilen, Mengen und Notizen sowie die bereits im Formular eingegebenen Daten, damit Sie sie nicht erneut eingeben müssen (localStorage); die Zusammenfassung der zuletzt gesendeten Anfrage und die Information, ob die Intro-Animation bereits abgespielt wurde (sessionStorage, wird beim Schließen des Tabs gelöscht).",
-            "Nur wenn Sie über einen Kampagnenlink auf die Website kommen, also mit utm_*-, gclid- oder fbclid-Parametern in der Adresse, speichern wir außerdem die Einstiegsseite, die verweisende Website und die Kampagnenparameter. Ohne diese Parameter speichern wir nichts über Ihre Herkunft. Sie bleiben auf Ihrem Gerät und erreichen uns nur, wenn Sie eine Angebotsanfrage senden.",
+            "Wir speichern die für den Betrieb nötigen Informationen in Ihrem Browser, ohne Cookies: das gewählte helle oder dunkle Design und die gewählte Sprache sowie die Information, ob der Sprachhinweis bereits angezeigt wurde; die Liste „Ihre Anfrage“ mit Teilen, Mengen und Notizen sowie die bereits im Formular eingegebenen Daten, damit Sie sie nicht erneut eingeben müssen; Ihre Wahl im Cookie-Banner, für 6 Monate (localStorage); die Zusammenfassung der zuletzt gesendeten Anfrage und die Information, ob die Intro-Animation bereits abgespielt wurde (sessionStorage, wird beim Schließen des Tabs gelöscht).",
             "Die Teileliste und die Formulardaten werden nach dem Senden geleert; alles andere können Sie jederzeit in den Browsereinstellungen löschen."
           ]
         },
         {
-          "h": "Statistik ohne Cookies",
+          "h": "Statistik und Herkunft (nur mit Einwilligung)",
           "p": [
-            "Vercel Web Analytics zählt Besuche in aggregierter Form, ohne Cookies und ohne dauerhafte Kennungen."
+            "Statistik: Vercel Web Analytics (Vercel Inc.) zählt Besuche in aggregierter Form, ohne Cookies und ohne dauerhafte Kennungen.",
+            "Herkunft: Nur wenn Sie über einen Kampagnenlink auf die Website kommen, also mit utm_*-, gclid- oder fbclid-Parametern in der Adresse, speichern wir im Browser die Einstiegsseite, die verweisende Website und die Kampagnenparameter. Sie bleiben auf Ihrem Gerät und erreichen uns nur, wenn Sie eine Angebotsanfrage senden.",
+            "Ohne Einwilligung wird keines der beiden Werkzeuge geladen."
+          ]
+        },
+        {
+          "h": "So ändern Sie Ihre Wahl",
+          "p": [
+            "Sie können Ihre Wahl jederzeit über den Link „Cookie-Einstellungen“ unten auf jeder Seite ändern. Wenn Sie die Einwilligung widerrufen, wird die gespeicherte Herkunft gelöscht. Die Wahl gilt 6 Monate, danach fragen wir erneut."
           ]
         },
         {
@@ -1207,5 +1217,14 @@
     "appliesTo": "Für welche Teile",
     "notes": "Hinweise",
     "formTitle": "Behandlung anfragen"
+  },
+  "consent": {
+    "title": "Statistik und Cookies",
+    "body": "Die Website verwendet nur die technischen Hilfsmittel, die für ihren Betrieb nötig sind. Mit Ihrer Einwilligung zählen wir Besuche in aggregierter Form (Vercel Web Analytics, ohne Cookies) und erfassen, wenn Sie über einen Kampagnenlink kommen, Ihre Herkunft. Sie können Ihre Wahl jederzeit über „Cookie-Einstellungen“ unten auf der Seite ändern.",
+    "policy": "Cookie-Richtlinie",
+    "accept": "Akzeptieren",
+    "reject": "Ablehnen",
+    "close": "Schließen ohne zu akzeptieren",
+    "preferences": "Cookie-Einstellungen"
   }
 }

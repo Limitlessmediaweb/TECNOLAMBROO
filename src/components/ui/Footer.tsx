@@ -7,6 +7,7 @@ import { Wordmark } from "./Header";
 import { ShopLink, localizedHref } from "./TrackedLink";
 import { IsoBadges } from "@/components/sections/Certifications";
 import { HAS_TREATMENTS } from "@/data/treatments";
+import { ConsentPreferencesLink } from "./CookieBanner";
 
 const SITE: { href: StaticPathname; key: string }[] = [
   { href: "/prodotti", key: "products" },
@@ -106,6 +107,9 @@ export async function Footer() {
               <Link href="/cookie" className="tap text-fg/90 hover:text-accent">
                 {t("cookie")}
               </Link>
+            </li>
+            <li>
+              <ConsentPreferencesLink className="tap text-left text-fg/90 underline-offset-4 hover:text-accent hover:underline" />
             </li>
           </ul>
           <p className="mt-5 text-xs text-muted">

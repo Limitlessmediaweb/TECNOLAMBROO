@@ -654,9 +654,17 @@ html.lenis body {
   pointer-events: none;
 }
 
-/* Con una barra fissa in basso (configuratore, "La tua richiesta") il pulsante WhatsApp non compare */
-html[data-fixed-bar] [data-whatsapp-float] {
+/* Con una barra fissa in basso (configuratore, "La tua richiesta") o il banner dei cookie aperto il pulsante WhatsApp non compare */
+html[data-fixed-bar] [data-whatsapp-float],
+html[data-consent-open] [data-whatsapp-float] {
   display: none;
+}
+
+/* Il banner dei cookie non finisce mai in stampa né nei PDF generati dalle pagine */
+@media print {
+  [data-consent-banner] {
+    display: none !important;
+  }
 }
 
 /* Area toccabile di almeno 44 px su telefono e tablet per i link testuali isolati (footer, contatti) */

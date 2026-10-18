@@ -57,6 +57,7 @@ for (const vp of [
       ([items, sent]) => {
         try {
           sessionStorage.setItem("tl-intro-seen", "1");
+          localStorage.setItem("tl-consent", JSON.stringify({ v: 1, stats: false, at: new Date().toISOString() }));
           localStorage.setItem("tl-request-v1", JSON.stringify(items));
           sessionStorage.setItem("tl-last-request-v2", JSON.stringify(sent));
         } catch {}

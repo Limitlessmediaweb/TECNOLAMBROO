@@ -566,7 +566,7 @@
   "legal": {
     "privacy": {
       "title": "Privacy policy",
-      "updated": "15 October 2026",
+      "updated": "18 October 2026",
       "sections": [
         {
           "h": "1. Data controller",
@@ -580,17 +580,19 @@
           "p": [
             "Data entered in the quote request: company, first and last name, email, phone (optional), country, VAT number (optional), requested parts with quantities and notes.",
             "Files uploaded with the request (drawings and models in PDF, DWG, DXF, STEP, IGES or STL). Drawings may contain personal data, for example the designer’s name in the title block.",
-            "Browsing data: IP address and technical information logged by the server for security and operation. Aggregate, anonymous visit statistics without cookies (see section 7).",
-            "Together with the request we receive the page it was sent from and the website language. Only if you reached the website through a campaign link (with utm_*, gclid or fbclid parameters in the address) do we also receive the landing page, the referring website and the campaign parameters: they help us understand how you found us."
+            "Browsing data: IP address and technical information logged by the server for security and operation. Only with your consent, aggregate visit statistics without cookies (see section 7).",
+            "Together with the request we receive the page it was sent from and the website language. Only with your consent, and only if you reached the website through a campaign link (utm_*, gclid or fbclid parameters in the address), do we also receive the landing page, the referring website and the campaign parameters: they help us understand how you found us.",
+            "The required fields of the form are needed to answer the request: without them we cannot prepare the quote. The other fields are optional."
           ]
         },
         {
           "h": "3. Purposes and legal basis",
           "p": [
-            "To answer the quote request and handle pre-contractual negotiations: legal basis Art. 6(1)(b) GDPR (steps taken at the request of the data subject).",
-            "To comply with legal obligations, for example tax and accounting, if the request becomes an order: Art. 6(1)(c) GDPR.",
-            "To keep the website secure and measure its use in aggregate form: legitimate interest of the controller, Art. 6(1)(f) GDPR.",
-            "We do not use data for marketing without separate consent and we do not sell it to third parties."
+            "Answering the quote request and handling pre-contractual negotiations: legal basis Art. 6(1)(b) GDPR (pre-contractual measures requested by the data subject).",
+            "Complying with legal obligations, for example tax and accounting, if the request becomes an order: Art. 6(1)(c) GDPR.",
+            "Keeping the website secure: legitimate interest of the controller, Art. 6(1)(f) GDPR.",
+            "Measuring website use in aggregate form and knowing where campaign visits come from: consent, Art. 6(1)(a) GDPR, given or refused in the banner and revocable at any time from “Cookie preferences”.",
+            "We do not use the data for marketing without separate consent, we do not sell it to third parties, and we do not make automated decisions or carry out profiling."
           ]
         },
         {
@@ -605,13 +607,13 @@
           "h": "5. Who receives the data",
           "p": [
             "Data is processed by authorised Tecnolambro staff and, only where necessary, by suppliers acting as processors: website hosting, form and email delivery service, tax advisers, couriers for shipping.",
-            "Suppliers: Vercel Inc. (website hosting and anonymous statistics, United States: transfers are based on the standard contractual clauses approved by the European Commission); Resend or Aruba S.p.A. (sending the quote request emails)."
+            "Providers: Vercel Inc. (website hosting and, with your consent, aggregate statistics) and Resend (sending the quote request emails), based in the United States: transfers are based on the standard contractual clauses approved by the European Commission. As an alternative to Resend, emails may be sent through Aruba S.p.A. (Italy)."
           ]
         },
         {
           "h": "6. Your rights",
           "p": [
-            "You may at any time request access, rectification, erasure, restriction of processing and data portability, and object to processing based on legitimate interest (Articles 15-22 GDPR).",
+            "You can request access, rectification, erasure, restriction of processing and data portability at any time, and object to processing based on legitimate interest (Articles 15-22 GDPR). You can withdraw your consent at any time from “Cookie preferences”, without affecting the lawfulness of processing carried out before the withdrawal.",
             "To exercise them, write to info@tecnolambro.it. We reply within 30 days.",
             "You have the right to lodge a complaint with the Italian Data Protection Authority, Garante per la protezione dei dati personali (www.garanteprivacy.it), or with the authority of your EU country."
           ]
@@ -619,8 +621,8 @@
         {
           "h": "7. Analytics and cookies",
           "p": [
-            "We use Vercel Web Analytics (Vercel Inc.), a cookie-free analytics service: it counts visits in aggregate form, without identifying visitors or tracking them across other websites.",
-            "The website does not use cookies. It only stores information locally in your browser (theme, language, the parts list of your request, the data already entered in the form and, only if you came from a campaign link, the source of the visit). Details in the cookie policy."
+            "Only with your consent do we use Vercel Web Analytics (Vercel Inc.): it counts visits in aggregate form, without cookies, without identifying visitors and without tracking them across other websites.",
+            "The website does not use cookies. It stores technical information in your browser (theme, language, the parts list of your request, the data already entered in the form, your choice in the banner) and, only with your consent, the source of a campaign visit. Details in the cookie policy."
           ]
         },
         {
@@ -679,26 +681,34 @@
     },
     "cookie": {
       "title": "Cookie policy",
-      "updated": "15 October 2026",
+      "updated": "18 October 2026",
       "sections": [
         {
-          "h": "No profiling cookies",
+          "h": "Cookies and tracking tools",
           "p": [
-            "The website does not use profiling cookies or third-party advertising cookies. That is why we do not show a consent banner."
+            "The website sets no cookies: no technical, profiling or third-party advertising cookies.",
+            "On your first visit a banner asks for your consent to the only non-technical tools: visit statistics and campaign source. Until you choose, they do not run. “Accept” and “Reject” carry the same weight and the X closes the banner without accepting."
           ]
         },
         {
-          "h": "Storage in your browser",
+          "h": "Technical storage (always active)",
           "p": [
-            "We store some information in your browser, without cookies: the light or dark theme and the language you chose, and whether the language suggestion has already been shown; the “Your request” list with parts, quantities and notes and the data already entered in the form, so you don’t have to type it again (localStorage); the summary of the last request sent and whether the intro animation has already played (sessionStorage, deleted when you close the tab).",
-            "Only if you reach the website through a campaign link, that is with utm_*, gclid or fbclid parameters in the address, do we also store the landing page, the referring website and the campaign parameters. Without these parameters we store nothing about where you came from. They stay on your device and reach us only if you send a quote request.",
+            "We store the information the website needs to work in your browser, without cookies: the light or dark theme and the language you chose, and whether the language suggestion has already been shown; the “Your request” list with parts, quantities and notes and the data already entered in the form, so you don’t have to type it again; your choice in the cookie banner, for 6 months (localStorage); the summary of the last request sent and whether the intro animation has already played (sessionStorage, deleted when you close the tab).",
             "The parts list and the form data are cleared after sending; everything else can be deleted at any time in your browser settings."
           ]
         },
         {
-          "h": "Cookie-free analytics",
+          "h": "Statistics and campaign source (only with consent)",
           "p": [
-            "Vercel Web Analytics counts visits in aggregate form, without cookies and without persistent identifiers."
+            "Statistics: Vercel Web Analytics (Vercel Inc.) counts visits in aggregate form, without cookies and without persistent identifiers.",
+            "Campaign source: only if you reach the website through a campaign link, that is with utm_*, gclid or fbclid parameters in the address, do we store the landing page, the referring website and the campaign parameters in your browser. They stay on your device and reach us only if you send a quote request.",
+            "Without consent neither tool is loaded."
+          ]
+        },
+        {
+          "h": "How to change your choice",
+          "p": [
+            "You can change your mind at any time with the “Cookie preferences” link at the bottom of every page. If you withdraw your consent, the stored campaign source is deleted. Your choice lasts 6 months, then we ask again."
           ]
         },
         {
@@ -1207,5 +1217,14 @@
     "appliesTo": "Applies to",
     "notes": "Notes",
     "formTitle": "Ask about a treatment"
+  },
+  "consent": {
+    "title": "Analytics and cookies",
+    "body": "This website only uses the technical tools it needs to work. With your consent we measure visits in aggregate form (Vercel Web Analytics, no cookies) and, if you arrive through a campaign link, we record where you came from. You can change your mind at any time from “Cookie preferences” at the bottom of the page.",
+    "policy": "Cookie policy",
+    "accept": "Accept",
+    "reject": "Reject",
+    "close": "Close without accepting",
+    "preferences": "Cookie preferences"
   }
 }

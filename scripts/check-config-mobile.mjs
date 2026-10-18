@@ -19,6 +19,7 @@ const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, is
 await ctx.addInitScript(() => {
   try {
     sessionStorage.setItem("tl-intro-seen", "1");
+    localStorage.setItem("tl-consent", JSON.stringify({ v: 1, stats: false, at: new Date().toISOString() }));
   } catch {}
 });
 const page = await ctx.newPage();

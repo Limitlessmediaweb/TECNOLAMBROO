@@ -39,6 +39,8 @@ writeFileSync(pdfFile, "%PDF-1.4\n1 0 obj<<>>endobj\ntrailer<<>>\n%%EOF\n");
 
 const browser = await chromium.launch({ args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"] });
 const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+// banner cookie già risolto (rifiuto): non copre i pulsanti
+await ctx.addInitScript(() => localStorage.setItem("tl-consent", JSON.stringify({ v: 1, stats: false, at: new Date().toISOString() })));
 const page = await ctx.newPage();
 const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));

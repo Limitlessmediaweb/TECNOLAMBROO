@@ -566,7 +566,7 @@
   "legal": {
     "privacy": {
       "title": "Política de privacidad",
-      "updated": "15 de octubre de 2026",
+      "updated": "18 de octubre de 2026",
       "sections": [
         {
           "h": "1. Responsable del tratamiento",
@@ -580,17 +580,19 @@
           "p": [
             "Datos introducidos en la solicitud de presupuesto: empresa, nombre y apellidos, correo electrónico, teléfono (opcional), país, NIF-IVA (opcional), piezas solicitadas con cantidades y notas.",
             "Archivos cargados con la solicitud (planos y modelos en PDF, DWG, DXF, STEP, IGES o STL). Los planos pueden contener datos personales, por ejemplo el nombre del proyectista en el cajetín.",
-            "Datos de navegación: dirección IP e información técnica registradas por el servidor por motivos de seguridad y funcionamiento. Estadísticas de visitas agregadas y anónimas, sin cookies (véase el apartado 7).",
-            "Junto con la solicitud recibimos la página desde la que se envió y el idioma del sitio. Solo si ha llegado al sitio desde un enlace de una campaña (con parámetros utm_*, gclid o fbclid en la dirección) recibimos también la página de entrada, el sitio de procedencia y los parámetros de la campaña: nos sirven para saber cómo nos ha encontrado."
+            "Datos de navegación: dirección IP e información técnica registradas por el servidor por motivos de seguridad y funcionamiento. Solo con su consentimiento, estadísticas agregadas de las visitas, sin cookies (véase el apartado 7).",
+            "Junto con la solicitud recibimos la página desde la que se envió y el idioma del sitio. Solo con su consentimiento, y solo si ha llegado al sitio desde un enlace de una campaña (parámetros utm_*, gclid o fbclid en la dirección), recibimos también la página de entrada, el sitio de procedencia y los parámetros de la campaña: nos sirven para saber cómo nos ha encontrado.",
+            "Los datos obligatorios del formulario son necesarios para responder a la solicitud: sin ellos no podemos preparar el presupuesto. Los demás son opcionales."
           ]
         },
         {
           "h": "3. Finalidades y base jurídica",
           "p": [
-            "Responder a la solicitud de presupuesto y gestionar las negociaciones precontractuales: base jurídica art. 6.1.b) RGPD (medidas precontractuales adoptadas a petición del interesado).",
-            "Cumplir obligaciones legales, por ejemplo fiscales y contables, si la solicitud se convierte en un pedido: art. 6.1.c) RGPD.",
-            "Garantizar la seguridad del sitio web y medir su uso de forma agregada: interés legítimo del responsable, art. 6.1.f) RGPD.",
-            "No utilizamos los datos con fines de marketing sin un consentimiento específico y no los vendemos a terceros."
+            "Responder a la solicitud de presupuesto y gestionar las negociaciones precontractuales: base jurídica art. 6.1.b RGPD (medidas precontractuales solicitadas por el interesado).",
+            "Cumplir obligaciones legales, por ejemplo fiscales y contables, si la solicitud se convierte en un pedido: art. 6.1.c RGPD.",
+            "Garantizar la seguridad del sitio web: interés legítimo del responsable, art. 6.1.f RGPD.",
+            "Medir el uso del sitio de forma agregada y conocer la procedencia de las visitas de campañas: consentimiento, art. 6.1.a RGPD, otorgado o denegado en el banner y revocable en cualquier momento desde «Preferencias de cookies».",
+            "No utilizamos los datos con fines de marketing sin un consentimiento específico, no los vendemos a terceros y no tomamos decisiones automatizadas ni elaboramos perfiles."
           ]
         },
         {
@@ -605,13 +607,13 @@
           "h": "5. Destinatarios de los datos",
           "p": [
             "Los datos son tratados por el personal autorizado de Tecnolambro y, solo cuando es necesario, por proveedores que actúan como encargados del tratamiento: alojamiento del sitio web, servicio de envío del formulario y de correo electrónico, asesores fiscales, transportistas para los envíos.",
-            "Proveedores: Vercel Inc. (alojamiento del sitio web y estadísticas anónimas, Estados Unidos: la transferencia se basa en las cláusulas contractuales tipo aprobadas por la Comisión Europea); Resend o Aruba S.p.A. (envío de los correos electrónicos de la solicitud de presupuesto)."
+            "Proveedores: Vercel Inc. (alojamiento del sitio y, con su consentimiento, estadísticas agregadas) y Resend (envío de los correos de la solicitud de presupuesto), con sede en Estados Unidos: la transferencia se basa en las cláusulas contractuales tipo aprobadas por la Comisión Europea. Como alternativa a Resend, el envío puede realizarse a través de Aruba S.p.A. (Italia)."
           ]
         },
         {
           "h": "6. Sus derechos",
           "p": [
-            "Puede solicitar en cualquier momento el acceso, la rectificación, la supresión, la limitación del tratamiento y la portabilidad de los datos, así como oponerse al tratamiento basado en el interés legítimo (arts. 15-22 RGPD).",
+            "Puede solicitar en cualquier momento el acceso, la rectificación, la supresión, la limitación del tratamiento y la portabilidad de los datos, y oponerse al tratamiento basado en el interés legítimo (arts. 15-22 RGPD). Puede retirar su consentimiento en cualquier momento desde «Preferencias de cookies», sin que ello afecte a la licitud del tratamiento realizado antes de la retirada.",
             "Para ejercerlos, escriba a info@tecnolambro.it. Respondemos en un plazo de 30 días.",
             "Tiene derecho a presentar una reclamación ante la autoridad italiana de protección de datos, el Garante per la protezione dei dati personali (www.garanteprivacy.it), o ante la autoridad de su país de la UE."
           ]
@@ -619,8 +621,8 @@
         {
           "h": "7. Estadísticas y cookies",
           "p": [
-            "Utilizamos Vercel Web Analytics (Vercel Inc.), un servicio de estadísticas que no usa cookies: cuenta las visitas de forma agregada, sin identificar a quien visita el sitio y sin rastrearlo en otros sitios web.",
-            "El sitio web no utiliza cookies. Solo guarda información local en el navegador (tema, idioma, la lista de piezas de la solicitud, los datos ya escritos en el formulario y, solo si llega desde un enlace de una campaña, la procedencia de la visita). Más detalles en la política de cookies."
+            "Solo con su consentimiento utilizamos Vercel Web Analytics (Vercel Inc.): cuenta las visitas de forma agregada, sin cookies, sin identificar a quien visita el sitio y sin rastrearlo en otros sitios web.",
+            "El sitio web no utiliza cookies. Guarda en el navegador información técnica (tema, idioma, la lista de piezas de la solicitud, los datos ya escritos en el formulario, su elección en el banner) y, solo con su consentimiento, la procedencia de una visita de campaña. Más detalles en la política de cookies."
           ]
         },
         {
@@ -679,32 +681,40 @@
     },
     "cookie": {
       "title": "Política de cookies",
-      "updated": "15 de octubre de 2026",
+      "updated": "18 de octubre de 2026",
       "sections": [
         {
-          "h": "Ninguna cookie de elaboración de perfiles",
+          "h": "Cookies y herramientas de seguimiento",
           "p": [
-            "El sitio web no utiliza cookies de elaboración de perfiles ni cookies publicitarias de terceros. Por eso no mostramos un banner de consentimiento."
+            "El sitio web no instala cookies: ni técnicas, ni de elaboración de perfiles, ni publicitarias de terceros.",
+            "En el primer acceso, un banner le pide el consentimiento para las únicas herramientas no técnicas: las estadísticas de visitas y la procedencia de las campañas. Hasta que elija, no se activan. «Aceptar» y «Rechazar» tienen el mismo peso y la X cierra el banner sin aceptar."
           ]
         },
         {
-          "h": "Almacenamiento en el navegador",
+          "h": "Almacenamiento técnico (siempre activo)",
           "p": [
-            "Guardamos en su navegador, sin cookies, cierta información: el tema claro u oscuro y el idioma elegidos, y si ya se ha mostrado la sugerencia de idioma; la lista “Su solicitud” con las piezas, las cantidades y las notas y los datos ya escritos en el formulario, para que no tenga que volver a escribirlos (localStorage); el resumen de la última solicitud enviada y si la animación de introducción ya se ha mostrado (sessionStorage, se borran al cerrar la pestaña).",
-            "Solo si llega al sitio desde un enlace de una campaña, es decir, con parámetros utm_*, gclid o fbclid en la dirección, guardamos también la página de entrada, el sitio de procedencia y los parámetros de la campaña. Sin estos parámetros no guardamos nada sobre la procedencia. Permanecen en su dispositivo y solo nos llegan si envía una solicitud de presupuesto.",
+            "Guardamos en su navegador, sin cookies, la información necesaria para el funcionamiento: el tema claro u oscuro y el idioma elegidos, y si ya se ha mostrado la sugerencia de idioma; la lista «Su solicitud» con las piezas, las cantidades y las notas y los datos ya escritos en el formulario, para que no tenga que volver a escribirlos; su elección en el banner de cookies, durante 6 meses (localStorage); el resumen de la última solicitud enviada y si la animación de introducción ya se ha mostrado (sessionStorage, se borran al cerrar la pestaña).",
             "La lista de piezas y los datos del formulario se vacían tras el envío; todo lo demás puede borrarse en cualquier momento desde la configuración del navegador."
           ]
         },
         {
-          "h": "Estadísticas sin cookies",
+          "h": "Estadísticas y procedencia (solo con consentimiento)",
           "p": [
-            "Vercel Web Analytics cuenta las visitas de forma agregada, sin cookies y sin identificadores persistentes."
+            "Estadísticas: Vercel Web Analytics (Vercel Inc.) cuenta las visitas de forma agregada, sin cookies y sin identificadores persistentes.",
+            "Procedencia: solo si llega al sitio desde un enlace de una campaña, es decir, con parámetros utm_*, gclid o fbclid en la dirección, guardamos en el navegador la página de entrada, el sitio de procedencia y los parámetros de la campaña. Permanecen en su dispositivo y solo nos llegan si envía una solicitud de presupuesto.",
+            "Sin consentimiento no se carga ninguna de las dos herramientas."
+          ]
+        },
+        {
+          "h": "Cómo cambiar su elección",
+          "p": [
+            "Puede cambiar de opinión en cualquier momento con el enlace «Preferencias de cookies» al final de cada página. Si retira el consentimiento, se borra la procedencia guardada. La elección dura 6 meses; después se la volvemos a preguntar."
           ]
         },
         {
           "h": "Solicitud de presupuesto",
           "p": [
-            "La lista de piezas se vacía tras el envío. Los datos introducidos en el formulario solo llegan a Tecnolambro cuando pulsa “Enviar solicitud de presupuesto”."
+            "La lista de piezas se vacía tras el envío. Los datos introducidos en el formulario solo llegan a Tecnolambro cuando pulsa «Enviar solicitud de presupuesto»."
           ]
         }
       ]
@@ -1207,5 +1217,14 @@
     "appliesTo": "En qué piezas",
     "notes": "Notas",
     "formTitle": "Consulte un tratamiento"
+  },
+  "consent": {
+    "title": "Estadísticas y cookies",
+    "body": "El sitio web solo utiliza las herramientas técnicas necesarias para su funcionamiento. Con su consentimiento medimos las visitas de forma agregada (Vercel Web Analytics, sin cookies) y, si llega desde un enlace de una campaña, registramos su procedencia. Puede cambiar de opinión en cualquier momento desde «Preferencias de cookies», al final de la página.",
+    "policy": "Política de cookies",
+    "accept": "Aceptar",
+    "reject": "Rechazar",
+    "close": "Cerrar sin aceptar",
+    "preferences": "Preferencias de cookies"
   }
 }
