@@ -53,6 +53,9 @@ const DEMO = process.env.NEXT_PUBLIC_DEMO === "true" && process.env.VERCEL_ENV !
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   env: { TL_DEMO: DEMO ? "true" : "false" },
+  // Il catalogo (catalogo/catalogo.csv) si legge alla build; incluso anche nelle funzioni che rendono
+  // pagine al volo (404, menu), dove serve per sapere se mostrare Catalogo e Trattamenti.
+  outputFileTracingIncludes: { "/**": ["./catalogo/catalogo.csv"] },
   // Pagine tolte o rinominate nella versione 2 (riunione del 7 ottobre 2026): redirect permanenti 308.
   async redirects() {
     const family: [string, string][] = [

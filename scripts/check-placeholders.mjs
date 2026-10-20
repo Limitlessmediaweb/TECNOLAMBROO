@@ -34,6 +34,10 @@ const PATTERNS = [
   /to be confirmed by the engineering office/i,
   // segnaposto dei dati aziendali non sostituito (data/site.ts → siteTokens)
   /%[a-zA-Z]+%/,
+  // righe ESEMPIO e bozze del catalogo (catalogo/catalogo.csv): online non devono esistere
+  /\bESEMPIO\b/,
+  /\bEXAMPLE: not published/i,
+  /Bozza: non pubblicata/i,
 ];
 // cercati solo nel testo visibile: nel markup "placeholder" è un attributo dei campi e "%EF%" compare nei link codificati
 const TEXT_ONLY = new Set(["/placeholder/i", "/%[a-zA-Z]+%/"]);
