@@ -35,6 +35,9 @@ export const routing = defineRouting({
     "/azienda": Record<Locale, string>;
     "/qualita": Record<Locale, string>;
     "/trattamenti": Record<Locale, string>;
+    "/trattamenti/[codice]": Record<Locale, string>;
+    "/catalogo": Record<Locale, string>;
+    "/catalogo/[codice]": Record<Locale, string>;
     "/contatti": Record<Locale, string>;
     "/faq": Record<Locale, string>;
     "/privacy": Record<Locale, string>;
@@ -49,4 +52,4 @@ export const routing = defineRouting({
 export type AppPathname = keyof typeof routing.pathnames;
 
 /** Rotte senza parametri, usabili come stringa nei link. */
-export type StaticPathname = Exclude<AppPathname, "/prodotti/[famiglia]" | "/prodotti/guida-flessibile/[wr]">;
+export type StaticPathname = Exclude<AppPathname, "/prodotti/[famiglia]" | "/prodotti/guida-flessibile/[wr]" | "/trattamenti/[codice]" | "/catalogo/[codice]">;

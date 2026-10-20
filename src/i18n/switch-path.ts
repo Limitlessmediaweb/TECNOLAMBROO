@@ -57,7 +57,8 @@ export type LocalHref =
   | StaticPathname
   | { pathname: StaticPathname; query?: Record<string, string>; hash?: string }
   | { pathname: "/prodotti/[famiglia]"; params: { famiglia: string }; query?: Record<string, string>; hash?: string }
-  | { pathname: "/prodotti/guida-flessibile/[wr]"; params: { wr: string }; query?: Record<string, string>; hash?: string };
+  | { pathname: "/prodotti/guida-flessibile/[wr]"; params: { wr: string }; query?: Record<string, string>; hash?: string }
+  | { pathname: "/catalogo/[codice]" | "/trattamenti/[codice]"; params: { codice: string }; query?: Record<string, string>; hash?: string };
 
 /**
  * Percorso pubblico localizzato di un href interno ("/prodotti" → "/en/products").

@@ -1,19 +1,17 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Sparkles } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
-import { pick } from "@/i18n/locales";
 import { pageMetadata, breadcrumbsFor } from "@/lib/page";
 import { Breadcrumbs, PageHeader } from "@/components/ui/Bits";
 import { JsonLd } from "@/components/ui/JsonLd";
-import { LocalLink as Link } from "@/components/ui/LocalLink";
 import { SplitReveal } from "@/components/motion/SplitReveal";
 import { QuoteSection } from "@/components/sections/QuoteSection";
-import { HAS_TREATMENTS, SURFACE_TREATMENTS } from "@/data/treatments";
-import { VISIBLE_FAMILIES, familySlug } from "@/data/families";
+import { localizedHref } from "@/components/ui/TrackedLink";
+import { CatalogBrowser, type BrowserItem } from "@/components/catalog/CatalogBrowser";
+import { HAS_TREATMENTS, SHOW_DRAFTS, catalogTreatments, categoriesOf, categoryKey, inLang, stateBadge } from "@/lib/catalog";
 
-/** Trattamenti superficiali, dai dati di data/treatments.ts. Senza trattamenti la pagina non esiste (404). */
+/** Trattamenti di catalogo/catalogo.csv (tipo = trattamento). Senza trattamenti pubblicati la pagina non esiste (404). */
 export async function generateMetadata({ params }: PageProps<"/[locale]/trattamenti">): Promise<Metadata> {
   const { locale } = await params;
   if (!HAS_TREATMENTS) return {};
@@ -25,7 +23,25 @@ export default async function TreatmentsPage({ params }: PageProps<"/[locale]/tr
   if (!HAS_TREATMENTS) notFound();
   setRequestLocale(locale);
   const t = await getTranslations("treatmentsPage");
-  const items = await getTranslations("products.items");
+  const c = await getTranslations("catalog");
+  const treatments = catalogTreatments();
+
+  const items: BrowserItem[] = await Promise.all(
+    treatments.map(async (tr) => {
+      const badge = stateBadge(tr);
+      return {
+        code: tr.code,
+        href: await localizedHref({ pathname: "/trattamenti/[codice]", params: { codice: tr.slug } }),
+        name: inLang(tr.name, locale),
+        category: inLang(tr.category, locale),
+        categoryKey: categoryKey(tr),
+        facts: [],
+        excerpt: [inLang(tr.description, locale), inLang(tr.use, locale)].filter(Boolean).join(" "),
+        image: tr.after[0] ?? tr.photos[0] ?? tr.before[0] ?? null,
+        badge: badge && SHOW_DRAFTS ? c(badge) : null,
+      };
+    }),
+  );
 
   return (
     <>
@@ -41,42 +57,25 @@ export default async function TreatmentsPage({ params }: PageProps<"/[locale]/tr
       />
 
       <section className="section-y border-t border-line" aria-label={t("title")}>
-        <ul className="container-site grid gap-4 md:grid-cols-2">
-          {SURFACE_TREATMENTS.map((tr) => {
-            const families = VISIBLE_FAMILIES.filter((f) => tr.families?.includes(f.key));
-            const parts = tr.parts ? pick(tr.parts, locale) : null;
-            return (
-              <li key={tr.key} className="flex flex-col gap-4 border border-line bg-surface p-7" data-treatment={tr.key}>
-                <Sparkles aria-hidden="true" className="size-6 text-accent" strokeWidth={1.5} />
-                <h2 className="text-display-s font-bold">{pick(tr.name, locale)}</h2>
-                {tr.description ? <p className="text-muted">{pick(tr.description, locale)}</p> : null}
-                {families.length || parts ? (
-                  <div>
-                    <h3 className="annot uppercase tracking-[0.14em] text-muted">{t("appliesTo")}</h3>
-                    <ul className="mt-2 flex flex-wrap gap-2 text-sm">
-                      {families.map((f) => (
-                        <li key={f.key}>
-                          <Link
-                            href={{ pathname: "/prodotti/[famiglia]", params: { famiglia: familySlug(f, locale) } }}
-                            className="inline-flex min-h-9 items-center rounded-full border border-line-strong px-3 hover:border-accent hover:text-accent"
-                          >
-                            {items(`${f.key}.name`)}
-                          </Link>
-                        </li>
-                      ))}
-                      {parts ? <li className="inline-flex min-h-9 items-center px-1 text-muted">{parts}</li> : null}
-                    </ul>
-                  </div>
-                ) : null}
-                {tr.notes ? (
-                  <p className="text-sm text-muted">
-                    <span className="font-semibold text-fg">{t("notes")}:</span> {pick(tr.notes, locale)}
-                  </p>
-                ) : null}
-              </li>
-            );
-          })}
-        </ul>
+        <div className="container-site">
+          <CatalogBrowser
+            items={items}
+            categories={categoriesOf(treatments, locale)}
+            showCode={false}
+            labels={{
+              search: c("search"),
+              searchHint: t("searchHint"),
+              category: c("category"),
+              all: c("all"),
+              resultsOne: c.raw("resultsOne") as string,
+              resultsOther: c.raw("resultsOther") as string,
+              empty: t("empty"),
+              reset: c("reset"),
+              code: c("code"),
+              open: c("open"),
+            }}
+          />
+        </div>
       </section>
 
       <QuoteSection title={t("formTitle")} />

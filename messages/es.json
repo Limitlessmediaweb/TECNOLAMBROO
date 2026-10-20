@@ -66,7 +66,15 @@
     },
     "treatments": {
       "title": "Tratamientos superficiales | Tecnolambro",
-      "description": "Los tratamientos superficiales que aplicamos a nuestras guías de ondas y las piezas en las que se realizan. Presupuesto en %quoteTime%."
+      "description": "Los tratamientos superficiales que aplicamos a nuestras guías de ondas y las piezas en las que se realizan. Presupuesto en %quoteTime%.",
+      "itemTitle": "{name} | Tratamientos Tecnolambro",
+      "itemDescription": "{name}: qué es, para qué sirve y sobre qué materiales se aplica. Pida información a Tecnolambro."
+    },
+    "catalog": {
+      "title": "Catálogo de productos | Tecnolambro",
+      "description": "Las fichas de los productos Tecnolambro: material, medidas, norma y tratamientos disponibles. Pida información con el código ya rellenado.",
+      "itemTitle": "{name} · {code} | Tecnolambro",
+      "itemDescription": "{name} (código {code}): material, medidas, norma y tratamientos disponibles. Pida información a Tecnolambro."
     }
   },
   "nav": {
@@ -95,7 +103,8 @@
     "shopShort": "Configurar",
     "tables": "Tablas técnicas",
     "call": "Llamar",
-    "treatments": "Tratamientos"
+    "treatments": "Tratamientos",
+    "catalog": "Catálogo"
   },
   "common": {
     "demoBadge": "Versión demo",
@@ -451,7 +460,9 @@
       "rateLimited": "demasiadas solicitudes en poco tiempo",
       "invalid": "algunos datos no son válidos",
       "server": "error del servidor"
-    }
+    },
+    "catalogLine": "Solicitud de información sobre el código {code}",
+    "catalogPrefilled": "Código {code} añadido al mensaje."
   },
   "finalCta": {
     "title": "Presupuesto en %quoteTime%.",
@@ -1216,7 +1227,16 @@
     "intro": "Acabados y tratamientos superficiales para guías de ondas, con proveedores históricos y seleccionados: los definimos con usted en el presupuesto, según el uso de la pieza.",
     "appliesTo": "En qué piezas",
     "notes": "Notas",
-    "formTitle": "Consulte un tratamiento"
+    "formTitle": "Consulte un tratamiento",
+    "use": "Para qué sirve",
+    "materials": "Materiales sobre los que se aplica",
+    "beforeAfter": "Antes y después",
+    "before": "Antes",
+    "after": "Después",
+    "products": "Productos con este tratamiento",
+    "back": "Todos los tratamientos",
+    "searchHint": "Nombre, material, uso…",
+    "empty": "Ningún tratamiento coincide con la búsqueda."
   },
   "consent": {
     "title": "Estadísticas y cookies",
@@ -1226,5 +1246,32 @@
     "reject": "Rechazar",
     "close": "Cerrar sin aceptar",
     "preferences": "Preferencias de cookies"
+  },
+  "catalog": {
+    "title": "Catálogo",
+    "intro": "Las fichas de nuestros productos: material, medidas, norma y tratamientos disponibles. Desde cada ficha puede pedir información con el código ya rellenado.",
+    "search": "Buscar",
+    "searchHint": "Nombre, código, material, medida…",
+    "category": "Categoría",
+    "all": "Todas",
+    "resultsOne": "{n} resultado",
+    "resultsOther": "{n} resultados",
+    "empty": "Ningún producto coincide con la búsqueda.",
+    "reset": "Borrar filtros",
+    "code": "Código",
+    "material": "Material",
+    "sizes": "Medidas",
+    "norm": "Norma",
+    "treatments": "Tratamientos disponibles",
+    "specs": "Características",
+    "photos": "Fotos",
+    "photoAlt": "{name}, foto {n} de {total}",
+    "open": "Abrir la ficha",
+    "requestInfo": "Solicitar información",
+    "requestInfoBody": "Escríbanos sobre disponibilidad, variantes y plazos: el código {code} ya estará en el mensaje.",
+    "back": "Todo el catálogo",
+    "draft": "Borrador: no publicado",
+    "example": "EJEMPLO: no publicado",
+    "formTitle": "Pregunte por un producto"
   }
 }

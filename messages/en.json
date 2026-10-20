@@ -66,7 +66,15 @@
     },
     "treatments": {
       "title": "Surface treatments | Tecnolambro",
-      "description": "The surface treatments we apply to our waveguides and the parts they apply to. Quote within %quoteTime%."
+      "description": "The surface treatments we apply to our waveguides and the parts they apply to. Quote within %quoteTime%.",
+      "itemTitle": "{name} | Tecnolambro treatments",
+      "itemDescription": "{name}: what it is, what it is for and which materials it is applied to. Ask Tecnolambro for information."
+    },
+    "catalog": {
+      "title": "Product catalogue | Tecnolambro",
+      "description": "Tecnolambro product sheets: material, sizes, standard and available treatments. Ask for information with the code already filled in.",
+      "itemTitle": "{name} · {code} | Tecnolambro",
+      "itemDescription": "{name} (code {code}): material, sizes, standard and available treatments. Ask Tecnolambro for information."
     }
   },
   "nav": {
@@ -95,7 +103,8 @@
     "shopShort": "Configure",
     "tables": "Technical tables",
     "call": "Call",
-    "treatments": "Treatments"
+    "treatments": "Treatments",
+    "catalog": "Catalogue"
   },
   "common": {
     "demoBadge": "Demo version",
@@ -451,7 +460,9 @@
       "rateLimited": "too many requests in a short time",
       "invalid": "some data is not valid",
       "server": "server error"
-    }
+    },
+    "catalogLine": "Information request about code {code}",
+    "catalogPrefilled": "Code {code} added to the message."
   },
   "finalCta": {
     "title": "Quote within %quoteTime%.",
@@ -1216,7 +1227,16 @@
     "intro": "Finishes and surface treatments for waveguides, with long-standing, selected suppliers: we agree them with you in the quote, based on how the part will be used.",
     "appliesTo": "Applies to",
     "notes": "Notes",
-    "formTitle": "Ask about a treatment"
+    "formTitle": "Ask about a treatment",
+    "use": "What it is for",
+    "materials": "Materials it is applied to",
+    "beforeAfter": "Before and after",
+    "before": "Before",
+    "after": "After",
+    "products": "Products with this treatment",
+    "back": "All treatments",
+    "searchHint": "Name, material, use…",
+    "empty": "No treatment matches your search."
   },
   "consent": {
     "title": "Analytics and cookies",
@@ -1226,5 +1246,32 @@
     "reject": "Reject",
     "close": "Close without accepting",
     "preferences": "Cookie preferences"
+  },
+  "catalog": {
+    "title": "Catalogue",
+    "intro": "Our product sheets: material, sizes, standard and available treatments. From each sheet you can ask for information with the code already filled in.",
+    "search": "Search",
+    "searchHint": "Name, code, material, size…",
+    "category": "Category",
+    "all": "All",
+    "resultsOne": "{n} result",
+    "resultsOther": "{n} results",
+    "empty": "No product matches your search.",
+    "reset": "Clear filters",
+    "code": "Code",
+    "material": "Material",
+    "sizes": "Sizes",
+    "norm": "Standard",
+    "treatments": "Available treatments",
+    "specs": "Specifications",
+    "photos": "Photos",
+    "photoAlt": "{name}, photo {n} of {total}",
+    "open": "Open the sheet",
+    "requestInfo": "Request information",
+    "requestInfoBody": "Write to us about availability, variants and lead times: code {code} will already be in the message.",
+    "back": "Whole catalogue",
+    "draft": "Draft: not published",
+    "example": "EXAMPLE: not published",
+    "formTitle": "Ask about a product"
   }
 }

@@ -67,33 +67,11 @@ In `src/data/families.ts`:
 
 Poi aggiungi i testi del passo 2 in tutte le lingue, copia le foto in `public/foto/prodotti/transitions/` e fai la build.
 
-## Trattamenti superficiali (pagina /trattamenti)
+## Catalogo e trattamenti (pagine /catalogo e /trattamenti)
 
-La pagina legge `src/data/treatments.ts`. **Finché l'elenco `SURFACE_TREATMENTS` è vuoto la pagina non esiste**: risponde 404, non è nella sitemap e non compare nel menu né nel footer. Con la prima voce compare ovunque, in tutte le lingue (`/trattamenti`, `/en/treatments`, `/es/tratamientos`, `/de/oberflaechenbehandlungen`, `/zh/treatments`).
+Schede prodotto e trattamenti si caricano da **`catalogo/catalogo.csv`** (separatore `;`), con le foto in `public/foto/<CODICE>/`. Istruzioni complete e colonne: **[catalogo/LEGGIMI.md](../catalogo/LEGGIMI.md)**. Controllo: `npm run catalogo:check`.
 
-Ogni voce:
-
-| Campo | Cosa mettere |
-|---|---|
-| `key` | identificativo minuscolo, es. `"argentatura"` |
-| `name` | nome per lingua; servono almeno `it` ed `en` (le lingue senza testo usano l'inglese) |
-| `description` | facoltativa: una o due frasi |
-| `families` | facoltativo: le famiglie su cui si fa, con le chiavi di `families.ts` (`twistable`, `seamless`, `bends`, `twists`, `offsets`); diventano link alle pagine famiglia |
-| `parts` | facoltativo: altri pezzi in testo libero, es. "Flange e transizioni su disegno" |
-| `notes` | facoltative |
-
-```ts
-export const SURFACE_TREATMENTS: readonly SurfaceTreatment[] = [
-  {
-    key: "argentatura",
-    name: { it: "Argentatura", en: "Silver plating", de: "Versilberung" },
-    families: ["twistable", "seamless"],
-    notes: { it: "Spessore da definire nel preventivo.", en: "Thickness agreed in the quote." },
-  },
-];
-```
-
-Solo trattamenti che Tecnolambro fa davvero, con i testi confermati dal titolare. Dopo la modifica: `npm run build`.
+Finché non c'è almeno una riga `pubblicato` del tipo giusto, `/catalogo` e `/trattamenti` non esistono (404, fuori da menu e sitemap). I quattro trattamenti già citati nel sito (brillantatura, verniciatura, termici, galvanici) sono le prime righe pubblicate: prima stavano in `src/data/treatments.ts`, che non esiste più.
 
 ## Raggio minimo e spessore delle guide rigide
 

@@ -6,12 +6,13 @@ import { COMPANY, ENV, whatsappHref } from "@/data/site";
 import { Wordmark } from "./Header";
 import { ShopLink, localizedHref } from "./TrackedLink";
 import { IsoBadges } from "@/components/sections/Certifications";
-import { HAS_TREATMENTS } from "@/data/treatments";
+import { HAS_CATALOG, HAS_TREATMENTS } from "@/lib/catalog";
 import { ConsentPreferencesLink } from "./CookieBanner";
 
 const SITE: { href: StaticPathname; key: string }[] = [
   { href: "/prodotti", key: "products" },
   { href: "/prodotti/tabelle", key: "tables" },
+  ...(HAS_CATALOG ? [{ href: "/catalogo" as const, key: "catalog" }] : []),
   { href: "/su-misura", key: "custom" },
   ...(HAS_TREATMENTS ? [{ href: "/trattamenti" as const, key: "treatments" }] : []),
   { href: "/azienda", key: "about" },

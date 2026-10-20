@@ -66,7 +66,15 @@
     },
     "treatments": {
       "title": "Oberflächenbehandlungen | Tecnolambro",
-      "description": "Die Oberflächenbehandlungen für unsere Hohlleiter und die Teile, auf die sie angewendet werden. Angebot innerhalb von %quoteTime%."
+      "description": "Die Oberflächenbehandlungen für unsere Hohlleiter und die Teile, auf die sie angewendet werden. Angebot innerhalb von %quoteTime%.",
+      "itemTitle": "{name} | Behandlungen von Tecnolambro",
+      "itemDescription": "{name}: was sie ist, wofür sie dient und auf welchen Werkstoffen sie ausgeführt wird. Fragen Sie bei Tecnolambro an."
+    },
+    "catalog": {
+      "title": "Produktkatalog | Tecnolambro",
+      "description": "Die Datenblätter der Tecnolambro-Produkte: Werkstoff, Abmessungen, Norm und verfügbare Behandlungen. Anfrage mit bereits eingetragener Artikelnummer.",
+      "itemTitle": "{name} · {code} | Tecnolambro",
+      "itemDescription": "{name} (Artikelnummer {code}): Werkstoff, Abmessungen, Norm und verfügbare Behandlungen. Fragen Sie bei Tecnolambro an."
     }
   },
   "nav": {
@@ -95,7 +103,8 @@
     "shopShort": "Konfigurieren",
     "tables": "Technische Tabellen",
     "call": "Anrufen",
-    "treatments": "Oberflächenbehandlungen"
+    "treatments": "Oberflächenbehandlungen",
+    "catalog": "Katalog"
   },
   "common": {
     "demoBadge": "Demoversion",
@@ -451,7 +460,9 @@
       "rateLimited": "zu viele Anfragen in kurzer Zeit",
       "invalid": "einige Daten sind ungültig",
       "server": "Serverfehler"
-    }
+    },
+    "catalogLine": "Informationsanfrage zur Artikelnummer {code}",
+    "catalogPrefilled": "Artikelnummer {code} zur Nachricht hinzugefügt."
   },
   "finalCta": {
     "title": "Angebot in %quoteTime%.",
@@ -1216,7 +1227,16 @@
     "intro": "Oberflächen und Behandlungen für Hohlleiter, mit langjährigen, ausgewählten Lieferanten: Wir legen sie gemeinsam im Angebot fest, je nach Einsatz des Teils.",
     "appliesTo": "Für welche Teile",
     "notes": "Hinweise",
-    "formTitle": "Behandlung anfragen"
+    "formTitle": "Behandlung anfragen",
+    "use": "Wofür sie dient",
+    "materials": "Werkstoffe, auf denen sie ausgeführt wird",
+    "beforeAfter": "Vorher und nachher",
+    "before": "Vorher",
+    "after": "Nachher",
+    "products": "Produkte mit dieser Behandlung",
+    "back": "Alle Behandlungen",
+    "searchHint": "Name, Werkstoff, Verwendung…",
+    "empty": "Keine Behandlung entspricht Ihrer Suche."
   },
   "consent": {
     "title": "Statistik und Cookies",
@@ -1226,5 +1246,32 @@
     "reject": "Ablehnen",
     "close": "Schließen ohne zu akzeptieren",
     "preferences": "Cookie-Einstellungen"
+  },
+  "catalog": {
+    "title": "Katalog",
+    "intro": "Die Datenblätter unserer Produkte: Werkstoff, Abmessungen, Norm und verfügbare Behandlungen. Von jedem Datenblatt aus können Sie mit bereits eingetragener Artikelnummer anfragen.",
+    "search": "Suchen",
+    "searchHint": "Name, Artikelnummer, Werkstoff, Größe…",
+    "category": "Kategorie",
+    "all": "Alle",
+    "resultsOne": "{n} Ergebnis",
+    "resultsOther": "{n} Ergebnisse",
+    "empty": "Kein Produkt entspricht Ihrer Suche.",
+    "reset": "Filter zurücksetzen",
+    "code": "Artikelnummer",
+    "material": "Werkstoff",
+    "sizes": "Abmessungen",
+    "norm": "Norm",
+    "treatments": "Verfügbare Behandlungen",
+    "specs": "Eigenschaften",
+    "photos": "Fotos",
+    "photoAlt": "{name}, Foto {n} von {total}",
+    "open": "Datenblatt öffnen",
+    "requestInfo": "Informationen anfragen",
+    "requestInfoBody": "Schreiben Sie uns zu Verfügbarkeit, Varianten und Lieferzeiten: Die Artikelnummer {code} steht dann schon in der Nachricht.",
+    "back": "Ganzer Katalog",
+    "draft": "Entwurf: nicht veröffentlicht",
+    "example": "BEISPIEL: nicht veröffentlicht",
+    "formTitle": "Zu einem Produkt anfragen"
   }
 }

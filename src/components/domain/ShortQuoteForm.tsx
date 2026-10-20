@@ -36,6 +36,8 @@ export function ShortQuoteForm({ privacyHref, shopPath, sentPath }: { privacyHre
   const [reason, setReason] = useState<SubmitReason | null>(null);
   const [dragging, setDragging] = useState(false);
   const [prefilled, setPrefilled] = useState<string | null>(null);
+  /** codice arrivato da "Richiedi informazioni" di una scheda del catalogo (?codice=FL-001) */
+  const [catalogCode, setCatalogCode] = useState<string | null>(null);
 
   useEffect(() => {
     openedAt.current = Date.now();
@@ -48,7 +50,18 @@ export function ShortQuoteForm({ privacyHref, shopPath, sentPath }: { privacyHre
       setPrefilled(d.size);
     };
     window.addEventListener("tl:prefill", onPrefill);
-    return () => window.removeEventListener("tl:prefill", onPrefill);
+    // dalla scheda del catalogo: codice nel messaggio e come voce della richiesta (la pagina è statica: si legge nel browser)
+    const timer = window.setTimeout(() => {
+      const code = new URLSearchParams(window.location.search).get("codice");
+      if (!code || !/^[A-Za-z0-9][A-Za-z0-9_-]{0,39}$/.test(code)) return;
+      const line = t("catalogLine", { code });
+      setV((prev) => ({ ...prev, message: prev.message.includes(line) ? prev.message : `${line}\n${prev.message}`.trimEnd() }));
+      setCatalogCode(code);
+    });
+    return () => {
+      window.removeEventListener("tl:prefill", onPrefill);
+      window.clearTimeout(timer);
+    };
   }, [t]);
 
   const errors: Partial<Record<Field, string>> = {};
@@ -87,7 +100,7 @@ export function ShortQuoteForm({ privacyHref, shopPath, sentPath }: { privacyHre
     }
     setStatus("sending");
     setReason(null);
-    const code = t("itemCode");
+    const code = catalogCode ?? t("itemCode");
     const result = await submitQuote(
       {
         source: "contact",
@@ -191,6 +204,11 @@ export function ShortQuoteForm({ privacyHref, shopPath, sentPath }: { privacyHre
         {prefilled ? (
           <p className="text-sm text-primary-ink" role="status">
             {t("prefilled", { size: prefilled })}
+          </p>
+        ) : null}
+        {catalogCode ? (
+          <p className="text-sm text-primary-ink" role="status" data-catalog-prefilled={catalogCode}>
+            {t("catalogPrefilled", { code: catalogCode })}
           </p>
         ) : null}
         {err("message")}

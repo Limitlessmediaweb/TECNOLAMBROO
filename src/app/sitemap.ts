@@ -3,7 +3,7 @@ import { routing, type Locale, type StaticPathname } from "@/i18n/routing";
 import { absoluteUrl, indexedLocales } from "@/lib/seo";
 import { LOCALE_META } from "@/i18n/locales";
 import { VISIBLE_FAMILIES, familySlug } from "@/data/families";
-import { HAS_TREATMENTS } from "@/data/treatments";
+import { HAS_CATALOG, HAS_TREATMENTS, catalogProducts, catalogTreatments } from "@/lib/catalog";
 import { SIZES } from "@/data/waveguides";
 import { wrSlug } from "@/lib/wr-page";
 
@@ -23,8 +23,9 @@ const STATIC: { href: StaticPathname; priority: number; changeFrequency: "monthl
   { href: "/contatti", priority: 0.8, changeFrequency: "yearly" },
   { href: "/azienda", priority: 0.7, changeFrequency: "yearly" },
   { href: "/qualita", priority: 0.6, changeFrequency: "yearly" },
-  // solo se data/treatments.ts ha almeno un trattamento (altrimenti la pagina è 404)
+  // solo se catalogo/catalogo.csv ha almeno una voce pubblicata (altrimenti la pagina è 404)
   ...(HAS_TREATMENTS ? [{ href: "/trattamenti" as const, priority: 0.7, changeFrequency: "monthly" as const }] : []),
+  ...(HAS_CATALOG ? [{ href: "/catalogo" as const, priority: 0.8, changeFrequency: "monthly" as const }] : []),
   { href: "/faq", priority: 0.6, changeFrequency: "monthly" },
   { href: "/shop", priority: 0.9, changeFrequency: "monthly" },
   { href: "/privacy", priority: 0.2, changeFrequency: "yearly" },
@@ -58,6 +59,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const languages = languagesFor(() => href);
     for (const locale of indexedLocales()) {
       entries.push({ url: absoluteUrl(href, locale), lastModified, changeFrequency: "monthly", priority: 0.7, alternates: { languages } });
+    }
+  }
+
+  // schede del catalogo e dei trattamenti (solo righe pubblicate)
+  const sheets = [
+    ...catalogProducts().map((p) => ({ pathname: "/catalogo/[codice]" as const, params: { codice: p.slug }, published: p.state === "pubblicato" })),
+    ...catalogTreatments().map((t) => ({ pathname: "/trattamenti/[codice]" as const, params: { codice: t.slug }, published: t.state === "pubblicato" })),
+  ];
+  for (const { published, ...href } of sheets) {
+    if (!published) continue;
+    const languages = languagesFor(() => href);
+    for (const locale of indexedLocales()) {
+      entries.push({ url: absoluteUrl(href, locale), lastModified, changeFrequency: "monthly", priority: 0.6, alternates: { languages } });
     }
   }
 

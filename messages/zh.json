@@ -66,7 +66,15 @@
     },
     "treatments": {
       "title": "表面处理 | Tecnolambro",
-      "description": "我们为波导产品提供的表面处理及适用部件。%quoteTime%内报价。"
+      "description": "我们为波导产品提供的表面处理及适用部件。%quoteTime%内报价。",
+      "itemTitle": "{name} | Tecnolambro 表面处理",
+      "itemDescription": "{name}：是什么、有什么用途、适用于哪些材料。欢迎向 Tecnolambro 咨询。"
+    },
+    "catalog": {
+      "title": "产品目录 | Tecnolambro",
+      "description": "Tecnolambro 产品资料：材料、尺寸、标准及可选处理。咨询时产品编号会自动填好。",
+      "itemTitle": "{name} · {code} | Tecnolambro",
+      "itemDescription": "{name}（编号 {code}）：材料、尺寸、标准及可选处理。欢迎向 Tecnolambro 咨询。"
     }
   },
   "nav": {
@@ -95,7 +103,8 @@
     "shopShort": "配置",
     "tables": "技术参数表",
     "call": "致电",
-    "treatments": "表面处理"
+    "treatments": "表面处理",
+    "catalog": "产品目录"
   },
   "common": {
     "demoBadge": "演示版",
@@ -451,7 +460,9 @@
       "rateLimited": "短时间内请求过多",
       "invalid": "部分数据无效",
       "server": "服务器错误"
-    }
+    },
+    "catalogLine": "咨询编号 {code}",
+    "catalogPrefilled": "编号 {code} 已添加到消息中。"
   },
   "finalCta": {
     "title": "%quoteTime%内报价。",
@@ -1216,7 +1227,16 @@
     "intro": "波导的表面精加工与处理，由长期合作的精选供应商完成：我们会根据部件用途，在报价中与您共同确定。",
     "appliesTo": "适用部件",
     "notes": "备注",
-    "formTitle": "咨询表面处理"
+    "formTitle": "咨询表面处理",
+    "use": "用途",
+    "materials": "适用材料",
+    "beforeAfter": "处理前后",
+    "before": "处理前",
+    "after": "处理后",
+    "products": "采用此处理的产品",
+    "back": "全部处理",
+    "searchHint": "名称、材料、用途…",
+    "empty": "没有符合搜索条件的处理。"
   },
   "consent": {
     "title": "统计分析与 Cookie",
@@ -1226,5 +1246,32 @@
     "reject": "拒绝",
     "close": "关闭且不接受",
     "preferences": "Cookie 偏好设置"
+  },
+  "catalog": {
+    "title": "产品目录",
+    "intro": "我们的产品资料：材料、尺寸、标准及可选处理。在每份资料中都可以直接咨询，产品编号会自动填好。",
+    "search": "搜索",
+    "searchHint": "名称、编号、材料、尺寸…",
+    "category": "类别",
+    "all": "全部",
+    "resultsOne": "{n} 条结果",
+    "resultsOther": "{n} 条结果",
+    "empty": "没有符合搜索条件的产品。",
+    "reset": "清除筛选",
+    "code": "编号",
+    "material": "材料",
+    "sizes": "尺寸",
+    "norm": "标准",
+    "treatments": "可选处理",
+    "specs": "技术特性",
+    "photos": "照片",
+    "photoAlt": "{name}，第 {n} 张照片，共 {total} 张",
+    "open": "打开资料",
+    "requestInfo": "咨询详情",
+    "requestInfoBody": "如需了解供货、规格变体和交期，请联系我们：消息中会自动填入编号 {code}。",
+    "back": "全部目录",
+    "draft": "草稿：未发布",
+    "example": "示例：未发布",
+    "formTitle": "咨询产品"
   }
 }
