@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { routing, type Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbsFor } from "@/lib/page";
-import { Breadcrumbs } from "@/components/ui/Bits";
+import { Breadcrumbs, WithTodo, visibleTexts } from "@/components/ui/Bits";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { LocalLink as Link } from "@/components/ui/LocalLink";
 import { BeforeAfter, CatalogGallery, CatalogStateBadge, RequestInfo } from "@/components/catalog/CatalogParts";
@@ -48,11 +48,11 @@ export default async function TreatmentPage({ params }: Props) {
   const items = await getTranslations("products.items");
   const name = inLang(tr.name, locale);
   const category = inLang(tr.category, locale);
-  const description = paragraphs(inLang(tr.description, locale));
+  const description = visibleTexts(paragraphs(inLang(tr.description, locale)));
   const blocks = (
     [
-      [t("use"), paragraphs(inLang(tr.use, locale))],
-      [t("materials"), paragraphs(inLang(tr.material, locale))],
+      [t("use"), visibleTexts(paragraphs(inLang(tr.use, locale)))],
+      [t("materials"), visibleTexts(paragraphs(inLang(tr.material, locale)))],
     ] as [string, string[]][]
   ).filter(([, v]) => v.length);
   const families = VISIBLE_FAMILIES.filter((f) => tr.families.includes(f.key));
@@ -83,7 +83,9 @@ export default async function TreatmentPage({ params }: Props) {
             {description.length ? (
               <div className="grid gap-3 text-lead text-muted">
                 {description.map((para) => (
-                  <p key={para}>{para}</p>
+                  <p key={para}>
+                    <WithTodo text={para} />
+                  </p>
                 ))}
               </div>
             ) : null}
@@ -93,7 +95,9 @@ export default async function TreatmentPage({ params }: Props) {
                 <h2 className="annot uppercase tracking-[0.14em] text-muted">{label}</h2>
                 <div className="mt-2 grid gap-2">
                   {paras.map((para) => (
-                    <p key={para}>{para}</p>
+                    <p key={para}>
+                      <WithTodo text={para} />
+                    </p>
                   ))}
                 </div>
               </section>

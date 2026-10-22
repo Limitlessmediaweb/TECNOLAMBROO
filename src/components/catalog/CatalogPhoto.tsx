@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { cn } from "@/lib/cn";
+import { ENV } from "@/data/site";
 
 /**
  * Foto di una scheda del catalogo. Senza foto: riquadro neutro con griglia tecnica e codice,
@@ -43,6 +44,8 @@ export function CatalogPhoto({
             <rect x="22" y="31" width="46" height="18" />
           </svg>
           {code ? <span className="annot absolute bottom-3 left-3 text-muted opacity-70">{code}</span> : null}
+          {/* solo in anteprima: online il riquadro resta neutro */}
+          {ENV.demo ? <span className="todo absolute left-3 right-3 top-3 text-xs">{`[DA COMPLETARE – foto/scheda: foto${code ? ` in public/foto/${code}/` : ""}]`}</span> : null}
         </div>
       )}
     </div>

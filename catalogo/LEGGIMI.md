@@ -45,6 +45,7 @@ Le celle che non servono si lasciano vuote. **Online un campo vuoto non si vede*
 
 ## Regole utili
 
+- **Segnaposto.** Un dato che manca si può scrivere come `[DA COMPLETARE – foto/scheda: cosa manca]`. Si vede in giallo solo in anteprima (`NEXT_PUBLIC_DEMO=true`); online quel paragrafo resta nascosto. `npm run segnaposti` scrive in `SEGNAPOSTI.md` l'elenco di tutto quello che manca, diviso per prodotto.
 - **Righe da saltare.** Una riga che inizia con `#` viene ignorata: va bene per le note.
 - **Punto e virgola nei testi.** Se un testo contiene un `;`, va tra virgolette. Excel lo fa da solo.
 - **Righe con errori.** Una riga con un errore (codice doppio, tipo o stato sbagliato, colonne in più) **non va online**, ma il resto del sito sì. `npm run catalogo:check` dice quale riga sistemare.

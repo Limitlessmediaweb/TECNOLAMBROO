@@ -7,7 +7,7 @@ import { VISIBLE_FAMILIES, familyBySlug, familyModel, familySlug } from "@/data/
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbsFor } from "@/lib/page";
 import { familyTexts } from "@/lib/families-text";
-import { Breadcrumbs, PageHeader, WithTodo } from "@/components/ui/Bits";
+import { Breadcrumbs, PageHeader, WithTodo, visibleTexts } from "@/components/ui/Bits";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { PageMessages } from "@/components/ui/PageMessages";
 import { LocalLink as Link } from "@/components/ui/LocalLink";
@@ -66,7 +66,10 @@ export default async function FamilyPage({ params }: Props) {
   const nav = await getTranslations("nav");
   const wr = await getTranslations("wrPage");
   const name = t(`items.${family.key}.name`);
-  const applications = t.raw(`items.${family.key}.applications`) as string[];
+  const applications = visibleTexts(t.raw(`items.${family.key}.applications`) as string[]);
+  // scheda tecnica: caratteristiche e materiali (i segnaposto [DA COMPLETARE …] si vedono solo in anteprima)
+  const specs = visibleTexts(t.raw(`items.${family.key}.specs`) as string[]);
+  const materials = visibleTexts(t.raw(`items.${family.key}.materials`) as string[]);
   const href = { pathname: "/prodotti/[famiglia]" as const, params: { famiglia: familySlug(family, locale) } };
   const { names } = await familyTexts();
   const shopPath = await localizedHref("/shop");
@@ -108,6 +111,38 @@ export default async function FamilyPage({ params }: Props) {
       </PageHeader>
 
       <FamilyGallery family={family.key} familyName={name} />
+
+      {specs.length || materials.length ? (
+        <section className="section-y border-t border-line" aria-labelledby="specs-title" data-family-specs>
+          <div className="container-site grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
+            <h2 id="specs-title" className="text-display-m font-bold lg:col-span-4">
+              {page("specsTitle")}
+            </h2>
+            <div className="grid gap-10 sm:grid-cols-2 lg:col-span-8">
+              {[
+                [page("featuresTitle"), specs],
+                [page("materialsTitle"), materials],
+              ].map(([label, list]) =>
+                (list as string[]).length ? (
+                  <div key={label as string}>
+                    <h3 className="annot uppercase tracking-[0.14em] text-muted">{label as string}</h3>
+                    <ul className="mt-4 grid gap-3 border-t border-line pt-4">
+                      {(list as string[]).map((s) => (
+                        <li key={s} className="flex gap-3">
+                          <Check aria-hidden="true" className="mt-1 size-4 shrink-0 text-accent" strokeWidth={2} />
+                          <span>
+                            <WithTodo text={s} />
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null,
+              )}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <ExplodedPart
         family={family.drawing}

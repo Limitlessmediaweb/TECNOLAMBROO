@@ -156,7 +156,10 @@ export function readCatalog(bytes: Uint8Array): ReadResult {
   if (encoding !== "utf-8") {
     issues.push({ level: "warning", message: "Il file non è in UTF-8: le lettere accentate possono rovinarsi. In Excel: File → Salva con nome → “CSV UTF-8 (delimitato da virgole)”." });
   }
-  const records = parseCsv(text).filter((r) => r.fields.some((f) => f.trim() !== ""));
+  // numero di riga come in Excel (un testo su più righe dentro una cella resta una riga sola)
+  const records = parseCsv(text)
+    .map((r, i) => ({ ...r, line: i + 1 }))
+    .filter((r) => r.fields.some((f) => f.trim() !== ""));
   if (!records.length) return { rows: [], allCodes: [], issues: [{ level: "error", message: "Il file è vuoto: manca la riga delle intestazioni." }], encoding };
 
   const headerRec = records[0];
@@ -236,6 +239,8 @@ export function readCatalog(bytes: Uint8Array): ReadResult {
     if (!row.name.it) err("Manca nome_it (il nome in italiano è obbligatorio).");
     if (state === "esempio") warn("Riga di ESEMPIO: non va online. Cancellala quando inserisci i dati veri.");
     if (state === "pubblicato") {
+      const todo = [row.name, row.description, row.material, row.use].flatMap((t) => Object.values(t)).join(" ").match(/\[DA COMPLETARE[^\]]*\]/g)?.length ?? 0;
+      if (todo) warn(`${todo} segnaposto [DA COMPLETARE …] ancora nel testo: si vedono solo in anteprima, online quei paragrafi restano nascosti. Elenco: npm run segnaposti.`);
       if (!row.name.en) warn("Manca nome_en: in inglese si vedrà il nome italiano.");
       const empty = LANGS.filter((l) => l !== "it" && !row.name[l]);
       if (row.name.en && empty.length) warn(`Traduzioni mancanti (${empty.join(", ")}): in quelle lingue si vede l’inglese.`);

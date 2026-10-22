@@ -6,7 +6,7 @@ import { routing, type Locale } from "@/i18n/routing";
 import { COMPANY, ENV } from "@/data/site";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
 import { breadcrumbsFor } from "@/lib/page";
-import { Breadcrumbs } from "@/components/ui/Bits";
+import { Breadcrumbs, WithTodo, isOnlyPlaceholder, visibleTexts } from "@/components/ui/Bits";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { LocalLink as Link } from "@/components/ui/LocalLink";
 import { CatalogGallery, CatalogStateBadge, RequestInfo } from "@/components/catalog/CatalogParts";
@@ -47,7 +47,7 @@ export default async function CatalogItemPage({ params }: Props) {
   const t = await getTranslations("catalog");
   const name = inLang(p.name, locale);
   const category = inLang(p.category, locale);
-  const description = paragraphs(inLang(p.description, locale));
+  const description = visibleTexts(paragraphs(inLang(p.description, locale)));
   const treatments = treatmentsOf(p);
 
   const specs: [string, string][] = (
@@ -57,7 +57,7 @@ export default async function CatalogItemPage({ params }: Props) {
       [t("sizes"), p.sizes],
       [t("norm"), p.norm],
     ] as [string, string][]
-  ).filter(([, v]) => v);
+  ).filter(([, v]) => v && (ENV.demo || !isOnlyPlaceholder(v)));
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -98,7 +98,9 @@ export default async function CatalogItemPage({ params }: Props) {
             {description.length ? (
               <div className="grid gap-3 text-lead text-muted">
                 {description.map((para) => (
-                  <p key={para}>{para}</p>
+                  <p key={para}>
+                    <WithTodo text={para} />
+                  </p>
                 ))}
               </div>
             ) : null}
@@ -111,7 +113,9 @@ export default async function CatalogItemPage({ params }: Props) {
                 {specs.map(([label, value]) => (
                   <div key={label} className="grid gap-1 py-3 sm:grid-cols-3 sm:gap-4">
                     <dt className="text-muted">{label}</dt>
-                    <dd className={label === t("code") ? "annot sm:col-span-2" : "sm:col-span-2"}>{value}</dd>
+                    <dd className={label === t("code") ? "annot sm:col-span-2" : "sm:col-span-2"}>
+                      <WithTodo text={value} />
+                    </dd>
                   </div>
                 ))}
               </dl>

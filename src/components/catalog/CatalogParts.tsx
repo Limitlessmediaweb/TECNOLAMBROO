@@ -3,6 +3,7 @@ import { MessageSquareText } from "lucide-react";
 import { QuoteLink } from "@/components/ui/TrackedLink";
 import { SHOW_DRAFTS, stateBadge, type CatalogItem } from "@/lib/catalog";
 import { CatalogPhoto } from "./CatalogPhoto";
+import { ENV } from "@/data/site";
 
 /** Badge "Bozza" / "ESEMPIO": solo in anteprima, online quelle righe non esistono. */
 export async function CatalogStateBadge({ item }: { item: CatalogItem }) {
@@ -36,7 +37,8 @@ export async function CatalogGallery({ item, name }: { item: CatalogItem; name: 
 
 /** Coppie prima/dopo di un trattamento (prima-1.jpg con dopo-1.jpg…). Il lato senza foto resta neutro. */
 export async function BeforeAfter({ item, name }: { item: CatalogItem; name: string }) {
-  const n = Math.max(item.before.length, item.after.length);
+  // in anteprima la coppia vuota si mostra comunque, con i segnaposto: ricorda le foto prima/dopo da fare
+  const n = Math.max(item.before.length, item.after.length) || (ENV.demo ? 1 : 0);
   if (!n) return null;
   const t = await getTranslations("treatmentsPage");
   return (

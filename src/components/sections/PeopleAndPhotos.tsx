@@ -4,7 +4,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { ArrowRight } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 import { LocalLink as Link } from "@/components/ui/LocalLink";
-import { MissingBadge } from "@/components/ui/Bits";
+import { MissingBadge, PhotoPlaceholder } from "@/components/ui/Bits";
 import { Gallery, type Photo } from "@/components/ui/Gallery";
 import { PENDING, PENDING_LABELS } from "@/data/pending";
 import { OWNER_PHOTO, PHOTO_ALTS, PHOTO_DIRS, workshopArea } from "@/data/photos";
@@ -108,13 +108,13 @@ export async function WorkshopSection() {
 /** Galleria della famiglia di prodotto (public/foto/prodotti/<famiglia>/). Senza foto non si vede. */
 export async function FamilyGallery({ family, familyName }: { family: string; familyName: string }) {
   const t = await getTranslations("gallery");
-  const c = await getTranslations("common");
   const locale = (await getLocale()) as Locale;
   const files = publicImages(PHOTO_DIRS.products(family));
   if (!files.length) {
+    // segnaposto grande, solo in anteprima: online il blocco non c'è finché non arrivano le foto
     return (
-      <div className="container-site">
-        <MissingBadge label={c("missing", { what: `${pick(PENDING_LABELS.productPhotos, locale)} (${familyName})` })} className="mb-8" />
+      <div className="container-site pb-16" data-family-photo-todo={family}>
+        <PhotoPlaceholder ratio="21/9" caption={`[DA COMPLETARE – foto/scheda: foto reali di ${familyName}, nella cartella public/foto/prodotti/${family}/]`} />
       </div>
     );
   }

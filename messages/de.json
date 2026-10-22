@@ -169,9 +169,28 @@
         "short": "Biegbar und verdrehbar: verbindet nicht fluchtende oder verdrehte Flansche. WR-22 bis WR-284.",
         "description": "Flexibler, verdrehbarer Hohlleiter aus Messing aus eigener Fertigung. Er lässt sich in der E- und H-Ebene biegen und um die eigene Achse verdrehen: Er verbindet Funkgerät und Antenne, wenn die Flansche nicht fluchten oder verdreht sind, und nimmt Vibrationen und Wärmedehnungen auf.",
         "applications": [
-          "Verbindung Funkgerät–Antenne in Richtfunkstrecken",
+          "Verbindung zwischen Funkgerät und Antenne in Richtfunkstrecken",
           "Installationen mit Vibrationen",
-          "Ausgleich von Fluchtungsfehlern und Verdrehungen zwischen Flanschen"
+          "Ausgleich von Versatz und Verdrehung zwischen Flanschen",
+          "Radar: zwischen Sender, Drehkupplung und Antenne"
+        ],
+        "specs": [
+          "14 Größen, von WR-284 (2,6–3,95 GHz) bis WR-22 (33–50,1 GHz)",
+          "Biegbar in der E- und H-Ebene und um die eigene Achse verdrehbar",
+          "Nimmt Vibrationen und Wärmeausdehnung auf",
+          "Für jede Größe: Rückflussdämpfung, Dämpfung sowie CW- und Spitzenleistung in der Tabelle für verdrehbare Hohlleiter",
+          "Standardlängen: 300, 600, 900, 1000 und 1200 mm",
+          "100 % der Teile vor dem Versand geprüft, elektrisch und maßlich",
+          "[DA COMPLETARE – foto/scheda: dimensioni di WR-51 (TLFX-180) e codici TLFX di WR-34 e WR-159]",
+          "[DA COMPLETARE – foto/scheda: raggio minimo di curvatura e torsione massima per misura]",
+          "[DA COMPLETARE – foto/scheda: WR-22: vale ancora il limite di lunghezza di 3 piedi?]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "Körper aus Messing OT 80 UNI 4897",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "[DA COMPLETARE – foto/scheda: guarnizioni e rivestimento esterno: ci sono? di che materiale?]",
+          "Oberflächen: Glanzbeizen, Lackieren, Wärme- und galvanische Behandlungen"
         ]
       },
       "seamless": {
@@ -180,8 +199,25 @@
         "description": "Nahtloser flexibler Hohlleiter, also ohne Nähte entlang des Körpers, aus eigener Fertigung. Die Tabelle enthält VSWR, Dämpfung und Leistung für jede Größe von WR-22 bis WR-284.",
         "applications": [
           "Richtfunk- und Satellitenverbindungen",
-          "Hochleistungsstrecken",
+          "Hochleistungsleitungen",
           "Messplätze und Labore"
+        ],
+        "specs": [
+          "14 Größen, von WR-284 (2,6–3,95 GHz) bis WR-22 (33–50,1 GHz)",
+          "Ohne Schweißnähte am Körper",
+          "Mit Außenmantel",
+          "CW-Leistung bis 10 kW",
+          "Für jede Größe: VSWR, Dämpfung und Leistung in der Tabelle für nahtlose Hohlleiter",
+          "Standardlängen: 300, 600, 900, 1000 und 1200 mm",
+          "100 % der Teile vor dem Versand geprüft, elektrisch und maßlich",
+          "[DA COMPLETARE – foto/scheda: VSWR, attenuazione e potenze di WR-34 e WR-159]",
+          "[DA COMPLETARE – foto/scheda: come si piega (piani E e H, torsione) e raggio minimo]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "[DA COMPLETARE – foto/scheda: materiale del corpo e della guaina della seamless]",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "Oberflächen: Glanzbeizen, Lackieren, Wärme- und galvanische Behandlungen"
         ]
       },
       "bends": {
@@ -189,25 +225,66 @@
         "short": "E- und H-Bögen, 90° oder mit dem gewünschten Winkel.",
         "description": "Bögen aus starrem Hohlleiter in der E- und H-Ebene, in unserem Labor entwickelt, gefertigt und geprüft. 90° in jeder Größe oder mit Winkel, Radius und geraden Schenkeln nach Maß.",
         "applications": [
-          "E-Bögen",
-          "H-Bögen",
-          "Winkel, Radius und gerade Schenkel nach Maß"
+          "Strecken zwischen Geräten und Antennen in Mikrowellen-Richtfunk",
+          "Satelliten-Bodenstationen, zwischen Verstärkern, Feeds und Erregern",
+          "Radar und Rundfunkverbindungen",
+          "Messplätze und Prototypen"
+        ],
+        "specs": [
+          "Starrer Hohlleiter, Größen WR-284 bis WR-22",
+          "Bögen in der E- und in der H-Ebene",
+          "90° für jede Größe, oder mit Winkel, Radius und geraden Abschnitten nach Maß",
+          "Freier Winkel von 1° bis 180°, Standard- oder Sonderradius",
+          "In unserem Labor konstruiert, gefertigt und geprüft",
+          "Eigene Fertigung: Schneiden, Fräsen, Drehen, Montage und Fügen",
+          "100 % der Teile vor dem Versand geprüft, elektrisch und maßlich",
+          "Bemaßte Zeichnung und 3D-Modell sofort im Konfigurator",
+          "[DA COMPLETARE – foto/scheda: raggio minimo di curvatura nei piani E e H per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: spessore di parete della guida rigida per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: VSWR e perdite tipiche]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "[DA COMPLETARE – foto/scheda: materiale della guida rigida (ottone? rame? alluminio?)]",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "Oberflächen: Glanzbeizen, Lackieren, Wärme- und galvanische Behandlungen"
         ]
       },
       "pending": {
         "name": "[FAMILIE NOCH ZU DEFINIEREN]",
         "short": "[ZU ERGÄNZEN]",
         "description": "[ZU ERGÄNZEN: Texte und Daten der Familie vom Inhaber]",
-        "applications": []
+        "applications": [],
+        "specs": [],
+        "materials": []
       },
       "twists": {
         "name": "Twists",
         "short": "Drehen die Polarisation: standardmäßig 90°, 45° oder nach Maß.",
         "description": "Twists aus starrem Hohlleiter zum Drehen der Polarisation: 90° in jeder Größe, 45° oder mit der gewünschten Drehung, im oder gegen den Uhrzeigersinn.",
         "applications": [
-          "Drehung der Polarisation",
-          "90°, 45° oder nach Maß",
-          "Im oder gegen den Uhrzeigersinn"
+          "Drehung der Polarisation zwischen Geräten und Antennen im Richtfunk",
+          "Satelliten-Bodenstationen und Radar",
+          "Messplätze und Prototypen"
+        ],
+        "specs": [
+          "Starrer Hohlleiter, Größen WR-284 bis WR-22",
+          "Drehen die Polarisation",
+          "90° für jede Größe, 45° oder die Drehung, die Sie brauchen",
+          "Im oder gegen den Uhrzeigersinn",
+          "In unserem Labor konstruiert, gefertigt und geprüft",
+          "Eigene Fertigung: Schneiden, Fräsen, Drehen, Montage und Fügen",
+          "100 % der Teile vor dem Versand geprüft, elektrisch und maßlich",
+          "Bemaßte Zeichnung und 3D-Modell sofort im Konfigurator",
+          "[DA COMPLETARE – foto/scheda: lunghezza standard del twist per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: spessore di parete della guida rigida per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: VSWR e perdite tipiche]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "[DA COMPLETARE – foto/scheda: materiale della guida rigida (ottone? rame? alluminio?)]",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "Oberflächen: Glanzbeizen, Lackieren, Wärme- und galvanische Behandlungen"
         ]
       },
       "offsets": {
@@ -215,9 +292,28 @@
         "short": "Verbinden versetzte Flansche, in der E- oder H-Ebene.",
         "description": "Versätze aus starrem Hohlleiter zum Verbinden versetzter Flansche, in der E- oder H-Ebene, mit Versatz und Länge nach Maß.",
         "applications": [
-          "Versetzte Flansche, E-Ebene",
-          "Versetzte Flansche, H-Ebene",
-          "Versatz und Länge nach Maß"
+          "Geräte und Antennen mit versetzten Flanschen im Richtfunk ausrichten",
+          "Satelliten-Bodenstationen und Radar",
+          "Messplätze und Prototypen"
+        ],
+        "specs": [
+          "Starrer Hohlleiter, Größen WR-284 bis WR-22",
+          "Verbinden versetzte Flansche",
+          "In der E- oder in der H-Ebene",
+          "Versatz und Länge nach Maß",
+          "In unserem Labor konstruiert, gefertigt und geprüft",
+          "Eigene Fertigung: Schneiden, Fräsen, Drehen, Montage und Fügen",
+          "100 % der Teile vor dem Versand geprüft, elektrisch und maßlich",
+          "Bemaßte Zeichnung und 3D-Modell sofort im Konfigurator",
+          "[DA COMPLETARE – foto/scheda: disassamento minimo e massimo per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: spessore di parete della guida rigida per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: VSWR e perdite tipiche]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "[DA COMPLETARE – foto/scheda: materiale della guida rigida (ottone? rame? alluminio?)]",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "Oberflächen: Glanzbeizen, Lackieren, Wärme- und galvanische Behandlungen"
         ]
       }
     },
@@ -249,7 +345,10 @@
       "rigidSize": "Größe",
       "rigidRadiusE": "Mindestradius, E-Ebene",
       "rigidRadiusH": "Mindestradius, H-Ebene",
-      "rigidWall": "Wandstärke"
+      "rigidWall": "Wandstärke",
+      "specsTitle": "Technisches Datenblatt",
+      "featuresTitle": "Eigenschaften",
+      "materialsTitle": "Werkstoffe und Oberflächen"
     }
   },
   "bandFinder": {

@@ -1,7 +1,77 @@
 ﻿tipo;codice;stato;nome_it;nome_en;nome_es;nome_zh;nome_de;categoria_it;categoria_en;categoria_es;categoria_zh;categoria_de;descrizione_it;descrizione_en;descrizione_es;descrizione_zh;descrizione_de;materiale_it;materiale_en;materiale_es;materiale_zh;materiale_de;misure;norma;trattamenti;uso_it;uso_en;uso_es;uso_zh;uso_de;famiglie
 prodotto;FL-001;ESEMPIO;Guida d’onda flessibile twistabile WR-90;Twistable flexible waveguide WR-90;;;;Guide d’onda flessibili;Flexible waveguides;;;;Guida d’onda flessibile e twistabile di produzione propria, in ottone. Si piega nei piani E e H e si torce attorno al proprio asse: collega radio e antenna quando le flange non sono allineate o sono ruotate, e assorbe vibrazioni e dilatazioni termiche.;Flexible, twistable brass waveguide made by Tecnolambro. It bends in the E and H planes and twists around its own axis: it connects radio and antenna when the flanges are misaligned or rotated, and absorbs vibration and thermal expansion.;;;;Ottone OT 80 UNI 4897;Brass OT 80 UNI 4897;;;;WR-90 · R100 · WG16 · 8,2–12,5 GHz · interno 22,86 × 10,16 mm;IEC 60153-2;VERNICIATURA;;;;;;
 trattamento;TR-001;ESEMPIO;Nome del trattamento;Treatment name;;;;Categoria (es. galvanici);Category (e.g. galvanic);;;;Che cos’è il trattamento, in una o due frasi.;What the treatment is, in one or two sentences.;;;;Su quali materiali si fa (es. ottone, alluminio).;Materials it is applied to (e.g. brass, aluminium).;;;;;;;A cosa serve (es. protezione dalla corrosione).;What it is for (e.g. corrosion protection).;;;;twistable, bends
-trattamento;BRILLANTATURA;pubblicato;Brillantatura;Bright dipping;Abrillantado;光亮处理;Glanzbeizen;;;;;;;;;;;;;;;;;;;;;;;;twistable, seamless, bends, twists, offsets
-trattamento;VERNICIATURA;pubblicato;Verniciatura;Painting;Pintura;喷漆;Lackieren;;;;;;Colore e tipo di vernice li definiamo insieme nel preventivo.;We’ll agree colour and paint type in the quote.;El color y el tipo de pintura los acordamos en el presupuesto.;颜色和涂料类型将在报价中与您确定。;Farbe und Lackart legen wir gemeinsam im Angebot fest.;;;;;;;;;;;;;;twistable, seamless, bends, twists, offsets
-trattamento;TERMICI;pubblicato;Trattamenti termici;Heat treatments;Tratamientos térmicos;热处理;Wärmebehandlungen;;;;;;Lo definiamo insieme nel preventivo.;We’ll define it together in the quote.;Lo definimos juntos en el presupuesto.;我们将在报价中与您共同确定。;Wir legen sie gemeinsam im Angebot fest.;;;;;;;;;;;;;;twistable, seamless, bends, twists, offsets
-trattamento;GALVANICI;pubblicato;Trattamenti galvanici;Galvanic treatments;Tratamientos galvánicos;电镀处理;Galvanische Behandlungen;;;;;;Lo definiamo insieme nel preventivo.;We’ll define it together in the quote.;Lo definimos juntos en el presupuesto.;我们将在报价中与您共同确定。;Wir legen sie gemeinsam im Angebot fest.;;;;;;;;;;;;;;twistable, seamless, bends, twists, offsets
+trattamento;BRILLANTATURA;pubblicato;Brillantatura;Bright dipping;Abrillantado;光亮处理;Glanzbeizen;;;;;;"[DA COMPLETARE – foto/scheda: Brillantatura: che cos’è e come si fa, in 2-3 frasi]
+Con fornitori storici e selezionati, noti per la loro affidabilità e professionalità.";"[DA COMPLETARE – foto/scheda: Brillantatura: che cos’è e come si fa, in 2-3 frasi]
+With long-standing, selected suppliers known for their reliability and professionalism.";"[DA COMPLETARE – foto/scheda: Brillantatura: che cos’è e come si fa, in 2-3 frasi]
+Con proveedores históricos y seleccionados, conocidos por su fiabilidad y profesionalidad.";"[DA COMPLETARE – foto/scheda: Brillantatura: che cos’è e come si fa, in 2-3 frasi]
+由长期合作、以可靠和专业著称的精选供应商完成。";"[DA COMPLETARE – foto/scheda: Brillantatura: che cos’è e come si fa, in 2-3 frasi]
+Mit langjährigen, ausgewählten Lieferanten, die für Zuverlässigkeit und Professionalität bekannt sind.";"Guida d’onda flessibile in ottone OT 80 UNI 4897.
+[DA COMPLETARE – foto/scheda: Brillantatura: su quali altri materiali si fa, oltre all’ottone]";"Flexible waveguide in OT 80 UNI 4897 brass.
+[DA COMPLETARE – foto/scheda: Brillantatura: su quali altri materiali si fa, oltre all’ottone]";"Guía de ondas flexible de latón OT 80 UNI 4897.
+[DA COMPLETARE – foto/scheda: Brillantatura: su quali altri materiali si fa, oltre all’ottone]";"OT 80 UNI 4897 黄铜软波导。
+[DA COMPLETARE – foto/scheda: Brillantatura: su quali altri materiali si fa, oltre all’ottone]";"Flexibler Hohlleiter aus Messing OT 80 UNI 4897.
+[DA COMPLETARE – foto/scheda: Brillantatura: su quali altri materiali si fa, oltre all’ottone]";;;;[DA COMPLETARE – foto/scheda: Brillantatura: a cosa serve sulle guide d’onda];[DA COMPLETARE – foto/scheda: Brillantatura: a cosa serve sulle guide d’onda];[DA COMPLETARE – foto/scheda: Brillantatura: a cosa serve sulle guide d’onda];[DA COMPLETARE – foto/scheda: Brillantatura: a cosa serve sulle guide d’onda];[DA COMPLETARE – foto/scheda: Brillantatura: a cosa serve sulle guide d’onda];twistable, seamless, bends, twists, offsets
+trattamento;VERNICIATURA;pubblicato;Verniciatura;Painting;Pintura;喷漆;Lackieren;;;;;;"[DA COMPLETARE – foto/scheda: Verniciatura: che cos’è e come si fa, in 2-3 frasi]
+Colore e tipo di vernice li definiamo insieme nel preventivo.
+Con fornitori storici e selezionati, noti per la loro affidabilità e professionalità.
+[DA COMPLETARE – foto/scheda: tipi di vernice e colori più richiesti]";"[DA COMPLETARE – foto/scheda: Verniciatura: che cos’è e come si fa, in 2-3 frasi]
+We’ll agree colour and paint type in the quote.
+With long-standing, selected suppliers known for their reliability and professionalism.
+[DA COMPLETARE – foto/scheda: tipi di vernice e colori più richiesti]";"[DA COMPLETARE – foto/scheda: Verniciatura: che cos’è e come si fa, in 2-3 frasi]
+El color y el tipo de pintura los acordamos en el presupuesto.
+Con proveedores históricos y seleccionados, conocidos por su fiabilidad y profesionalidad.
+[DA COMPLETARE – foto/scheda: tipi di vernice e colori più richiesti]";"[DA COMPLETARE – foto/scheda: Verniciatura: che cos’è e come si fa, in 2-3 frasi]
+颜色和涂料类型将在报价中与您确定。
+由长期合作、以可靠和专业著称的精选供应商完成。
+[DA COMPLETARE – foto/scheda: tipi di vernice e colori più richiesti]";"[DA COMPLETARE – foto/scheda: Verniciatura: che cos’è e come si fa, in 2-3 frasi]
+Farbe und Lackart legen wir gemeinsam im Angebot fest.
+Mit langjährigen, ausgewählten Lieferanten, die für Zuverlässigkeit und Professionalität bekannt sind.
+[DA COMPLETARE – foto/scheda: tipi di vernice e colori più richiesti]";"Guida d’onda flessibile in ottone OT 80 UNI 4897.
+[DA COMPLETARE – foto/scheda: Verniciatura: su quali altri materiali si fa, oltre all’ottone]";"Flexible waveguide in OT 80 UNI 4897 brass.
+[DA COMPLETARE – foto/scheda: Verniciatura: su quali altri materiali si fa, oltre all’ottone]";"Guía de ondas flexible de latón OT 80 UNI 4897.
+[DA COMPLETARE – foto/scheda: Verniciatura: su quali altri materiali si fa, oltre all’ottone]";"OT 80 UNI 4897 黄铜软波导。
+[DA COMPLETARE – foto/scheda: Verniciatura: su quali altri materiali si fa, oltre all’ottone]";"Flexibler Hohlleiter aus Messing OT 80 UNI 4897.
+[DA COMPLETARE – foto/scheda: Verniciatura: su quali altri materiali si fa, oltre all’ottone]";;;;[DA COMPLETARE – foto/scheda: Verniciatura: a cosa serve sulle guide d’onda];[DA COMPLETARE – foto/scheda: Verniciatura: a cosa serve sulle guide d’onda];[DA COMPLETARE – foto/scheda: Verniciatura: a cosa serve sulle guide d’onda];[DA COMPLETARE – foto/scheda: Verniciatura: a cosa serve sulle guide d’onda];[DA COMPLETARE – foto/scheda: Verniciatura: a cosa serve sulle guide d’onda];twistable, seamless, bends, twists, offsets
+trattamento;TERMICI;pubblicato;Trattamenti termici;Heat treatments;Tratamientos térmicos;热处理;Wärmebehandlungen;;;;;;"[DA COMPLETARE – foto/scheda: Trattamenti termici: che cos’è e come si fa, in 2-3 frasi]
+Lo definiamo insieme nel preventivo.
+Con fornitori storici e selezionati, noti per la loro affidabilità e professionalità.
+[DA COMPLETARE – foto/scheda: quali trattamenti termici fate e su quali pezzi]";"[DA COMPLETARE – foto/scheda: Trattamenti termici: che cos’è e come si fa, in 2-3 frasi]
+We’ll define it together in the quote.
+With long-standing, selected suppliers known for their reliability and professionalism.
+[DA COMPLETARE – foto/scheda: quali trattamenti termici fate e su quali pezzi]";"[DA COMPLETARE – foto/scheda: Trattamenti termici: che cos’è e come si fa, in 2-3 frasi]
+Lo definimos juntos en el presupuesto.
+Con proveedores históricos y seleccionados, conocidos por su fiabilidad y profesionalidad.
+[DA COMPLETARE – foto/scheda: quali trattamenti termici fate e su quali pezzi]";"[DA COMPLETARE – foto/scheda: Trattamenti termici: che cos’è e come si fa, in 2-3 frasi]
+我们将在报价中与您共同确定。
+由长期合作、以可靠和专业著称的精选供应商完成。
+[DA COMPLETARE – foto/scheda: quali trattamenti termici fate e su quali pezzi]";"[DA COMPLETARE – foto/scheda: Trattamenti termici: che cos’è e come si fa, in 2-3 frasi]
+Wir legen sie gemeinsam im Angebot fest.
+Mit langjährigen, ausgewählten Lieferanten, die für Zuverlässigkeit und Professionalität bekannt sind.
+[DA COMPLETARE – foto/scheda: quali trattamenti termici fate e su quali pezzi]";"Guida d’onda flessibile in ottone OT 80 UNI 4897.
+[DA COMPLETARE – foto/scheda: Trattamenti termici: su quali altri materiali si fa, oltre all’ottone]";"Flexible waveguide in OT 80 UNI 4897 brass.
+[DA COMPLETARE – foto/scheda: Trattamenti termici: su quali altri materiali si fa, oltre all’ottone]";"Guía de ondas flexible de latón OT 80 UNI 4897.
+[DA COMPLETARE – foto/scheda: Trattamenti termici: su quali altri materiali si fa, oltre all’ottone]";"OT 80 UNI 4897 黄铜软波导。
+[DA COMPLETARE – foto/scheda: Trattamenti termici: su quali altri materiali si fa, oltre all’ottone]";"Flexibler Hohlleiter aus Messing OT 80 UNI 4897.
+[DA COMPLETARE – foto/scheda: Trattamenti termici: su quali altri materiali si fa, oltre all’ottone]";;;;[DA COMPLETARE – foto/scheda: Trattamenti termici: a cosa serve sulle guide d’onda];[DA COMPLETARE – foto/scheda: Trattamenti termici: a cosa serve sulle guide d’onda];[DA COMPLETARE – foto/scheda: Trattamenti termici: a cosa serve sulle guide d’onda];[DA COMPLETARE – foto/scheda: Trattamenti termici: a cosa serve sulle guide d’onda];[DA COMPLETARE – foto/scheda: Trattamenti termici: a cosa serve sulle guide d’onda];twistable, seamless, bends, twists, offsets
+trattamento;GALVANICI;pubblicato;Trattamenti galvanici;Galvanic treatments;Tratamientos galvánicos;电镀处理;Galvanische Behandlungen;;;;;;"[DA COMPLETARE – foto/scheda: Trattamenti galvanici: che cos’è e come si fa, in 2-3 frasi]
+Lo definiamo insieme nel preventivo.
+Con fornitori storici e selezionati, noti per la loro affidabilità e professionalità.
+[DA COMPLETARE – foto/scheda: quali trattamenti galvanici fate (la tabella dati della twistabile cita l’argentatura): argentatura, doratura, nichelatura…?]";"[DA COMPLETARE – foto/scheda: Trattamenti galvanici: che cos’è e come si fa, in 2-3 frasi]
+We’ll define it together in the quote.
+With long-standing, selected suppliers known for their reliability and professionalism.
+[DA COMPLETARE – foto/scheda: quali trattamenti galvanici fate (la tabella dati della twistabile cita l’argentatura): argentatura, doratura, nichelatura…?]";"[DA COMPLETARE – foto/scheda: Trattamenti galvanici: che cos’è e come si fa, in 2-3 frasi]
+Lo definimos juntos en el presupuesto.
+Con proveedores históricos y seleccionados, conocidos por su fiabilidad y profesionalidad.
+[DA COMPLETARE – foto/scheda: quali trattamenti galvanici fate (la tabella dati della twistabile cita l’argentatura): argentatura, doratura, nichelatura…?]";"[DA COMPLETARE – foto/scheda: Trattamenti galvanici: che cos’è e come si fa, in 2-3 frasi]
+我们将在报价中与您共同确定。
+由长期合作、以可靠和专业著称的精选供应商完成。
+[DA COMPLETARE – foto/scheda: quali trattamenti galvanici fate (la tabella dati della twistabile cita l’argentatura): argentatura, doratura, nichelatura…?]";"[DA COMPLETARE – foto/scheda: Trattamenti galvanici: che cos’è e come si fa, in 2-3 frasi]
+Wir legen sie gemeinsam im Angebot fest.
+Mit langjährigen, ausgewählten Lieferanten, die für Zuverlässigkeit und Professionalität bekannt sind.
+[DA COMPLETARE – foto/scheda: quali trattamenti galvanici fate (la tabella dati della twistabile cita l’argentatura): argentatura, doratura, nichelatura…?]";"Guida d’onda flessibile in ottone OT 80 UNI 4897.
+[DA COMPLETARE – foto/scheda: Trattamenti galvanici: su quali altri materiali si fa, oltre all’ottone]";"Flexible waveguide in OT 80 UNI 4897 brass.
+[DA COMPLETARE – foto/scheda: Trattamenti galvanici: su quali altri materiali si fa, oltre all’ottone]";"Guía de ondas flexible de latón OT 80 UNI 4897.
+[DA COMPLETARE – foto/scheda: Trattamenti galvanici: su quali altri materiali si fa, oltre all’ottone]";"OT 80 UNI 4897 黄铜软波导。
+[DA COMPLETARE – foto/scheda: Trattamenti galvanici: su quali altri materiali si fa, oltre all’ottone]";"Flexibler Hohlleiter aus Messing OT 80 UNI 4897.
+[DA COMPLETARE – foto/scheda: Trattamenti galvanici: su quali altri materiali si fa, oltre all’ottone]";;;;[DA COMPLETARE – foto/scheda: Trattamenti galvanici: a cosa serve sulle guide d’onda];[DA COMPLETARE – foto/scheda: Trattamenti galvanici: a cosa serve sulle guide d’onda];[DA COMPLETARE – foto/scheda: Trattamenti galvanici: a cosa serve sulle guide d’onda];[DA COMPLETARE – foto/scheda: Trattamenti galvanici: a cosa serve sulle guide d’onda];[DA COMPLETARE – foto/scheda: Trattamenti galvanici: a cosa serve sulle guide d’onda];twistable, seamless, bends, twists, offsets

@@ -2,9 +2,19 @@ import "server-only";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { ENV } from "@/data/site";
-import { classifyPhotos, inLang, readCatalog, type CatalogRow, type LangText } from "./schema";
+import { classifyPhotos, inLang as rawInLang, readCatalog, type CatalogRow, type LangText } from "./schema";
 
-export { inLang, type LangText } from "./schema";
+export type { LangText } from "./schema";
+
+/**
+ * Testo di una colonna nella lingua richiesta. I segnaposto "[DA COMPLETARE …]" scritti nel CSV restano
+ * in anteprima (evidenziati con WithTodo) e spariscono nella versione pubblica: così non finiscono né
+ * nelle pagine né nei metadati o nei dati strutturati.
+ */
+export function inLang(text: LangText | undefined, lang: string): string {
+  const s = rawInLang(text, lang);
+  return ENV.demo ? s : s.replace(/\[(?:DA COMPLETARE|TO BE COMPLETED)[^\]]*\]/g, "").replace(/[ \t]{2,}/g, " ").trim();
+}
 
 /**
  * Catalogo del sito, letto alla build da catalogo/catalogo.csv (vedi catalogo/LEGGIMI.md).

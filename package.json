@@ -23,6 +23,7 @@
     "screenshots:v3": "node scripts/screenshots-v3.mjs",
     "i18n:check": "node scripts/i18n-check.mjs",
     "catalogo:check": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/catalogo-check.mjs",
+    "segnaposti": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/segnaposti.mjs",
     "datasheets": "node scripts/datasheets.mjs",
     "foto": "node scripts/foto.mjs"
   },

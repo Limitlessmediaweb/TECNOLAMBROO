@@ -57,6 +57,8 @@ for (const loc of locales) {
           const v = flat.get(k);
           if (typeof v !== "string" || !v.trim()) return false;
           if (/(^|\.)legal\./.test(k) && /Garante|Via |Betulle|Spinedi/.test(v)) return false;
+          // segnaposto [DA COMPLETARE – foto/scheda: …]: note interne in italiano, tolte nella versione pubblica
+          if (/^\[DA COMPLETARE[^\]]*\]$/.test(v.trim())) return false;
           // le parole brevi uguali all'italiano sono spesso giuste (es. "Banda", "Tipo" in spagnolo)
           return (v === itFlat.get(k) && !SAME_OK.test(v.replace(/%[a-zA-Z]+%/g, "")) && v.length > 24) || ITALIAN.test(v.replace(/Via [^,]+|San Colombano al Lambro|Miradolo Terme|Garante per la protezione dei dati personali|Tecnolambro S\.a\.s\.[^,]*/g, ""));
         });

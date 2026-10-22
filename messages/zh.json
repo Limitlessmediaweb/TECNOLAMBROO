@@ -169,9 +169,28 @@
         "short": "可弯曲、可扭转：连接未对准或有旋转的法兰。WR-22 至 WR-284。",
         "description": "Tecnolambro 自产的黄铜可扭转软波导。可在E面和H面弯曲，并可绕自身轴线扭转：在法兰未对准或有旋转时连接无线电设备与天线，并吸收振动和热膨胀。",
         "applications": [
-          "微波链路中无线电设备与天线之间的连接",
-          "存在振动的安装环境",
-          "校正法兰之间的错位和旋转"
+          "微波接力中的设备与天线连接",
+          "存在振动的安装场合",
+          "校正法兰之间的错位和旋转",
+          "雷达：发射机、旋转关节与天线之间"
+        ],
+        "specs": [
+          "14 种规格，从 WR-284（2.6–3.95 GHz）到 WR-22（33–50.1 GHz）",
+          "可在 E 面和 H 面弯曲，并可绕自身轴线扭转",
+          "吸收振动和热膨胀",
+          "每种规格的回波损耗、衰减以及连续波和峰值功率见可扭软波导数据表",
+          "标准长度：300、600、900、1000 和 1200 mm",
+          "所有零件发货前 100% 检测，包括电气和尺寸检查",
+          "[DA COMPLETARE – foto/scheda: dimensioni di WR-51 (TLFX-180) e codici TLFX di WR-34 e WR-159]",
+          "[DA COMPLETARE – foto/scheda: raggio minimo di curvatura e torsione massima per misura]",
+          "[DA COMPLETARE – foto/scheda: WR-22: vale ancora il limite di lunghezza di 3 piedi?]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "本体为 OT 80 UNI 4897 黄铜",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "[DA COMPLETARE – foto/scheda: guarnizioni e rivestimento esterno: ci sono? di che materiale?]",
+          "表面处理：光亮处理、喷漆、热处理和电镀处理"
         ]
       },
       "seamless": {
@@ -179,9 +198,26 @@
         "short": "管体无接缝，CW 功率最高 10 kW。WR-22 至 WR-284。",
         "description": "Tecnolambro 自产的无缝软波导，管体全长无接缝。技术参数表列出 WR-22 至 WR-284 各规格的 VSWR、衰减和功率。",
         "applications": [
-          "微波及卫星链路",
-          "大功率传输线路",
-          "测试台与实验室"
+          "微波接力和卫星链路",
+          "大功率传输线",
+          "测量平台和实验室"
+        ],
+        "specs": [
+          "14 种规格，从 WR-284（2.6–3.95 GHz）到 WR-22（33–50.1 GHz）",
+          "本体无焊缝",
+          "带外护套",
+          "连续波功率最高 10 kW",
+          "每种规格的驻波比、衰减和功率见无缝软波导数据表",
+          "标准长度：300、600、900、1000 和 1200 mm",
+          "所有零件发货前 100% 检测，包括电气和尺寸检查",
+          "[DA COMPLETARE – foto/scheda: VSWR, attenuazione e potenze di WR-34 e WR-159]",
+          "[DA COMPLETARE – foto/scheda: come si piega (piani E e H, torsione) e raggio minimo]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "[DA COMPLETARE – foto/scheda: materiale del corpo e della guaina della seamless]",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "表面处理：光亮处理、喷漆、热处理和电镀处理"
         ]
       },
       "bends": {
@@ -189,25 +225,66 @@
         "short": "E面和H面弯波导，90°或您所需的角度。",
         "description": "E面和H面硬波导弯波导，在我们的实验室中设计、制造和检测。各规格均提供90°弯波导，也可定制角度、弯曲半径和直段。",
         "applications": [
-          "E面弯波导",
-          "H面弯波导",
-          "定制角度、半径和直段"
+          "微波接力中设备与天线之间的连接",
+          "卫星地面站中放大器、馈源与照射器之间",
+          "雷达和广播链路",
+          "测量平台和样机"
+        ],
+        "specs": [
+          "硬波导，规格从 WR-284 到 WR-22",
+          "E 面和 H 面弯头",
+          "每种规格均有 90° 标准件，也可定制角度、半径和直段",
+          "角度可在 1° 至 180° 之间任选，标准或定制半径",
+          "在我们的实验室中设计、制造和检测",
+          "自有加工：切割、铣削、车削、装配和连接",
+          "所有零件发货前 100% 检测，包括电气和尺寸检查",
+          "在配置器中即可获得标注尺寸的图纸和 3D 模型",
+          "[DA COMPLETARE – foto/scheda: raggio minimo di curvatura nei piani E e H per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: spessore di parete della guida rigida per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: VSWR e perdite tipiche]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "[DA COMPLETARE – foto/scheda: materiale della guida rigida (ottone? rame? alluminio?)]",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "表面处理：光亮处理、喷漆、热处理和电镀处理"
         ]
       },
       "pending": {
         "name": "[待定义产品系列]",
         "short": "[待完成]",
         "description": "[待完成：产品系列文字及数据由所有人提供]",
-        "applications": []
+        "applications": [],
+        "specs": [],
+        "materials": []
       },
       "twists": {
         "name": "扭波导",
         "short": "旋转极化方向：标准90°，也可45°或定制。",
         "description": "用于旋转极化方向的硬波导扭波导：各规格均提供90°，也可45°或您所需的旋转角度，顺时针或逆时针。",
         "applications": [
-          "极化旋转",
-          "90°、45°或定制",
-          "顺时针或逆时针"
+          "微波接力中设备与天线之间的极化旋转",
+          "卫星地面站和雷达",
+          "测量平台和样机"
+        ],
+        "specs": [
+          "硬波导，规格从 WR-284 到 WR-22",
+          "用于旋转极化方向",
+          "每种规格均有 90° 标准件，也可做 45° 或所需角度",
+          "顺时针或逆时针",
+          "在我们的实验室中设计、制造和检测",
+          "自有加工：切割、铣削、车削、装配和连接",
+          "所有零件发货前 100% 检测，包括电气和尺寸检查",
+          "在配置器中即可获得标注尺寸的图纸和 3D 模型",
+          "[DA COMPLETARE – foto/scheda: lunghezza standard del twist per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: spessore di parete della guida rigida per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: VSWR e perdite tipiche]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "[DA COMPLETARE – foto/scheda: materiale della guida rigida (ottone? rame? alluminio?)]",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "表面处理：光亮处理、喷漆、热处理和电镀处理"
         ]
       },
       "offsets": {
@@ -215,9 +292,28 @@
         "short": "连接错位法兰，E面或H面。",
         "description": "用于连接错位法兰的硬波导偏移波导，E面或H面，偏移量和长度可定制。",
         "applications": [
-          "错位法兰，E面",
-          "错位法兰，H面",
-          "定制偏移量和长度"
+          "在微波接力中对齐法兰错位的设备与天线",
+          "卫星地面站和雷达",
+          "测量平台和样机"
+        ],
+        "specs": [
+          "硬波导，规格从 WR-284 到 WR-22",
+          "连接错位的法兰",
+          "E 面或 H 面",
+          "错位量和长度可定制",
+          "在我们的实验室中设计、制造和检测",
+          "自有加工：切割、铣削、车削、装配和连接",
+          "所有零件发货前 100% 检测，包括电气和尺寸检查",
+          "在配置器中即可获得标注尺寸的图纸和 3D 模型",
+          "[DA COMPLETARE – foto/scheda: disassamento minimo e massimo per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: spessore di parete della guida rigida per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: VSWR e perdite tipiche]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "[DA COMPLETARE – foto/scheda: materiale della guida rigida (ottone? rame? alluminio?)]",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "表面处理：光亮处理、喷漆、热处理和电镀处理"
         ]
       }
     },
@@ -249,7 +345,10 @@
       "rigidSize": "规格",
       "rigidRadiusE": "最小弯曲半径（E面）",
       "rigidRadiusH": "最小弯曲半径（H面）",
-      "rigidWall": "壁厚"
+      "rigidWall": "壁厚",
+      "specsTitle": "技术资料",
+      "featuresTitle": "特性",
+      "materialsTitle": "材料与表面处理"
     }
   },
   "bandFinder": {

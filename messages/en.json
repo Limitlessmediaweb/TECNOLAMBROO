@@ -169,9 +169,28 @@
         "short": "Bends and twists: connects misaligned or rotated flanges. WR-22 to WR-284.",
         "description": "Flexible, twistable brass waveguide made by Tecnolambro. It bends in the E and H planes and twists around its own axis: it connects radio and antenna when the flanges are misaligned or rotated, and absorbs vibration and thermal expansion.",
         "applications": [
-          "Radio-to-antenna runs in microwave links",
-          "Installations exposed to vibration",
-          "Correcting misalignment and rotation between flanges"
+          "Radio-to-antenna links in microwave radio links",
+          "Installations subject to vibration",
+          "Correcting misalignment and rotation between flanges",
+          "Radar: between transmitter, rotary joint and antenna"
+        ],
+        "specs": [
+          "14 sizes, from WR-284 (2.6–3.95 GHz) to WR-22 (33–50.1 GHz)",
+          "Bends in the E and H planes and twists around its own axis",
+          "Absorbs vibration and thermal expansion",
+          "For each size: return loss, attenuation, CW and peak power in the twistable table",
+          "Standard lengths: 300, 600, 900, 1000 and 1200 mm",
+          "100% of parts tested before shipping, with electrical and dimensional checks",
+          "[DA COMPLETARE – foto/scheda: dimensioni di WR-51 (TLFX-180) e codici TLFX di WR-34 e WR-159]",
+          "[DA COMPLETARE – foto/scheda: raggio minimo di curvatura e torsione massima per misura]",
+          "[DA COMPLETARE – foto/scheda: WR-22: vale ancora il limite di lunghezza di 3 piedi?]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "Body in OT 80 UNI 4897 brass",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "[DA COMPLETARE – foto/scheda: guarnizioni e rivestimento esterno: ci sono? di che materiale?]",
+          "Finishes: bright dipping, painting, heat and galvanic treatments"
         ]
       },
       "seamless": {
@@ -179,9 +198,26 @@
         "short": "No seams, CW power up to 10 kW. WR-22 to WR-284.",
         "description": "Seamless flexible waveguide, with no seams along the body, made by Tecnolambro. The table gives VSWR, attenuation and power for every size from WR-22 to WR-284.",
         "applications": [
-          "Microwave and satellite links",
-          "High-power runs",
+          "Radio links and satellite links",
+          "High-power lines",
           "Test benches and laboratories"
+        ],
+        "specs": [
+          "14 sizes, from WR-284 (2.6–3.95 GHz) to WR-22 (33–50.1 GHz)",
+          "No welds along the body",
+          "With outer jacket",
+          "CW power up to 10 kW",
+          "For each size: VSWR, attenuation and power in the seamless table",
+          "Standard lengths: 300, 600, 900, 1000 and 1200 mm",
+          "100% of parts tested before shipping, with electrical and dimensional checks",
+          "[DA COMPLETARE – foto/scheda: VSWR, attenuazione e potenze di WR-34 e WR-159]",
+          "[DA COMPLETARE – foto/scheda: come si piega (piani E e H, torsione) e raggio minimo]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "[DA COMPLETARE – foto/scheda: materiale del corpo e della guaina della seamless]",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "Finishes: bright dipping, painting, heat and galvanic treatments"
         ]
       },
       "bends": {
@@ -189,25 +225,66 @@
         "short": "E-plane and H-plane bends, 90° or at the angle you need.",
         "description": "Rigid waveguide bends in the E-plane and H-plane, designed, built and tested in our laboratory. 90° in every size, or with custom angle, radius and straight legs.",
         "applications": [
-          "E-plane bends",
-          "H-plane bends",
-          "Custom angle, radius and straight legs"
+          "Runs between equipment and antennas in microwave radio links",
+          "Satellite ground stations, between amplifiers, feeds and illuminators",
+          "Radar and broadcast links",
+          "Test benches and prototypes"
+        ],
+        "specs": [
+          "Rigid waveguide, sizes WR-284 to WR-22",
+          "E-plane and H-plane bends",
+          "90° for every size, or with custom angle, radius and straight sections",
+          "Free angle from 1° to 180°, standard or custom radius",
+          "Designed, built and tested in our laboratory",
+          "In-house machining: cutting, milling, turning, assembly and joining",
+          "100% of parts tested before shipping, with electrical and dimensional checks",
+          "Dimensioned drawing and 3D model straight from the configurator",
+          "[DA COMPLETARE – foto/scheda: raggio minimo di curvatura nei piani E e H per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: spessore di parete della guida rigida per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: VSWR e perdite tipiche]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "[DA COMPLETARE – foto/scheda: materiale della guida rigida (ottone? rame? alluminio?)]",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "Finishes: bright dipping, painting, heat and galvanic treatments"
         ]
       },
       "pending": {
         "name": "[FAMILY TO BE DEFINED]",
         "short": "[TO BE COMPLETED]",
         "description": "[TO BE COMPLETED: family texts and data from the owner]",
-        "applications": []
+        "applications": [],
+        "specs": [],
+        "materials": []
       },
       "twists": {
         "name": "Twists",
         "short": "Rotate polarization: 90° as standard, 45° or custom.",
         "description": "Rigid waveguide twists to rotate polarization: 90° in every size, 45° or the rotation you need, clockwise or counter-clockwise.",
         "applications": [
-          "Polarization rotation",
-          "90°, 45° or custom",
-          "Clockwise or counter-clockwise"
+          "Polarization rotation between equipment and antennas in radio links",
+          "Satellite ground stations and radar",
+          "Test benches and prototypes"
+        ],
+        "specs": [
+          "Rigid waveguide, sizes WR-284 to WR-22",
+          "Rotate the polarization",
+          "90° for every size, 45° or the rotation you need",
+          "Clockwise or counter-clockwise",
+          "Designed, built and tested in our laboratory",
+          "In-house machining: cutting, milling, turning, assembly and joining",
+          "100% of parts tested before shipping, with electrical and dimensional checks",
+          "Dimensioned drawing and 3D model straight from the configurator",
+          "[DA COMPLETARE – foto/scheda: lunghezza standard del twist per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: spessore di parete della guida rigida per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: VSWR e perdite tipiche]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "[DA COMPLETARE – foto/scheda: materiale della guida rigida (ottone? rame? alluminio?)]",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "Finishes: bright dipping, painting, heat and galvanic treatments"
         ]
       },
       "offsets": {
@@ -215,9 +292,28 @@
         "short": "Join staggered flanges, in the E or H plane.",
         "description": "Rigid waveguide offsets to join staggered flanges, in the E-plane or H-plane, with custom offset and length.",
         "applications": [
-          "Staggered flanges, E-plane",
-          "Staggered flanges, H-plane",
-          "Custom offset and length"
+          "Aligning equipment and antennas with offset flanges in radio links",
+          "Satellite ground stations and radar",
+          "Test benches and prototypes"
+        ],
+        "specs": [
+          "Rigid waveguide, sizes WR-284 to WR-22",
+          "Connect offset flanges",
+          "In the E plane or the H plane",
+          "Custom offset and length",
+          "Designed, built and tested in our laboratory",
+          "In-house machining: cutting, milling, turning, assembly and joining",
+          "100% of parts tested before shipping, with electrical and dimensional checks",
+          "Dimensioned drawing and 3D model straight from the configurator",
+          "[DA COMPLETARE – foto/scheda: disassamento minimo e massimo per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: spessore di parete della guida rigida per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: VSWR e perdite tipiche]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "[DA COMPLETARE – foto/scheda: materiale della guida rigida (ottone? rame? alluminio?)]",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "Finishes: bright dipping, painting, heat and galvanic treatments"
         ]
       }
     },
@@ -249,7 +345,10 @@
       "rigidSize": "Size",
       "rigidRadiusE": "Minimum radius, E-plane",
       "rigidRadiusH": "Minimum radius, H-plane",
-      "rigidWall": "Wall thickness"
+      "rigidWall": "Wall thickness",
+      "specsTitle": "Technical sheet",
+      "featuresTitle": "Features",
+      "materialsTitle": "Materials and finishes"
     }
   },
   "bandFinder": {

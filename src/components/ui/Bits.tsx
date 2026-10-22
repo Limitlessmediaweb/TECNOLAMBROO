@@ -54,6 +54,14 @@ export function isOnlyPlaceholder(text: string): boolean {
   return stripPlaceholders(text) === "";
 }
 
+/**
+ * Voci di un elenco da mostrare: in anteprima tutte (i segnaposto restano evidenziati con WithTodo);
+ * nella versione pubblica senza le voci che sono solo un segnaposto.
+ */
+export function visibleTexts(list: readonly string[]): string[] {
+  return ENV.demo ? [...list] : list.filter((s) => !isOnlyPlaceholder(s));
+}
+
 /** Badge giallo "manca: …" visibile solo in anteprima (NEXT_PUBLIC_DEMO=true). */
 export function MissingBadge({ label, className }: { label: string; className?: string }) {
   if (!ENV.demo) return null;

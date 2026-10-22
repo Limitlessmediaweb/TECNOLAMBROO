@@ -171,7 +171,26 @@
         "applications": [
           "Collegamento radio-antenna nei ponti radio",
           "Installazioni soggette a vibrazioni",
-          "Correzione di disallineamenti e rotazioni tra flange"
+          "Correzione di disallineamenti e rotazioni tra flange",
+          "Radar: tra trasmettitore, rotary joint e antenna"
+        ],
+        "specs": [
+          "14 misure, da WR-284 (2,6–3,95 GHz) a WR-22 (33–50,1 GHz)",
+          "Si piega nei piani E e H e si torce attorno al proprio asse",
+          "Assorbe vibrazioni e dilatazioni termiche",
+          "Per ogni misura: perdita di ritorno, attenuazione e potenza CW e di picco nella tabella twistabile",
+          "Lunghezze standard: 300, 600, 900, 1000 e 1200 mm",
+          "Collaudo del 100% dei pezzi prima della spedizione, con controllo elettrico e dimensionale",
+          "[DA COMPLETARE – foto/scheda: dimensioni di WR-51 (TLFX-180) e codici TLFX di WR-34 e WR-159]",
+          "[DA COMPLETARE – foto/scheda: raggio minimo di curvatura e torsione massima per misura]",
+          "[DA COMPLETARE – foto/scheda: WR-22: vale ancora il limite di lunghezza di 3 piedi?]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "Corpo in ottone OT 80 UNI 4897",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "[DA COMPLETARE – foto/scheda: guarnizioni e rivestimento esterno: ci sono? di che materiale?]",
+          "Finiture: brillantatura, verniciatura, trattamenti termici e galvanici"
         ]
       },
       "seamless": {
@@ -182,6 +201,23 @@
           "Ponti radio e collegamenti satellitari",
           "Linee ad alta potenza",
           "Banchi di misura e laboratori"
+        ],
+        "specs": [
+          "14 misure, da WR-284 (2,6–3,95 GHz) a WR-22 (33–50,1 GHz)",
+          "Senza saldature lungo il corpo",
+          "Con guaina esterna",
+          "Potenze CW fino a 10 kW",
+          "Per ogni misura: VSWR, attenuazione e potenza nella tabella seamless",
+          "Lunghezze standard: 300, 600, 900, 1000 e 1200 mm",
+          "Collaudo del 100% dei pezzi prima della spedizione, con controllo elettrico e dimensionale",
+          "[DA COMPLETARE – foto/scheda: VSWR, attenuazione e potenze di WR-34 e WR-159]",
+          "[DA COMPLETARE – foto/scheda: come si piega (piani E e H, torsione) e raggio minimo]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "[DA COMPLETARE – foto/scheda: materiale del corpo e della guaina della seamless]",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "Finiture: brillantatura, verniciatura, trattamenti termici e galvanici"
         ]
       },
       "bends": {
@@ -189,25 +225,66 @@
         "short": "Curve in piano E e H, a 90° o con l’angolo che vi serve.",
         "description": "Curve in guida d’onda rigida in piano E e in piano H, progettate, costruite e collaudate nel nostro laboratorio. A 90° per ogni misura, oppure con angolo, raggio e tratti dritti su misura.",
         "applications": [
-          "Curve in piano E",
-          "Curve in piano H",
-          "Angolo, raggio e tratti dritti su misura"
+          "Tratte tra apparati e antenne nei ponti radio a microonde",
+          "Stazioni di terra satellitari, tra amplificatori, feed e illuminatori",
+          "Radar e collegamenti broadcast",
+          "Banchi di misura e prototipi"
+        ],
+        "specs": [
+          "Guida d’onda rigida, per le misure da WR-284 a WR-22",
+          "Curve in piano E e in piano H",
+          "A 90° per ogni misura, oppure con angolo, raggio e tratti dritti su misura",
+          "Angolo libero da 1° a 180°, raggio standard o su misura",
+          "Progettati, costruiti e collaudati nel nostro laboratorio",
+          "Lavorazioni interne: taglio, fresatura, tornitura, assemblaggio e giunzione",
+          "Collaudo del 100% dei pezzi prima della spedizione, con controllo elettrico e dimensionale",
+          "Disegno quotato e modello 3D subito dal configuratore",
+          "[DA COMPLETARE – foto/scheda: raggio minimo di curvatura nei piani E e H per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: spessore di parete della guida rigida per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: VSWR e perdite tipiche]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "[DA COMPLETARE – foto/scheda: materiale della guida rigida (ottone? rame? alluminio?)]",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "Finiture: brillantatura, verniciatura, trattamenti termici e galvanici"
         ]
       },
       "pending": {
         "name": "[FAMIGLIA DA DEFINIRE]",
         "short": "[DA COMPLETARE]",
         "description": "[DA COMPLETARE: testi e dati della famiglia forniti dal titolare]",
-        "applications": []
+        "applications": [],
+        "specs": [],
+        "materials": []
       },
       "twists": {
         "name": "Twist",
         "short": "Ruotano la polarizzazione: 90° di serie, 45° o su misura.",
         "description": "Twist in guida d’onda rigida per ruotare la polarizzazione: a 90° per ogni misura, a 45° o con la rotazione che vi serve, in senso orario o antiorario.",
         "applications": [
-          "Rotazione della polarizzazione",
-          "90°, 45° o su misura",
-          "Senso orario o antiorario"
+          "Rotazione della polarizzazione tra apparati e antenne nei ponti radio",
+          "Stazioni di terra satellitari e radar",
+          "Banchi di misura e prototipi"
+        ],
+        "specs": [
+          "Guida d’onda rigida, per le misure da WR-284 a WR-22",
+          "Ruotano la polarizzazione",
+          "A 90° per ogni misura, a 45° o con la rotazione che vi serve",
+          "Senso orario o antiorario",
+          "Progettati, costruiti e collaudati nel nostro laboratorio",
+          "Lavorazioni interne: taglio, fresatura, tornitura, assemblaggio e giunzione",
+          "Collaudo del 100% dei pezzi prima della spedizione, con controllo elettrico e dimensionale",
+          "Disegno quotato e modello 3D subito dal configuratore",
+          "[DA COMPLETARE – foto/scheda: lunghezza standard del twist per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: spessore di parete della guida rigida per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: VSWR e perdite tipiche]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "[DA COMPLETARE – foto/scheda: materiale della guida rigida (ottone? rame? alluminio?)]",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "Finiture: brillantatura, verniciatura, trattamenti termici e galvanici"
         ]
       },
       "offsets": {
@@ -215,9 +292,28 @@
         "short": "Collegano flange sfalsate, in piano E o H.",
         "description": "Disassati in guida d’onda rigida per collegare flange sfalsate, in piano E o in piano H, con disassamento e lunghezza su misura.",
         "applications": [
-          "Flange sfalsate in piano E",
-          "Flange sfalsate in piano H",
-          "Disassamento e lunghezza su misura"
+          "Allineare apparati e antenne con flange sfalsate nei ponti radio",
+          "Stazioni di terra satellitari e radar",
+          "Banchi di misura e prototipi"
+        ],
+        "specs": [
+          "Guida d’onda rigida, per le misure da WR-284 a WR-22",
+          "Collegano flange sfalsate",
+          "In piano E o in piano H",
+          "Disassamento e lunghezza su misura",
+          "Progettati, costruiti e collaudati nel nostro laboratorio",
+          "Lavorazioni interne: taglio, fresatura, tornitura, assemblaggio e giunzione",
+          "Collaudo del 100% dei pezzi prima della spedizione, con controllo elettrico e dimensionale",
+          "Disegno quotato e modello 3D subito dal configuratore",
+          "[DA COMPLETARE – foto/scheda: disassamento minimo e massimo per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: spessore di parete della guida rigida per ogni misura]",
+          "[DA COMPLETARE – foto/scheda: VSWR e perdite tipiche]",
+          "[DA COMPLETARE – foto/scheda: elenco delle flange disponibili per ogni misura (oggi il configuratore propone UBR, PBR, PDR, UDR e CPR: da confermare)]"
+        ],
+        "materials": [
+          "[DA COMPLETARE – foto/scheda: materiale della guida rigida (ottone? rame? alluminio?)]",
+          "[DA COMPLETARE – foto/scheda: materiale delle flange]",
+          "Finiture: brillantatura, verniciatura, trattamenti termici e galvanici"
         ]
       }
     },
@@ -249,7 +345,10 @@
       "rigidSize": "Misura",
       "rigidRadiusE": "Raggio minimo, piano E",
       "rigidRadiusH": "Raggio minimo, piano H",
-      "rigidWall": "Spessore di parete"
+      "rigidWall": "Spessore di parete",
+      "specsTitle": "Scheda tecnica",
+      "featuresTitle": "Caratteristiche",
+      "materialsTitle": "Materiali e finiture"
     }
   },
   "bandFinder": {
