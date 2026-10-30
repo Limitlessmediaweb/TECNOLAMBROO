@@ -13,12 +13,17 @@ import { CONSENT_OPEN_EVENT, openConsent, readConsent, saveConsent } from "@/lib
  */
 export function CookieBanner({ policyHref }: { policyHref: string }) {
   const t = useT("consent");
-  const [open, setOpen] = useState(false);
+  // aperto già nell'HTML del server: il testo del banner si dipinge subito (era l'LCP della home, in ritardo
+  // fino all'idratazione). Chi ha già scelto non lo vede: BOOT_SCRIPT mette data-consent-done (globals.css).
+  const [open, setOpen] = useState(true);
 
   useEffect(() => {
     // dopo l'idratazione: lo stato salvato esiste solo nel browser
     const id = window.requestAnimationFrame(() => setOpen(readConsent() === null));
-    const reopen = () => setOpen(true);
+    const reopen = () => {
+      delete document.documentElement.dataset.consentDone;
+      setOpen(true);
+    };
     window.addEventListener(CONSENT_OPEN_EVENT, reopen);
     return () => {
       window.cancelAnimationFrame(id);

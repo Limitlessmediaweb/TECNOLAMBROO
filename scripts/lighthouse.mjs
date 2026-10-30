@@ -15,12 +15,15 @@ const name = (process.argv[3] ?? "home-mobile").replace(/[^\w-]/g, "");
 const port = 9333;
 
 const RUNS = Number(process.env.RUNS ?? 1);
+// CPU_SLOWDOWN: rallentamento della CPU (predefinito di Lighthouse 4). Su un PC più lento del solito (benchmarkIndex
+// nel report) si abbassa per simulare lo stesso telefono: 4 × indice di riferimento / indice di oggi.
+const throttling = process.env.CPU_SLOWDOWN ? { throttling: { cpuSlowdownMultiplier: Number(process.env.CPU_SLOWDOWN) } } : {};
 const browser = await chromium.launch({ args: [`--remote-debugging-port=${port}`] });
 try {
   // Con RUNS > 1 riporta la mediana della Performance (il TBT locale è rumoroso).
   const scores = [];
   for (let i = 1; i < RUNS; i++) {
-    const r = await lighthouse(BASE + path, { port, logLevel: "error", onlyCategories: ["performance"] });
+    const r = await lighthouse(BASE + path, { port, logLevel: "error", onlyCategories: ["performance"], ...throttling });
     const a = r.lhr.audits;
     scores.push(Math.round(r.lhr.categories.performance.score * 100));
     const longTasks = (a["long-tasks"]?.details?.items ?? [])
@@ -34,6 +37,7 @@ try {
     output: ["html", "json"],
     logLevel: "error",
     onlyCategories: ["performance", "accessibility", "best-practices", "seo"],
+    ...throttling,
   });
   mkdirSync("lighthouse", { recursive: true });
   const [html, json] = result.report;

@@ -660,6 +660,11 @@ html[data-consent-open] [data-whatsapp-float] {
   display: none;
 }
 
+/* Scelta dei cookie già fatta (BOOT_SCRIPT): il banner scritto dal server non si vede nemmeno per un frame */
+html[data-consent-done] [data-consent-banner] {
+  display: none;
+}
+
 /* Il banner dei cookie non finisce mai in stampa né nei PDF generati dalle pagine */
 @media print {
   [data-consent-banner] {

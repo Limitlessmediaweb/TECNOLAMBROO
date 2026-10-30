@@ -12,5 +12,9 @@ export function InlineScript({ html }: { html: string }) {
   );
 }
 
-/** Tema salvato + attivazione dell'intro sulla home (una volta per sessione). */
-export const BOOT_SCRIPT = `(function(){var d=document.documentElement;d.dataset.js="1";try{var t=localStorage.getItem("tl-theme");if(t==="light"||t==="dark")d.dataset.theme=t}catch(e){}var p=location.pathname.replace(/\\/$/,"");if((p===""||p==="/en")&&location.search.indexOf("nointro")<0){var s=null;try{s=sessionStorage.getItem("tl-intro-seen")}catch(e){}if(s!=="1")d.dataset.intro="play"}})();`;
+/**
+ * Tema salvato + attivazione dell'intro sulla home (una volta per sessione) + scelta dei cookie già fatta:
+ * data-consent-done nasconde il banner (scritto nell'HTML del server) prima del primo paint.
+ * La validità replica readConsent() in lib/consent.ts (versione 1, circa 6 mesi).
+ */
+export const BOOT_SCRIPT = `(function(){var d=document.documentElement;d.dataset.js="1";try{var t=localStorage.getItem("tl-theme");if(t==="light"||t==="dark")d.dataset.theme=t}catch(e){}try{var c=JSON.parse(localStorage.getItem("tl-consent")||"null");if(c&&c.v===1&&typeof c.stats==="boolean"&&Date.now()-Date.parse(c.at)<=15724800000)d.dataset.consentDone="1"}catch(e){}var p=location.pathname.replace(/\\/$/,"");if((p===""||p==="/en")&&location.search.indexOf("nointro")<0){var s=null;try{s=sessionStorage.getItem("tl-intro-seen")}catch(e){}if(s!=="1")d.dataset.intro="play"}})();`;

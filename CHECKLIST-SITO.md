@@ -1,5 +1,7 @@
 # Checklist per la messa online definitiva · 31 ottobre 2026
 
+> **30/10/2026:** tutti i branch sono uniti in `main` (in locale) e sul branch `pronto-online-30-10`. Lo stato aggiornato per il lancio è in **`MANCA-PER-ONLINE.md`**, i passi del dominio in **`PUBBLICARE-TECNOLAMBRO.md`**. Questa checklist resta come storico.
+
 Aggiornata il 15 ottobre 2026 (seconda passata). Le correzioni sono sul branch `fix/pre-lancio-31-10`, pubblicato su GitHub con la sua preview Vercel. **Non sono ancora su `main`**.
 
 **Colonne di stato**
