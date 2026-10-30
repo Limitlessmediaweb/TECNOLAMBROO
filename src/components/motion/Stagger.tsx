@@ -27,7 +27,7 @@ export function Stagger({ children, as: Tag = "div", className, selector = ":sco
           duration: 1,
           stagger,
           ease: "power3.out",
-          scrollTrigger: { trigger: ref.current, start: "top 88%", once: true },
+          scrollTrigger: { trigger: ref.current, start: "top 88%", toggleActions: "play none none none" },
         });
       });
       return () => mm.revert();

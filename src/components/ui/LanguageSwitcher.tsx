@@ -42,6 +42,7 @@ export function LanguageSwitcher({ className, inline = false }: { className?: st
     <NextLink
       key={l}
       href={switchLocalePath(pathname, locale, l)}
+      prefetch={false}
       hrefLang={LOCALE_META[l].hreflang}
       lang={LOCALE_META[l].hreflang}
       aria-current={l === locale ? "true" : undefined}

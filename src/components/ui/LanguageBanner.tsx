@@ -71,6 +71,8 @@ export function LanguageBanner() {
       <p className="min-w-0 flex-1">{tx.body}</p>
       <NextLink
         href={switchLocalePath(pathname, locale, target)}
+        // niente prefetch verso un'altra lingua: il prefetch della pagina italiana senza prefisso dalle pagine /en andava in loop (404 ripetuti)
+        prefetch={false}
         hrefLang={LOCALE_META[target].hreflang}
         className="btn btn-primary btn-sm shrink-0"
         onClick={() => {

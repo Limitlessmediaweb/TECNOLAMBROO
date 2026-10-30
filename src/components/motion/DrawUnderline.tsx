@@ -21,7 +21,7 @@ export function DrawUnderline({ children, delay = 0.2 }: { children: ReactNode; 
             duration: 1.2,
             delay,
             ease: "power2.inOut",
-            scrollTrigger: { trigger: ref.current, start: "top 90%", once: true },
+            scrollTrigger: { trigger: ref.current, start: "top 90%", toggleActions: "play none none none" },
           },
         );
       });

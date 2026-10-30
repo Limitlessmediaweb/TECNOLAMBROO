@@ -80,7 +80,7 @@ export function SplitReveal({ children, as: Tag = "h2", className, by = "lines",
               onComplete: () => {
                 played = true;
               },
-              scrollTrigger: { trigger: ref.current, start: "top 90%", once: true },
+              scrollTrigger: { trigger: ref.current, start: "top 90%", toggleActions: "play none none none" },
             });
           },
         });

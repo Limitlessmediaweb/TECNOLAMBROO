@@ -26,7 +26,7 @@ export function Counter({ value, from = 0, className, duration = 1.6 }: Props) {
           v: value,
           duration,
           ease: "power2.out",
-          scrollTrigger: { trigger: el, start: "top 90%", once: true },
+          scrollTrigger: { trigger: el, start: "top 90%", toggleActions: "play none none none" },
           onUpdate: () => {
             el.textContent = String(Math.round(state.v));
           },

@@ -29,7 +29,7 @@ export function Reveal({ children, as: Tag = "div", className, y = 36, delay = 0
           duration: 1.1,
           delay,
           ease: "power3.out",
-          scrollTrigger: { trigger: ref.current, start: "top 92%", once: true },
+          scrollTrigger: { trigger: ref.current, start: "top 92%", toggleActions: "play none none none" },
         });
       });
       return () => mm.revert();

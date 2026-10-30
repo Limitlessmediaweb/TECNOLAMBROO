@@ -28,10 +28,11 @@ export function ScrambleText({ text, className, chars = "0123456789WR-.,", durat
       mm.add(MQ.motion, () => {
         const el = visual.current;
         if (!el) return;
+        let entered = false;
         const run = () => {
           gsap.to(el, { duration, scrambleText: { text, chars, speed: 0.6, revealDelay: 0.15 }, ease: "none", overwrite: true });
         };
-        gsap.timeline({ scrollTrigger: { trigger: el, start: "top 92%", once: true, onEnter: run } });
+        gsap.timeline({ scrollTrigger: { trigger: el, start: "top 92%", onEnter: () => !entered && ((entered = true), run()) } });
         if (trigger === "hover") {
           const host = ref.current?.closest("a, button, [data-scramble-host]") ?? ref.current;
           host?.addEventListener("pointerenter", run);
