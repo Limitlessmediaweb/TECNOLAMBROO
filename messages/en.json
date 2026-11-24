@@ -1401,7 +1401,8 @@
       "flange2": "Flange 2",
       "length": "Length",
       "finish": "Finish",
-      "final": "Quantity"
+      "final": "Quantity",
+      "item": "Model"
     },
     "q": {
       "type": "Which part do you need?",
@@ -1413,7 +1414,10 @@
       "length_twist": "How much rotation and what length?",
       "length_offset": "How much offset and what length?",
       "finish": "Which finish?",
-      "final": "How many pieces do you need?"
+      "final": "How many pieces do you need?",
+      "item_cover": "Which cover do you need?",
+      "item_gasket": "Which gasket do you need?",
+      "item_castbend": "Which cast bend do you need?"
     },
     "hint": {
       "type": "The 3D model next to it changes at once.",
@@ -1422,7 +1426,8 @@
       "flange2": "In the 3D view it carries the FLANGE 2 label.",
       "length": "The dimension in the 3D view updates as you choose.",
       "finish": "The metal of the model changes like the real part.",
-      "final": "You can attach your drawing or 3D file and add a note."
+      "final": "You can attach your drawing or 3D file and add a note.",
+      "item": "These are the catalogue codes. For other sizes, write to us: we make them on request."
     },
     "types": {
       "twistable": {
@@ -1560,7 +1565,66 @@
       "body": "WAVEGUIDE",
       "bodyFlex": "CORRUGATED WAVEGUIDE",
       "jacket": "RUBBER JACKET",
-      "jacketOpt": "JACKET (ON REQUEST)"
+      "jacketOpt": "JACKET (ON REQUEST)",
+      "flange": "FLANGE"
+    },
+    "acc": {
+      "group": "Accessories and parts on request",
+      "cover": {
+        "name": "Flange cover",
+        "short": "LDPE protective cap",
+        "tag": "COVER"
+      },
+      "gasket": {
+        "name": "Gasket",
+        "short": "Silicone 60 ShA",
+        "tag": "GASKET"
+      },
+      "castbend": {
+        "name": "Cast bend",
+        "short": "Compact cast bend, on request"
+      },
+      "coverDesc": "{w} × {h} mm · height {t} mm · blue LDPE",
+      "gasketDesc": "{w} × {h} mm · section {s} mm · silicone 60 ShA",
+      "other": "Other sizes and other flanges: on request.",
+      "onRequest": "On request",
+      "castBody": "Cast bends are made on request. Choose size and plane: we reply with the drawing and the quotation.",
+      "castNo3d": "For this part the 3D model and the dimensions come with the quotation."
+    },
+    "sheet": {
+      "button": "Download datasheet",
+      "preparing": "Preparing the PDF…",
+      "error": "The PDF could not be created. Please try again.",
+      "title": "Configuration datasheet",
+      "codeLabel": "Configuration code",
+      "view3d": "3D view",
+      "drawing": "Dimensioned drawing",
+      "dataTitle": "Configuration data",
+      "electricalTitle": "Electrical and mechanical data",
+      "electricalSource": "Catalogue data {code}",
+      "onRequestTitle": "On request",
+      "onRequestBody": "For this configuration the electrical data (VSWR, losses, power) are provided with the offer.",
+      "note": "Indicative data, to be confirmed in the offer. The final drawing comes with the quotation.",
+      "dateLabel": "Date",
+      "brass": "Brass",
+      "rows": {
+        "waveguide": "Waveguide",
+        "inner": "Inner a × b",
+        "band": "Band",
+        "material": "Material"
+      },
+      "el": {
+        "il": "Insertion loss",
+        "ilMax": "Insertion loss max",
+        "rl": "Return loss",
+        "vswr": "VSWR max",
+        "cw": "CW power",
+        "rE": "Min. E-plane radius",
+        "rH": "Min. H-plane radius",
+        "twist": "Max twist",
+        "pMax": "Max pressure",
+        "pOp": "Operating pressure"
+      }
     }
   }
 }

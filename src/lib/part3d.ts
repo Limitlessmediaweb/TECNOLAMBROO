@@ -392,7 +392,13 @@ function corrugationBump(repeat: number): THREE.CanvasTexture {
 export type BuildOptions = {
   /** flessibili senza guaina scelta: la guaina c'è lo stesso, nascosta, e compare solo nella vista esplosa */
   ghostJacket?: boolean;
+  /** solo la flangia 1 con un accessorio davanti (copertura TCF o guarnizione TLG) */
+  accessory?: Accessory;
 };
+/** Accessorio da mostrare sulla flangia: quote in mm da data/catalogo-ditta.ts. */
+export type Accessory =
+  | { kind: "cover"; w: number; h: number; height: number; wall: number; r: number }
+  | { kind: "gasket"; w: number; h: number; section: number };
 export type PartInfo = {
   group: THREE.Group;
   triangles: number;
@@ -406,7 +412,74 @@ export type PartInfo = {
   mid: Frame;
 };
 
+/** Copertura di protezione: fondo più bordo che abbraccia la flangia, aperta verso la flangia (+z). */
+function coverGeometry(a: Extract<Accessory, { kind: "cover" }>): THREE.BufferGeometry {
+  const outer = () => rectPath(new THREE.Shape(), a.w, a.h, a.r, 5);
+  const plate = new THREE.ExtrudeGeometry(outer(), { depth: a.wall, bevelEnabled: false, curveSegments: 10 });
+  const ring = outer();
+  ring.holes.push(rectPath(new THREE.Path(), a.w - 2 * a.wall, a.h - 2 * a.wall, Math.max(0.2, a.r - a.wall), 5));
+  const rim = new THREE.ExtrudeGeometry(ring, { depth: a.height - a.wall, bevelEnabled: false, curveSegments: 10 });
+  rim.translate(0, 0, a.wall);
+  const geo = mergeGeometries([plate, rim]) ?? plate;
+  rim.dispose();
+  if (geo !== plate) plate.dispose();
+  return geo;
+}
+
+/** Flangia 1 da sola con l'accessorio davanti alla faccia di accoppiamento (che guarda verso -z). */
+function buildAccessory(spec: PartSpec, acc: Accessory): PartInfo {
+  const size = sizeOf(spec);
+  const mats = materials(spec);
+  const def = flangeFor(spec, spec.f1);
+  const geo = flangeGeometry(def, size.s.a, size.s.b);
+  const group = new THREE.Group();
+  group.name = "Tecnolambro";
+  const flange = new THREE.Group();
+  flange.name = "Flangia 1";
+  const plate = new THREE.Mesh(geo.plate, mats.flange);
+  plate.castShadow = true;
+  flange.add(plate);
+  // con la guarnizione a catalogo non si disegna l'o-ring generico della gola
+  if (geo.seal && acc.kind !== "gasket") flange.add(new THREE.Mesh(geo.seal, mats.rubber));
+  else geo.seal?.dispose();
+  // tratto di guida dietro la flangia, per far capire dove va montata
+  const stub = sweep((d) => ({ p: new V3(0, 0, def.C + d), t: new V3(0, 0, 1), u: new V3(1, 0, 0), v: new V3(0, 1, 0) }), [{ d: 0, w: size.outerW, h: size.outerH, r: 0.6 }, { d: Math.max(size.outerW, 12), w: size.outerW, h: size.outerH, r: 0.6 }], 3);
+  const body = new THREE.Mesh(stub, mats.body);
+  body.castShadow = true;
+  group.add(flange, body);
+  const { w, h } = flangeOutline(def);
+  let mesh: THREE.Mesh;
+  if (acc.kind === "cover") {
+    mesh = new THREE.Mesh(coverGeometry(acc), new THREE.MeshPhysicalMaterial({ color: new THREE.Color("#1f63c4"), metalness: 0, roughness: 0.48, clearcoat: 0.25, side: THREE.DoubleSide, name: "LDPE" }));
+    mesh.position.z = -acc.wall - 0.3;
+    mesh.name = "Copertura";
+  } else {
+    const pts = rectPoints(acc.w, acc.h, Math.min(acc.w, acc.h) * 0.17, 6).map(([x, y]) => new V3(x, y, 0));
+    mesh = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, true, "centripetal"), 120, acc.section / 2, 10, true), mats.rubber);
+    mesh.position.z = -acc.section / 2;
+    mesh.name = "Guarnizione";
+  }
+  mesh.castShadow = true;
+  mesh.userData.axis = new V3(0, 0, -1);
+  mesh.userData.dist = Math.max(w, h) * 0.9 + 6;
+  mesh.userData.rest = 0.5;
+  mesh.userData.kind = "accessory";
+  group.add(mesh);
+  let triangles = 0;
+  group.traverse((o) => {
+    if (o instanceof THREE.Mesh) {
+      const g = o.geometry as THREE.BufferGeometry;
+      triangles += (g.index ? g.index.count : g.attributes.position.count) / 3;
+    }
+  });
+  group.updateMatrixWorld(true);
+  const box = new THREE.Box3().setFromObject(group);
+  const origin: Frame = { p: new V3(0, 0, 0), t: new V3(0, 0, 1), u: new V3(1, 0, 0), v: new V3(0, 1, 0) };
+  return { group, triangles: Math.round(triangles), ends: [origin, origin], size, total: 0, flanges: [def, def], box, mid: origin };
+}
+
 export function buildPart(spec: PartSpec, opts: BuildOptions = {}): PartInfo {
+  if (opts.accessory) return buildAccessory(spec, opts.accessory);
   const size = sizeOf(spec);
   const mats = materials(spec);
   const segs = pathFor(spec);
@@ -617,7 +690,7 @@ export function dimLabels(spec: PartSpec, info: PartInfo, fmt: (v: number) => st
 export type ViewPreset = "iso" | "front" | "side";
 export type ViewFocus = "all" | "f1" | "f2";
 /** Testi delle etichette ancorate al modello (già tradotti). */
-export type ViewerLabels = { flange1: string; flange2: string; f1: string; f2: string; body?: string; jacket?: string };
+export type ViewerLabels = { flange1: string; flange2: string; f1: string; f2: string; body?: string; jacket?: string; /** nome e codice dell'accessorio */ accessory?: string; accessoryCode?: string };
 export type ViewerOptions = {
   /** ruota da solo e riparte qualche secondo dopo l'ultimo tocco */
   autoRotate?: boolean;
@@ -628,7 +701,7 @@ export type ViewerOptions = {
   labels?: ViewerLabels;
 };
 export type Viewer = {
-  setSpec: (spec: PartSpec, labels?: ViewerLabels) => void;
+  setSpec: (spec: PartSpec, labels?: ViewerLabels, accessory?: Accessory | null) => void;
   setView: (v: ViewPreset) => void;
   setDims: (on: boolean) => void;
   setExploded: (on: boolean) => void;
@@ -717,6 +790,7 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
   let current: PartInfo | null = null;
   let currentSpec = spec;
   let labels = opts.labels;
+  let accessory: Accessory | null = null;
   let dims = Boolean(opts.dims);
   let exploded = 0;
   let explodedTarget = 0;
@@ -745,7 +819,7 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
     const vf = THREE.MathUtils.degToRad(camera.fov / 2);
     const elev = view === "iso" ? 0.36 : 0.06;
     const dist = Math.max(rxz / Math.tan(hfov() / 2), (hy * 1.5 + rxz * Math.sin(elev)) / Math.tan(vf)) * (labels ? 1.22 : 1.08) + rxz * 0.18;
-    const az = view === "front" ? -Math.PI / 2 : view === "side" ? 0 : -0.62;
+    const az = view === "front" ? -Math.PI / 2 : view === "side" ? 0 : accessory ? -1.05 : -0.62;
     const dir = new V3(Math.cos(az) * Math.cos(elev), Math.sin(elev), Math.sin(az) * Math.cos(elev));
     return { pos: c.clone().addScaledVector(dir, dist), target: c, dist, radius: rxz };
   };
@@ -810,14 +884,15 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
       ([0, 1] as const).forEach((i) => {
         const fr = info.ends[i];
         const def = info.flanges[i];
-        const flange = info.group.children.find((c) => c.name === (i === 0 ? "Flangia 1" : "Flangia 2"))!;
+        const flange = info.group.children.find((c) => c.name === (i === 0 ? "Flangia 1" : "Flangia 2"));
+        if (!flange) return;
         const fb = new THREE.Box3().setFromObject(flange);
         const inward = i === 0 ? fr.t.clone() : fr.t.clone().negate();
         const c = fr.p.clone().addScaledVector(inward, def.C / 2);
         const top = fb.max.y - info.group.position.y;
         const stem = Math.max(7, (fb.max.y - fb.min.y) * 0.42);
         const anchor = new THREE.Group();
-        anchor.userData = { axis: flange.userData.axis, dist: flange.userData.dist, kind: "tag" };
+        anchor.userData = { axis: flange.userData.axis ?? new V3(), dist: flange.userData.dist ?? 0, kind: "tag" };
         anchor.add(line([new V3(c.x, top + 0.6, c.z), new V3(c.x, top + stem, c.z)]));
         const obj = new CSS2DObject(tag(i === 0 ? labels!.flange1 : labels!.flange2, i === 0 ? labels!.f1 : labels!.f2));
         obj.center.set(0.5, 1);
@@ -826,8 +901,21 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
         info.group.add(anchor);
         movers.push(anchor);
       });
+      // accessorio (copertura o guarnizione): etichetta con il codice, sempre visibile
+      const accMesh = info.group.children.find((c) => c.userData.kind === "accessory");
+      if (accMesh && labels.accessory) {
+        const ab = new THREE.Box3().setFromObject(accMesh);
+        const obj = new CSS2DObject(tag(labels.accessory, labels.accessoryCode ?? ""));
+        obj.center.set(0.5, 0);
+        obj.position.set(0, ab.min.y - info.group.position.y - 4, accMesh.position.z);
+        const anchor = new THREE.Group();
+        anchor.userData = { axis: accMesh.userData.axis, dist: accMesh.userData.dist, rest: accMesh.userData.rest, kind: "tag" };
+        anchor.add(obj);
+        info.group.add(anchor);
+        movers.push(anchor);
+      }
       // corpo e guaina: nominati solo nella vista esplosa
-      if (labels.body) {
+      if (labels.body && !accessory) {
         const el = tag(labels.body, "", "p3d-tag-part");
         const obj = new CSS2DObject(el);
         obj.center.set(0.5, 0);
@@ -849,7 +937,7 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
         explodedTags.push(el);
       }
     }
-    if (currentSpec.type !== "custom") {
+    if (currentSpec.type !== "custom" && !accessory) {
       // quota della lunghezza, disegnata nel 3D
       dimGroup = new THREE.Group();
       const d = dimLabels(currentSpec, info, fmt);
@@ -873,7 +961,8 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
     if (!current) return;
     for (const m of movers) {
       if (!m.userData.base) m.userData.base = m.position.clone();
-      const k = Math.min(1.2, exploded + ((m.userData.pop as number | undefined) ?? 0));
+      const rest = (m.userData.rest as number | undefined) ?? 0;
+      const k = Math.min(1.2, rest + exploded * (1 - rest) + ((m.userData.pop as number | undefined) ?? 0));
       m.position.copy((m.userData.base as THREE.Vector3).clone().addScaledVector(m.userData.axis as THREE.Vector3, (m.userData.dist as number) * k));
       if (m.userData.ghost && m instanceof THREE.Mesh) {
         m.visible = exploded > 0.02;
@@ -951,17 +1040,18 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
     ground.scale.setScalar(r * 12);
   };
 
-  const setSpec = (next: PartSpec, nextLabels?: ViewerLabels) => {
+  const setSpec = (next: PartSpec, nextLabels?: ViewerLabels, nextAccessory?: Accessory | null) => {
     const prev = currentSpec;
     const had = current;
     currentSpec = next;
     if (nextLabels) labels = nextLabels;
+    if (nextAccessory !== undefined) accessory = nextAccessory;
     if (had) {
       scene.remove(had.group);
       removeTags(had.group);
       disposeGroup(had.group);
     }
-    current = buildPart(next, { ghostJacket: Boolean(labels?.jacket) });
+    current = buildPart(next, { ghostJacket: Boolean(labels?.jacket), accessory: accessory ?? undefined });
     scene.add(current.group);
     stage();
     decorate();

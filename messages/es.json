@@ -1401,7 +1401,8 @@
       "flange2": "Brida 2",
       "length": "Longitud",
       "finish": "Acabado",
-      "final": "Cantidad"
+      "final": "Cantidad",
+      "item": "Modelo"
     },
     "q": {
       "type": "¿Qué pieza necesita?",
@@ -1413,7 +1414,10 @@
       "length_twist": "¿Cuánto gira y qué longitud tiene?",
       "length_offset": "¿Cuánto se desplaza y qué longitud tiene?",
       "finish": "¿Qué acabado?",
-      "final": "¿Cuántas piezas necesita?"
+      "final": "¿Cuántas piezas necesita?",
+      "item_cover": "¿Qué tapa necesita?",
+      "item_gasket": "¿Qué junta necesita?",
+      "item_castbend": "¿Qué codo de fundición necesita?"
     },
     "hint": {
       "type": "El modelo 3D de al lado cambia al instante.",
@@ -1422,7 +1426,8 @@
       "flange2": "En el 3D es la que lleva la etiqueta BRIDA 2.",
       "length": "La cota del 3D se actualiza mientras elige.",
       "finish": "El metal del modelo cambia como la pieza real.",
-      "final": "Puede adjuntar su plano o archivo 3D y escribir una nota."
+      "final": "Puede adjuntar su plano o archivo 3D y escribir una nota.",
+      "item": "Son los códigos de catálogo. Para otros tamaños, escríbanos: los hacemos bajo pedido."
     },
     "types": {
       "twistable": {
@@ -1560,7 +1565,66 @@
       "body": "GUÍA",
       "bodyFlex": "GUÍA CORRUGADA",
       "jacket": "FUNDA DE GOMA",
-      "jacketOpt": "FUNDA (BAJO PEDIDO)"
+      "jacketOpt": "FUNDA (BAJO PEDIDO)",
+      "flange": "BRIDA"
+    },
+    "acc": {
+      "group": "Accesorios y piezas bajo pedido",
+      "cover": {
+        "name": "Tapa para brida",
+        "short": "Tapón de protección de LDPE",
+        "tag": "TAPA"
+      },
+      "gasket": {
+        "name": "Junta",
+        "short": "Silicona 60 ShA",
+        "tag": "JUNTA"
+      },
+      "castbend": {
+        "name": "Codo de fundición",
+        "short": "Codo compacto fundido, bajo pedido"
+      },
+      "coverDesc": "{w} × {h} mm · altura {t} mm · LDPE azul",
+      "gasketDesc": "{w} × {h} mm · sección {s} mm · silicona 60 ShA",
+      "other": "Otros tamaños y otras bridas: bajo pedido.",
+      "onRequest": "Bajo pedido",
+      "castBody": "El codo de fundición se fabrica bajo pedido. Elija tamaño y plano: le respondemos con el plano y el presupuesto.",
+      "castNo3d": "Para esta pieza el modelo 3D y las cotas llegan con el presupuesto."
+    },
+    "sheet": {
+      "button": "Descargar ficha técnica",
+      "preparing": "Preparando el PDF…",
+      "error": "No se ha podido crear el PDF. Inténtelo de nuevo.",
+      "title": "Ficha técnica de configuración",
+      "codeLabel": "Código de configuración",
+      "view3d": "Vista 3D",
+      "drawing": "Plano acotado",
+      "dataTitle": "Datos de la configuración",
+      "electricalTitle": "Datos eléctricos y mecánicos",
+      "electricalSource": "Datos de catálogo {code}",
+      "onRequestTitle": "Bajo pedido",
+      "onRequestBody": "Para esta configuración los datos eléctricos (VSWR, pérdidas, potencia) se comunican con la oferta.",
+      "note": "Datos orientativos, a confirmar en la oferta. El plano definitivo llega con el presupuesto.",
+      "dateLabel": "Fecha",
+      "brass": "Latón",
+      "rows": {
+        "waveguide": "Guía",
+        "inner": "Interior a × b",
+        "band": "Banda",
+        "material": "Material"
+      },
+      "el": {
+        "il": "Pérdida de inserción",
+        "ilMax": "Pérdida de inserción máx.",
+        "rl": "Pérdida de retorno",
+        "vswr": "VSWR máx.",
+        "cw": "Potencia CW",
+        "rE": "Radio mín. plano E",
+        "rH": "Radio mín. plano H",
+        "twist": "Torsión máx.",
+        "pMax": "Presión máx.",
+        "pOp": "Presión de trabajo"
+      }
     }
   }
 }

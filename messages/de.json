@@ -1401,7 +1401,8 @@
       "flange2": "Flansch 2",
       "length": "Länge",
       "finish": "Oberfläche",
-      "final": "Menge"
+      "final": "Menge",
+      "item": "Modell"
     },
     "q": {
       "type": "Welches Teil benötigen Sie?",
@@ -1413,7 +1414,10 @@
       "length_twist": "Welche Drehung und welche Länge?",
       "length_offset": "Welcher Versatz und welche Länge?",
       "finish": "Welche Oberfläche?",
-      "final": "Wie viele Stück benötigen Sie?"
+      "final": "Wie viele Stück benötigen Sie?",
+      "item_cover": "Welche Abdeckung benötigen Sie?",
+      "item_gasket": "Welche Dichtung benötigen Sie?",
+      "item_castbend": "Welchen Gussbogen benötigen Sie?"
     },
     "hint": {
       "type": "Das 3D-Modell daneben ändert sich sofort.",
@@ -1422,7 +1426,8 @@
       "flange2": "Im 3D-Modell trägt er das Etikett FLANSCH 2.",
       "length": "Das Maß im 3D-Modell ändert sich bei der Auswahl.",
       "finish": "Das Metall des Modells ändert sich wie beim echten Teil.",
-      "final": "Sie können Ihre Zeichnung oder 3D-Datei anhängen und eine Notiz schreiben."
+      "final": "Sie können Ihre Zeichnung oder 3D-Datei anhängen und eine Notiz schreiben.",
+      "item": "Das sind die Katalogcodes. Andere Größen fertigen wir auf Anfrage: Schreiben Sie uns."
     },
     "types": {
       "twistable": {
@@ -1560,7 +1565,66 @@
       "body": "HOHLLEITER",
       "bodyFlex": "WELLHOHLLEITER",
       "jacket": "GUMMIMANTEL",
-      "jacketOpt": "MANTEL (AUF ANFRAGE)"
+      "jacketOpt": "MANTEL (AUF ANFRAGE)",
+      "flange": "FLANSCH"
+    },
+    "acc": {
+      "group": "Zubehör und Teile auf Anfrage",
+      "cover": {
+        "name": "Flanschabdeckung",
+        "short": "Schutzkappe aus LDPE",
+        "tag": "ABDECKUNG"
+      },
+      "gasket": {
+        "name": "Dichtung",
+        "short": "Silikon 60 ShA",
+        "tag": "DICHTUNG"
+      },
+      "castbend": {
+        "name": "Gussbogen",
+        "short": "Kompakter gegossener Bogen, auf Anfrage"
+      },
+      "coverDesc": "{w} × {h} mm · Höhe {t} mm · LDPE blau",
+      "gasketDesc": "{w} × {h} mm · Querschnitt {s} mm · Silikon 60 ShA",
+      "other": "Andere Größen und andere Flansche: auf Anfrage.",
+      "onRequest": "Auf Anfrage",
+      "castBody": "Gussbögen fertigen wir auf Anfrage. Wählen Sie Größe und Ebene: Wir antworten mit Zeichnung und Angebot.",
+      "castNo3d": "Für dieses Teil kommen 3D-Modell und Maße mit dem Angebot."
+    },
+    "sheet": {
+      "button": "Datenblatt herunterladen",
+      "preparing": "PDF wird erstellt…",
+      "error": "Das PDF konnte nicht erstellt werden. Bitte erneut versuchen.",
+      "title": "Datenblatt der Konfiguration",
+      "codeLabel": "Konfigurationscode",
+      "view3d": "3D-Ansicht",
+      "drawing": "Bemaßte Zeichnung",
+      "dataTitle": "Daten der Konfiguration",
+      "electricalTitle": "Elektrische und mechanische Daten",
+      "electricalSource": "Katalogdaten {code}",
+      "onRequestTitle": "Auf Anfrage",
+      "onRequestBody": "Für diese Konfiguration werden die elektrischen Daten (VSWR, Verluste, Leistung) mit dem Angebot mitgeteilt.",
+      "note": "Richtwerte, im Angebot zu bestätigen. Die endgültige Zeichnung kommt mit dem Angebot.",
+      "dateLabel": "Datum",
+      "brass": "Messing",
+      "rows": {
+        "waveguide": "Hohlleiter",
+        "inner": "Innenmaß a × b",
+        "band": "Band",
+        "material": "Werkstoff"
+      },
+      "el": {
+        "il": "Einfügedämpfung",
+        "ilMax": "Einfügedämpfung max.",
+        "rl": "Rückflussdämpfung",
+        "vswr": "VSWR max.",
+        "cw": "CW-Leistung",
+        "rE": "Min. Radius E-Ebene",
+        "rH": "Min. Radius H-Ebene",
+        "twist": "Max. Verdrehung",
+        "pMax": "Max. Druck",
+        "pOp": "Betriebsdruck"
+      }
     }
   }
 }

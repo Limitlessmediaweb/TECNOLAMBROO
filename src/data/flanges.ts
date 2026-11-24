@@ -80,6 +80,14 @@ const rc = (id: string, label: string, family: FlangeFamily, style: FlangeStyle,
 
 const round = (id: string, label: string, [A, E, hole, C]: [number, number, number, number], rec = false): FlangeDef => ({ id, label, family: "UG", style: "plain", shape: "round", A, E, hole, C, holes: 4, rec });
 
+/**
+ * Le tre tonde IEC di una misura: UAR piana, PAR con gola, CAR choke. Diametri dal documento Spinner;
+ * numero di fori dalla norma IEC 60154-2 ed. 3 (8 equidistanti per R32 e R48, 6 per R58). R40 e R70
+ * non sono nell'edizione corrente della norma: non proposte.
+ */
+const iecRound = (n: number, [A, E, hole, C]: [number, number, number, number], holes: number): FlangeDef[] =>
+  (["UAR", "PAR", "CAR"] as const).map((k, i) => ({ id: `${k}${n}`, label: `IEC-${k} ${n}`, family: "IEC", style: (["plain", "groove", "choke"] as const)[i], shape: "round", A, E, hole, C, holes }));
+
 /** Le tre quadrate IEC di una misura: piana, con gola per guarnizione, choke. */
 const iecSquare = (n: number, d: Sq, rec = false): FlangeDef[] => [
   sq(`UBR${n}`, `IEC-UBR ${n}`, "IEC", "plain", d, rec),
@@ -131,10 +139,10 @@ export const FLANGES: Readonly<Record<string, readonly FlangeDef[]>> = {
     ...cpr(112, [44.5, 63.5, 16.26, 7.95, 9.53, 24.2, 4.29, 6.35]),
   ],
   "WR-137": [...iecRect(70, [49.2, 68.3, 18.26, 7.94, 11.11, 27.79, 5.0, 10.0], true), ...cpr(137, [49.21, 68.26, 18.26, 7.94, 11.11, 27.79, 5.03, 6.35])],
-  "WR-159": [...iecRect(58, [61.9, 81.0, 22.23, 9.52, 12.7, 32.33, 6.35, 10.0], true), ...cpr(159, [61.91, 80.95, 22.23, 9.52, 12.7, 32.33, 6.53, 9.65])],
-  "WR-187": [...iecRect(48, [63.5, 88.9, 23.22, 11.12, 14.3, 35.92, 6.35, 10.0], true), ...cpr(187, [63.5, 88.9, 23.22, 11.11, 14.29, 35.92, 6.55, 9.65])],
+  "WR-159": [...iecRect(58, [61.9, 81.0, 22.23, 9.52, 12.7, 32.33, 6.35, 10.0], true), ...cpr(159, [61.91, 80.95, 22.23, 9.52, 12.7, 32.33, 6.53, 9.65]), ...iecRound(58, [85.9, 76.2, 5.0, 6.4], 6)],
+  "WR-187": [...iecRect(48, [63.5, 88.9, 23.22, 11.12, 14.3, 35.92, 6.35, 10.0], true), ...cpr(187, [63.5, 88.9, 23.22, 11.11, 14.29, 35.92, 6.55, 9.65]), ...iecRound(48, [92.2, 82.55, 5.0, 6.4], 8)],
   "WR-229": [...iecRect(40, [69.9, 98.4, 26.67, 12.7, 27.18, 41.15, 6.35, 10.0], true), ...cpr(229, [69.85, 98.43, 26.67, 12.7, 27.18, 41.15, 6.53, 9.65])],
-  "WR-284": [...iecRect(32, [76.2, 114.3, 29.57, 14.68, 32.54, 48.61, 6.35, 10.0], true), ...cpr(284, [76.2, 114.3, 29.57, 14.68, 32.53, 48.62, 6.55, 9.65])],
+  "WR-284": [...iecRect(32, [76.2, 114.3, 29.57, 14.68, 32.54, 48.61, 6.35, 10.0], true), ...cpr(284, [76.2, 114.3, 29.57, 14.68, 32.53, 48.62, 6.55, 9.65]), ...iecRound(32, [134.9, 120.65, 6.35, 7.9], 8)],
 };
 
 const BY_ID: ReadonlyMap<string, FlangeDef> = new Map(Object.values(FLANGES).flatMap((list) => list.map((f) => [f.id, f] as const)));
@@ -167,7 +175,8 @@ export function flangeFits(id: string, wr: string): boolean {
 export function flangeHoles(f: FlangeDef): [u: number, v: number][] {
   if (f.shape === "round") {
     const r = f.E / 2;
-    return [45, 135, 225, 315].map((deg) => [Math.cos((deg * Math.PI) / 180) * r, Math.sin((deg * Math.PI) / 180) * r] as [number, number]);
+    // fori equidistanti sul cerchio, a cavallo degli assi della guida
+    return Array.from({ length: f.holes }, (_, i) => ((i + 0.5) * 2 * Math.PI) / f.holes).map((a) => [Math.cos(a) * r, Math.sin(a) * r] as [number, number]);
   }
   if (f.shape === "square") {
     const F = f.F ?? f.E;

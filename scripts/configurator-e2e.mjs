@@ -150,7 +150,7 @@ for (const c of CASES) {
     });
   }
   if (c.type !== "custom") {
-    steps.push(() => page.locator("[data-field=f2]").selectOption({ index: 2 }));
+    steps.push(() => page.locator("[data-field=f2]").selectOption("other"));
     steps.push(() => page.locator("[data-field=finish]").selectOption("painted"));
     steps.push(() => page.locator("[data-field=treatment]").selectOption("thermal"));
     steps.push(() => page.locator("[data-field=ghz]").fill("8,5"));

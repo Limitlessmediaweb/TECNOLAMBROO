@@ -1401,7 +1401,8 @@
       "flange2": "Flangia 2",
       "length": "Lunghezza",
       "finish": "Finitura",
-      "final": "Quantità"
+      "final": "Quantità",
+      "item": "Modello"
     },
     "q": {
       "type": "Che pezzo ti serve?",
@@ -1413,7 +1414,10 @@
       "length_twist": "Di quanto ruota e quanto è lungo?",
       "length_offset": "Di quanto si sposta e quanto è lungo?",
       "finish": "Che finitura?",
-      "final": "Quanti pezzi ti servono?"
+      "final": "Quanti pezzi ti servono?",
+      "item_cover": "Quale copertura ti serve?",
+      "item_gasket": "Quale guarnizione ti serve?",
+      "item_castbend": "Che cast bend ti serve?"
     },
     "hint": {
       "type": "Il modello 3D a fianco cambia subito.",
@@ -1422,7 +1426,8 @@
       "flange2": "Nel 3D è quella con l’etichetta FLANGIA 2.",
       "length": "La quota nel 3D si aggiorna mentre scegli.",
       "finish": "Il metallo del modello cambia come il pezzo vero.",
-      "final": "Puoi allegare il tuo disegno o il file 3D e scrivere una nota."
+      "final": "Puoi allegare il tuo disegno o il file 3D e scrivere una nota.",
+      "item": "Sono i codici a catalogo. Per le altre misure scrivici: le facciamo su richiesta."
     },
     "types": {
       "twistable": {
@@ -1560,7 +1565,66 @@
       "body": "GUIDA",
       "bodyFlex": "GUIDA CORRUGATA",
       "jacket": "GUAINA IN GOMMA",
-      "jacketOpt": "GUAINA (A RICHIESTA)"
+      "jacketOpt": "GUAINA (A RICHIESTA)",
+      "flange": "FLANGIA"
+    },
+    "acc": {
+      "group": "Accessori e pezzi su richiesta",
+      "cover": {
+        "name": "Copertura per flangia",
+        "short": "Tappo di protezione in LDPE",
+        "tag": "COPERTURA"
+      },
+      "gasket": {
+        "name": "Guarnizione",
+        "short": "Silicone 60 ShA",
+        "tag": "GUARNIZIONE"
+      },
+      "castbend": {
+        "name": "Cast bend",
+        "short": "Curva fusa compatta, su richiesta"
+      },
+      "coverDesc": "{w} × {h} mm · altezza {t} mm · LDPE blu",
+      "gasketDesc": "{w} × {h} mm · sezione {s} mm · silicone 60 ShA",
+      "other": "Altre misure e altre flange: su richiesta.",
+      "onRequest": "Su richiesta",
+      "castBody": "Il cast bend si fa su richiesta. Scegli misura e piano: ti rispondiamo con il disegno e il preventivo.",
+      "castNo3d": "Per questo pezzo il modello 3D e le quote arrivano con il preventivo."
+    },
+    "sheet": {
+      "button": "Scarica datasheet",
+      "preparing": "Preparo il PDF…",
+      "error": "Non riesco a creare il PDF. Riprova.",
+      "title": "Scheda tecnica di configurazione",
+      "codeLabel": "Codice di configurazione",
+      "view3d": "Vista 3D",
+      "drawing": "Disegno quotato",
+      "dataTitle": "Dati della configurazione",
+      "electricalTitle": "Dati elettrici e meccanici",
+      "electricalSource": "Dati di catalogo {code}",
+      "onRequestTitle": "Su richiesta",
+      "onRequestBody": "Per questa configurazione i dati elettrici (VSWR, perdite, potenza) si comunicano con l’offerta.",
+      "note": "Dati indicativi, da confermare in offerta. Il disegno definitivo arriva con il preventivo.",
+      "dateLabel": "Data",
+      "brass": "Ottone",
+      "rows": {
+        "waveguide": "Guida",
+        "inner": "Interno a × b",
+        "band": "Banda",
+        "material": "Materiale"
+      },
+      "el": {
+        "il": "Perdita di inserzione",
+        "ilMax": "Perdita di inserzione max",
+        "rl": "Return loss",
+        "vswr": "VSWR max",
+        "cw": "Potenza CW",
+        "rE": "Raggio min. piano E",
+        "rH": "Raggio min. piano H",
+        "twist": "Torsione max",
+        "pMax": "Pressione max",
+        "pOp": "Pressione di esercizio"
+      }
     }
   }
 }

@@ -2,11 +2,11 @@
 
 import { useEffect, useId, useMemo, useRef, useState, type DragEvent, type ReactNode } from "react";
 import NextLink from "next/link";
-import { ArrowLeft, ArrowRight, Check, Link2, Minus, Plus, RotateCcw, Star, Upload, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, FileDown, Link2, Minus, Plus, RotateCcw, Star, Upload, X } from "lucide-react";
 import { useClientLocale, useT } from "@/lib/client-i18n";
 import { BEND_ANGLES, FINISHES, TWIST_ROTATIONS, TYPE_DEF, isFlexible, type Finish, type PartSpec, type PartType, type Plane } from "@/data/configurator/types";
 import { defaultSpec, specFromParams, specToParams } from "@/data/configurator/defaults";
-import { FREE_LENGTH, SEAMLESS_TABLE, SIZES, SIZE_BY_WR, bestSizeFor, isOnRequest, num, range, sizesFor, standardLengths } from "@/data/waveguides";
+import { FREE_LENGTH, MATERIAL, SEAMLESS_TABLE, SIZES, SIZE_BY_WR, bestSizeFor, iecNumber, isOnRequest, num, range, sizesFor, standardLengths } from "@/data/waveguides";
 import { OTHER_FLANGE, flangeFits, flangeLabel, flangeOutline, flangesFor, type FlangeDef } from "@/data/flanges";
 import { specValid } from "@/lib/part";
 import { addItem } from "@/lib/request";
@@ -15,14 +15,24 @@ import { ACCEPTED_EXTENSIONS, MAX_FILE_BYTES, formatBytes, isAcceptedFile } from
 import { track } from "@/lib/analytics";
 import { decimalSep } from "@/i18n/locales";
 import { cn } from "@/lib/cn";
-import type { ViewFocus, ViewerLabels } from "@/lib/part3d";
-import { usePartText } from "../Configurator";
+import type { Accessory, ViewFocus, ViewerLabels } from "@/lib/part3d";
+import { configCode, flangeToken } from "@/lib/config-code";
+import { electricalFor, type ElectricalKey, type SheetRow } from "@/lib/datasheet";
+import { drawingDate, drawingSvg } from "@/lib/drawing";
+import { CAST_BEND_SIZES, COVERS, GASKETS, TFTG } from "@/data/catalogo-ditta";
+import { COMPANY } from "@/data/site";
+import { useDrawingLabels, usePartText } from "../Configurator";
 import { FlangeIcon } from "./FlangeIcon";
-import { Stage3D } from "./Stage3D";
+import { Stage3D, type StageApi } from "./Stage3D";
 
 /** I 7 passi, nell'ordine. */
 const STEPS = ["type", "size", "flange1", "flange2", "length", "finish", "final"] as const;
-type StepId = (typeof STEPS)[number];
+/** Accessori e pezzi su richiesta: tipo, modello, quantità. */
+const ACC_STEPS = ["type", "item", "final"] as const;
+type StepId = (typeof STEPS)[number] | "item";
+type AccKind = "cover" | "gasket" | "castbend";
+const ACC_KINDS: readonly AccKind[] = ["cover", "gasket", "castbend"];
+const EL_KEYS: readonly ElectricalKey[] = ["il", "ilMax", "rl", "vswr", "cw", "rE", "rH", "twist", "pMax", "pOp"];
 
 /** Le scelte del passo 1: la curva è divisa in piano E e piano H. */
 const TILES = [
@@ -127,6 +137,13 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
   const [dragging, setDragging] = useState(false);
   const [added, setAdded] = useState(false);
   const [copied, setCopied] = useState(false);
+  /** accessorio (copertura, guarnizione) o pezzo su richiesta (cast bend) al posto del pezzo configurato */
+  const [acc, setAcc] = useState<AccKind | null>(null);
+  const [accCode, setAccCode] = useState("");
+  const [cast, setCast] = useState<{ wr: string; plane: Plane }>({ wr: CAST_BEND_SIZES[0].wr, plane: CAST_BEND_SIZES[0].planes[0] });
+  const [sheetState, setSheetState] = useState<"idle" | "busy" | "error">("idle");
+  const stage = useRef<StageApi | null>(null);
+  const drawLabels = useDrawingLabels();
   /** l'utente ha toccato qualcosa: da qui la configurazione va nell'indirizzo */
   const [dirty, setDirty] = useState(false);
   const loaded = useRef(false);
@@ -169,13 +186,25 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
   const geo = TYPE_DEF[spec.type].geometry;
   const flex = isFlexible(spec.type);
   const tile = tileOf(spec);
-  const code = text.reference(spec);
-  const id = STEPS[step];
+  const steps: readonly StepId[] = acc ? ACC_STEPS : STEPS;
+  const cover = acc === "cover" ? COVERS.find((c) => c.code === accCode) : undefined;
+  const gasket = acc === "gasket" ? GASKETS.find((g) => g.code === accCode) : undefined;
+  const code = acc === "castbend" ? `CAST BEND ${cast.wr.replace("-", "")} ${cast.plane}` : (cover?.code ?? gasket?.code ?? configCode(spec));
+  const id = steps[Math.min(step, steps.length - 1)];
   const mm = (v: number) => num(v, locale, 0, 2);
   const flangeName = (fid: string) => (fid === OTHER_FLANGE ? t("flange.other") : flangeLabel(fid));
 
   /* ------------------------------------------------------------- scelte */
+  const chooseAcc = (k: AccKind) => {
+    setAcc(k);
+    setAccCode(k === "cover" ? COVERS[0].code : k === "gasket" ? GASKETS[0].code : "");
+    setStep(0);
+    setReached(0);
+    setAdded(false);
+    track("config_type", { type: k });
+  };
   const chooseTile = (k: (typeof TILES)[number]) => {
+    setAcc(null);
     setSpec((s) => {
       const wr = s.wr !== "unknown" && sizeAllowed(k.type, s.wr) ? s.wr : "WR-90";
       const next = defaultSpec(k.type, wr);
@@ -220,6 +249,7 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
           ? inRange(spec.rotation, { min: 1, max: 360 }) && inRange(spec.length, lengthRange)
           : inRange(spec.offset, LIMITS.offset) && inRange(spec.length, lengthRange) && (spec.length ?? 0) >= (spec.offset ?? 0) * 1.5;
   const stepOk: Record<StepId, boolean> = {
+    item: acc === "castbend" || Boolean(cover ?? gasket),
     type: true,
     size: sizeAllowed(spec.type, spec.wr),
     flange1: flangeFits(spec.f1, spec.wr),
@@ -228,13 +258,13 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
     finish: true,
     final: qty >= 1,
   };
-  const allOk = STEPS.every((s) => stepOk[s]);
+  const allOk = steps.every((s) => stepOk[s]);
 
   const go = (n: number) => {
-    const next = Math.max(0, Math.min(STEPS.length - 1, n));
+    const next = Math.max(0, Math.min(steps.length - 1, n));
     setStep(next);
     setReached((r) => Math.max(r, next));
-    track("config_step", { step: STEPS[next] });
+    track("config_step", { step: steps[next] });
     // su telefono il pannello dei passi torna in vista
     if (window.matchMedia("(max-width: 1023px)").matches) root.current?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
   };
@@ -247,7 +277,23 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
   const bodyLabel = flex ? t("stage.bodyFlex") : t("stage.body");
   const f1Tag = t("stage.flange1");
   const f2Tag = t("stage.flange2");
-  const labels: ViewerLabels = useMemo(() => ({ flange1: f1Tag, flange2: f2Tag, f1: f1Name, f2: f2Name, body: bodyLabel, jacket: jacketLabel }), [f1Tag, f2Tag, f1Name, f2Name, bodyLabel, jacketLabel]);
+  // accessorio: si vede montato sulla sua flangia
+  const accFlange = cover ? `${cover.fits[0]}${iecNumber(SIZE_BY_WR.get(cover.wr)!)}` : gasket?.flange;
+  const accWr = cover?.wr ?? gasket?.wr;
+  const stageSpec = useMemo<PartSpec>(() => (accFlange && accWr ? { ...defaultSpec("twist", accWr), f1: accFlange, f2: accFlange, finish: "bright" } : spec), [accFlange, accWr, spec]);
+  const accessory = useMemo<Accessory | null>(() => {
+    const c = acc === "cover" ? COVERS.find((x) => x.code === accCode) : undefined;
+    const g = acc === "gasket" ? GASKETS.find((x) => x.code === accCode) : undefined;
+    return c ? { kind: "cover", w: c.w, h: c.h, height: c.height, wall: c.wall, r: c.r } : g ? { kind: "gasket", w: g.w, h: g.h, section: g.section } : null;
+  }, [acc, accCode]);
+  const accTag = acc && acc !== "castbend" ? t(`acc.${acc}.tag`) : undefined;
+  const accFlangeName = accFlange ? flangeLabel(accFlange) : "";
+  const flangeTag = t("stage.flange");
+  const accLabelCode = cover?.code ?? gasket?.code ?? "";
+  const labels: ViewerLabels = useMemo(
+    () => (accTag ? { flange1: flangeTag, flange2: flangeTag, f1: accFlangeName, f2: accFlangeName, accessory: accTag, accessoryCode: accLabelCode } : { flange1: f1Tag, flange2: f2Tag, f1: f1Name, f2: f2Name, body: bodyLabel, jacket: jacketLabel }),
+    [accTag, flangeTag, accFlangeName, accLabelCode, f1Tag, f2Tag, f1Name, f2Name, bodyLabel, jacketLabel],
+  );
 
   /* ------------------------------------------------------------- file */
   const addFiles = (list: FileList) => {
@@ -271,6 +317,14 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
   /* ----------------------------------------------------------- azioni */
   const add = async () => {
     if (!allOk) return;
+    if (acc) {
+      const size = acc === "castbend" ? cast.wr : (accWr ?? "");
+      const detail = acc === "castbend" ? `${t("acc.castbend.name")} · ${size} · ${t(`length.plane${cast.plane}`)} · ${t("acc.onRequest")}` : `${t(`acc.${acc}.name`)} · ${size} · ${accFlangeName}`;
+      addItem({ kind: acc === "castbend" ? "custom" : "ready", code, detail, qty, notes: notes.trim() || (acc === "castbend" ? detail : undefined) });
+      setAdded(true);
+      track("request_add", { kind: acc, source: "premium" });
+      return;
+    }
     const detail = `${text.detail(spec)}${flex ? ` · ${spec.jacket ? t("finish.jacketOn") : t("finish.jacketOff")}` : ""}`;
     // con allegati o note la riga resta separata (i file sono di questo pezzo)
     const itemId = addItem({ kind: "configured", spec, code, detail, qty, notes: notes.trim() || (files.length ? t("final.attached", { n: files.length }) : undefined) });
@@ -357,11 +411,14 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
     const { w, h } = flangeOutline(f);
     return f.shape === "round" ? t("flange.descRound", { w: mm(w), n: f.holes, c: mm(f.C) }) : t("flange.desc", { w: mm(w), h: mm(h), n: f.holes, d: mm(f.hole), c: mm(f.C) });
   };
+  const catalog = spec.type === "twistable" ? TFTG[spec.wr]?.flanges : undefined;
+  const isRec = (f: FlangeDef) => (catalog ? (catalog as readonly string[]).includes(flangeToken(f.id)) : Boolean(f.rec));
+  const shownFlanges = [...flanges.filter(isRec), ...flanges.filter((f) => !isRec(f))];
   const flangeList = (which: 1 | 2) => {
     const value = which === 1 ? spec.f1 : spec.f2;
     return (
       <div role="radiogroup" aria-label={t(`steps.flange${which}`)} className="grid gap-2.5">
-        {flanges.map((f) => (
+        {shownFlanges.map((f) => (
           <button key={f.id} type="button" role="radio" aria-checked={value === f.id} onClick={() => chooseFlange(which, f.id)} className={card(value === f.id)} data-flange={f.id}>
             <FlangeIcon flange={f} a={size.a} b={size.b} className="size-14 shrink-0" />
             <span className="grid min-w-0 gap-1">
@@ -369,7 +426,7 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
                 <span className="font-semibold leading-tight">
                   {t(`flange.styles.${f.style}`)} {t(`flange.shapes.${f.shape}`)}
                 </span>
-                {f.rec ? badge : null}
+                {isRec(f) ? badge : null}
               </span>
               <span className="font-mono text-[0.8125rem] font-medium text-primary-ink">{f.label}</span>
               <span className="text-xs text-muted">{flangeDesc(f)}</span>
@@ -393,10 +450,47 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
   const lengths = standardLengths(spec.wr);
   const isFree = freeLength || (geo === "length" && !lengths.includes(spec.length ?? 0));
   const body: Record<StepId, ReactNode> = {
+    item:
+      acc === "castbend" ? (
+        <>
+          <p className="text-sm text-muted">{t("acc.castBody")}</p>
+          <div className="flex flex-wrap gap-2" role="radiogroup" aria-label={t("steps.size")}>
+            {CAST_BEND_SIZES.map((c) => (
+              <button key={c.wr} type="button" role="radio" aria-checked={cast.wr === c.wr} onClick={() => setCast({ wr: c.wr, plane: c.planes.includes(cast.plane) ? cast.plane : c.planes[0] })} className={pill(cast.wr === c.wr)} data-cast={c.wr}>
+                {c.wr.replace("-", "")}
+              </button>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-2" role="radiogroup" aria-label={t("length.plane")}>
+            {(CAST_BEND_SIZES.find((c) => c.wr === cast.wr)?.planes ?? []).map((pl) => (
+              <button key={pl} type="button" role="radio" aria-checked={cast.plane === pl} onClick={() => setCast({ ...cast, plane: pl })} className={pill(cast.plane === pl)}>
+                {t(`length.plane${pl}`)}
+              </button>
+            ))}
+          </div>
+        </>
+      ) : (
+        <div role="radiogroup" aria-label={t("steps.item")} className="grid gap-2.5">
+          {(acc === "cover" ? COVERS : GASKETS).map((r) => (
+            <button key={r.code} type="button" role="radio" aria-checked={accCode === r.code} onClick={() => (setAccCode(r.code), setAdded(false))} className={card(accCode === r.code)} data-acc-code={r.code}>
+              <span className="grid min-w-0 gap-1">
+                <span className="font-mono text-[0.9375rem] font-semibold">{r.code}</span>
+                <span className="text-sm">
+                  {r.wr.replace("-", "")} · {"fits" in r ? r.fits.map((f) => `${f} ${iecNumber(SIZE_BY_WR.get(r.wr)!)}`).join(" / ") : flangeLabel(r.flange)}
+                </span>
+                <span className="text-xs text-muted">{"fits" in r ? t("acc.coverDesc", { w: mm(r.w), h: mm(r.h), t: mm(r.height) }) : t("acc.gasketDesc", { w: mm(r.w), h: mm(r.h), s: mm(r.section) })}</span>
+              </span>
+              {dot(accCode === r.code)}
+            </button>
+          ))}
+          <p className="annot text-muted">{t("acc.other")}</p>
+        </div>
+      ),
     type: (
+      <>
       <div role="radiogroup" aria-label={t("steps.type")} className="grid gap-2.5 sm:grid-cols-2">
         {TILES.map((k) => (
-          <button key={k.key} type="button" role="radio" aria-checked={tile === k.key} onClick={() => chooseTile(k)} className={cn(card(tile === k.key), "text-primary-ink")} data-tile={k.key}>
+          <button key={k.key} type="button" role="radio" aria-checked={!acc && tile === k.key} onClick={() => chooseTile(k)} className={cn(card(!acc && tile === k.key), "text-primary-ink")} data-tile={k.key}>
             <TypeGlyph tile={k.key} />
             <span className="grid gap-0.5 text-fg">
               <span className="font-semibold leading-tight">{t(`types.${k.key}.name`)}</span>
@@ -405,6 +499,16 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
           </button>
         ))}
       </div>
+      <p className="annot mt-1 uppercase tracking-[0.14em] text-muted">{t("acc.group")}</p>
+      <div role="radiogroup" aria-label={t("acc.group")} className="grid gap-2.5 sm:grid-cols-3">
+        {ACC_KINDS.map((k) => (
+          <button key={k} type="button" role="radio" aria-checked={acc === k} onClick={() => chooseAcc(k)} className={cn(card(acc === k), "flex-col items-start gap-1")} data-acc={k}>
+            <span className="font-semibold leading-tight">{t(`acc.${k}.name`)}</span>
+            <span className="text-xs text-muted">{t(`acc.${k}.short`)}</span>
+          </button>
+        ))}
+      </div>
+      </>
     ),
     size: (
       <>
@@ -687,7 +791,8 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
           ? `${mm(spec.rotation ?? 90)}° · ${mm(spec.length ?? 0)} mm`
           : `X ${mm(spec.offset ?? 0)} · ${mm(spec.length ?? 0)} mm`;
   const summary: Record<StepId, string> = {
-    type: t(`types.${tile}.name`),
+    item: acc === "castbend" ? `${cast.wr.replace("-", "")} · ${t(`length.plane${cast.plane}`)} · ${t("acc.onRequest")}` : `${code} · ${(accWr ?? "").replace("-", "")} · ${accFlangeName}`,
+    type: acc ? t(`acc.${acc}.name`) : t(`types.${tile}.name`),
     size: `${size.wr.replace("-", "")} · ${mm(size.a)} × ${mm(size.b)} mm · ${range(size.min, size.max, locale)} GHz`,
     flange1: f1Name,
     flange2: f2Name,
@@ -695,13 +800,66 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
     finish: `${t(`finish.${spec.finish}.name`)}${flex && spec.jacket ? ` · ${t("finish.jacketOn")}` : ""}`,
     final: `${qty} ${t("final.pieces")}${files.length ? ` · ${t("final.attached", { n: files.length })}` : ""}`,
   };
-  const question = id === "length" && geo !== "length" ? t(`q.length_${geo}`) : t(`q.${id}`);
+  const question = id === "item" ? t(`q.item_${acc ?? "cover"}`) : id === "length" && geo !== "length" ? t(`q.length_${geo}`) : t(`q.${id}`);
+
+  /* ---------------------------------------------------------- datasheet */
+  const sheetRows = (): SheetRow[] => {
+    const rows: SheetRow[] = [
+      { label: t("sheet.rows.waveguide"), value: `${size.wr.replace("-", "")} · ${size.iec} · ${size.wg}` },
+      { label: t("sheet.rows.inner"), value: `${mm(size.a)} × ${mm(size.b)} mm` },
+      { label: t("sheet.rows.band"), value: `${range(size.min, size.max, locale)} GHz` },
+      { label: t("steps.length"), value: lengthText },
+      { label: t("steps.flange1"), value: f1Name },
+      { label: t("steps.flange2"), value: f2Name },
+      { label: t("steps.finish"), value: t(`finish.${spec.finish}.name`) },
+      { label: t("sheet.rows.material"), value: flex ? `${t("sheet.brass")} ${MATERIAL}` : t("sheet.brass") },
+    ];
+    if (flex) rows.push({ label: t("finish.jacket"), value: spec.jacket ? t("finish.jacketOn") : t("finish.jacketOff") });
+    return rows;
+  };
+  const downloadSheet = async () => {
+    setSheetState("busy");
+    try {
+      const [{ datasheetPdf }, { downloadBytes }] = await Promise.all([import("@/lib/datasheet"), import("@/lib/pdf")]);
+      const drawing = drawingSvg({ spec, flangeA: `${f1Tag} · ${f1Name}`, flangeB: `${f2Tag} · ${f2Name}`, code: code.replace(/-(BRL|ARG|VRN|S650|GRZ)(-G)?$/, ""), locale, labels: drawLabels, palette: "print", date: drawingDate(locale) });
+      const op = COMPANY.operationalAddress;
+      const bytes = await datasheetPdf({
+        code,
+        product: t(`types.${tile}.name`),
+        rows: sheetRows(),
+        electrical: electricalFor(spec, (v, d = 0) => num(v, locale, d, d)),
+        date: drawingDate(locale),
+        view3d: stage.current?.snapshot() ?? null,
+        drawingSvg: drawing,
+        company: { name: COMPANY.brandFull, address: `${op.street} · ${op.postalCode} ${op.city} (${op.province}) · Italy`, contact: `${COMPANY.email} · ${COMPANY.phone2}` },
+        texts: {
+          title: t("sheet.title"),
+          codeLabel: t("sheet.codeLabel"),
+          view3d: t("sheet.view3d"),
+          drawing: t("sheet.drawing"),
+          dataTitle: t("sheet.dataTitle"),
+          electricalTitle: t("sheet.electricalTitle"),
+          electricalSource: t("sheet.electricalSource"),
+          onRequestTitle: t("sheet.onRequestTitle"),
+          onRequestBody: t("sheet.onRequestBody"),
+          note: t("sheet.note"),
+          dateLabel: t("sheet.dateLabel"),
+          el: Object.fromEntries(EL_KEYS.map((k) => [k, t(`sheet.el.${k}`)])) as Record<ElectricalKey, string>,
+        },
+      });
+      downloadBytes(bytes, `${code.replace(/[^A-Za-z0-9._-]+/g, "_")}.pdf`, "application/pdf");
+      setSheetState("idle");
+      track("config_download", { format: "datasheet", type: spec.type });
+    } catch {
+      setSheetState("error");
+    }
+  };
 
   return (
     <div ref={root} className="scroll-mt-24" data-premium-configurator data-step={id} data-type={spec.type}>
       {/* ------------------------------------------------------------ 7 passi */}
       <ol className="mb-6 flex gap-px overflow-x-auto border border-line bg-line [scrollbar-width:none]" aria-label={t("stepsLabel")}>
-        {STEPS.map((s, i) => {
+        {steps.map((s, i) => {
           const done = i < step && stepOk[s];
           const open = i <= reached;
           return (
@@ -733,7 +891,7 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
         {/* ------------------------------------------------- 3D e riepilogo */}
         {/* su telefono il 3D resta fisso sotto la testata mentre si scelgono le opzioni; il riepilogo va in fondo */}
         <div className="grid min-w-0 gap-4 max-lg:contents lg:sticky lg:top-24">
-          <Stage3D spec={spec} labels={labels} focus={focus} code={code} className="w-full max-lg:sticky max-lg:top-[4.25rem] max-lg:z-20 max-lg:h-[40svh] max-lg:min-h-56 max-lg:shadow-[0_10px_24px_var(--c-shadow)] lg:h-[min(62vh,40rem)]" />
+          <Stage3D spec={stageSpec} labels={labels} focus={acc ? "all" : focus} code={code} accessory={accessory} api={stage} className="w-full max-lg:sticky max-lg:top-[4.25rem] max-lg:z-20 max-lg:h-[40svh] max-lg:min-h-56 max-lg:shadow-[0_10px_24px_var(--c-shadow)] lg:h-[min(62vh,40rem)]" />
           <section aria-label={t("summary.title")} className="border border-line bg-surface p-4 max-lg:order-last sm:p-5">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="min-w-0">
@@ -742,13 +900,25 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
                   {code}
                 </p>
               </div>
-              <button type="button" className="btn btn-ghost btn-sm" onClick={copyLink} data-copy-link>
+              {acc ? null : (
+                <button type="button" className="btn btn-primary btn-sm" onClick={downloadSheet} disabled={!allOk || sheetState === "busy"} aria-busy={sheetState === "busy"} data-datasheet>
+                  <FileDown aria-hidden="true" className="size-4" strokeWidth={1.75} />
+                  {sheetState === "busy" ? t("sheet.preparing") : t("sheet.button")}
+                </button>
+              )}
+              <button type="button" className={cn("btn btn-ghost btn-sm", acc && "hidden")} onClick={copyLink} data-copy-link>
                 {copied ? <Check aria-hidden="true" className="size-4" strokeWidth={2} /> : <Link2 aria-hidden="true" className="size-4" strokeWidth={1.75} />}
                 {copied ? t("summary.copied") : t("summary.copyLink")}
               </button>
             </div>
+            {sheetState === "error" ? (
+              <p role="alert" className="field-error mt-2">
+                {t("sheet.error")}
+              </p>
+            ) : null}
+            {acc === "castbend" ? <p className="mt-3 text-sm text-primary-ink">{t("acc.castNo3d")}</p> : null}
             <dl className="mt-4 grid gap-x-6 gap-y-2 text-sm sm:grid-cols-2">
-              {STEPS.map((s, i) => (
+              {steps.map((s, i) => (
                 <div key={s} className="flex min-w-0 gap-3">
                   <dt className="w-24 shrink-0 text-muted">{t(`steps.${s}`)}</dt>
                   <dd className={cn("min-w-0 break-words", (s === "flange1" || s === "flange2") && "font-mono text-[0.8125rem]", i > reached && "text-muted")}>{i > reached ? "—" : summary[s]}</dd>
@@ -761,7 +931,7 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
         {/* ------------------------------------------------- passo corrente */}
         <div className="grid min-w-0 scroll-mt-24 content-start gap-5 border border-line bg-surface p-5 sm:p-6" data-step-panel={id}>
           <header className="grid gap-2">
-            <p className="annot uppercase tracking-[0.16em] text-primary-ink">{t("stepOf", { n: step + 1, total: STEPS.length })}</p>
+            <p className="annot uppercase tracking-[0.16em] text-primary-ink">{t("stepOf", { n: step + 1, total: steps.length })}</p>
             <h2 className="text-display-s font-bold">{question}</h2>
             <p className="text-sm text-muted">{t(`hint.${id}`)}</p>
           </header>
@@ -771,7 +941,7 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
               <ArrowLeft aria-hidden="true" className="size-4" strokeWidth={1.75} />
               {t("back")}
             </button>
-            {step < STEPS.length - 1 ? (
+            {step < steps.length - 1 ? (
               <button type="button" className="btn btn-primary" onClick={() => go(step + 1)} disabled={!stepOk[id]} data-next>
                 {t("next")}
                 <ArrowRight aria-hidden="true" className="size-4" strokeWidth={1.75} />
