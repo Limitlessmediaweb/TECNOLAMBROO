@@ -7,7 +7,8 @@ import type { FamilyKey } from "@/data/families";
 
 export type PartType = "twistable" | "seamless" | "bend" | "twist" | "offset" | "custom";
 export type Plane = "E" | "H";
-export type Finish = "raw" | "bright" | "painted";
+/** grezzo · brillantatura · argentatura · verniciatura · Surtec 650 */
+export type Finish = "raw" | "bright" | "silver" | "painted" | "surtec";
 export type Treatment = "none" | "galvanic" | "thermal";
 export type TwistDirection = "cw" | "ccw";
 
@@ -36,6 +37,8 @@ export type PartSpec = {
   direction?: TwistDirection;
   /** disassato: spostamento laterale in mm */
   offset?: number;
+  /** flessibili: guaina in gomma (configuratore premium) */
+  jacket?: 0 | 1;
 };
 
 export type PartTypeDef = {
@@ -59,7 +62,7 @@ export const PART_TYPES: readonly PartTypeDef[] = [
 
 export const TYPE_DEF: Record<PartType, PartTypeDef> = Object.fromEntries(PART_TYPES.map((d) => [d.type, d])) as Record<PartType, PartTypeDef>;
 
-export const FINISHES: readonly Finish[] = ["raw", "bright", "painted"];
+export const FINISHES: readonly Finish[] = ["bright", "silver", "painted", "surtec", "raw"];
 export const TREATMENTS: readonly Treatment[] = ["none", "galvanic", "thermal"];
 export const BEND_ANGLES = [30, 45, 60, 90] as const;
 export const TWIST_ROTATIONS = [45, 90] as const;

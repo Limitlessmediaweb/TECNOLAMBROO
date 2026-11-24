@@ -75,6 +75,10 @@
       "description": "Le schede dei prodotti Tecnolambro: materiale, misure, norma e trattamenti disponibili. Chiedete informazioni con il codice già compilato.",
       "itemTitle": "{name} · {code} | Tecnolambro",
       "itemDescription": "{name} (codice {code}): materiale, misure, norma e trattamenti disponibili. Chiedete informazioni a Tecnolambro."
+    },
+    "configurator3d": {
+      "title": "Configuratore 3D di guide d’onda | Tecnolambro",
+      "description": "Configura la tua guida d’onda in 7 passi con il modello 3D: tipo, misura WR, flange, lunghezza e finitura. Nessun prezzo online, preventivo entro %quoteTime%."
     }
   },
   "nav": {
@@ -1044,7 +1048,9 @@
     "finishes": {
       "raw": "Grezza",
       "bright": "Brillantata",
-      "painted": "Verniciata"
+      "painted": "Verniciata",
+      "silver": "Argentata",
+      "surtec": "Surtec 650"
     },
     "paintedHint": "Colore e tipo di vernice li definiamo insieme nel preventivo.",
     "treatment": "Trattamento",
@@ -1372,5 +1378,189 @@
     "draft": "Bozza: non pubblicata",
     "example": "ESEMPIO: non pubblicato",
     "formTitle": "Chiedi informazioni su un prodotto"
+  },
+  "premium": {
+    "page": {
+      "eyebrow": "Configuratore 3D",
+      "title": "Configura la tua guida d’onda",
+      "intro": "Sette passi, un modello 3D che cambia a ogni scelta e le flange vere del catalogo Spinner. Alla fine ci mandi la richiesta: il preventivo lo facciamo noi."
+    },
+    "banner": {
+      "title": "Nuovo: configuratore 3D in 7 passi",
+      "body": "Flange vere, metallo vero, vista esplosa. Scegli e guarda il pezzo cambiare.",
+      "cta": "Apri il configuratore 3D"
+    },
+    "stepsLabel": "Passi del configuratore",
+    "stepOf": "Passo {n} di {total}",
+    "back": "Indietro",
+    "next": "Continua",
+    "steps": {
+      "type": "Tipo",
+      "size": "Misura WR",
+      "flange1": "Flangia 1",
+      "flange2": "Flangia 2",
+      "length": "Lunghezza",
+      "finish": "Finitura",
+      "final": "Quantità"
+    },
+    "q": {
+      "type": "Che pezzo ti serve?",
+      "size": "Che misura di guida?",
+      "flange1": "Che flangia vuoi sul lato 1?",
+      "flange2": "E sul lato 2?",
+      "length": "Quanto deve essere lungo?",
+      "length_bend": "Che angolo e che gambe?",
+      "length_twist": "Di quanto ruota e quanto è lungo?",
+      "length_offset": "Di quanto si sposta e quanto è lungo?",
+      "finish": "Che finitura?",
+      "final": "Quanti pezzi ti servono?"
+    },
+    "hint": {
+      "type": "Il modello 3D a fianco cambia subito.",
+      "size": "Se conosci la frequenza scrivila: ti mettiamo in evidenza la misura giusta.",
+      "flange1": "Nel 3D è quella con l’etichetta FLANGIA 1. Le consigliate per questa misura sono in evidenza.",
+      "flange2": "Nel 3D è quella con l’etichetta FLANGIA 2.",
+      "length": "La quota nel 3D si aggiorna mentre scegli.",
+      "finish": "Il metallo del modello cambia come il pezzo vero.",
+      "final": "Puoi allegare il tuo disegno o il file 3D e scrivere una nota."
+    },
+    "types": {
+      "twistable": {
+        "name": "Flessibile twistabile",
+        "short": "Si piega e si torce"
+      },
+      "seamless": {
+        "name": "Flessibile seamless",
+        "short": "Corrugata senza saldature"
+      },
+      "bendE": {
+        "name": "Curva piano E",
+        "short": "Curva sul lato stretto"
+      },
+      "bendH": {
+        "name": "Curva piano H",
+        "short": "Curva sul lato largo"
+      },
+      "twist": {
+        "name": "Twist",
+        "short": "Ruota la polarizzazione"
+      },
+      "offset": {
+        "name": "Disassato",
+        "short": "Collega flange sfalsate"
+      }
+    },
+    "size": {
+      "freqLabel": "Frequenza di lavoro (GHz), se la conosci",
+      "freqPlaceholder": "es. {value}",
+      "suggested": "Per {freq} GHz la misura giusta è {size}.",
+      "none": "Nessuna delle nostre misure copre {freq} GHz.",
+      "onRequest": "Su richiesta per questo tipo"
+    },
+    "flange": {
+      "recommended": "Consigliata",
+      "other": "Altra flangia",
+      "otherHint": "Scrivi la sigla nelle note dell’ultimo passo.",
+      "same": "Uguale alla flangia 1",
+      "source": "Sigle e quote dal catalogo SPINNER TD-00077 per {size}.",
+      "desc": "{w} × {h} mm · {n} fori Ø {d} · spessore {c} mm",
+      "descRound": "Ø {w} mm · {n} fori · spessore {c} mm",
+      "styles": {
+        "plain": "Piana",
+        "groove": "Con gola o-ring",
+        "choke": "Choke"
+      },
+      "shapes": {
+        "square": "quadrata",
+        "rect": "rettangolare",
+        "round": "tonda"
+      }
+    },
+    "length": {
+      "label": "Lunghezza L",
+      "other": "Altra lunghezza",
+      "outStd": "Fuori standard: la valutiamo nel preventivo.",
+      "range": "Da {min} a {max} {unit}",
+      "angle": "Angolo della curva",
+      "leg1": "Gamba L1",
+      "leg2": "Gamba L2",
+      "radiusNote": "Raggio di curvatura standard; se te ne serve uno diverso scrivilo nelle note.",
+      "rotation": "Rotazione e senso",
+      "cw": "Orario",
+      "ccw": "Antiorario",
+      "plane": "Piano dello spostamento",
+      "planeE": "Piano E",
+      "planeH": "Piano H",
+      "offset": "Spostamento X",
+      "offsetTooShort": "Per questo spostamento serve un pezzo più lungo."
+    },
+    "finish": {
+      "bright": {
+        "name": "Brillantatura",
+        "note": "Ottone lucidato a specchio"
+      },
+      "silver": {
+        "name": "Argentatura",
+        "note": "Bagno d’argento, meno perdite"
+      },
+      "painted": {
+        "name": "Verniciatura",
+        "note": "Colore a richiesta"
+      },
+      "surtec": {
+        "name": "Surtec 650",
+        "note": "Passivazione protettiva"
+      },
+      "raw": {
+        "name": "Grezzo",
+        "note": "Senza trattamento"
+      },
+      "jacket": "Guaina in gomma",
+      "jacketOn": "Con guaina",
+      "jacketOff": "Senza guaina"
+    },
+    "final": {
+      "qty": "Quantità",
+      "less": "Un pezzo in meno",
+      "more": "Un pezzo in più",
+      "pieces": "pezzi",
+      "files": "Disegno o file 3D (facoltativo)",
+      "drop": "Trascina qui i file o toccali per sceglierli",
+      "filesHint": "PDF, DWG, DXF, STEP, STL, fino a {size} l’uno",
+      "fileType": "{name}: formato non accettato.",
+      "fileSize": "{name}: file troppo grande.",
+      "remove": "Togli {name}",
+      "notes": "Note",
+      "notesPlaceholder": "Es. pressurizzazione, colore della vernice, sigla di un’altra flangia…",
+      "add": "Aggiungi alla richiesta di preventivo",
+      "added": "Aggiunto alla tua richiesta.",
+      "goRequest": "Vai alla richiesta",
+      "another": "Configura un altro pezzo",
+      "noPrice": "Nessun prezzo online: ti rispondiamo noi con il preventivo.",
+      "attached": "{n} allegati"
+    },
+    "summary": {
+      "title": "La tua configurazione",
+      "copyLink": "Copia link",
+      "copied": "Link copiato"
+    },
+    "stage": {
+      "aria": "Modello 3D di {code}",
+      "loading": "Preparo il modello 3D…",
+      "error": "Il 3D non si avvia su questo dispositivo. Puoi continuare lo stesso: le scelte restano valide.",
+      "hint": "Trascina per ruotare · rotella o due dita per lo zoom",
+      "tools": "Strumenti della vista 3D",
+      "exploded": "Vista esplosa",
+      "assembled": "Rimonta",
+      "dims": "Quote",
+      "reset": "Vista iniziale",
+      "snapshot": "Salva immagine",
+      "flange1": "FLANGIA 1",
+      "flange2": "FLANGIA 2",
+      "body": "GUIDA",
+      "bodyFlex": "GUIDA CORRUGATA",
+      "jacket": "GUAINA IN GOMMA",
+      "jacketOpt": "GUAINA (A RICHIESTA)"
+    }
   }
 }

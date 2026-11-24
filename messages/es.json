@@ -75,6 +75,10 @@
       "description": "Las fichas de los productos Tecnolambro: material, medidas, norma y tratamientos disponibles. Pida información con el código ya rellenado.",
       "itemTitle": "{name} · {code} | Tecnolambro",
       "itemDescription": "{name} (código {code}): material, medidas, norma y tratamientos disponibles. Pida información a Tecnolambro."
+    },
+    "configurator3d": {
+      "title": "Configurador 3D de guías de onda | Tecnolambro",
+      "description": "Configure su guía de onda en 7 pasos con el modelo 3D: tipo, tamaño WR, bridas, longitud y acabado. Sin precios en línea, presupuesto en %quoteTime%."
     }
   },
   "nav": {
@@ -1044,7 +1048,9 @@
     "finishes": {
       "raw": "En bruto",
       "bright": "Abrillantado",
-      "painted": "Pintado"
+      "painted": "Pintado",
+      "silver": "Plateada",
+      "surtec": "Surtec 650"
     },
     "paintedHint": "El color y el tipo de pintura los acordamos en el presupuesto.",
     "treatment": "Tratamiento",
@@ -1372,5 +1378,189 @@
     "draft": "Borrador: no publicado",
     "example": "EJEMPLO: no publicado",
     "formTitle": "Pregunte por un producto"
+  },
+  "premium": {
+    "page": {
+      "eyebrow": "Configurador 3D",
+      "title": "Configure su guía de onda",
+      "intro": "Siete pasos, un modelo 3D que cambia con cada elección y las bridas reales del catálogo Spinner. Al final nos envía la solicitud y nosotros preparamos el presupuesto."
+    },
+    "banner": {
+      "title": "Nuevo: configurador 3D en 7 pasos",
+      "body": "Bridas reales, metal real, vista explosionada. Elija y vea cómo cambia la pieza.",
+      "cta": "Abrir el configurador 3D"
+    },
+    "stepsLabel": "Pasos del configurador",
+    "stepOf": "Paso {n} de {total}",
+    "back": "Atrás",
+    "next": "Continuar",
+    "steps": {
+      "type": "Tipo",
+      "size": "Tamaño WR",
+      "flange1": "Brida 1",
+      "flange2": "Brida 2",
+      "length": "Longitud",
+      "finish": "Acabado",
+      "final": "Cantidad"
+    },
+    "q": {
+      "type": "¿Qué pieza necesita?",
+      "size": "¿Qué tamaño de guía?",
+      "flange1": "¿Qué brida quiere en el lado 1?",
+      "flange2": "¿Y en el lado 2?",
+      "length": "¿Qué longitud debe tener?",
+      "length_bend": "¿Qué ángulo y qué tramos?",
+      "length_twist": "¿Cuánto gira y qué longitud tiene?",
+      "length_offset": "¿Cuánto se desplaza y qué longitud tiene?",
+      "finish": "¿Qué acabado?",
+      "final": "¿Cuántas piezas necesita?"
+    },
+    "hint": {
+      "type": "El modelo 3D de al lado cambia al instante.",
+      "size": "Si conoce la frecuencia, escríbala: destacamos el tamaño adecuado.",
+      "flange1": "En el 3D es la que lleva la etiqueta BRIDA 1. Las recomendadas para este tamaño están destacadas.",
+      "flange2": "En el 3D es la que lleva la etiqueta BRIDA 2.",
+      "length": "La cota del 3D se actualiza mientras elige.",
+      "finish": "El metal del modelo cambia como la pieza real.",
+      "final": "Puede adjuntar su plano o archivo 3D y escribir una nota."
+    },
+    "types": {
+      "twistable": {
+        "name": "Flexible torsionable",
+        "short": "Se dobla y se retuerce"
+      },
+      "seamless": {
+        "name": "Flexible sin costura",
+        "short": "Corrugada, sin soldaduras"
+      },
+      "bendE": {
+        "name": "Codo plano E",
+        "short": "Curva por la cara estrecha"
+      },
+      "bendH": {
+        "name": "Codo plano H",
+        "short": "Curva por la cara ancha"
+      },
+      "twist": {
+        "name": "Twist",
+        "short": "Gira la polarización"
+      },
+      "offset": {
+        "name": "Desplazada",
+        "short": "Une bridas desalineadas"
+      }
+    },
+    "size": {
+      "freqLabel": "Frecuencia de trabajo (GHz), si la conoce",
+      "freqPlaceholder": "p. ej. {value}",
+      "suggested": "Para {freq} GHz el tamaño adecuado es {size}.",
+      "none": "Ninguno de nuestros tamaños cubre {freq} GHz.",
+      "onRequest": "Bajo pedido para este tipo"
+    },
+    "flange": {
+      "recommended": "Recomendada",
+      "other": "Otra brida",
+      "otherHint": "Escriba la designación en las notas del último paso.",
+      "same": "Igual que la brida 1",
+      "source": "Designaciones y cotas del catálogo SPINNER TD-00077 para {size}.",
+      "desc": "{w} × {h} mm · {n} taladros Ø {d} · espesor {c} mm",
+      "descRound": "Ø {w} mm · {n} taladros · espesor {c} mm",
+      "styles": {
+        "plain": "Plana",
+        "groove": "Con ranura para junta",
+        "choke": "Choke"
+      },
+      "shapes": {
+        "square": "cuadrada",
+        "rect": "rectangular",
+        "round": "redonda"
+      }
+    },
+    "length": {
+      "label": "Longitud L",
+      "other": "Otra longitud",
+      "outStd": "Fuera de estándar: la valoramos en el presupuesto.",
+      "range": "De {min} a {max} {unit}",
+      "angle": "Ángulo del codo",
+      "leg1": "Tramo L1",
+      "leg2": "Tramo L2",
+      "radiusNote": "Radio de curvatura estándar; si necesita otro, indíquelo en las notas.",
+      "rotation": "Giro y sentido",
+      "cw": "Horario",
+      "ccw": "Antihorario",
+      "plane": "Plano del desplazamiento",
+      "planeE": "Plano E",
+      "planeH": "Plano H",
+      "offset": "Desplazamiento X",
+      "offsetTooShort": "Para este desplazamiento hace falta una pieza más larga."
+    },
+    "finish": {
+      "bright": {
+        "name": "Abrillantado",
+        "note": "Latón pulido a espejo"
+      },
+      "silver": {
+        "name": "Plateado",
+        "note": "Baño de plata, menos pérdidas"
+      },
+      "painted": {
+        "name": "Pintura",
+        "note": "Color a petición"
+      },
+      "surtec": {
+        "name": "Surtec 650",
+        "note": "Pasivado protector"
+      },
+      "raw": {
+        "name": "En bruto",
+        "note": "Sin tratamiento"
+      },
+      "jacket": "Funda de goma",
+      "jacketOn": "Con funda",
+      "jacketOff": "Sin funda"
+    },
+    "final": {
+      "qty": "Cantidad",
+      "less": "Una pieza menos",
+      "more": "Una pieza más",
+      "pieces": "piezas",
+      "files": "Plano o archivo 3D (opcional)",
+      "drop": "Arrastre aquí los archivos o toque para elegirlos",
+      "filesHint": "PDF, DWG, DXF, STEP, STL, hasta {size} cada uno",
+      "fileType": "{name}: formato no aceptado.",
+      "fileSize": "{name}: archivo demasiado grande.",
+      "remove": "Quitar {name}",
+      "notes": "Notas",
+      "notesPlaceholder": "P. ej. presurización, color de la pintura, designación de otra brida…",
+      "add": "Añadir a la solicitud de presupuesto",
+      "added": "Añadido a su solicitud.",
+      "goRequest": "Ir a la solicitud",
+      "another": "Configurar otra pieza",
+      "noPrice": "Sin precios en línea: le respondemos con el presupuesto.",
+      "attached": "{n} adjuntos"
+    },
+    "summary": {
+      "title": "Su configuración",
+      "copyLink": "Copiar enlace",
+      "copied": "Enlace copiado"
+    },
+    "stage": {
+      "aria": "Modelo 3D de {code}",
+      "loading": "Preparando el modelo 3D…",
+      "error": "El 3D no arranca en este dispositivo. Puede continuar igualmente: sus elecciones siguen siendo válidas.",
+      "hint": "Arrastre para girar · rueda o dos dedos para el zoom",
+      "tools": "Herramientas de la vista 3D",
+      "exploded": "Vista explosionada",
+      "assembled": "Volver a montar",
+      "dims": "Cotas",
+      "reset": "Vista inicial",
+      "snapshot": "Guardar imagen",
+      "flange1": "BRIDA 1",
+      "flange2": "BRIDA 2",
+      "body": "GUÍA",
+      "bodyFlex": "GUÍA CORRUGADA",
+      "jacket": "FUNDA DE GOMA",
+      "jacketOpt": "FUNDA (BAJO PEDIDO)"
+    }
   }
 }

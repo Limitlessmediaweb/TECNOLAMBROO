@@ -84,6 +84,7 @@ export const ROUTE_SLUGS: Record<string, Partial<Record<Locale, string>> & { it:
   "/termini": { it: "/termini", en: "/terms", es: "/terminos", de: "/nutzungsbedingungen" },
   "/cookie": { it: "/cookie", en: "/cookies" },
   "/shop": { it: "/shop", en: "/shop" },
+  "/configuratore": { it: "/configuratore", en: "/configurator", es: "/configurador", de: "/konfigurator" },
   "/shop/richiesta": { it: "/shop/richiesta", en: "/shop/request", es: "/shop/solicitud", de: "/shop/anfrage" },
   "/shop/richiesta/inviata": { it: "/shop/richiesta/inviata", en: "/shop/request/sent", es: "/shop/solicitud/enviada", de: "/shop/anfrage/gesendet" },
 };

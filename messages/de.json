@@ -75,6 +75,10 @@
       "description": "Die Datenblätter der Tecnolambro-Produkte: Werkstoff, Abmessungen, Norm und verfügbare Behandlungen. Anfrage mit bereits eingetragener Artikelnummer.",
       "itemTitle": "{name} · {code} | Tecnolambro",
       "itemDescription": "{name} (Artikelnummer {code}): Werkstoff, Abmessungen, Norm und verfügbare Behandlungen. Fragen Sie bei Tecnolambro an."
+    },
+    "configurator3d": {
+      "title": "3D-Konfigurator für Hohlleiter | Tecnolambro",
+      "description": "Konfigurieren Sie Ihren Hohlleiter in 7 Schritten mit 3D-Modell: Typ, WR-Größe, Flansche, Länge und Oberfläche. Keine Online-Preise, Angebot innerhalb von %quoteTime%."
     }
   },
   "nav": {
@@ -1044,7 +1048,9 @@
     "finishes": {
       "raw": "Roh",
       "bright": "Glanzgebeizt",
-      "painted": "Lackiert"
+      "painted": "Lackiert",
+      "silver": "Versilbert",
+      "surtec": "Surtec 650"
     },
     "paintedHint": "Farbe und Lackart legen wir gemeinsam im Angebot fest.",
     "treatment": "Behandlung",
@@ -1372,5 +1378,189 @@
     "draft": "Entwurf: nicht veröffentlicht",
     "example": "BEISPIEL: nicht veröffentlicht",
     "formTitle": "Zu einem Produkt anfragen"
+  },
+  "premium": {
+    "page": {
+      "eyebrow": "3D-Konfigurator",
+      "title": "Konfigurieren Sie Ihren Hohlleiter",
+      "intro": "Sieben Schritte, ein 3D-Modell, das sich bei jeder Auswahl ändert, und die echten Flansche aus dem Spinner-Katalog. Am Ende senden Sie uns die Anfrage, das Angebot erstellen wir."
+    },
+    "banner": {
+      "title": "Neu: 3D-Konfigurator in 7 Schritten",
+      "body": "Echte Flansche, echtes Metall, Explosionsansicht. Wählen Sie und sehen Sie, wie sich das Teil ändert.",
+      "cta": "3D-Konfigurator öffnen"
+    },
+    "stepsLabel": "Schritte des Konfigurators",
+    "stepOf": "Schritt {n} von {total}",
+    "back": "Zurück",
+    "next": "Weiter",
+    "steps": {
+      "type": "Typ",
+      "size": "WR-Größe",
+      "flange1": "Flansch 1",
+      "flange2": "Flansch 2",
+      "length": "Länge",
+      "finish": "Oberfläche",
+      "final": "Menge"
+    },
+    "q": {
+      "type": "Welches Teil benötigen Sie?",
+      "size": "Welche Hohlleitergröße?",
+      "flange1": "Welcher Flansch auf Seite 1?",
+      "flange2": "Und auf Seite 2?",
+      "length": "Wie lang soll es sein?",
+      "length_bend": "Welcher Winkel und welche Schenkel?",
+      "length_twist": "Welche Drehung und welche Länge?",
+      "length_offset": "Welcher Versatz und welche Länge?",
+      "finish": "Welche Oberfläche?",
+      "final": "Wie viele Stück benötigen Sie?"
+    },
+    "hint": {
+      "type": "Das 3D-Modell daneben ändert sich sofort.",
+      "size": "Wenn Sie die Frequenz kennen, geben Sie sie ein: Wir heben die passende Größe hervor.",
+      "flange1": "Im 3D-Modell trägt er das Etikett FLANSCH 1. Die für diese Größe empfohlenen sind hervorgehoben.",
+      "flange2": "Im 3D-Modell trägt er das Etikett FLANSCH 2.",
+      "length": "Das Maß im 3D-Modell ändert sich bei der Auswahl.",
+      "finish": "Das Metall des Modells ändert sich wie beim echten Teil.",
+      "final": "Sie können Ihre Zeichnung oder 3D-Datei anhängen und eine Notiz schreiben."
+    },
+    "types": {
+      "twistable": {
+        "name": "Flexibel, verdrehbar",
+        "short": "Lässt sich biegen und verdrehen"
+      },
+      "seamless": {
+        "name": "Flexibel, nahtlos",
+        "short": "Gewellt, ohne Naht"
+      },
+      "bendE": {
+        "name": "E-Bogen",
+        "short": "Biegung über die Schmalseite"
+      },
+      "bendH": {
+        "name": "H-Bogen",
+        "short": "Biegung über die Breitseite"
+      },
+      "twist": {
+        "name": "Twist",
+        "short": "Dreht die Polarisation"
+      },
+      "offset": {
+        "name": "Versatzstück",
+        "short": "Verbindet versetzte Flansche"
+      }
+    },
+    "size": {
+      "freqLabel": "Betriebsfrequenz (GHz), falls bekannt",
+      "freqPlaceholder": "z. B. {value}",
+      "suggested": "Für {freq} GHz ist {size} die passende Größe.",
+      "none": "Keine unserer Größen deckt {freq} GHz ab.",
+      "onRequest": "Für diesen Typ auf Anfrage"
+    },
+    "flange": {
+      "recommended": "Empfohlen",
+      "other": "Anderer Flansch",
+      "otherHint": "Schreiben Sie die Bezeichnung in die Notizen des letzten Schritts.",
+      "same": "Wie Flansch 1",
+      "source": "Bezeichnungen und Maße aus dem SPINNER-Katalog TD-00077 für {size}.",
+      "desc": "{w} × {h} mm · {n} Bohrungen Ø {d} · Dicke {c} mm",
+      "descRound": "Ø {w} mm · {n} Bohrungen · Dicke {c} mm",
+      "styles": {
+        "plain": "Glatt",
+        "groove": "Mit O-Ring-Nut",
+        "choke": "Drossel"
+      },
+      "shapes": {
+        "square": "quadratisch",
+        "rect": "rechteckig",
+        "round": "rund"
+      }
+    },
+    "length": {
+      "label": "Länge L",
+      "other": "Andere Länge",
+      "outStd": "Sonderlänge: Wir bewerten sie im Angebot.",
+      "range": "Von {min} bis {max} {unit}",
+      "angle": "Bogenwinkel",
+      "leg1": "Schenkel L1",
+      "leg2": "Schenkel L2",
+      "radiusNote": "Standard-Biegeradius; einen anderen bitte in den Notizen angeben.",
+      "rotation": "Drehung und Richtung",
+      "cw": "Im Uhrzeigersinn",
+      "ccw": "Gegen den Uhrzeigersinn",
+      "plane": "Ebene des Versatzes",
+      "planeE": "E-Ebene",
+      "planeH": "H-Ebene",
+      "offset": "Versatz X",
+      "offsetTooShort": "Für diesen Versatz ist ein längeres Teil nötig."
+    },
+    "finish": {
+      "bright": {
+        "name": "Glanzbeize",
+        "note": "Spiegelblankes Messing"
+      },
+      "silver": {
+        "name": "Versilberung",
+        "note": "Silberbad, geringere Verluste"
+      },
+      "painted": {
+        "name": "Lackierung",
+        "note": "Farbe nach Wunsch"
+      },
+      "surtec": {
+        "name": "Surtec 650",
+        "note": "Schützende Passivierung"
+      },
+      "raw": {
+        "name": "Unbehandelt",
+        "note": "Ohne Oberflächenbehandlung"
+      },
+      "jacket": "Gummimantel",
+      "jacketOn": "Mit Mantel",
+      "jacketOff": "Ohne Mantel"
+    },
+    "final": {
+      "qty": "Menge",
+      "less": "Ein Stück weniger",
+      "more": "Ein Stück mehr",
+      "pieces": "Stück",
+      "files": "Zeichnung oder 3D-Datei (optional)",
+      "drop": "Dateien hierher ziehen oder antippen und auswählen",
+      "filesHint": "PDF, DWG, DXF, STEP, STL, je bis {size}",
+      "fileType": "{name}: Format nicht zulässig.",
+      "fileSize": "{name}: Datei zu groß.",
+      "remove": "{name} entfernen",
+      "notes": "Notizen",
+      "notesPlaceholder": "Z. B. Druckbeaufschlagung, Lackfarbe, Bezeichnung eines anderen Flansches…",
+      "add": "Zur Angebotsanfrage hinzufügen",
+      "added": "Zu Ihrer Anfrage hinzugefügt.",
+      "goRequest": "Zur Anfrage",
+      "another": "Weiteres Teil konfigurieren",
+      "noPrice": "Keine Online-Preise: Wir antworten mit dem Angebot.",
+      "attached": "{n} Anhänge"
+    },
+    "summary": {
+      "title": "Ihre Konfiguration",
+      "copyLink": "Link kopieren",
+      "copied": "Link kopiert"
+    },
+    "stage": {
+      "aria": "3D-Modell von {code}",
+      "loading": "Das 3D-Modell wird vorbereitet…",
+      "error": "Die 3D-Ansicht startet auf diesem Gerät nicht. Sie können trotzdem fortfahren: Ihre Auswahl bleibt gültig.",
+      "hint": "Ziehen zum Drehen · Mausrad oder zwei Finger zum Zoomen",
+      "tools": "Werkzeuge der 3D-Ansicht",
+      "exploded": "Explosionsansicht",
+      "assembled": "Zusammenbauen",
+      "dims": "Maße",
+      "reset": "Ausgangsansicht",
+      "snapshot": "Bild speichern",
+      "flange1": "FLANSCH 1",
+      "flange2": "FLANSCH 2",
+      "body": "HOHLLEITER",
+      "bodyFlex": "WELLHOHLLEITER",
+      "jacket": "GUMMIMANTEL",
+      "jacketOpt": "MANTEL (AUF ANFRAGE)"
+    }
   }
 }

@@ -28,6 +28,7 @@ const STATIC: { href: StaticPathname; priority: number; changeFrequency: "monthl
   ...(HAS_CATALOG ? [{ href: "/catalogo" as const, priority: 0.8, changeFrequency: "monthly" as const }] : []),
   { href: "/faq", priority: 0.6, changeFrequency: "monthly" },
   { href: "/shop", priority: 0.9, changeFrequency: "monthly" },
+  { href: "/configuratore", priority: 0.9, changeFrequency: "monthly" },
   { href: "/privacy", priority: 0.2, changeFrequency: "yearly" },
   { href: "/termini", priority: 0.2, changeFrequency: "yearly" },
   { href: "/cookie", priority: 0.2, changeFrequency: "yearly" },

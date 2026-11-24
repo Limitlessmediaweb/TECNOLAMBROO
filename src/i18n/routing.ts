@@ -44,6 +44,7 @@ export const routing = defineRouting({
     "/termini": Record<Locale, string>;
     "/cookie": Record<Locale, string>;
     "/shop": Record<Locale, string>;
+    "/configuratore": Record<Locale, string>;
     "/shop/richiesta": Record<Locale, string>;
     "/shop/richiesta/inviata": Record<Locale, string>;
   },

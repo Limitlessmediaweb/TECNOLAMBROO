@@ -75,6 +75,10 @@
       "description": "Tecnolambro 产品资料：材料、尺寸、标准及可选处理。咨询时产品编号会自动填好。",
       "itemTitle": "{name} · {code} | Tecnolambro",
       "itemDescription": "{name}（编号 {code}）：材料、尺寸、标准及可选处理。欢迎向 Tecnolambro 咨询。"
+    },
+    "configurator3d": {
+      "title": "波导 3D 配置器 | Tecnolambro",
+      "description": "通过 3D 模型分 7 步配置波导：类型、WR 规格、法兰、长度和表面处理。不在线报价，%quoteTime%内回复报价。"
     }
   },
   "nav": {
@@ -1044,7 +1048,9 @@
     "finishes": {
       "raw": "原色",
       "bright": "光亮",
-      "painted": "喷漆"
+      "painted": "喷漆",
+      "silver": "镀银",
+      "surtec": "Surtec 650"
     },
     "paintedHint": "颜色和涂料类型将在报价中与您确定。",
     "treatment": "工艺处理",
@@ -1372,5 +1378,189 @@
     "draft": "草稿：未发布",
     "example": "示例：未发布",
     "formTitle": "咨询产品"
+  },
+  "premium": {
+    "page": {
+      "eyebrow": "3D 配置器",
+      "title": "配置您的波导",
+      "intro": "七个步骤，3D 模型随每次选择实时变化，法兰取自 Spinner 目录的真实数据。最后把询价发给我们，由我们为您报价。"
+    },
+    "banner": {
+      "title": "全新：7 步 3D 配置器",
+      "body": "真实法兰、真实金属质感、爆炸视图。边选边看零件变化。",
+      "cta": "打开 3D 配置器"
+    },
+    "stepsLabel": "配置步骤",
+    "stepOf": "第 {n} 步，共 {total} 步",
+    "back": "上一步",
+    "next": "继续",
+    "steps": {
+      "type": "类型",
+      "size": "WR 规格",
+      "flange1": "法兰 1",
+      "flange2": "法兰 2",
+      "length": "长度",
+      "finish": "表面处理",
+      "final": "数量"
+    },
+    "q": {
+      "type": "您需要哪种零件？",
+      "size": "需要哪种波导规格？",
+      "flange1": "第 1 端用哪种法兰？",
+      "flange2": "第 2 端呢？",
+      "length": "需要多长？",
+      "length_bend": "弯角和直段长度是多少？",
+      "length_twist": "旋转角度和长度是多少？",
+      "length_offset": "偏移量和长度是多少？",
+      "finish": "选择哪种表面处理？",
+      "final": "需要多少件？"
+    },
+    "hint": {
+      "type": "旁边的 3D 模型会立即变化。",
+      "size": "如果知道工作频率，请填写：我们会标出合适的规格。",
+      "flange1": "在 3D 模型中带有“法兰 1”标签。该规格的推荐法兰已突出显示。",
+      "flange2": "在 3D 模型中带有“法兰 2”标签。",
+      "length": "3D 模型中的尺寸标注会随选择更新。",
+      "finish": "模型的金属外观与实物一致地变化。",
+      "final": "可以附上您的图纸或 3D 文件，并填写备注。"
+    },
+    "types": {
+      "twistable": {
+        "name": "可扭软波导",
+        "short": "可弯曲、可扭转"
+      },
+      "seamless": {
+        "name": "无缝软波导",
+        "short": "波纹管，无焊缝"
+      },
+      "bendE": {
+        "name": "E 面弯波导",
+        "short": "沿窄边弯曲"
+      },
+      "bendH": {
+        "name": "H 面弯波导",
+        "short": "沿宽边弯曲"
+      },
+      "twist": {
+        "name": "扭波导",
+        "short": "旋转极化方向"
+      },
+      "offset": {
+        "name": "偏置波导",
+        "short": "连接错位的法兰"
+      }
+    },
+    "size": {
+      "freqLabel": "工作频率（GHz），如已知",
+      "freqPlaceholder": "例如 {value}",
+      "suggested": "{freq} GHz 适用的规格是 {size}。",
+      "none": "我们的规格均不覆盖 {freq} GHz。",
+      "onRequest": "该类型需单独询问"
+    },
+    "flange": {
+      "recommended": "推荐",
+      "other": "其他法兰",
+      "otherHint": "请在最后一步的备注中写明型号。",
+      "same": "与法兰 1 相同",
+      "source": "型号和尺寸取自 SPINNER TD-00077 目录，适用于 {size}。",
+      "desc": "{w} × {h} mm · {n} 孔 Ø {d} · 厚度 {c} mm",
+      "descRound": "Ø {w} mm · {n} 孔 · 厚度 {c} mm",
+      "styles": {
+        "plain": "平面",
+        "groove": "带密封槽",
+        "choke": "扼流"
+      },
+      "shapes": {
+        "square": "方形",
+        "rect": "矩形",
+        "round": "圆形"
+      }
+    },
+    "length": {
+      "label": "长度 L",
+      "other": "其他长度",
+      "outStd": "非标准长度：我们在报价时评估。",
+      "range": "{min} 至 {max} {unit}",
+      "angle": "弯曲角度",
+      "leg1": "直段 L1",
+      "leg2": "直段 L2",
+      "radiusNote": "采用标准弯曲半径；如需其他半径，请在备注中说明。",
+      "rotation": "旋转角度与方向",
+      "cw": "顺时针",
+      "ccw": "逆时针",
+      "plane": "偏移平面",
+      "planeE": "E 面",
+      "planeH": "H 面",
+      "offset": "偏移量 X",
+      "offsetTooShort": "该偏移量需要更长的零件。"
+    },
+    "finish": {
+      "bright": {
+        "name": "光亮处理",
+        "note": "镜面抛光黄铜"
+      },
+      "silver": {
+        "name": "镀银",
+        "note": "银镀层，损耗更低"
+      },
+      "painted": {
+        "name": "喷漆",
+        "note": "颜色可定制"
+      },
+      "surtec": {
+        "name": "Surtec 650",
+        "note": "保护性钝化"
+      },
+      "raw": {
+        "name": "原色",
+        "note": "不做处理"
+      },
+      "jacket": "橡胶护套",
+      "jacketOn": "带护套",
+      "jacketOff": "不带护套"
+    },
+    "final": {
+      "qty": "数量",
+      "less": "减少一件",
+      "more": "增加一件",
+      "pieces": "件",
+      "files": "图纸或 3D 文件（可选）",
+      "drop": "将文件拖到此处，或点击选择",
+      "filesHint": "PDF、DWG、DXF、STEP、STL，每个不超过 {size}",
+      "fileType": "{name}：不支持的格式。",
+      "fileSize": "{name}：文件过大。",
+      "remove": "移除 {name}",
+      "notes": "备注",
+      "notesPlaceholder": "例如：充气加压、漆色、其他法兰型号……",
+      "add": "加入询价单",
+      "added": "已加入您的询价单。",
+      "goRequest": "前往询价单",
+      "another": "配置另一个零件",
+      "noPrice": "不提供在线价格：我们将回复报价。",
+      "attached": "{n} 个附件"
+    },
+    "summary": {
+      "title": "您的配置",
+      "copyLink": "复制链接",
+      "copied": "链接已复制"
+    },
+    "stage": {
+      "aria": "{code} 的 3D 模型",
+      "loading": "正在准备 3D 模型……",
+      "error": "此设备无法启动 3D 视图。您仍可继续：所选项依然有效。",
+      "hint": "拖动旋转 · 滚轮或双指缩放",
+      "tools": "3D 视图工具",
+      "exploded": "爆炸视图",
+      "assembled": "重新装配",
+      "dims": "尺寸",
+      "reset": "初始视图",
+      "snapshot": "保存图片",
+      "flange1": "法兰 1",
+      "flange2": "法兰 2",
+      "body": "波导",
+      "bodyFlex": "波纹波导",
+      "jacket": "橡胶护套",
+      "jacketOpt": "护套（可选）"
+    }
   }
 }

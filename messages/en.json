@@ -75,6 +75,10 @@
       "description": "Tecnolambro product sheets: material, sizes, standard and available treatments. Ask for information with the code already filled in.",
       "itemTitle": "{name} · {code} | Tecnolambro",
       "itemDescription": "{name} (code {code}): material, sizes, standard and available treatments. Ask Tecnolambro for information."
+    },
+    "configurator3d": {
+      "title": "3D waveguide configurator | Tecnolambro",
+      "description": "Configure your waveguide in 7 steps with a live 3D model: type, WR size, flanges, length and finish. No online prices, quotation within %quoteTime%."
     }
   },
   "nav": {
@@ -1044,7 +1048,9 @@
     "finishes": {
       "raw": "Raw",
       "bright": "Bright",
-      "painted": "Painted"
+      "painted": "Painted",
+      "silver": "Silver plated",
+      "surtec": "Surtec 650"
     },
     "paintedHint": "We’ll agree colour and paint type in the quote.",
     "treatment": "Treatment",
@@ -1372,5 +1378,189 @@
     "draft": "Draft: not published",
     "example": "EXAMPLE: not published",
     "formTitle": "Ask about a product"
+  },
+  "premium": {
+    "page": {
+      "eyebrow": "3D configurator",
+      "title": "Configure your waveguide",
+      "intro": "Seven steps, a 3D model that changes with every choice and the real flanges from the Spinner catalogue. At the end you send us the request and we prepare the quotation."
+    },
+    "banner": {
+      "title": "New: 3D configurator in 7 steps",
+      "body": "Real flanges, real metal, exploded view. Choose and watch the part change.",
+      "cta": "Open the 3D configurator"
+    },
+    "stepsLabel": "Configurator steps",
+    "stepOf": "Step {n} of {total}",
+    "back": "Back",
+    "next": "Continue",
+    "steps": {
+      "type": "Type",
+      "size": "WR size",
+      "flange1": "Flange 1",
+      "flange2": "Flange 2",
+      "length": "Length",
+      "finish": "Finish",
+      "final": "Quantity"
+    },
+    "q": {
+      "type": "Which part do you need?",
+      "size": "Which waveguide size?",
+      "flange1": "Which flange on side 1?",
+      "flange2": "And on side 2?",
+      "length": "How long should it be?",
+      "length_bend": "Which angle and leg lengths?",
+      "length_twist": "How much rotation and what length?",
+      "length_offset": "How much offset and what length?",
+      "finish": "Which finish?",
+      "final": "How many pieces do you need?"
+    },
+    "hint": {
+      "type": "The 3D model next to it changes at once.",
+      "size": "If you know the frequency, type it in: we highlight the right size.",
+      "flange1": "In the 3D view it carries the FLANGE 1 label. The ones recommended for this size are highlighted.",
+      "flange2": "In the 3D view it carries the FLANGE 2 label.",
+      "length": "The dimension in the 3D view updates as you choose.",
+      "finish": "The metal of the model changes like the real part.",
+      "final": "You can attach your drawing or 3D file and add a note."
+    },
+    "types": {
+      "twistable": {
+        "name": "Flexible twistable",
+        "short": "Bends and twists"
+      },
+      "seamless": {
+        "name": "Flexible seamless",
+        "short": "Corrugated, no seams"
+      },
+      "bendE": {
+        "name": "E-plane bend",
+        "short": "Bends on the narrow wall"
+      },
+      "bendH": {
+        "name": "H-plane bend",
+        "short": "Bends on the broad wall"
+      },
+      "twist": {
+        "name": "Twist",
+        "short": "Rotates the polarisation"
+      },
+      "offset": {
+        "name": "Offset",
+        "short": "Joins misaligned flanges"
+      }
+    },
+    "size": {
+      "freqLabel": "Operating frequency (GHz), if you know it",
+      "freqPlaceholder": "e.g. {value}",
+      "suggested": "For {freq} GHz the right size is {size}.",
+      "none": "None of our sizes covers {freq} GHz.",
+      "onRequest": "On request for this type"
+    },
+    "flange": {
+      "recommended": "Recommended",
+      "other": "Another flange",
+      "otherHint": "Write its designation in the notes of the last step.",
+      "same": "Same as flange 1",
+      "source": "Designations and dimensions from the SPINNER TD-00077 catalogue for {size}.",
+      "desc": "{w} × {h} mm · {n} holes Ø {d} · thickness {c} mm",
+      "descRound": "Ø {w} mm · {n} holes · thickness {c} mm",
+      "styles": {
+        "plain": "Plain",
+        "groove": "O-ring groove",
+        "choke": "Choke"
+      },
+      "shapes": {
+        "square": "square",
+        "rect": "rectangular",
+        "round": "round"
+      }
+    },
+    "length": {
+      "label": "Length L",
+      "other": "Other length",
+      "outStd": "Non-standard: we assess it in the quotation.",
+      "range": "From {min} to {max} {unit}",
+      "angle": "Bend angle",
+      "leg1": "Leg L1",
+      "leg2": "Leg L2",
+      "radiusNote": "Standard bend radius; if you need a different one, write it in the notes.",
+      "rotation": "Rotation and direction",
+      "cw": "Clockwise",
+      "ccw": "Anticlockwise",
+      "plane": "Offset plane",
+      "planeE": "E-plane",
+      "planeH": "H-plane",
+      "offset": "Offset X",
+      "offsetTooShort": "This offset needs a longer part."
+    },
+    "finish": {
+      "bright": {
+        "name": "Bright dip",
+        "note": "Mirror-polished brass"
+      },
+      "silver": {
+        "name": "Silver plating",
+        "note": "Silver bath, lower losses"
+      },
+      "painted": {
+        "name": "Painting",
+        "note": "Colour on request"
+      },
+      "surtec": {
+        "name": "Surtec 650",
+        "note": "Protective passivation"
+      },
+      "raw": {
+        "name": "Untreated",
+        "note": "No surface treatment"
+      },
+      "jacket": "Rubber jacket",
+      "jacketOn": "With jacket",
+      "jacketOff": "Without jacket"
+    },
+    "final": {
+      "qty": "Quantity",
+      "less": "One piece fewer",
+      "more": "One piece more",
+      "pieces": "pieces",
+      "files": "Drawing or 3D file (optional)",
+      "drop": "Drop files here or tap to choose them",
+      "filesHint": "PDF, DWG, DXF, STEP, STL, up to {size} each",
+      "fileType": "{name}: format not accepted.",
+      "fileSize": "{name}: file too large.",
+      "remove": "Remove {name}",
+      "notes": "Notes",
+      "notesPlaceholder": "E.g. pressurisation, paint colour, designation of another flange…",
+      "add": "Add to the quotation request",
+      "added": "Added to your request.",
+      "goRequest": "Go to the request",
+      "another": "Configure another part",
+      "noPrice": "No online prices: we reply with the quotation.",
+      "attached": "{n} attachments"
+    },
+    "summary": {
+      "title": "Your configuration",
+      "copyLink": "Copy link",
+      "copied": "Link copied"
+    },
+    "stage": {
+      "aria": "3D model of {code}",
+      "loading": "Preparing the 3D model…",
+      "error": "The 3D view cannot start on this device. You can carry on anyway: your choices remain valid.",
+      "hint": "Drag to rotate · wheel or two fingers to zoom",
+      "tools": "3D view tools",
+      "exploded": "Exploded view",
+      "assembled": "Reassemble",
+      "dims": "Dimensions",
+      "reset": "Initial view",
+      "snapshot": "Save image",
+      "flange1": "FLANGE 1",
+      "flange2": "FLANGE 2",
+      "body": "WAVEGUIDE",
+      "bodyFlex": "CORRUGATED WAVEGUIDE",
+      "jacket": "RUBBER JACKET",
+      "jacketOpt": "JACKET (ON REQUEST)"
+    }
   }
 }

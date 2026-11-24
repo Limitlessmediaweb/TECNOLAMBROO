@@ -4,10 +4,10 @@ import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from "rea
 import NextLink from "next/link";
 import { Box, Check, Download, FileDown, Info, Mail, PencilRuler, Plus, Share2, Smartphone } from "lucide-react";
 import { useClientLocale, useT } from "@/lib/client-i18n";
-import { BEND_ANGLES, FINISHES, PART_TYPES, TREATMENTS, TWIST_ROTATIONS, TYPE_DEF, isFlexible, type PartSpec, type PartType } from "@/data/configurator/types";
+import { BEND_ANGLES, FINISHES, PART_TYPES, TREATMENTS, TWIST_ROTATIONS, TYPE_DEF, type PartSpec, type PartType } from "@/data/configurator/types";
 import { defaultSpec, specFromParams, specToParams } from "@/data/configurator/defaults";
 import { FREE_LENGTH, SEAMLESS_TABLE, SIZES, SIZE_BY_WR, TWIST_TABLE, bestSizeFor, isOnRequest, num, range, rlColumn, sizeLabel, sizesFor, standardLengths } from "@/data/waveguides";
-import { OTHER_FLANGE, flangesFor } from "@/data/flanges";
+import { OTHER_FLANGE, flangeLabel, flangesFor } from "@/data/flanges";
 import { fileSafe, lengthStatus, partReference, specValid } from "@/lib/part";
 import { addItem } from "@/lib/request";
 import { drawingDate, drawingSvg, type DrawingLabels } from "@/lib/drawing";
@@ -50,7 +50,7 @@ export function usePartText() {
   const t = useT("configurator");
   const locale = useClientLocale();
   return useMemo(() => {
-    const flange = (f: string) => (f === OTHER_FLANGE ? t("flangeOther") : f);
+    const flange = (f: string) => (f === OTHER_FLANGE ? t("flangeOther") : flangeLabel(f));
     const reference = (spec: PartSpec) =>
       partReference(spec, { other: t("otherRef"), flexName: t(`flexName.${spec.type === "seamless" ? "seamless" : "twistable"}`), customLabel: t("customRef") });
     /** riga leggibile: tipo · misura · banda · geometria · flange · finitura · trattamento */
@@ -197,7 +197,7 @@ export function Configurator({ requestPath }: { requestPath: string }) {
       ...s,
       wr,
       f1: s.f1 === OTHER_FLANGE ? s.f1 : (list[0]?.id ?? OTHER_FLANGE),
-      f2: s.f2 === OTHER_FLANGE ? s.f2 : ((isFlexible(s.type) ? list[1]?.id : list[0]?.id) ?? OTHER_FLANGE),
+      f2: s.f2 === OTHER_FLANGE ? s.f2 : (list[0]?.id ?? OTHER_FLANGE),
     }));
     step("size");
   };
