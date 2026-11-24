@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { ArrowDown, ArrowRight, PencilRuler, Truck, Upload } from "lucide-react";
+import { ArrowDown, ArrowRight, Box, PencilRuler, Truck, Upload } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 import { pageMetadata, breadcrumbsFor } from "@/lib/page";
 import { publicExists } from "@/lib/public-files";
@@ -34,6 +34,7 @@ export default async function ShopPage({ params }: PageProps<"/[locale]/shop">) 
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("shop");
+  const premium = await getTranslations("premium.banner");
   const faq = await faqText();
   const how = t.raw("how") as string[];
   const requestPath = await localizedHref("/shop/richiesta");
@@ -55,6 +56,21 @@ export default async function ShopPage({ params }: PageProps<"/[locale]/shop">) 
       <div className="container-site pb-10">
         <TrustBar />
       </div>
+
+      {/* nuovo configuratore 3D in 7 passi */}
+      <section className="container-site pb-6" aria-label={premium("title")}>
+        <Link href="/configuratore" className="group flex flex-wrap items-center gap-x-6 gap-y-3 border border-accent bg-[color-mix(in_srgb,var(--c-accent)_9%,var(--c-bg))] p-6 transition-colors hover:bg-[color-mix(in_srgb,var(--c-accent)_14%,var(--c-bg))]" data-premium-banner>
+          <Box aria-hidden="true" className="size-8 shrink-0 text-accent" strokeWidth={1.5} />
+          <span className="grid min-w-0 flex-1 gap-1">
+            <span className="text-display-s font-bold">{premium("title")}</span>
+            <span className="text-muted">{premium("body")}</span>
+          </span>
+          <span className="btn btn-primary">
+            {premium("cta")}
+            <ArrowRight aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-0.5" strokeWidth={1.75} />
+          </span>
+        </Link>
+      </section>
 
       {/* due strade: ho la misura / ho un disegno */}
       <section className="container-site pb-14" aria-label={t("choiceLabel")}>

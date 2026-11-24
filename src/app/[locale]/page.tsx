@@ -36,7 +36,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   return (
     <SignalJourney
       t={text}
-      shopHref={await localizedHref({ pathname: "/shop", hash: "configura" })}
+      shopHref={await localizedHref("/configuratore")}
       quoteHref={await localizedHref({ pathname: "/contatti", hash: "preventivo" })}
     />
   );

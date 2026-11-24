@@ -72,7 +72,7 @@ export function RequestForm({ privacyHref, sentPath, shopPath, aside }: { privac
   }, []);
 
   // file dei pezzi su disegno (salvati nel browser)
-  const customIds = items.filter((i) => i.kind === "custom").map((i) => i.id).join(",");
+  const customIds = items.map((i) => i.id).join(",");
   useEffect(() => {
     let cancelled = false;
     Promise.all(customIds.split(",").filter(Boolean).map(async (itemId) => [itemId, await loadItemFiles(itemId)] as const)).then((pairs) => {
@@ -132,7 +132,7 @@ export function RequestForm({ privacyHref, sentPath, shopPath, aside }: { privac
   };
   const remove = (i: RequestItem) => {
     removeItem(i.id);
-    if (i.kind === "custom") void deleteItemFiles(i.id);
+    void deleteItemFiles(i.id);
   };
 
   /* ------------------------------------------------------------------ invio */

@@ -25,7 +25,8 @@
     "catalogo:check": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/catalogo-check.mjs",
     "segnaposti": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/segnaposti.mjs",
     "datasheets": "node scripts/datasheets.mjs",
-    "foto": "node scripts/foto.mjs"
+    "foto": "node scripts/foto.mjs",
+    "test:premium": "node scripts/premium-e2e.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

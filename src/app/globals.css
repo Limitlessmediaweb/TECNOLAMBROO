@@ -654,6 +654,48 @@ html.lenis body {
   pointer-events: none;
 }
 
+/* Configuratore premium: palco 3D (components/configurator/premium/Stage3D.tsx) */
+.p3d-stage {
+  background:
+    radial-gradient(60% 34% at 50% 86%, color-mix(in srgb, var(--c-fg) 9%, transparent), transparent 70%),
+    radial-gradient(120% 90% at 50% 18%, var(--c-surface), var(--c-surface-2));
+}
+/* Etichette FLANGIA 1 / FLANGIA 2 ancorate al modello (CSS2DRenderer, lib/part3d.ts) */
+.p3d-tag {
+  display: grid;
+  justify-items: center;
+  gap: 0.0625rem;
+  padding: 0.3125rem 0.625rem;
+  border: 1px solid var(--c-accent);
+  border-radius: var(--radius-part);
+  background: color-mix(in srgb, var(--c-surface) 92%, transparent);
+  box-shadow: 0 6px 18px var(--c-shadow);
+  color: var(--c-fg);
+  line-height: 1.15;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.p3d-tag b {
+  font-family: var(--font-display);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--c-primary-ink);
+}
+.p3d-tag span {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.p3d-tag-part {
+  border-color: var(--c-line-strong);
+  opacity: 0;
+}
+.p3d-tag-part b {
+  color: var(--c-fg);
+}
+
 /* Con una barra fissa in basso (configuratore, "La tua richiesta") o il banner dei cookie aperto il pulsante WhatsApp non compare */
 html[data-fixed-bar] [data-whatsapp-float],
 html[data-consent-open] [data-whatsapp-float] {

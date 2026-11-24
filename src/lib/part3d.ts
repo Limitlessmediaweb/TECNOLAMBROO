@@ -8,10 +8,12 @@
  * indicativa, quote della tabella TLFX per la flessibile. Il disegno definitivo arriva con il preventivo.
  */
 import * as THREE from "three";
+import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import { DIM_BY_WR, SIZE_BY_WR, rigidOuter } from "@/data/waveguides";
 import { BRASS } from "@/data/brand";
+import { flangeById, flangeFits, flangeGrooves, flangeHoles, flangeOutline, flangesFor, type FlangeDef } from "@/data/flanges";
 import { visualBendRadius } from "@/data/configurator/defaults";
-import { isFlexible, type PartSpec } from "@/data/configurator/types";
+import { isFlexible, type Finish, type PartSpec } from "@/data/configurator/types";
 
 const V3 = THREE.Vector3;
 type Frame = { p: THREE.Vector3; t: THREE.Vector3; u: THREE.Vector3; v: THREE.Vector3 };
@@ -47,12 +49,14 @@ function sizeOf(spec: PartSpec) {
 
 /* --------------------------------------------------------------- percorso */
 
-function straight(f: Frame, len: number, twist = 0): Segment {
+function straight(f: Frame, len: number, twist = 0, eased = false): Segment {
   return {
     len,
     step: twist ? Math.max(len / 48, 0.5) : len,
     at: (d) => {
-      const k = len ? d / len : 0;
+      const lin = len ? d / len : 0;
+      const e = THREE.MathUtils.clamp((lin - 0.14) / 0.72, 0, 1);
+      const k = eased ? e * e * (3 - 2 * e) : lin;
       const p = f.p.clone().addScaledVector(f.t, d);
       if (!twist) return { p, t: f.t.clone(), u: f.u.clone(), v: f.v.clone() };
       const q = new THREE.Quaternion().setFromAxisAngle(f.t, twist * k);
@@ -127,6 +131,9 @@ function pathFor(spec: PartSpec): Segment[] {
       const leg2 = straight(a.at(a.len), clampLen(spec.leg2, 100));
       return [leg1, a, leg2];
     }
+    case "twistable":
+      // la twistabile si mostra torta di 90° (è il suo mestiere): torsione dolce nel tratto centrale
+      return [straight(START, clampLen(spec.length, 600), Math.PI / 2, true)];
     case "twist": {
       const rot = THREE.MathUtils.degToRad(spec.rotation ?? 90) * (spec.direction === "ccw" ? 1 : -1);
       return [straight(START, clampLen(spec.length, 100), rot)];
@@ -204,28 +211,118 @@ function sweep(at: (d: number) => Frame, rings: Ring[], k: number, inward = fals
 
 /* ----------------------------------------------------------------- flangia */
 
-function flangeGeometry(size: ReturnType<typeof sizeOf>): THREE.ExtrudeGeometry {
-  const big = Math.max(size.outerW, size.outerH);
-  const w = Math.max(big * 1.6 + 10, size.outerW + 16);
-  const h = Math.max(size.outerH * 1.9 + 12, w * 0.82);
-  const shape = new THREE.Shape();
-  const outline = rectPoints(w, h, 2, 3);
-  shape.moveTo(outline[0][0], outline[0][1]);
-  outline.slice(1).forEach(([x, y]) => shape.lineTo(x, y));
-  shape.closePath();
-  const hole = new THREE.Path();
-  const inner = rectPoints(size.s.a, size.s.b, 0.5, 1);
-  hole.moveTo(inner[0][0], inner[0][1]);
-  inner.slice(1).forEach(([x, y]) => hole.lineTo(x, y));
-  hole.closePath();
-  shape.holes.push(hole);
-  const boltR = Math.max(1.6, w * 0.045);
-  for (const [sx, sy] of [[1, 1], [-1, 1], [-1, -1], [1, -1]]) {
-    const bolt = new THREE.Path();
-    bolt.absarc((sx * w) / 2 - sx * boltR * 2.6, (sy * h) / 2 - sy * boltR * 2.6, boltR, 0, Math.PI * 2, true);
-    shape.holes.push(bolt);
+/** Flangia da disegnare: quella scelta se esiste per la misura, altrimenti la consigliata (o una quadrata generica). */
+export function flangeFor(spec: PartSpec, id: string): FlangeDef {
+  const chosen = flangeById(id);
+  if (chosen && flangeFits(id, spec.wr)) return chosen;
+  const first = flangesFor(spec.wr)[0];
+  if (first) return first;
+  const s = SIZE_BY_WR.get(spec.wr) ?? SIZE_BY_WR.get("WR-90")!;
+  const A = Math.round(s.a * 1.8);
+  return { id: "generic", label: "", family: "IEC", style: "plain", shape: "square", A, E: A * 0.39, F: A * 0.37, hole: A * 0.1, C: Math.max(3, A * 0.1), holes: 4 };
+}
+
+function rectPath<T extends THREE.Path>(path: T, w: number, h: number, r: number, k = 4): T {
+  const pts = rectPoints(w, h, r, k);
+  path.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length; i++) path.lineTo(pts[i][0], pts[i][1]);
+  path.closePath();
+  return path;
+}
+function circlePath<T extends THREE.Path>(path: T, r: number, x = 0, y = 0): T {
+  path.absarc(x, y, r, 0, Math.PI * 2, false);
+  return path;
+}
+
+/** Un contorno chiuso, usabile sia come sagoma piena sia come foro. */
+type Loop = { shape: () => THREE.Shape; hole: () => THREE.Path };
+const loop = (draw: (p: THREE.Path) => void): Loop => ({
+  shape: () => {
+    const s = new THREE.Shape();
+    draw(s);
+    return s;
+  },
+  hole: () => {
+    const h = new THREE.Path();
+    draw(h);
+    return h;
+  },
+});
+
+type Groove = { inner: Loop; outer: Loop; center: [number, number][]; width: number; gasket: boolean };
+
+/** Le gole della flangia (data/flanges.ts → flangeGrooves) come contorni per l'estrusione. */
+function grooveLayout(def: FlangeDef, a: number, b: number): Groove[] {
+  return flangeGrooves(def, a, b).map((g) => {
+    const lo = g.at - g.width / 2;
+    const hi = g.at + g.width / 2;
+    if (g.shape === "rect") {
+      const rr = (grow: number) => loop((p) => rectPath(p, a + 2 * grow, b + 2 * grow, grow * 0.9, 5));
+      return { inner: rr(lo), outer: rr(hi), center: rectPoints(a + 2 * g.at, b + 2 * g.at, g.at * 0.9, 6), width: g.width, gasket: g.gasket };
+    }
+    return {
+      inner: loop((p) => circlePath(p, lo)),
+      outer: loop((p) => circlePath(p, hi)),
+      center: Array.from({ length: 48 }, (_, i) => [Math.cos((i / 48) * Math.PI * 2) * g.at, Math.sin((i / 48) * Math.PI * 2) * g.at] as [number, number]),
+      width: g.width,
+      gasket: g.gasket,
+    };
+  });
+}
+
+/**
+ * Flangia nel suo piano: x = lato largo della guida, y = lato stretto, faccia di accoppiamento a z = 0,
+ * spessore verso +z. `plate` è il metallo (fori viti, foro rettangolare interno, gole), `seal` l'o-ring.
+ */
+function flangeGeometry(def: FlangeDef, a: number, b: number): { plate: THREE.BufferGeometry; seal: THREE.BufferGeometry | null } {
+  const { w, h } = flangeOutline(def);
+  const outline = loop((p) => (def.shape === "round" ? circlePath(p, def.A / 2) : rectPath(p, w, h, Math.min(w, h) * 0.07)));
+  const aperture = loop((p) => rectPath(p, a, b, Math.min(0.5, b * 0.08), 2));
+  const holes = flangeHoles(def);
+  const boltHoles = () => holes.map(([u, v]) => circlePath(new THREE.Path(), def.hole / 2, u, v));
+  const curveSegments = 14;
+  const grooves = grooveLayout(def, a, b);
+
+  if (!grooves.length) {
+    const s = outline.shape();
+    s.holes.push(aperture.hole(), ...boltHoles());
+    const bevel = Math.min(0.4, def.C * 0.08);
+    const plate = new THREE.ExtrudeGeometry(s, { depth: def.C - 2 * bevel, bevelEnabled: true, bevelSize: bevel, bevelOffset: -bevel, bevelThickness: bevel, bevelSegments: 2, curveSegments });
+    plate.translate(0, 0, bevel);
+    return { plate, seal: null };
   }
-  return new THREE.ExtrudeGeometry(shape, { depth: size.flangeT, bevelEnabled: true, bevelSize: 0.35, bevelThickness: 0.35, bevelSegments: 1, curveSegments: 10 });
+
+  // strato davanti (profondo quanto la gola) fatto di isole separate dalle gole, e piastra piena dietro
+  const g = Math.min(def.C * 0.38, 1.6);
+  const front: THREE.Shape[] = [];
+  const outer = outline.shape();
+  outer.holes.push(...boltHoles(), grooves[grooves.length - 1].outer.hole());
+  front.push(outer);
+  for (let i = grooves.length - 1; i > 0; i--) {
+    const s = grooves[i].inner.shape();
+    s.holes.push(grooves[i - 1].outer.hole());
+    front.push(s);
+  }
+  const island = grooves[0].inner.shape();
+  island.holes.push(aperture.hole());
+  front.push(island);
+  const frontGeo = new THREE.ExtrudeGeometry(front, { depth: g, bevelEnabled: false, curveSegments });
+  const back = outline.shape();
+  back.holes.push(aperture.hole(), ...boltHoles());
+  const backGeo = new THREE.ExtrudeGeometry(back, { depth: def.C - g, bevelEnabled: false, curveSegments });
+  backGeo.translate(0, 0, g);
+  const plate = mergeGeometries([frontGeo, backGeo]) ?? backGeo;
+  frontGeo.dispose();
+  if (plate !== backGeo) backGeo.dispose();
+
+  const gk = grooves.find((x) => x.gasket);
+  let seal: THREE.BufferGeometry | null = null;
+  if (gk) {
+    const tube = Math.min(gk.width * 0.46, g * 0.62);
+    const curve = new THREE.CatmullRomCurve3(gk.center.map(([x, y]) => new V3(x, y, g - tube)), true, "centripetal");
+    seal = new THREE.TubeGeometry(curve, 96, tube, 8, true);
+  }
+  return { plate, seal };
 }
 
 /** Matrice che porta la geometria della flangia (piano XY, spessore lungo +Z) sul fotogramma f. */
@@ -238,24 +335,38 @@ function frameMatrix(f: Frame, outward: boolean): THREE.Matrix4 {
 
 /* ---------------------------------------------------------------- materiali */
 
-function materials(spec: PartSpec, fade: boolean) {
-  const finish = spec.finish;
-  const brass = new THREE.MeshStandardMaterial(
-    finish === "painted"
-      ? { color: new THREE.Color("#c9ced2"), metalness: 0.1, roughness: 0.55, name: "Verniciata" }
-      : { color: new THREE.Color(finish === "bright" ? BRASS.color : BRASS.flange), metalness: 1, roughness: finish === "bright" ? 0.18 : 0.42, name: "Ottone OT 80" },
-  );
-  const flange = brass.clone();
-  if (finish !== "painted") flange.roughness = Math.min(1, brass.roughness + 0.06);
-  const jacket = new THREE.MeshStandardMaterial({ color: new THREE.Color("#25282d"), metalness: 0, roughness: 0.72, name: "Rivestimento" });
-  for (const m of [brass, flange, jacket]) {
-    m.side = THREE.DoubleSide;
-    if (fade) {
-      m.transparent = true;
-      m.opacity = 0;
-    }
-  }
-  return { brass, flange, jacket };
+/**
+ * Aspetto delle finiture (materiali PBR). Colori indicativi del metallo trattato:
+ * grezzo = ottone OT 80 non trattato · brillantatura = ottone lucido · argentatura = argento lucido ·
+ * verniciatura = vernice (il colore si concorda) · Surtec 650 = passivazione chiara satinata.
+ */
+const FINISH_LOOK: Record<Finish, { color: string; metalness: number; roughness: number; clearcoat?: number; iridescence?: number; name: string }> = {
+  raw: { color: "#b08a52", metalness: 1, roughness: 0.46, name: "Grezzo" },
+  bright: { color: BRASS.color, metalness: 1, roughness: 0.16, name: "Brillantatura" },
+  silver: { color: "#e9e8e4", metalness: 1, roughness: 0.13, name: "Argentatura" },
+  painted: { color: "#2b3442", metalness: 0.05, roughness: 0.5, clearcoat: 0.45, name: "Verniciatura" },
+  surtec: { color: "#c5ccd2", metalness: 1, roughness: 0.36, iridescence: 0.35, name: "Surtec 650" },
+};
+
+function materials(spec: PartSpec) {
+  const look = FINISH_LOOK[spec.finish] ?? FINISH_LOOK.raw;
+  const metal = (roughness: number) =>
+    new THREE.MeshPhysicalMaterial({
+      color: new THREE.Color(look.color),
+      metalness: look.metalness,
+      roughness,
+      clearcoat: look.clearcoat ?? 0,
+      clearcoatRoughness: 0.28,
+      iridescence: look.iridescence ?? 0,
+      iridescenceIOR: 1.25,
+      side: THREE.DoubleSide,
+      name: look.name,
+    });
+  const body = metal(look.roughness);
+  const flange = metal(Math.min(1, look.roughness + 0.05));
+  const rubber = new THREE.MeshStandardMaterial({ color: new THREE.Color("#141619"), metalness: 0, roughness: 0.85, name: "O-ring" });
+  const jacket = new THREE.MeshPhysicalMaterial({ color: new THREE.Color("#1d2024"), metalness: 0, roughness: 0.6, sheen: 0.4, sheenRoughness: 0.6, side: THREE.DoubleSide, name: "Guaina" });
+  return { body, flange, rubber, jacket };
 }
 
 /** Texture di rilievo a righe per la corrugazione quando la geometria supererebbe il limite di triangoli. */
@@ -278,20 +389,42 @@ function corrugationBump(repeat: number): THREE.CanvasTexture {
 
 /* -------------------------------------------------------------- costruzione */
 
-export type BuildOptions = { fade?: boolean };
-export type PartInfo = { group: THREE.Group; triangles: number; ends: [Frame, Frame]; size: ReturnType<typeof sizeOf>; total: number };
+export type BuildOptions = {
+  /** flessibili senza guaina scelta: la guaina c'è lo stesso, nascosta, e compare solo nella vista esplosa */
+  ghostJacket?: boolean;
+};
+export type PartInfo = {
+  group: THREE.Group;
+  triangles: number;
+  ends: [Frame, Frame];
+  size: ReturnType<typeof sizeOf>;
+  total: number;
+  flanges: [FlangeDef, FlangeDef];
+  /** ingombro del pezzo montato, nelle coordinate del modello */
+  box: THREE.Box3;
+  /** punto a metà del corpo */
+  mid: Frame;
+};
 
 export function buildPart(spec: PartSpec, opts: BuildOptions = {}): PartInfo {
   const size = sizeOf(spec);
-  const mats = materials(spec, Boolean(opts.fade));
-  const { total, at } = sampler(pathFor(spec));
+  const mats = materials(spec);
   const segs = pathFor(spec);
-  const T = size.flangeT;
-  const from = Math.min(T, total / 3);
-  const to = Math.max(total - T, (2 * total) / 3);
+  const { total, at } = sampler(segs);
+  const defs: [FlangeDef, FlangeDef] = [flangeFor(spec, spec.f1), flangeFor(spec, spec.f2)];
+  const from = Math.min(defs[0].C, total / 3);
+  const to = Math.max(total - defs[1].C, (2 * total) / 3);
   const group = new THREE.Group();
   group.name = "Tecnolambro";
   const k = 3;
+  const M = 4 * (k + 1);
+  const add = (geo: THREE.BufferGeometry, mat: THREE.Material, name: string) => {
+    const m = new THREE.Mesh(geo, mat);
+    m.name = name;
+    m.castShadow = true;
+    group.add(m);
+    return m;
+  };
 
   // distanze di campionamento: confini dei segmenti + passo di ogni segmento
   const ds: number[] = [];
@@ -302,62 +435,99 @@ export function buildPart(spec: PartSpec, opts: BuildOptions = {}): PartInfo {
     acc += g.len;
   }
   ds.push(total);
-  const body = ds.filter((d) => d > from && d < to);
-  const bodyD = [from, ...body, to];
+  const between = (d0: number, d1: number) => [d0, ...ds.filter((d) => d > d0 && d < d1), d1];
+  const bodyD = between(from, to);
 
-  if (spec.type === "twistable") {
+  if (isFlexible(spec.type)) {
     const f = size.flex;
+    // corrugazioni vere, passo P della tabella TLFX: creste larghe e gole strette per la twistabile
+    // (nastro aggraffato), onda morbida per la seamless (soffietto senza saldature)
+    const sharp = spec.type === "twistable" ? 0.55 : 1;
     const pitches = (to - from) / f.P;
-    const M = 4 * (k + 1);
-    const perPitch = Math.max(2, Math.min(6, Math.floor(TRIANGLE_BUDGET * 0.8 / (2 * M) / Math.max(1, pitches))));
+    const perPitch = Math.max(2, Math.min(6, Math.floor((TRIANGLE_BUDGET * 0.66) / (2 * M) / Math.max(1, pitches))));
     const ringsCount = Math.round(pitches * perPitch) + 1;
-    if (ringsCount * M * 2 <= TRIANGLE_BUDGET * 0.85 && perPitch >= 2) {
+    if (ringsCount * M * 2 <= TRIANGLE_BUDGET * 0.7 && perPitch >= 2) {
       const rings: Ring[] = [];
       for (let i = 0; i < ringsCount; i++) {
         const d = from + ((to - from) * i) / (ringsCount - 1);
-        const s = 0.5 + 0.5 * Math.cos((2 * Math.PI * (d - from)) / f.P);
+        const s = Math.pow(0.5 + 0.5 * Math.cos((2 * Math.PI * (d - from)) / f.P), sharp);
         rings.push({ d, w: f.C + (f.A - f.C) * s, h: f.D + (f.B - f.D) * s, r: f.r + (f.R - f.r) * s });
       }
-      group.add(new THREE.Mesh(sweep(at, rings, k), mats.brass));
+      add(sweep(at, rings, k), mats.body, "Guida corrugata");
     } else {
       // troppo lunga per la corrugazione in geometria: tubo liscio con rilievo a righe
       const mid = { w: (f.A + f.C) / 2, h: (f.B + f.D) / 2, r: (f.R + f.r) / 2 };
       const geo = sweep(at, bodyD.map((d) => ({ d, ...mid })), k);
-      const uv = new Float32Array((geo.attributes.position.count) * 2);
-      const M = 4 * (k + 1);
+      const uv = new Float32Array(geo.attributes.position.count * 2);
       bodyD.forEach((d, i) => {
         for (let j = 0; j < M; j++) uv.set([j / M, (d - from) / (to - from)], (i * M + j) * 2);
       });
       geo.setAttribute("uv", new THREE.BufferAttribute(uv, 2));
-      const m = mats.brass.clone();
+      const m = mats.body.clone();
       m.bumpMap = corrugationBump(pitches);
       m.bumpScale = 2;
-      group.add(new THREE.Mesh(geo, m));
+      add(geo, m, "Guida corrugata");
     }
-  } else if (spec.type === "seamless") {
-    const f = size.flex;
-    group.add(new THREE.Mesh(sweep(at, bodyD.map((d) => ({ d, w: f.A, h: f.B, r: f.R })), k), mats.jacket));
+    // manicotti di attacco alle flange
+    const collarLen = Math.min(f.B * 0.9, 12, (to - from) / 6);
+    const sleeve = { w: f.A + 1.6, h: f.B + 1.6, r: f.R + 0.8 };
+    const neck = { w: f.A, h: f.B, r: f.R };
+    add(sweep(at, [{ d: from, ...sleeve }, { d: from + collarLen, ...sleeve }, { d: from + collarLen + 0.8, ...neck }], k), mats.flange, "Manicotto 1");
+    add(sweep(at, [{ d: to - collarLen - 0.8, ...neck }, { d: to - collarLen, ...sleeve }, { d: to, ...sleeve }], k), mats.flange, "Manicotto 2");
+    // guaina in gomma tra i due manicotti
+    if (spec.jacket || opts.ghostJacket) {
+      const j = { w: f.A + 2.6, h: f.B + 2.6, r: f.R + 1.3 };
+      const mat = mats.jacket;
+      const ghost = !spec.jacket;
+      if (ghost) {
+        mat.transparent = true;
+        mat.opacity = 0;
+        mat.depthWrite = false;
+      }
+      const mesh = add(sweep(at, between(from + collarLen * 0.5, to - collarLen * 0.5).map((d) => ({ d, ...j })), k), mat, "Guaina");
+      mesh.userData.axis = new V3(0, 1, 0);
+      mesh.userData.dist = f.B * 2 + 14;
+      mesh.userData.kind = "jacket";
+      mesh.userData.ghost = ghost;
+      if (ghost) {
+        mesh.visible = false;
+        mesh.castShadow = false;
+      }
+    }
   } else {
-    // guida rigida: parete esterna, parete interna, corone alle estremità
+    // guida rigida: parete esterna e parete interna con le proporzioni reali a × b
     const outer = { w: size.rigid.w, h: size.rigid.h, r: 0.6 };
     const inner = { w: size.s.a, h: size.s.b, r: 0.2 };
-    group.add(new THREE.Mesh(sweep(at, bodyD.map((d) => ({ d, ...outer })), k), mats.brass));
-    group.add(new THREE.Mesh(sweep(at, bodyD.map((d) => ({ d, ...inner })), k, true), mats.brass));
+    add(sweep(at, bodyD.map((d) => ({ d, ...outer })), k), mats.body, "Guida");
+    add(sweep(at, bodyD.map((d) => ({ d, ...inner })), k, true), mats.body, "Guida interno");
   }
 
-  // flange alle due estremità, con la faccia esterna sul fondo del percorso
-  const fGeo = flangeGeometry(size);
+  // flange alle due estremità, con la faccia di accoppiamento sul fondo del percorso
   const startF = at(0);
   const endF = at(total);
-  const flangeA = new THREE.Mesh(fGeo, mats.flange);
-  flangeA.name = "Flangia 1";
-  flangeA.applyMatrix4(frameMatrix(startF, false));
-  const flangeB = new THREE.Mesh(fGeo, mats.flange);
-  flangeB.name = "Flangia 2";
-  flangeB.applyMatrix4(frameMatrix(endF, true));
-  flangeA.userData.axis = startF.t.clone().negate();
-  flangeB.userData.axis = endF.t.clone();
-  group.add(flangeA, flangeB);
+  const geos = new Map<string, ReturnType<typeof flangeGeometry>>();
+  const flangeGroup = (def: FlangeDef, frame: Frame, outward: boolean, name: string) => {
+    const geo = geos.get(def.id) ?? flangeGeometry(def, size.s.a, size.s.b);
+    geos.set(def.id, geo);
+    const g = new THREE.Group();
+    g.name = name;
+    const plate = new THREE.Mesh(geo.plate, mats.flange);
+    plate.castShadow = true;
+    g.add(plate);
+    if (geo.seal) {
+      const seal = new THREE.Mesh(geo.seal, mats.rubber);
+      seal.name = "O-ring";
+      g.add(seal);
+    }
+    g.applyMatrix4(frameMatrix(frame, outward));
+    const { w, h } = flangeOutline(def);
+    g.userData.axis = outward ? frame.t.clone() : frame.t.clone().negate();
+    g.userData.dist = Math.max(w, h) * 0.9 + 8;
+    g.userData.kind = "flange";
+    group.add(g);
+  };
+  flangeGroup(defs[0], startF, false, "Flangia 1");
+  flangeGroup(defs[1], endF, true, "Flangia 2");
 
   let triangles = 0;
   group.traverse((o) => {
@@ -366,12 +536,22 @@ export function buildPart(spec: PartSpec, opts: BuildOptions = {}): PartInfo {
       triangles += (g.index ? g.index.count : g.attributes.position.count) / 3;
     }
   });
-  return { group, triangles: Math.round(triangles), ends: [startF, endF], size, total };
+  group.updateMatrixWorld(true);
+  const box = new THREE.Box3();
+  group.traverse((o) => {
+    if (o instanceof THREE.Mesh && !o.userData.ghost) box.expandByObject(o);
+  });
+  return { group, triangles: Math.round(triangles), ends: [startF, endF], size, total, flanges: defs, box, mid: at(total / 2) };
 }
 
 export function disposeGroup(group: THREE.Object3D) {
   const seen = new Set<unknown>();
   group.traverse((o) => {
+    if (o instanceof THREE.Line) {
+      o.geometry.dispose();
+      (o.material as THREE.Material).dispose();
+      return;
+    }
     if (!(o instanceof THREE.Mesh)) return;
     if (!seen.has(o.geometry)) {
       (o.geometry as THREE.BufferGeometry).dispose();
@@ -390,186 +570,359 @@ export function disposeGroup(group: THREE.Object3D) {
 
 export type DimLabel = { text: string; at: THREE.Vector3 };
 
-/** Posizioni e testi delle quote 3D (lunghezze, gambe, angolo, disassamento). */
+/**
+ * Quote disegnate nel 3D, nelle coordinate del modello. Pezzi dritti (flessibili, twist, disassati):
+ * la lunghezza L è quotata a terra, davanti al pezzo, con le linee di riferimento dalle facce delle
+ * flange. Curve: L1, L2 e angolo di fianco al pezzo.
+ */
 export function dimLabels(spec: PartSpec, info: PartInfo, fmt: (v: number) => string): { labels: DimLabel[]; lines: [THREE.Vector3, THREE.Vector3][] } {
   const { at, total } = sampler(pathFor(spec));
   const off = Math.max(info.size.outerW, info.size.outerH) * 1.4 + 6;
   const labels: DimLabel[] = [];
   const lines: [THREE.Vector3, THREE.Vector3][] = [];
-  const side = (f: Frame) => f.p.clone().addScaledVector(spec.plane === "H" ? f.v : f.u, off);
   if (spec.type === "bend") {
+    const reach = Math.max(...info.flanges.map((d) => (spec.plane === "H" ? flangeOutline(d).h : flangeOutline(d).w))) / 2 + 8;
+    const side = (f: Frame) => f.p.clone().addScaledVector(spec.plane === "H" ? f.v : f.u, reach);
     const l1 = spec.leg1 ?? 100;
     const R = visualBendRadius(spec);
     const arcLen = R * THREE.MathUtils.degToRad(spec.angle ?? 90);
     const a = at(0), b = at(l1), c = at(l1 + arcLen), d = at(total);
-    lines.push([side(a), side(b)], [side(c), side(d)]);
-    labels.push({ text: `L1 = ${fmt(l1)}`, at: side(at(l1 / 2)) });
-    labels.push({ text: `L2 = ${fmt(spec.leg2 ?? 100)}`, at: side(at(l1 + arcLen + (spec.leg2 ?? 100) / 2)) });
+    lines.push([side(a), side(b)], [side(c), side(d)], [a.p.clone(), side(a)], [d.p.clone(), side(d)]);
+    labels.push({ text: `L1 = ${fmt(l1)} mm`, at: side(at(l1 / 2)) });
+    labels.push({ text: `L2 = ${fmt(spec.leg2 ?? 100)} mm`, at: side(at(l1 + arcLen + (spec.leg2 ?? 100) / 2)) });
     const mid = at(l1 + arcLen / 2);
     labels.push({ text: `${fmt(spec.angle ?? 90)}°${spec.radius ? ` · R ${fmt(spec.radius)}` : ""}`, at: mid.p.clone().addScaledVector(spec.plane === "H" ? mid.u : mid.v, -off) });
-  } else {
-    const a = at(0), b = at(total);
-    const pa = a.p.clone().addScaledVector(a.v, info.size.outerH * 2.2 + 10);
-    const pb = b.p.clone().addScaledVector(b.v, info.size.outerH * 2.2 + 10);
-    lines.push([pa, pb]);
-    labels.push({ text: `L = ${fmt(spec.length ?? 0)}`, at: pa.clone().lerp(pb, 0.5) });
-    if (spec.type === "twist") labels.push({ text: `${fmt(spec.rotation ?? 90)}° ${spec.direction === "ccw" ? "↺" : "↻"}`, at: at(total / 2).p.clone().addScaledVector(at(total / 2).u, off) });
-    if (spec.type === "offset") labels.push({ text: `X = ${fmt(spec.offset ?? 0)}`, at: b.p.clone().addScaledVector(spec.plane === "H" ? b.u : b.v, -off) });
+    return { labels, lines };
   }
+  const a = at(0), b = at(total);
+  const y = info.box.min.y + 0.3;
+  const margin = Math.max(8, (info.box.max.x - info.box.min.x) * 0.28);
+  const x = info.box.max.x + margin;
+  const tick = margin * 0.3;
+  const pa = new V3(x, y, a.p.z), pb = new V3(x, y, b.p.z);
+  lines.push([pa, pb]);
+  for (const p of [pa, pb]) {
+    lines.push([new V3(info.box.max.x - margin * 0.4, y, p.z), new V3(x + tick, y, p.z)]);
+    lines.push([new V3(x - tick, y, p.z - tick), new V3(x + tick, y, p.z + tick)]);
+  }
+  labels.push({ text: `L = ${fmt(spec.length ?? 0)} mm`, at: pa.clone().lerp(pb, 0.5) });
+  const m = at(total / 2);
+  if (spec.type === "twist") labels.push({ text: `${fmt(spec.rotation ?? 90)}° ${spec.direction === "ccw" ? "↺" : "↻"}`, at: m.p.clone().add(new V3(0, off, 0)) });
+  if (spec.type === "offset") labels.push({ text: `X = ${fmt(spec.offset ?? 0)} mm`, at: b.p.clone().addScaledVector(spec.plane === "H" ? b.u : b.v, -off) });
   return { labels, lines };
 }
 
 /* ------------------------------------------------------------------ viewer */
 
 export type ViewPreset = "iso" | "front" | "side";
+export type ViewFocus = "all" | "f1" | "f2";
+/** Testi delle etichette ancorate al modello (già tradotti). */
+export type ViewerLabels = { flange1: string; flange2: string; f1: string; f2: string; body?: string; jacket?: string };
+export type ViewerOptions = {
+  /** ruota da solo e riparte qualche secondo dopo l'ultimo tocco */
+  autoRotate?: boolean;
+  /** ombra morbida a terra */
+  shadow?: boolean;
+  /** quote visibili dall'inizio */
+  dims?: boolean;
+  labels?: ViewerLabels;
+};
 export type Viewer = {
-  setSpec: (spec: PartSpec) => void;
+  setSpec: (spec: PartSpec, labels?: ViewerLabels) => void;
   setView: (v: ViewPreset) => void;
   setDims: (on: boolean) => void;
   setExploded: (on: boolean) => void;
+  /** inquadra tutto il pezzo oppure una flangia da vicino */
+  setFocus: (f: ViewFocus) => void;
+  /** immagine PNG della vista corrente */
+  snapshot: () => string;
   triangles: () => number;
   dispose: () => void;
 };
 
-export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (v: number) => string): Promise<Viewer> {
-  const [{ OrbitControls }, { RoomEnvironment }, { CSS2DRenderer, CSS2DObject }] = await Promise.all([
+/** Studio fotografico per i riflessi: stanza grigia con softbox in alto, due strisce laterali e una luce di taglio. */
+function studioScene(): THREE.Scene {
+  const s = new THREE.Scene();
+  const box = new THREE.BoxGeometry(1, 1, 1);
+  const panel = (color: number, intensity: number, pos: [number, number, number], scale: [number, number, number]) => {
+    const mat = new THREE.MeshBasicMaterial({ color });
+    mat.color.multiplyScalar(intensity);
+    const m = new THREE.Mesh(box, mat);
+    m.position.set(...pos);
+    m.scale.set(...scale);
+    s.add(m);
+  };
+  const walls = new THREE.MeshBasicMaterial({ color: 0x8f98a3, side: THREE.BackSide });
+  walls.color.multiplyScalar(0.3);
+  const room = new THREE.Mesh(box, walls);
+  room.scale.set(44, 26, 44);
+  room.position.y = 9;
+  s.add(room);
+  panel(0xffffff, 0.5, [0, -3.9, 0], [44, 0.1, 44]); // pavimento
+  panel(0xffffff, 15, [0, 15, 1], [18, 0.2, 11]); // softbox in alto
+  panel(0xffffff, 10, [-15, 6, 5], [0.2, 10, 5]); // striscia sinistra
+  panel(0xfff1dd, 8, [15, 5, -3], [0.2, 8, 9]); // striscia destra, calda
+  panel(0xdce8ff, 7, [0, 6, -17], [15, 5, 0.2]); // controluce freddo
+  panel(0xffffff, 5, [5, 3, 17], [6, 3, 0.2]); // schiarita frontale
+  return s;
+}
+
+export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (v: number) => string, opts: ViewerOptions = {}): Promise<Viewer> {
+  const [{ OrbitControls }, { CSS2DRenderer, CSS2DObject }] = await Promise.all([
     import("three/examples/jsm/controls/OrbitControls.js"),
-    import("three/examples/jsm/environments/RoomEnvironment.js"),
     import("three/examples/jsm/renderers/CSS2DRenderer.js"),
   ]);
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
+  const shadows = opts.shadow !== false;
+  renderer.shadowMap.enabled = shadows;
+  renderer.shadowMap.type = THREE.VSMShadowMap;
   renderer.domElement.style.cssText = "display:block;width:100%;height:100%";
   container.appendChild(renderer.domElement);
   const labelRenderer = new CSS2DRenderer();
-  labelRenderer.domElement.style.cssText = "position:absolute;inset:0;pointer-events:none";
+  labelRenderer.domElement.style.cssText = "position:absolute;inset:0;pointer-events:none;overflow:hidden";
   container.appendChild(labelRenderer.domElement);
 
   const scene = new THREE.Scene();
   const pmrem = new THREE.PMREMGenerator(renderer);
-  const room = new RoomEnvironment();
-  const env = pmrem.fromScene(room, 0.04);
+  const studio = studioScene();
+  const env = pmrem.fromScene(studio, 0.03);
   scene.environment = env.texture;
-  const key = new THREE.DirectionalLight(0xffffff, 1.3);
-  key.position.set(1, 2, 1.5);
-  scene.add(key);
-  const camera = new THREE.PerspectiveCamera(32, 1, 0.5, 50000);
+  const key = new THREE.DirectionalLight(0xffffff, 1.5);
+  key.castShadow = shadows;
+  key.shadow.mapSize.set(1024, 1024);
+  key.shadow.radius = 7;
+  key.shadow.blurSamples = 14;
+  key.shadow.bias = -0.0004;
+  scene.add(key, key.target);
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.ShadowMaterial({ opacity: 0.24 }));
+  ground.rotation.x = -Math.PI / 2;
+  ground.receiveShadow = true;
+  ground.visible = shadows;
+  scene.add(ground);
+
+  const accent = new THREE.Color(getComputedStyle(container).getPropertyValue("--c-accent").trim() || "#0066cc");
+  const camera = new THREE.PerspectiveCamera(28, 1, 0.5, 50000);
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   controls.dampingFactor = 0.08;
   controls.enablePan = false;
+  controls.autoRotateSpeed = 0.9;
+  controls.maxPolarAngle = Math.PI * 0.495;
 
   let current: PartInfo | null = null;
   let currentSpec = spec;
-  let dims = false;
+  let labels = opts.labels;
+  let dims = Boolean(opts.dims);
   let exploded = 0;
   let explodedTarget = 0;
-  const dimGroup = new THREE.Group();
-  scene.add(dimGroup);
-  const fading: { info: PartInfo; dir: 1 | -1; start: number }[] = [];
-
-  const sphere = () => {
-    const box = new THREE.Box3().setFromObject(current!.group);
-    return box.getBoundingSphere(new THREE.Sphere());
-  };
+  let focus: ViewFocus = "all";
   let view: ViewPreset = "iso";
-  const camAnim = { from: new V3(), to: new V3(), tFrom: new V3(), tTo: new V3(), start: 0, active: false };
-  const placeCamera = (instant: boolean) => {
+  let touching = false;
+  let resumeTimer = 0;
+  let onScreen = true;
+  let lastRadius = 0;
+  /** oggetti che si spostano nell'esploso: flange, guaina e le loro etichette */
+  let movers: THREE.Object3D[] = [];
+  let dimGroup: THREE.Group | null = null;
+  let explodedTags: HTMLElement[] = [];
+  const camAnim = { from: new V3(), to: new V3(), tFrom: new V3(), tTo: new V3(), start: 0, ms: 600, active: false };
+
+  /* ---------------------------------------------------------- inquadrature */
+  const world = (p: THREE.Vector3) => p.clone().add(current!.group.position);
+  const hfov = () => 2 * Math.atan(Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect);
+  const poseAll = () => {
+    const box = current!.box.clone().translate(current!.group.position);
+    const c = box.getCenter(new V3());
+    const sz = box.getSize(new V3());
+    const spread = explodedTarget ? Math.max(...movers.map((m) => (m.userData.kind === "flange" ? (m.userData.dist as number) : 0)), 0) : 0;
+    const rxz = Math.hypot(sz.x, sz.z) / 2 + spread;
+    const hy = sz.y / 2 + (explodedTarget ? Math.max(...movers.map((m) => (m.userData.kind === "jacket" ? (m.userData.dist as number) : 0)), 0) : 0);
+    const vf = THREE.MathUtils.degToRad(camera.fov / 2);
+    const elev = view === "iso" ? 0.36 : 0.06;
+    const dist = Math.max(rxz / Math.tan(hfov() / 2), (hy * 1.5 + rxz * Math.sin(elev)) / Math.tan(vf)) * (labels ? 1.22 : 1.08) + rxz * 0.18;
+    const az = view === "front" ? -Math.PI / 2 : view === "side" ? 0 : -0.62;
+    const dir = new V3(Math.cos(az) * Math.cos(elev), Math.sin(elev), Math.sin(az) * Math.cos(elev));
+    return { pos: c.clone().addScaledVector(dir, dist), target: c, dist, radius: rxz };
+  };
+  const poseFlange = (i: 0 | 1) => {
+    const fr = current!.ends[i];
+    const def = current!.flanges[i];
+    const out = i === 0 ? fr.t.clone().negate() : fr.t.clone();
+    const mover = movers.find((m) => m.userData.kind === "flange" && m.name === (i === 0 ? "Flangia 1" : "Flangia 2"));
+    const shift = mover ? (mover.userData.dist as number) * explodedTarget : 0;
+    const c = world(fr.p).addScaledVector(out, shift);
+    const { w, h } = flangeOutline(def);
+    const sizeMm = Math.max(w, h);
+    const side = Math.abs(fr.u.y) > 0.9 ? fr.v.clone() : fr.u.clone();
+    const dir = out.clone().multiplyScalar(1).addScaledVector(side, 0.55).add(new V3(0, 0.34, 0)).normalize();
+    if (dir.y < 0.12) dir.setY(0.12).normalize();
+    const fit = (sizeMm * 2.35) / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2))) / Math.min(1, camera.aspect);
+    return { pos: c.clone().addScaledVector(dir, fit), target: c.clone().add(new V3(0, sizeMm * 0.3, 0)), dist: fit, radius: sizeMm };
+  };
+  const placeCamera = (instant: boolean, ms = 600) => {
     if (!current) return;
-    const s = sphere();
-    const dist = (s.radius / Math.sin(THREE.MathUtils.degToRad(camera.fov / 2))) * 0.82;
-    const dir = view === "front" ? new V3(0, 0.02, 1) : view === "side" ? new V3(1, 0.02, 0) : new V3(0.62, 0.46, 0.72);
-    const pos = s.center.clone().addScaledVector(dir.normalize(), dist);
-    camera.near = dist / 200;
-    camera.far = dist * 20;
+    const all = poseAll();
+    const p = focus === "all" ? all : poseFlange(focus === "f1" ? 0 : 1);
+    camera.near = Math.max(0.2, p.dist / 300);
+    camera.far = all.dist * 30;
     camera.updateProjectionMatrix();
-    controls.minDistance = s.radius * 0.35;
-    controls.maxDistance = dist * 3;
-    if (instant) {
-      camera.position.copy(pos);
-      controls.target.copy(s.center);
+    controls.minDistance = Math.max(8, Math.max(...current.flanges.map((d) => flangeOutline(d).w)) * 0.7);
+    controls.maxDistance = all.dist * 2.6;
+    if (instant || reduced) {
+      camera.position.copy(p.pos);
+      controls.target.copy(p.target);
       controls.update();
+      camAnim.active = false;
       return;
     }
-    Object.assign(camAnim, { from: camera.position.clone(), to: pos, tFrom: controls.target.clone(), tTo: s.center.clone(), start: performance.now(), active: true });
+    Object.assign(camAnim, { from: camera.position.clone(), to: p.pos, tFrom: controls.target.clone(), tTo: p.target, start: performance.now(), ms, active: true });
   };
 
-  const rebuildDims = () => {
-    dimGroup.children.slice().forEach((c) => {
-      dimGroup.remove(c);
-      if (c instanceof CSS2DObject) c.element.remove();
-      if (c instanceof THREE.Line) {
-        c.geometry.dispose();
-        (c.material as THREE.Material).dispose();
-      }
-    });
-    if (!dims || !current || currentSpec.type === "custom") return;
-    const { labels, lines } = dimLabels(currentSpec, current, fmt);
-    for (const [a, b] of lines) {
-      const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints([a, b]), new THREE.LineBasicMaterial({ color: 0x0066cc }));
-      dimGroup.add(line);
+  /* --------------------------------------------------- etichette e quote */
+  const line = (pts: THREE.Vector3[], opacity = 1) =>
+    new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: accent, transparent: opacity < 1, opacity }));
+  const tag = (title: string, code: string, cls = "") => {
+    const el = document.createElement("div");
+    el.className = `p3d-tag ${cls}`.trim();
+    const b = document.createElement("b");
+    b.textContent = title;
+    el.append(b);
+    if (code) {
+      const c = document.createElement("span");
+      c.textContent = code;
+      el.append(c);
     }
-    for (const l of labels) {
-      const el = document.createElement("span");
-      el.textContent = l.text;
-      el.className = "part3d-dim";
-      const obj = new CSS2DObject(el);
-      obj.position.copy(l.at);
-      dimGroup.add(obj);
-    }
+    return el;
   };
-
-  const setOpacity = (info: PartInfo, o: number) =>
-    info.group.traverse((m) => {
-      if (m instanceof THREE.Mesh) {
-        const mat = m.material as THREE.Material;
-        mat.opacity = o;
-        mat.transparent = o < 1;
-        mat.depthWrite = o > 0.5;
+  const decorate = () => {
+    if (!current) return;
+    const info = current;
+    movers = info.group.children.filter((c) => c.userData.axis);
+    explodedTags = [];
+    dimGroup = null;
+    if (labels) {
+      // FLANGIA 1 / FLANGIA 2 con la sigla scelta, ancorate sopra ogni flangia
+      ([0, 1] as const).forEach((i) => {
+        const fr = info.ends[i];
+        const def = info.flanges[i];
+        const flange = info.group.children.find((c) => c.name === (i === 0 ? "Flangia 1" : "Flangia 2"))!;
+        const fb = new THREE.Box3().setFromObject(flange);
+        const inward = i === 0 ? fr.t.clone() : fr.t.clone().negate();
+        const c = fr.p.clone().addScaledVector(inward, def.C / 2);
+        const top = fb.max.y - info.group.position.y;
+        const stem = Math.max(7, (fb.max.y - fb.min.y) * 0.42);
+        const anchor = new THREE.Group();
+        anchor.userData = { axis: flange.userData.axis, dist: flange.userData.dist, kind: "tag" };
+        anchor.add(line([new V3(c.x, top + 0.6, c.z), new V3(c.x, top + stem, c.z)]));
+        const obj = new CSS2DObject(tag(i === 0 ? labels!.flange1 : labels!.flange2, i === 0 ? labels!.f1 : labels!.f2));
+        obj.center.set(0.5, 1);
+        obj.position.set(c.x, top + stem, c.z);
+        anchor.add(obj);
+        info.group.add(anchor);
+        movers.push(anchor);
+      });
+      // corpo e guaina: nominati solo nella vista esplosa
+      if (labels.body) {
+        const el = tag(labels.body, "", "p3d-tag-part");
+        const obj = new CSS2DObject(el);
+        obj.center.set(0.5, 0);
+        obj.position.copy(info.mid.p).add(new V3(0, -info.size.outerH * 0.9 - 3, 0));
+        info.group.add(obj);
+        explodedTags.push(el);
       }
-    });
+      const jacket = info.group.children.find((c) => c.userData.kind === "jacket");
+      if (jacket && labels.jacket) {
+        const el = tag(labels.jacket, "", "p3d-tag-part");
+        const obj = new CSS2DObject(el);
+        obj.center.set(0.5, 1);
+        obj.position.copy(info.mid.p).add(new V3(0, info.size.outerH * 0.9 + 3, 0));
+        const anchor = new THREE.Group();
+        anchor.userData = { axis: jacket.userData.axis, dist: jacket.userData.dist, kind: "tag" };
+        anchor.add(obj);
+        info.group.add(anchor);
+        movers.push(anchor);
+        explodedTags.push(el);
+      }
+    }
+    if (currentSpec.type !== "custom") {
+      // quota della lunghezza, disegnata nel 3D
+      dimGroup = new THREE.Group();
+      const d = dimLabels(currentSpec, info, fmt);
+      for (const [a, b] of d.lines) dimGroup.add(line([a, b]));
+      for (const l of d.labels) {
+        const el = document.createElement("span");
+        el.textContent = l.text;
+        el.className = "part3d-dim";
+        const obj = new CSS2DObject(el);
+        obj.position.copy(l.at);
+        dimGroup.add(obj);
+      }
+      info.group.add(dimGroup);
+    }
+    applyExplode();
+  };
+  /** Toglie dal DOM le etichette di un pezzo che esce di scena. */
+  const removeTags = (g: THREE.Object3D) => g.traverse((o) => o instanceof CSS2DObject && o.element.remove());
 
   const applyExplode = () => {
     if (!current) return;
-    const dist = current.size.flangeT * 3 * exploded;
-    current.group.children.forEach((c) => {
-      const axis = c.userData.axis as THREE.Vector3 | undefined;
-      if (!axis) return;
-      if (!c.userData.base) c.userData.base = c.position.clone();
-      c.position.copy((c.userData.base as THREE.Vector3).clone().addScaledVector(axis, dist));
-    });
+    for (const m of movers) {
+      if (!m.userData.base) m.userData.base = m.position.clone();
+      const k = Math.min(1.2, exploded + ((m.userData.pop as number | undefined) ?? 0));
+      m.position.copy((m.userData.base as THREE.Vector3).clone().addScaledVector(m.userData.axis as THREE.Vector3, (m.userData.dist as number) * k));
+      if (m.userData.ghost && m instanceof THREE.Mesh) {
+        m.visible = exploded > 0.02;
+        (m.material as THREE.Material).opacity = Math.min(0.55, exploded * 0.55);
+      }
+    }
+    for (const el of explodedTags) el.style.opacity = String(Math.max(0, Math.min(1, exploded * 2 - 0.6)));
+    if (dimGroup) {
+      const show = dims && exploded < 0.05 && focus === "all";
+      dimGroup.visible = show;
+      dimGroup.traverse((o) => o instanceof CSS2DObject && (o.element.style.visibility = show ? "" : "hidden"));
+    }
   };
 
+  /* -------------------------------------------------------------- ciclo */
+  const rotating = () => Boolean(opts.autoRotate) && !reduced && !touching && focus === "all" && onScreen && !document.hidden && !camAnim.active;
   let frame = 0;
+  let last = performance.now();
   const tick = () => {
     cancelAnimationFrame(frame);
     frame = requestAnimationFrame(() => {
       const now = performance.now();
-      let busy = controls.update();
-      for (const f of fading.slice()) {
-        const p = Math.min(1, (now - f.start) / 300);
-        setOpacity(f.info, f.dir === 1 ? p : 1 - p);
-        if (p >= 1) {
-          fading.splice(fading.indexOf(f), 1);
-          if (f.dir === -1) {
-            scene.remove(f.info.group);
-            disposeGroup(f.info.group);
-          }
-        } else busy = true;
-      }
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      controls.autoRotate = rotating();
+      let busy = controls.update(dt) || controls.autoRotate;
       if (camAnim.active) {
-        const p = Math.min(1, (now - camAnim.start) / 300);
-        const e = 1 - Math.pow(1 - p, 3);
+        const p = Math.min(1, (now - camAnim.start) / camAnim.ms);
+        const e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
         camera.position.lerpVectors(camAnim.from, camAnim.to, e);
         controls.target.lerpVectors(camAnim.tFrom, camAnim.tTo, e);
+        camera.lookAt(controls.target);
         if (p >= 1) camAnim.active = false;
         busy = true;
       }
+      let moving = false;
       if (Math.abs(exploded - explodedTarget) > 0.001) {
-        exploded += (explodedTarget - exploded) * 0.2;
-        if (Math.abs(exploded - explodedTarget) < 0.01) exploded = explodedTarget;
+        exploded += (explodedTarget - exploded) * Math.min(1, dt * 7);
+        if (Math.abs(exploded - explodedTarget) < 0.004) exploded = explodedTarget;
+        moving = true;
+      }
+      for (const m of movers) {
+        const pop = m.userData.pop as number | undefined;
+        if (pop) {
+          m.userData.pop = pop < 0.004 ? 0 : pop * Math.max(0, 1 - dt * 6);
+          moving = true;
+        }
+      }
+      if (moving) {
         applyExplode();
         busy = true;
       }
@@ -579,16 +932,51 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
     });
   };
 
-  const setSpec = (next: PartSpec) => {
+  const stage = () => {
+    if (!current) return;
+    // pezzo appoggiato a terra e centrato; luce e ombra dimensionate sul pezzo
+    const c = current.box.getCenter(new V3());
+    current.group.position.set(-c.x, -current.box.min.y, -c.z);
+    current.group.updateMatrixWorld(true);
+    const sz = current.box.getSize(new V3());
+    const r = Math.max(sz.length() / 2, 30);
+    key.position.set(r * 0.5, r * 2.2 + sz.y, r * 0.8);
+    key.target.position.set(0, sz.y / 2, 0);
+    const cam = key.shadow.camera;
+    cam.left = cam.bottom = -r * 1.5;
+    cam.right = cam.top = r * 1.5;
+    cam.near = r * 0.2;
+    cam.far = r * 6;
+    cam.updateProjectionMatrix();
+    ground.scale.setScalar(r * 12);
+  };
+
+  const setSpec = (next: PartSpec, nextLabels?: ViewerLabels) => {
+    const prev = currentSpec;
+    const had = current;
     currentSpec = next;
-    const first = !current;
-    if (current) fading.push({ info: current, dir: -1, start: performance.now() });
-    current = buildPart(next, { fade: !first });
+    if (nextLabels) labels = nextLabels;
+    if (had) {
+      scene.remove(had.group);
+      removeTags(had.group);
+      disposeGroup(had.group);
+    }
+    current = buildPart(next, { ghostJacket: Boolean(labels?.jacket) });
     scene.add(current.group);
-    if (!first) fading.push({ info: current, dir: 1, start: performance.now() });
-    applyExplode();
-    placeCamera(first);
-    rebuildDims();
+    stage();
+    decorate();
+    // montaggio: la flangia appena cambiata arriva dall'esterno e si accosta al corpo
+    if (had && !reduced && prev.type === next.type && prev.wr === next.wr) {
+      for (const [k, name] of [["f1", "Flangia 1"], ["f2", "Flangia 2"]] as const) {
+        if (prev[k] !== next[k]) for (const m of movers) if (m.name === name || (m.userData.kind === "tag" && m.userData.axis === current.group.children.find((c) => c.name === name)?.userData.axis)) m.userData.pop = 0.55;
+      }
+      applyExplode();
+    }
+    const radius = poseAll().radius;
+    const first = !had;
+    if (first) placeCamera(true);
+    else if (focus !== "all" || Math.abs(radius - lastRadius) > lastRadius * 0.02) placeCamera(false, 450);
+    lastRadius = radius;
     tick();
   };
 
@@ -599,41 +987,89 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
     labelRenderer.setSize(w, h);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
+    if (current && !touching) placeCamera(true);
     tick();
   };
+  const onStart = () => {
+    touching = true;
+    camAnim.active = false;
+    window.clearTimeout(resumeTimer);
+  };
+  const onEnd = () => {
+    window.clearTimeout(resumeTimer);
+    // riparte da solo dopo qualche secondo di pausa
+    resumeTimer = window.setTimeout(() => {
+      touching = false;
+      tick();
+    }, 3500);
+  };
+  const onVisibility = () => tick();
   controls.addEventListener("change", tick);
+  controls.addEventListener("start", onStart);
+  controls.addEventListener("end", onEnd);
+  document.addEventListener("visibilitychange", onVisibility);
+  const io = new IntersectionObserver((entries) => {
+    onScreen = entries.some((e) => e.isIntersecting);
+    if (onScreen) tick();
+  });
+  io.observe(container);
   const ro = new ResizeObserver(resize);
   ro.observe(container);
-  resize();
+  const w0 = container.clientWidth || 1;
+  const h0 = container.clientHeight || 1;
+  renderer.setSize(w0, h0, false);
+  labelRenderer.setSize(w0, h0);
+  camera.aspect = w0 / h0;
+  camera.updateProjectionMatrix();
   setSpec(spec);
 
   return {
     setSpec,
     setView: (v) => {
       view = v;
+      focus = "all";
       placeCamera(false);
       tick();
     },
     setDims: (on) => {
       dims = on;
-      rebuildDims();
+      applyExplode();
       tick();
     },
     setExploded: (on) => {
       explodedTarget = on ? 1 : 0;
+      placeCamera(false, 700);
       tick();
+    },
+    setFocus: (f) => {
+      if (f === focus) return;
+      focus = f;
+      applyExplode();
+      touching = false;
+      window.clearTimeout(resumeTimer);
+      placeCamera(false, 800);
+      tick();
+    },
+    snapshot: () => {
+      renderer.render(scene, camera);
+      return renderer.domElement.toDataURL("image/png");
     },
     triangles: () => current?.triangles ?? 0,
     dispose: () => {
       cancelAnimationFrame(frame);
+      window.clearTimeout(resumeTimer);
       ro.disconnect();
+      io.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
       controls.dispose();
-      dims = false;
-      rebuildDims();
-      for (const f of fading) disposeGroup(f.info.group);
-      if (current) disposeGroup(current.group);
+      if (current) {
+        removeTags(current.group);
+        disposeGroup(current.group);
+      }
+      ground.geometry.dispose();
+      (ground.material as THREE.Material).dispose();
       env.dispose();
-      room.traverse((o) => o instanceof THREE.Mesh && (o.geometry.dispose(), (o.material as THREE.Material).dispose()));
+      studio.traverse((o) => o instanceof THREE.Mesh && (o.geometry.dispose(), (o.material as THREE.Material).dispose()));
       pmrem.dispose();
       renderer.dispose();
       renderer.forceContextLoss();

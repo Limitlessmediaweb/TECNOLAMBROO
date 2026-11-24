@@ -14,7 +14,7 @@ export function defaultSpec(type: PartType, wr = "WR-90"): PartSpec {
     type,
     wr,
     f1: flanges[0]?.id ?? OTHER_FLANGE,
-    f2: (type === "twistable" || type === "seamless" ? flanges[1]?.id : flanges[0]?.id) ?? OTHER_FLANGE,
+    f2: flanges[0]?.id ?? OTHER_FLANGE,
     finish: "raw",
     treatment: "none",
   };
@@ -60,7 +60,7 @@ export const TYPE_PARAM: Record<PartType, string> = {
   offset: "disassato",
   custom: "disegno",
 };
-const FINISH_PARAM: Record<Finish, string> = { raw: "grezza", bright: "brillantata", painted: "verniciata" };
+const FINISH_PARAM: Record<Finish, string> = { raw: "grezza", bright: "brillantata", silver: "argentata", painted: "verniciata", surtec: "surtec650" };
 const TREATMENT_PARAM: Record<Treatment, string> = { none: "nessuno", galvanic: "galvanico", thermal: "termico" };
 
 const invert = <T extends string>(m: Record<T, string>) => Object.fromEntries(Object.entries(m).map(([k, v]) => [v, k])) as Record<string, T>;
@@ -94,6 +94,7 @@ export function specToParams(spec: PartSpec): URLSearchParams {
     p.set("f2", spec.f2);
     p.set("fin", FINISH_PARAM[spec.finish]);
     p.set("tr", TREATMENT_PARAM[spec.treatment]);
+    if (spec.jacket) p.set("guaina", "si");
   }
   return p;
 }
@@ -130,5 +131,6 @@ export function specFromParams(p: URLSearchParams): PartSpec | null {
   if (fin && FINISHES.includes(fin)) spec.finish = fin;
   const tr = TREATMENT_FROM[p.get("tr") ?? ""];
   if (tr && TREATMENTS.includes(tr)) spec.treatment = tr;
+  if (p.get("guaina") === "si" && (spec.type === "twistable" || spec.type === "seamless")) spec.jacket = 1;
   return spec;
 }
