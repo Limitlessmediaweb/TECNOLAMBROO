@@ -1,25 +1,9 @@
 import type { Metadata } from "next";
-import { Suspense, type ReactNode } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/lib/seo";
-import { Intro } from "@/components/domain/Intro";
-import { Hero } from "@/components/sections/Hero";
-import { WrMarquee } from "@/components/sections/WrMarquee";
-import { CompanySection } from "@/components/sections/CompanySection";
-import { ProductsSection } from "@/components/sections/ProductsSection";
-import { ApplicationsSection } from "@/components/sections/Applications";
-import {
-  BandFinderSection,
-  ProcessSection,
-  HistorySection,
-  QualitySection,
-  ShopSection,
-  FaqPreviewSection,
-  FinalCta,
-} from "@/components/sections/HomeSections";
-import { QuoteSection } from "@/components/sections/QuoteSection";
-import { OwnerSection } from "@/components/sections/PeopleAndPhotos";
+import { localizedHref } from "@/components/ui/TrackedLink";
+import { SignalJourney, type JourneyText } from "@/components/journey/SignalJourney";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]">): Promise<Metadata> {
   const { locale } = await params;
@@ -27,49 +11,33 @@ export async function generateMetadata({ params }: PageProps<"/[locale]">): Prom
   return buildMetadata({ locale: locale as Locale, href: "/", title: t("title"), description: t("description") });
 }
 
+const KEYS = [
+  "aria", "scroll", "skip", "hudTitle", "signal",
+  "c1", "c2", "c3", "c4", "c5", "c6", "c7",
+  "heroEyebrow", "heroTitle", "heroText", "fact1k", "fact1v", "fact2k", "fact2v", "fact3k", "fact3v", "iso", "heroPhotoAlt",
+  "enterTitle", "enterText", "enterLegend", "rigidTitle", "rigidText",
+  "bendTitle", "bendText", "bendPhotoAlt", "bendPhotoCap", "twistTitle", "twistText",
+  "flexTitle", "flexText", "videoSoon", "videoSoonCap", "videoSoonAlt",
+  "chainTitle", "chainText", "chainPhotoAlt", "chainPhotoCap",
+  "finalTitle", "finalText", "ctaConfig", "ctaQuote", "ctaNote",
+] as const;
+
+/**
+ * Home «Il viaggio del segnale»: un'unica esperienza a scroll in 3D (components/journey),
+ * poi il footer del sito. I testi restano sul server e arrivano al componente come stringhe.
+ */
 export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("intro");
+  const t = await getTranslations("journey");
+  const footer = await getTranslations("footer");
+  const text = { ...Object.fromEntries(KEYS.map((k) => [k, t(k)])), logoAlt: footer("logoAlt") } as JourneyText;
 
   return (
-    <>
-      <Intro tagline={t("tagline")} skipLabel={t("skip")} label={t("label")} />
-      <Hero />
-      <Lazy>
-        <WrMarquee />
-        <CompanySection />
-      </Lazy>
-      <Lazy>
-        <ProductsSection />
-        <ApplicationsSection />
-      </Lazy>
-      <Lazy>
-        <BandFinderSection />
-      </Lazy>
-      <Lazy>
-        <ProcessSection />
-        <HistorySection />
-        <OwnerSection variant="short" />
-      </Lazy>
-      <Lazy>
-        <QualitySection />
-        <ShopSection />
-        <FaqPreviewSection />
-      </Lazy>
-      <Lazy>
-        <QuoteSection />
-        <FinalCta href={{ pathname: "/", hash: "preventivo" }} />
-      </Lazy>
-    </>
+    <SignalJourney
+      t={text}
+      shopHref={await localizedHref({ pathname: "/shop", hash: "configura" })}
+      quoteHref={await localizedHref({ pathname: "/contatti", hash: "preventivo" })}
+    />
   );
-}
-
-/**
- * Boundary di Suspense attorno ai blocchi sotto la piega. L'HTML è identico (niente fallback:
- * il contenuto è statico), ma React idrata ogni blocco come unità separata a priorità più
- * bassa e cede il main thread tra un blocco e l'altro: niente task lunghi di idratazione (TBT).
- */
-function Lazy({ children }: { children: ReactNode }) {
-  return <Suspense fallback={null}>{children}</Suspense>;
 }
