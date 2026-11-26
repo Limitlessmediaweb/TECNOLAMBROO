@@ -1747,6 +1747,8 @@
     "finalText": "Elige tipo, tamaño y bridas. Del resto nos ocupamos nosotros.",
     "ctaConfig": "Configura tu pieza",
     "ctaQuote": "Pide un presupuesto",
-    "ctaNote": "Respuesta en 24/48 horas"
+    "ctaNote": "Respuesta en 24/48 horas",
+    "skipIntro": "Saltar intro",
+    "replayIntro": "Ver de nuevo la intro"
   }
 }

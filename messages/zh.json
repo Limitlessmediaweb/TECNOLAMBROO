@@ -1747,6 +1747,8 @@
     "finalText": "选择类型、规格与法兰，其余交给我们。",
     "ctaConfig": "配置您的部件",
     "ctaQuote": "索取报价",
-    "ctaNote": "24/48 小时内回复"
+    "ctaNote": "24/48 小时内回复",
+    "skipIntro": "跳过开场",
+    "replayIntro": "重看开场"
   }
 }

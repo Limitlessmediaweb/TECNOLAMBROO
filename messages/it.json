@@ -1747,6 +1747,8 @@
     "finalText": "Scegli tipo, misura e flange. Al resto pensiamo noi.",
     "ctaConfig": "Configura il tuo pezzo",
     "ctaQuote": "Richiedi un preventivo",
-    "ctaNote": "Risposta in 24/48 ore"
+    "ctaNote": "Risposta in 24/48 ore",
+    "skipIntro": "Salta intro",
+    "replayIntro": "Rivedi intro"
   }
 }

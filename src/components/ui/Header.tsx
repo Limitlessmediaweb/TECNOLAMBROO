@@ -17,7 +17,7 @@ const PRIMARY: { href: StaticPathname; key: string }[] = [
   { href: "/su-misura", key: "custom" },
   { href: "/azienda", key: "about" },
   { href: "/qualita", key: "quality" },
-  { href: "/shop", key: "shopShort" },
+  { href: "/configuratore", key: "shopShort" },
   { href: "/contatti", key: "contact" },
 ];
 

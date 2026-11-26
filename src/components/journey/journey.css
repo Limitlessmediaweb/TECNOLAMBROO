@@ -731,3 +731,114 @@ html[data-sj-header] header.fixed {
   color: var(--c-fg);
   border-bottom-color: rgb(169 185 199 / 0.14);
 }
+
+/* ------------------------------------------------- «Salta intro» e «Rivedi intro» */
+
+.sj-skipintro,
+.sj-replay {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 2.75rem;
+  padding: 0 1.25rem;
+  border: 1px solid rgb(169 185 199 / 0.42);
+  border-radius: 999px;
+  background: rgb(7 13 19 / 0.72);
+  backdrop-filter: blur(10px);
+  color: #f1f5f8;
+  font: 500 0.8125rem/1 var(--font-mono, ui-monospace, monospace);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+.sj-skipintro svg,
+.sj-replay svg {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+.sj-skipintro:hover,
+.sj-replay:hover {
+  border-color: #8fd0ff;
+  background: rgb(0 112 189 / 0.55);
+}
+.sj-skipintro:focus-visible,
+.sj-replay:focus-visible {
+  outline: 2px solid #8fd0ff;
+  outline-offset: 3px;
+}
+
+/* in basso al centro, sopra la scena, per tutta la durata del percorso */
+.sj-skipintro {
+  position: fixed;
+  z-index: 60;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(1rem, 3.5vh, 2rem));
+  translate: -50% 0;
+  box-shadow: 0 10px 34px rgb(0 0 0 / 0.35);
+}
+html:has(.sj[data-sj-end="1"]) .sj-skipintro,
+html:not(:has(.sj)) .sj-skipintro {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* piccolo link in cima, solo dopo aver saltato l'intro */
+.sj-replay {
+  position: fixed;
+  z-index: 40;
+  left: 50%;
+  top: 5.25rem;
+  translate: -50% 0;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  font-size: 0.6875rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.sj[data-sj-skipped="1"][data-sj-end="1"] .sj-replay {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* dissolvenza breve durante il salto: lo spostamento non si vede */
+html[data-js] .sj:not([data-mode="static"]) .sj-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: var(--sj-bg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.24s ease;
+}
+html[data-js] .sj[data-sj-fade="1"] .sj-stage::after {
+  opacity: 1;
+}
+
+@media (max-width: 47.99rem) {
+  .sj-skipintro {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 0.75rem);
+  }
+  /* a destra: a sinistra c'è il badge dell'anteprima */
+  .sj-replay {
+    top: 4.75rem;
+    left: auto;
+    right: 1rem;
+    translate: none;
+  }
+}
+
+/* sotto i 72rem la scritta «Scorri» e il tasto «Salta intro» si toccano: resta il tasto */
+@media (max-width: 71.99rem) {
+  html[data-js]:has(.sj-skipintro) .sj:not([data-mode="static"]) .sj-hint {
+    display: none;
+  }
+}

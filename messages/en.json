@@ -1747,6 +1747,8 @@
     "finalText": "Choose type, size and flanges. We take care of the rest.",
     "ctaConfig": "Configure your part",
     "ctaQuote": "Request a quote",
-    "ctaNote": "Reply within 24/48 hours"
+    "ctaNote": "Reply within 24/48 hours",
+    "skipIntro": "Skip intro",
+    "replayIntro": "Replay intro"
   }
 }

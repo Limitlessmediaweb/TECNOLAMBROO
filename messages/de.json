@@ -1747,6 +1747,8 @@
     "finalText": "Typ, Größe und Flansche wählen. Den Rest übernehmen wir.",
     "ctaConfig": "Teil konfigurieren",
     "ctaQuote": "Angebot anfordern",
-    "ctaNote": "Antwort in 24/48 Stunden"
+    "ctaNote": "Antwort in 24/48 Stunden",
+    "skipIntro": "Intro überspringen",
+    "replayIntro": "Intro erneut ansehen"
   }
 }

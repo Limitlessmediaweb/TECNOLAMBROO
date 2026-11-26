@@ -19,7 +19,7 @@ const KEYS = [
   "bendTitle", "bendText", "bendPhotoAlt", "bendPhotoCap", "twistTitle", "twistText",
   "flexTitle", "flexText", "videoSoon", "videoSoonCap", "videoSoonAlt",
   "chainTitle", "chainText", "chainPhotoAlt", "chainPhotoCap",
-  "finalTitle", "finalText", "ctaConfig", "ctaQuote", "ctaNote",
+  "finalTitle", "finalText", "ctaConfig", "ctaQuote", "ctaNote", "skipIntro", "replayIntro",
 ] as const;
 
 /**
