@@ -61,8 +61,7 @@ export function BandFinder({ formOnPage = false, contactPath, configurePath }: {
     e.preventDefault();
     const detail: PrefillDetail = { size: primary?.wr, frequency: String(freq) };
     window.dispatchEvent(new CustomEvent<PrefillDetail>("tl:prefill", { detail }));
-    if (window.__lenis) window.__lenis.scrollTo(target, { offset: -88 });
-    else target.scrollIntoView({ behavior: "smooth", block: "start" });
+    target.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
     window.setTimeout(() => target.querySelector<HTMLElement>("input, select, textarea")?.focus({ preventScroll: true }), 900);
   };
 

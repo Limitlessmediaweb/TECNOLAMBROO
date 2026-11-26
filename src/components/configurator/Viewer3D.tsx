@@ -77,7 +77,7 @@ export function Viewer3D({ spec, eager = false, label }: { spec: PartSpec; eager
   return (
     <div data-viewer-state={state} data-triangles={triangles}>
       <div ref={wrap} className="relative aspect-[4/3] w-full overflow-hidden bg-[radial-gradient(120%_90%_at_50%_30%,var(--c-surface),var(--c-surface-2))]">
-        <div ref={box} role="img" aria-label={label} className="absolute inset-0 touch-none" data-lenis-prevent />
+        <div ref={box} role="img" aria-label={label} className="absolute inset-0 touch-pan-y" />
         {state === "idle" ? (
           <button type="button" onClick={() => setVisible(true)} className="btn btn-ghost btn-sm absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             {t("view3d")}

@@ -1,7 +1,10 @@
-import { SIZE_BY_WR } from "@/data/waveguides";
+import { SIZE_BY_WR, WR_LIST } from "@/data/waveguides";
+import { TTG_PAIRS } from "@/data/catalogo-ditta";
+
+const WR_ORDER: readonly string[] = WR_LIST;
 import { RIGID_GEOMETRY } from "@/data/rigid";
 import { flangesFor, OTHER_FLANGE } from "@/data/flanges";
-import { FINISHES, TREATMENTS, TYPE_DEF, type Finish, type PartSpec, type PartType, type Plane, type Treatment, type TwistDirection } from "./types";
+import { ALL_FINISHES, TREATMENTS, TYPE_DEF, type Finish, type Material, type PartSpec, type PartType, type Plane, type Treatment, type TwistDirection } from "./types";
 
 /**
  * Valori di partenza di ogni tipo (modificabili dall'utente: non sono specifiche Tecnolambro).
@@ -18,6 +21,19 @@ export function defaultSpec(type: PartType, wr = "WR-90"): PartSpec {
     finish: "raw",
     treatment: "none",
   };
+  switch (type) {
+    case "straight":
+    case "pressure":
+      return { ...base, length: 100 };
+    case "termination":
+      return { ...base, length: 70 };
+    case "spacer":
+      return { ...base, length: 10 };
+    case "transition": {
+      const wr2 = transitionPartners(wr)[0] ?? "WR-75";
+      return { ...base, length: 100, wr2, f2: flangesFor(wr2)[0]?.id ?? OTHER_FLANGE };
+    }
+  }
   switch (TYPE_DEF[type].geometry) {
     case "length":
       return { ...base, length: 600 };
@@ -30,6 +46,21 @@ export function defaultSpec(type: PartType, wr = "WR-90"): PartSpec {
     default:
       return { ...base, wr: "unknown" };
   }
+}
+
+/**
+ * Misure con cui una transizione si può fare: solo le misure vicine (la successiva e la precedente
+ * nell'elenco delle 14 misure). Prima quelle con un datasheet TTG di catalogo.
+ */
+export function transitionPartners(wr: string): string[] {
+  const i = WR_ORDER.indexOf(wr);
+  if (i < 0) return [];
+  const near = [WR_ORDER[i - 1], WR_ORDER[i + 1]].filter((x): x is string => Boolean(x));
+  const cat = near.filter((x) => TTG_PAIRS.some(([a, b]) => (a === wr && b === x) || (b === wr && a === x)));
+  return [...cat, ...near.filter((x) => !cat.includes(x))];
+}
+export function transitionHasSheet(wr: string, wr2: string | undefined): boolean {
+  return TTG_PAIRS.some(([a, b]) => (a === wr && b === wr2) || (b === wr && a === wr2));
 }
 
 /**
@@ -59,8 +90,13 @@ export const TYPE_PARAM: Record<PartType, string> = {
   twist: "twist",
   offset: "disassato",
   custom: "disegno",
+  straight: "tratto",
+  transition: "transizione",
+  termination: "terminazione",
+  pressure: "pressurizzatore",
+  spacer: "spessore",
 };
-const FINISH_PARAM: Record<Finish, string> = { raw: "grezza", bright: "brillantata", silver: "argentata", painted: "verniciata", surtec: "surtec650" };
+const FINISH_PARAM: Record<Finish, string> = { raw: "grezza", bright: "brillantata", silver: "argentata", painted: "verniciata", surtec: "surtec650", tin: "stagnata" };
 const TREATMENT_PARAM: Record<Treatment, string> = { none: "nessuno", galvanic: "galvanico", thermal: "termico" };
 
 const invert = <T extends string>(m: Record<T, string>) => Object.fromEntries(Object.entries(m).map(([k, v]) => [v, k])) as Record<string, T>;
@@ -95,6 +131,8 @@ export function specToParams(spec: PartSpec): URLSearchParams {
     p.set("fin", FINISH_PARAM[spec.finish]);
     p.set("tr", TREATMENT_PARAM[spec.treatment]);
     if (spec.jacket) p.set("guaina", "si");
+    if (spec.wr2) p.set("wr2", spec.wr2.replace("WR-", ""));
+    if (spec.material === "al") p.set("mat", "alluminio");
   }
   return p;
 }
@@ -128,7 +166,13 @@ export function specFromParams(p: URLSearchParams): PartSpec | null {
   if (f1 && /^[A-Za-z0-9-]{2,20}$/.test(f1)) spec.f1 = f1;
   if (f2 && /^[A-Za-z0-9-]{2,20}$/.test(f2)) spec.f2 = f2;
   const fin = FINISH_FROM[p.get("fin") ?? ""];
-  if (fin && FINISHES.includes(fin)) spec.finish = fin;
+  if (fin && ALL_FINISHES.includes(fin)) spec.finish = fin;
+  if (spec.type === "transition") {
+    const w2 = p.get("wr2");
+    if (w2 && transitionPartners(spec.wr).includes(`WR-${w2}`)) spec.wr2 = `WR-${w2}`;
+    else spec.wr2 = transitionPartners(spec.wr)[0];
+  }
+  if (p.get("mat") === "alluminio") spec.material = "al" as Material;
   const tr = TREATMENT_FROM[p.get("tr") ?? ""];
   if (tr && TREATMENTS.includes(tr)) spec.treatment = tr;
   if (p.get("guaina") === "si" && (spec.type === "twistable" || spec.type === "seamless")) spec.jacket = 1;

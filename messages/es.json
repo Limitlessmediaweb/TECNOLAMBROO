@@ -972,8 +972,8 @@
     "downloadGlb": "GLB",
     "preparing": "Preparando…",
     "loading3d": "Cargando el modelo 3D…",
-    "viewerLabel": "Modelo 3D de {code}. Arrastre para girar; use la rueda o dos dedos para hacer zoom.",
-    "viewerHint": "Arrastre para girar · rueda o dos dedos para hacer zoom",
+    "viewerLabel": "Modelo 3D de {code}. Arrastre para girar; la rueda desplaza la página.",
+    "viewerHint": "Arrastre para girar · la rueda desplaza la página",
     "error3d": "El modelo 3D no se ha cargado. El plano sigue disponible.",
     "drawingNote": "Plano orientativo – el plano definitivo se entrega con el presupuesto",
     "drawingDate": "Fecha",
@@ -1009,6 +1009,26 @@
       "custom": {
         "name": "Según plano",
         "short": "Cargue su STEP, STL o PDF"
+      },
+      "straight": {
+        "name": "Tramo rígido",
+        "short": "Guía recta TGR"
+      },
+      "transition": {
+        "name": "Transición",
+        "short": "Entre dos medidas cercanas"
+      },
+      "termination": {
+        "name": "Terminación",
+        "short": "Carga cerrada, una brida"
+      },
+      "pressure": {
+        "name": "Presurizador",
+        "short": "Tramo corto con entrada de aire"
+      },
+      "spacer": {
+        "name": "Separador",
+        "short": "Adaptador fino entre bridas"
       }
     },
     "flexName": {
@@ -1050,7 +1070,8 @@
       "bright": "Abrillantado",
       "painted": "Pintado",
       "silver": "Plateada",
-      "surtec": "Surtec 650"
+      "surtec": "Surtec 650",
+      "tin": "Estañada"
     },
     "paintedHint": "El color y el tipo de pintura los acordamos en el presupuesto.",
     "treatment": "Tratamiento",
@@ -1401,7 +1422,8 @@
       "flange2": "Brida 2",
       "length": "Longitud",
       "finish": "Acabado",
-      "final": "Cantidad"
+      "final": "Cantidad",
+      "item": "Modelo"
     },
     "q": {
       "type": "¿Qué pieza necesita?",
@@ -1413,7 +1435,12 @@
       "length_twist": "¿Cuánto gira y qué longitud tiene?",
       "length_offset": "¿Cuánto se desplaza y qué longitud tiene?",
       "finish": "¿Qué acabado?",
-      "final": "¿Cuántas piezas necesita?"
+      "final": "¿Cuántas piezas necesita?",
+      "item_cover": "¿Qué tapa necesita?",
+      "item_gasket": "¿Qué junta necesita?",
+      "item_castbend": "¿Qué codo de fundición necesita?",
+      "item_shim": "¿Qué shim necesitas?",
+      "item_coax": "¿Qué transición guía-coaxial necesitas?"
     },
     "hint": {
       "type": "El modelo 3D de al lado cambia al instante.",
@@ -1422,7 +1449,8 @@
       "flange2": "En el 3D es la que lleva la etiqueta BRIDA 2.",
       "length": "La cota del 3D se actualiza mientras elige.",
       "finish": "El metal del modelo cambia como la pieza real.",
-      "final": "Puede adjuntar su plano o archivo 3D y escribir una nota."
+      "final": "Puede adjuntar su plano o archivo 3D y escribir una nota.",
+      "item": "Son los códigos de catálogo. Para otros tamaños, escríbanos: los hacemos bajo pedido."
     },
     "types": {
       "twistable": {
@@ -1448,6 +1476,26 @@
       "offset": {
         "name": "Desplazada",
         "short": "Une bridas desalineadas"
+      },
+      "straight": {
+        "name": "Tramo rígido",
+        "short": "Guía recta TGR"
+      },
+      "transition": {
+        "name": "Transición",
+        "short": "Entre dos medidas cercanas"
+      },
+      "termination": {
+        "name": "Terminación",
+        "short": "Carga cerrada, una brida"
+      },
+      "pressure": {
+        "name": "Presurizador",
+        "short": "Tramo corto con entrada de aire"
+      },
+      "spacer": {
+        "name": "Separador",
+        "short": "Adaptador fino entre bridas"
       }
     },
     "size": {
@@ -1455,7 +1503,9 @@
       "freqPlaceholder": "p. ej. {value}",
       "suggested": "Para {freq} GHz el tamaño adecuado es {size}.",
       "none": "Ninguno de nuestros tamaños cubre {freq} GHz.",
-      "onRequest": "Bajo pedido para este tipo"
+      "onRequest": "Bajo pedido para este tipo",
+      "second": "Medida del lado 2",
+      "secondHint": "La transición se hace entre medidas cercanas. Primero las parejas con una ficha nuestra."
     },
     "flange": {
       "recommended": "Recomendada",
@@ -1474,7 +1524,8 @@
         "square": "cuadrada",
         "rect": "rectangular",
         "round": "redonda"
-      }
+      },
+      "closed": "Cerrado (terminación)"
     },
     "length": {
       "label": "Longitud L",
@@ -1517,7 +1568,15 @@
       },
       "jacket": "Funda de goma",
       "jacketOn": "Con funda",
-      "jacketOff": "Sin funda"
+      "jacketOff": "Sin funda",
+      "material": "Material del cuerpo",
+      "cu": "Latón / cobre",
+      "al": "Aluminio",
+      "onRequest": "bajo pedido",
+      "tin": {
+        "name": "Estañado",
+        "note": "Capa protectora de estaño"
+      }
     },
     "final": {
       "qty": "Cantidad",
@@ -1548,7 +1607,7 @@
       "aria": "Modelo 3D de {code}",
       "loading": "Preparando el modelo 3D…",
       "error": "El 3D no arranca en este dispositivo. Puede continuar igualmente: sus elecciones siguen siendo válidas.",
-      "hint": "Arrastre para girar · rueda o dos dedos para el zoom",
+      "hint": "Arrastre para girar · la rueda desplaza la página",
       "tools": "Herramientas de la vista 3D",
       "exploded": "Vista explosionada",
       "assembled": "Volver a montar",
@@ -1560,7 +1619,84 @@
       "body": "GUÍA",
       "bodyFlex": "GUÍA CORRUGADA",
       "jacket": "FUNDA DE GOMA",
-      "jacketOpt": "FUNDA (BAJO PEDIDO)"
+      "jacketOpt": "FUNDA (BAJO PEDIDO)",
+      "flange": "BRIDA"
+    },
+    "acc": {
+      "group": "Accesorios y piezas bajo pedido",
+      "cover": {
+        "name": "Tapa para brida",
+        "short": "Tapón de protección de LDPE",
+        "tag": "TAPA"
+      },
+      "gasket": {
+        "name": "Junta",
+        "short": "Silicona 60 ShA",
+        "tag": "JUNTA"
+      },
+      "castbend": {
+        "name": "Codo de fundición",
+        "short": "Codo compacto fundido, bajo pedido"
+      },
+      "coverDesc": "{w} × {h} mm · altura {t} mm · LDPE azul",
+      "gasketDesc": "{w} × {h} mm · sección {s} mm · silicona 60 ShA",
+      "other": "Otros tamaños y otras bridas: bajo pedido.",
+      "onRequest": "Bajo pedido",
+      "castBody": "El codo de fundición se fabrica bajo pedido. Elija tamaño y plano: le respondemos con el plano y el presupuesto.",
+      "castNo3d": "Para esta pieza el modelo 3D y las cotas llegan con el presupuesto.",
+      "shim": {
+        "name": "Shim",
+        "short": "Lámina de 0,2 mm entre bridas",
+        "tag": "SHIM"
+      },
+      "coax": {
+        "name": "Transición guía-coaxial",
+        "short": "De guía a conector N",
+        "tag": "GUÍA-COAX"
+      },
+      "shimDesc": "Acero AISI 301 · espesor 0,2 mm",
+      "coaxDesc": "Conector N hembra · {mat} · prestaciones bajo pedido"
+    },
+    "sheet": {
+      "button": "Descargar ficha técnica",
+      "preparing": "Preparando el PDF…",
+      "error": "No se ha podido crear el PDF. Inténtelo de nuevo.",
+      "title": "Ficha técnica de configuración",
+      "codeLabel": "Código de configuración",
+      "view3d": "Vista 3D",
+      "drawing": "Plano acotado",
+      "dataTitle": "Datos de la configuración",
+      "electricalTitle": "Datos eléctricos y mecánicos",
+      "electricalSource": "Datos de catálogo {code}",
+      "onRequestTitle": "Bajo pedido",
+      "onRequestBody": "Para esta configuración los datos eléctricos (VSWR, pérdidas, potencia) se comunican con la oferta.",
+      "note": "Datos orientativos, a confirmar en la oferta. El plano definitivo llega con el presupuesto.",
+      "dateLabel": "Fecha",
+      "brass": "Latón",
+      "rows": {
+        "waveguide": "Guía",
+        "inner": "Interior a × b",
+        "band": "Banda",
+        "material": "Material",
+        "size2": "Guía lado 2"
+      },
+      "el": {
+        "il": "Pérdida de inserción",
+        "ilMax": "Pérdida de inserción máx.",
+        "rl": "Pérdida de retorno",
+        "vswr": "VSWR máx.",
+        "cw": "Potencia CW",
+        "rE": "Radio mín. plano E",
+        "rH": "Radio mín. plano H",
+        "twist": "Torsión máx.",
+        "pMax": "Presión máx.",
+        "pOp": "Presión de trabajo"
+      }
+    },
+    "catalog": {
+      "tbc": "Por confirmar",
+      "sizeOff": "No está en catálogo para este tipo",
+      "flangeOff": "No está en catálogo para esta pieza en {size}: no seleccionable"
     }
   },
   "journey": {

@@ -972,8 +972,8 @@
     "downloadGlb": "GLB",
     "preparing": "准备中…",
     "loading3d": "正在加载3D模型…",
-    "viewerLabel": "{code} 的3D模型。拖动可旋转，滚动滚轮或双指缩放。",
-    "viewerHint": "拖动旋转 · 滚轮或双指缩放",
+    "viewerLabel": "{code} 的3D模型。拖动可旋转，滚轮用于滚动页面。",
+    "viewerHint": "拖动旋转 · 滚轮滚动页面",
     "error3d": "3D模型未能加载。图纸仍可使用。",
     "drawingNote": "参考图纸 – 最终图纸随报价提供",
     "drawingDate": "日期",
@@ -1009,6 +1009,26 @@
       "custom": {
         "name": "按图定制",
         "short": "上传您的 STEP、STL 或 PDF"
+      },
+      "straight": {
+        "name": "刚性直波导",
+        "short": "TGR 直波导段"
+      },
+      "transition": {
+        "name": "过渡段",
+        "short": "相邻两种规格之间"
+      },
+      "termination": {
+        "name": "终端负载",
+        "short": "封闭负载，单法兰"
+      },
+      "pressure": {
+        "name": "充气段",
+        "short": "带进气口的短段"
+      },
+      "spacer": {
+        "name": "垫片段",
+        "short": "法兰之间的薄型转接"
       }
     },
     "flexName": {
@@ -1050,7 +1070,8 @@
       "bright": "光亮",
       "painted": "喷漆",
       "silver": "镀银",
-      "surtec": "Surtec 650"
+      "surtec": "Surtec 650",
+      "tin": "镀锡"
     },
     "paintedHint": "颜色和涂料类型将在报价中与您确定。",
     "treatment": "工艺处理",
@@ -1401,7 +1422,8 @@
       "flange2": "法兰 2",
       "length": "长度",
       "finish": "表面处理",
-      "final": "数量"
+      "final": "数量",
+      "item": "型号"
     },
     "q": {
       "type": "您需要哪种零件？",
@@ -1413,7 +1435,12 @@
       "length_twist": "旋转角度和长度是多少？",
       "length_offset": "偏移量和长度是多少？",
       "finish": "选择哪种表面处理？",
-      "final": "需要多少件？"
+      "final": "需要多少件？",
+      "item_cover": "您需要哪种法兰盖？",
+      "item_gasket": "您需要哪种密封垫？",
+      "item_castbend": "您需要哪种铸造弯头？",
+      "item_shim": "您需要哪种垫片？",
+      "item_coax": "您需要哪种波导同轴转换？"
     },
     "hint": {
       "type": "旁边的 3D 模型会立即变化。",
@@ -1422,7 +1449,8 @@
       "flange2": "在 3D 模型中带有“法兰 2”标签。",
       "length": "3D 模型中的尺寸标注会随选择更新。",
       "finish": "模型的金属外观与实物一致地变化。",
-      "final": "可以附上您的图纸或 3D 文件，并填写备注。"
+      "final": "可以附上您的图纸或 3D 文件，并填写备注。",
+      "item": "以下为目录中的型号。其他规格可按需定制，请与我们联系。"
     },
     "types": {
       "twistable": {
@@ -1448,6 +1476,26 @@
       "offset": {
         "name": "偏置波导",
         "short": "连接错位的法兰"
+      },
+      "straight": {
+        "name": "刚性直波导",
+        "short": "TGR 直波导段"
+      },
+      "transition": {
+        "name": "过渡段",
+        "short": "相邻两种规格之间"
+      },
+      "termination": {
+        "name": "终端负载",
+        "short": "封闭负载，单法兰"
+      },
+      "pressure": {
+        "name": "充气段",
+        "short": "带进气口的短段"
+      },
+      "spacer": {
+        "name": "垫片段",
+        "short": "法兰之间的薄型转接"
       }
     },
     "size": {
@@ -1455,7 +1503,9 @@
       "freqPlaceholder": "例如 {value}",
       "suggested": "{freq} GHz 适用的规格是 {size}。",
       "none": "我们的规格均不覆盖 {freq} GHz。",
-      "onRequest": "该类型需单独询问"
+      "onRequest": "该类型需单独询问",
+      "second": "第 2 端规格",
+      "secondHint": "过渡段只在相邻规格之间制作。有我们数据表的组合排在前面。"
     },
     "flange": {
       "recommended": "推荐",
@@ -1474,7 +1524,8 @@
         "square": "方形",
         "rect": "矩形",
         "round": "圆形"
-      }
+      },
+      "closed": "封闭（终端负载）"
     },
     "length": {
       "label": "长度 L",
@@ -1517,7 +1568,15 @@
       },
       "jacket": "橡胶护套",
       "jacketOn": "带护套",
-      "jacketOff": "不带护套"
+      "jacketOff": "不带护套",
+      "material": "本体材料",
+      "cu": "黄铜 / 铜",
+      "al": "铝",
+      "onRequest": "按需",
+      "tin": {
+        "name": "镀锡",
+        "note": "防护锡层"
+      }
     },
     "final": {
       "qty": "数量",
@@ -1548,7 +1607,7 @@
       "aria": "{code} 的 3D 模型",
       "loading": "正在准备 3D 模型……",
       "error": "此设备无法启动 3D 视图。您仍可继续：所选项依然有效。",
-      "hint": "拖动旋转 · 滚轮或双指缩放",
+      "hint": "拖动旋转 · 滚轮滚动页面",
       "tools": "3D 视图工具",
       "exploded": "爆炸视图",
       "assembled": "重新装配",
@@ -1560,7 +1619,84 @@
       "body": "波导",
       "bodyFlex": "波纹波导",
       "jacket": "橡胶护套",
-      "jacketOpt": "护套（可选）"
+      "jacketOpt": "护套（可选）",
+      "flange": "法兰"
+    },
+    "acc": {
+      "group": "附件与按需定制件",
+      "cover": {
+        "name": "法兰保护盖",
+        "short": "LDPE 防护盖",
+        "tag": "保护盖"
+      },
+      "gasket": {
+        "name": "密封垫",
+        "short": "硅胶 60 ShA",
+        "tag": "密封垫"
+      },
+      "castbend": {
+        "name": "铸造弯头",
+        "short": "紧凑型铸造弯头，按需定制"
+      },
+      "coverDesc": "{w} × {h} mm · 高 {t} mm · 蓝色 LDPE",
+      "gasketDesc": "{w} × {h} mm · 截面 {s} mm · 硅胶 60 ShA",
+      "other": "其他规格和其他法兰：按需定制。",
+      "onRequest": "按需定制",
+      "castBody": "铸造弯头按需定制。请选择规格和平面：我们将回复图纸和报价。",
+      "castNo3d": "该零件的 3D 模型和尺寸将随报价提供。",
+      "shim": {
+        "name": "垫片",
+        "short": "法兰之间的 0.2 mm 薄片",
+        "tag": "垫片"
+      },
+      "coax": {
+        "name": "波导同轴转换",
+        "short": "波导转 N 型接头",
+        "tag": "波导-同轴"
+      },
+      "shimDesc": "AISI 301 钢 · 厚 0.2 mm",
+      "coaxDesc": "N 型母头 · {mat} · 性能按需提供"
+    },
+    "sheet": {
+      "button": "下载数据表",
+      "preparing": "正在生成 PDF……",
+      "error": "无法生成 PDF，请重试。",
+      "title": "配置数据表",
+      "codeLabel": "配置代码",
+      "view3d": "3D 视图",
+      "drawing": "尺寸图",
+      "dataTitle": "配置数据",
+      "electricalTitle": "电气与机械数据",
+      "electricalSource": "目录数据 {code}",
+      "onRequestTitle": "按需提供",
+      "onRequestBody": "该配置的电气数据（驻波比、损耗、功率）将随报价提供。",
+      "note": "数据仅供参考，以报价确认为准。最终图纸随报价提供。",
+      "dateLabel": "日期",
+      "brass": "黄铜",
+      "rows": {
+        "waveguide": "波导",
+        "inner": "内腔 a × b",
+        "band": "频段",
+        "material": "材料",
+        "size2": "第 2 端波导"
+      },
+      "el": {
+        "il": "插入损耗",
+        "ilMax": "最大插入损耗",
+        "rl": "回波损耗",
+        "vswr": "最大驻波比",
+        "cw": "连续波功率",
+        "rE": "E 面最小弯曲半径",
+        "rH": "H 面最小弯曲半径",
+        "twist": "最大扭转",
+        "pMax": "最大压力",
+        "pOp": "工作压力"
+      }
+    },
+    "catalog": {
+      "tbc": "待确认",
+      "sizeOff": "该类型无此规格",
+      "flangeOff": "该零件在 {size} 规格下无此法兰，不可选择"
     }
   },
   "journey": {

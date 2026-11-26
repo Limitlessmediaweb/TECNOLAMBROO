@@ -212,10 +212,10 @@ function sweep(at: (d: number) => Frame, rings: Ring[], k: number, inward = fals
 /* ----------------------------------------------------------------- flangia */
 
 /** Flangia da disegnare: quella scelta se esiste per la misura, altrimenti la consigliata (o una quadrata generica). */
-export function flangeFor(spec: PartSpec, id: string): FlangeDef {
+export function flangeFor(spec: PartSpec, id: string, wr = spec.wr): FlangeDef {
   const chosen = flangeById(id);
-  if (chosen && flangeFits(id, spec.wr)) return chosen;
-  const first = flangesFor(spec.wr)[0];
+  if (chosen && flangeFits(id, wr)) return chosen;
+  const first = flangesFor(wr)[0];
   if (first) return first;
   const s = SIZE_BY_WR.get(spec.wr) ?? SIZE_BY_WR.get("WR-90")!;
   const A = Math.round(s.a * 1.8);
@@ -346,10 +346,13 @@ const FINISH_LOOK: Record<Finish, { color: string; metalness: number; roughness:
   silver: { color: "#e9e8e4", metalness: 1, roughness: 0.13, name: "Argentatura" },
   painted: { color: "#2b3442", metalness: 0.05, roughness: 0.5, clearcoat: 0.45, name: "Verniciatura" },
   surtec: { color: "#c5ccd2", metalness: 1, roughness: 0.36, iridescence: 0.35, name: "Surtec 650" },
+  tin: { color: "#d4d6d3", metalness: 1, roughness: 0.3, name: "Stagnatura" },
 };
 
 function materials(spec: PartSpec) {
-  const look = FINISH_LOOK[spec.finish] ?? FINISH_LOOK.raw;
+  const base = FINISH_LOOK[spec.finish] ?? FINISH_LOOK.raw;
+  // alluminio grezzo: grigio, non color ottone
+  const look = spec.material === "al" && spec.finish === "raw" ? { ...base, color: "#bfc4c8", roughness: 0.42, name: "Alluminio grezzo" } : base;
   const metal = (roughness: number) =>
     new THREE.MeshPhysicalMaterial({
       color: new THREE.Color(look.color),
@@ -392,7 +395,13 @@ function corrugationBump(repeat: number): THREE.CanvasTexture {
 export type BuildOptions = {
   /** flessibili senza guaina scelta: la guaina c'è lo stesso, nascosta, e compare solo nella vista esplosa */
   ghostJacket?: boolean;
+  /** solo la flangia 1 con un accessorio davanti (copertura TCF o guarnizione TLG) */
+  accessory?: Accessory;
 };
+/** Accessorio da mostrare sulla flangia: quote in mm da data/catalogo-ditta.ts. */
+export type Accessory =
+  | { kind: "cover"; w: number; h: number; height: number; wall: number; r: number }
+  | { kind: "gasket"; w: number; h: number; section: number };
 export type PartInfo = {
   group: THREE.Group;
   triangles: number;
@@ -406,12 +415,82 @@ export type PartInfo = {
   mid: Frame;
 };
 
+/** Copertura di protezione: fondo più bordo che abbraccia la flangia, aperta verso la flangia (+z). */
+function coverGeometry(a: Extract<Accessory, { kind: "cover" }>): THREE.BufferGeometry {
+  const outer = () => rectPath(new THREE.Shape(), a.w, a.h, a.r, 5);
+  const plate = new THREE.ExtrudeGeometry(outer(), { depth: a.wall, bevelEnabled: false, curveSegments: 10 });
+  const ring = outer();
+  ring.holes.push(rectPath(new THREE.Path(), a.w - 2 * a.wall, a.h - 2 * a.wall, Math.max(0.2, a.r - a.wall), 5));
+  const rim = new THREE.ExtrudeGeometry(ring, { depth: a.height - a.wall, bevelEnabled: false, curveSegments: 10 });
+  rim.translate(0, 0, a.wall);
+  const geo = mergeGeometries([plate, rim]) ?? plate;
+  rim.dispose();
+  if (geo !== plate) plate.dispose();
+  return geo;
+}
+
+/** Flangia 1 da sola con l'accessorio davanti alla faccia di accoppiamento (che guarda verso -z). */
+function buildAccessory(spec: PartSpec, acc: Accessory): PartInfo {
+  const size = sizeOf(spec);
+  const mats = materials(spec);
+  const def = flangeFor(spec, spec.f1);
+  const geo = flangeGeometry(def, size.s.a, size.s.b);
+  const group = new THREE.Group();
+  group.name = "Tecnolambro";
+  const flange = new THREE.Group();
+  flange.name = "Flangia 1";
+  const plate = new THREE.Mesh(geo.plate, mats.flange);
+  plate.castShadow = true;
+  flange.add(plate);
+  // con la guarnizione a catalogo non si disegna l'o-ring generico della gola
+  if (geo.seal && acc.kind !== "gasket") flange.add(new THREE.Mesh(geo.seal, mats.rubber));
+  else geo.seal?.dispose();
+  // tratto di guida dietro la flangia, per far capire dove va montata
+  const stub = sweep((d) => ({ p: new V3(0, 0, def.C + d), t: new V3(0, 0, 1), u: new V3(1, 0, 0), v: new V3(0, 1, 0) }), [{ d: 0, w: size.outerW, h: size.outerH, r: 0.6 }, { d: Math.max(size.outerW, 12), w: size.outerW, h: size.outerH, r: 0.6 }], 3);
+  const body = new THREE.Mesh(stub, mats.body);
+  body.castShadow = true;
+  group.add(flange, body);
+  const { w, h } = flangeOutline(def);
+  let mesh: THREE.Mesh;
+  if (acc.kind === "cover") {
+    mesh = new THREE.Mesh(coverGeometry(acc), new THREE.MeshPhysicalMaterial({ color: new THREE.Color("#1f63c4"), metalness: 0, roughness: 0.48, clearcoat: 0.25, side: THREE.DoubleSide, name: "LDPE" }));
+    mesh.position.z = -acc.wall - 0.3;
+    mesh.name = "Copertura";
+  } else {
+    const pts = rectPoints(acc.w, acc.h, Math.min(acc.w, acc.h) * 0.17, 6).map(([x, y]) => new V3(x, y, 0));
+    mesh = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, true, "centripetal"), 120, acc.section / 2, 10, true), mats.rubber);
+    mesh.position.z = -acc.section / 2;
+    mesh.name = "Guarnizione";
+  }
+  mesh.castShadow = true;
+  mesh.userData.axis = new V3(0, 0, -1);
+  mesh.userData.dist = Math.max(w, h) * 0.9 + 6;
+  mesh.userData.rest = 0.5;
+  mesh.userData.kind = "accessory";
+  group.add(mesh);
+  let triangles = 0;
+  group.traverse((o) => {
+    if (o instanceof THREE.Mesh) {
+      const g = o.geometry as THREE.BufferGeometry;
+      triangles += (g.index ? g.index.count : g.attributes.position.count) / 3;
+    }
+  });
+  group.updateMatrixWorld(true);
+  const box = new THREE.Box3().setFromObject(group);
+  const origin: Frame = { p: new V3(0, 0, 0), t: new V3(0, 0, 1), u: new V3(1, 0, 0), v: new V3(0, 1, 0) };
+  return { group, triangles: Math.round(triangles), ends: [origin, origin], size, total: 0, flanges: [def, def], box, mid: origin };
+}
+
 export function buildPart(spec: PartSpec, opts: BuildOptions = {}): PartInfo {
+  if (opts.accessory) return buildAccessory(spec, opts.accessory);
   const size = sizeOf(spec);
   const mats = materials(spec);
   const segs = pathFor(spec);
   const { total, at } = sampler(segs);
-  const defs: [FlangeDef, FlangeDef] = [flangeFor(spec, spec.f1), flangeFor(spec, spec.f2)];
+  // transizione: la flangia 2 è della seconda misura
+  const wr2 = spec.type === "transition" && spec.wr2 && SIZE_BY_WR.has(spec.wr2) ? spec.wr2 : spec.wr;
+  const s2 = SIZE_BY_WR.get(wr2)!;
+  const defs: [FlangeDef, FlangeDef] = [flangeFor(spec, spec.f1), flangeFor(spec, spec.type === "termination" ? spec.f1 : spec.f2, wr2)];
   const from = Math.min(defs[0].C, total / 3);
   const to = Math.max(total - defs[1].C, (2 * total) / 3);
   const group = new THREE.Group();
@@ -498,8 +577,18 @@ export function buildPart(spec: PartSpec, opts: BuildOptions = {}): PartInfo {
     // guida rigida: parete esterna e parete interna con le proporzioni reali a × b
     const outer = { w: size.rigid.w, h: size.rigid.h, r: 0.6 };
     const inner = { w: size.s.a, h: size.s.b, r: 0.2 };
-    add(sweep(at, bodyD.map((d) => ({ d, ...outer })), k), mats.body, "Guida");
-    add(sweep(at, bodyD.map((d) => ({ d, ...inner })), k, true), mats.body, "Guida interno");
+    if (wr2 !== spec.wr) {
+      // transizione: la sezione passa da a × b della misura 1 a quella della misura 2 nel tratto centrale
+      const o2 = rigidOuter(s2);
+      const mix = (d: number) => THREE.MathUtils.smoothstep(d, from + (to - from) * 0.15, to - (to - from) * 0.15);
+      const lerp = (x: number, y: number, d: number) => x + (y - x) * mix(d);
+      const taper = between(from, to).flatMap((d, i, all) => (i ? [(all[i - 1] + d) / 2, d] : [d]));
+      add(sweep(at, taper.map((d) => ({ d, w: lerp(outer.w, o2.w, d), h: lerp(outer.h, o2.h, d), r: 0.6 })), k), mats.body, "Guida");
+      add(sweep(at, taper.map((d) => ({ d, w: lerp(inner.w, s2.a, d), h: lerp(inner.h, s2.b, d), r: 0.2 })), k, true), mats.body, "Guida interno");
+    } else {
+      add(sweep(at, bodyD.map((d) => ({ d, ...outer })), k), mats.body, "Guida");
+      add(sweep(at, bodyD.map((d) => ({ d, ...inner })), k, true), mats.body, "Guida interno");
+    }
   }
 
   // flange alle due estremità, con la faccia di accoppiamento sul fondo del percorso
@@ -527,7 +616,33 @@ export function buildPart(spec: PartSpec, opts: BuildOptions = {}): PartInfo {
     group.add(g);
   };
   flangeGroup(defs[0], startF, false, "Flangia 1");
-  flangeGroup(defs[1], endF, true, "Flangia 2");
+  if (spec.type === "termination") {
+    // terminazione: lato 2 chiuso da un fondello (il carico è all'interno)
+    const capT = Math.max(2, size.flangeT * 0.5);
+    const cap = new THREE.Mesh(new THREE.BoxGeometry(size.rigid.w + 1.2, size.rigid.h + 1.2, capT), mats.flange);
+    cap.applyMatrix4(frameMatrix(at(Math.max(0, total - capT / 2)), true));
+    cap.name = "Fondello";
+    cap.castShadow = true;
+    group.add(cap);
+  } else {
+    if (wr2 !== spec.wr) {
+      const geo = flangeGeometry(defs[1], s2.a, s2.b);
+      geos.set(defs[1].id, geo);
+    }
+    flangeGroup(defs[1], endF, true, "Flangia 2");
+  }
+  if (spec.type === "pressure") {
+    // ingresso dell'aria a metà del tronchetto
+    const m = at(total / 2);
+    const r = Math.max(2.5, Math.min(6, size.rigid.h * 0.22));
+    const hgt = size.rigid.h * 0.5 + r * 2.4;
+    const inlet = new THREE.Mesh(new THREE.CylinderGeometry(r, r, hgt, 24), mats.flange);
+    inlet.position.copy(m.p).addScaledVector(m.v, hgt / 2);
+    inlet.quaternion.setFromUnitVectors(new V3(0, 1, 0), m.v.clone().normalize());
+    inlet.name = "Ingresso aria";
+    inlet.castShadow = true;
+    group.add(inlet);
+  }
 
   let triangles = 0;
   group.traverse((o) => {
@@ -617,7 +732,7 @@ export function dimLabels(spec: PartSpec, info: PartInfo, fmt: (v: number) => st
 export type ViewPreset = "iso" | "front" | "side";
 export type ViewFocus = "all" | "f1" | "f2";
 /** Testi delle etichette ancorate al modello (già tradotti). */
-export type ViewerLabels = { flange1: string; flange2: string; f1: string; f2: string; body?: string; jacket?: string };
+export type ViewerLabels = { flange1: string; flange2: string; f1: string; f2: string; body?: string; jacket?: string; /** nome e codice dell'accessorio */ accessory?: string; accessoryCode?: string };
 export type ViewerOptions = {
   /** ruota da solo e riparte qualche secondo dopo l'ultimo tocco */
   autoRotate?: boolean;
@@ -628,7 +743,7 @@ export type ViewerOptions = {
   labels?: ViewerLabels;
 };
 export type Viewer = {
-  setSpec: (spec: PartSpec, labels?: ViewerLabels) => void;
+  setSpec: (spec: PartSpec, labels?: ViewerLabels, accessory?: Accessory | null) => void;
   setView: (v: ViewPreset) => void;
   setDims: (on: boolean) => void;
   setExploded: (on: boolean) => void;
@@ -711,12 +826,17 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
   controls.enableDamping = true;
   controls.dampingFactor = 0.08;
   controls.enablePan = false;
+  // la rotella e il pinch scorrono la pagina (niente zoom); il trascinamento in orizzontale ruota
+  // il modello, quello in verticale su touch scorre la pagina (OrbitControls metterebbe touch-action: none)
+  controls.enableZoom = false;
+  renderer.domElement.style.touchAction = "pan-y";
   controls.autoRotateSpeed = 0.9;
   controls.maxPolarAngle = Math.PI * 0.495;
 
   let current: PartInfo | null = null;
   let currentSpec = spec;
   let labels = opts.labels;
+  let accessory: Accessory | null = null;
   let dims = Boolean(opts.dims);
   let exploded = 0;
   let explodedTarget = 0;
@@ -730,6 +850,8 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
   let movers: THREE.Object3D[] = [];
   let dimGroup: THREE.Group | null = null;
   let explodedTags: HTMLElement[] = [];
+  /** etichette FLANGIA 1 / FLANGIA 2 da ridisegnare nella foto del datasheet (le CSS2D non sono nel canvas) */
+  let snapTags: { obj: THREE.Object3D; title: string; code: string }[] = [];
   const camAnim = { from: new V3(), to: new V3(), tFrom: new V3(), tTo: new V3(), start: 0, ms: 600, active: false };
 
   /* ---------------------------------------------------------- inquadrature */
@@ -745,7 +867,7 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
     const vf = THREE.MathUtils.degToRad(camera.fov / 2);
     const elev = view === "iso" ? 0.36 : 0.06;
     const dist = Math.max(rxz / Math.tan(hfov() / 2), (hy * 1.5 + rxz * Math.sin(elev)) / Math.tan(vf)) * (labels ? 1.22 : 1.08) + rxz * 0.18;
-    const az = view === "front" ? -Math.PI / 2 : view === "side" ? 0 : -0.62;
+    const az = view === "front" ? -Math.PI / 2 : view === "side" ? 0 : accessory ? -1.05 : -0.62;
     const dir = new V3(Math.cos(az) * Math.cos(elev), Math.sin(elev), Math.sin(az) * Math.cos(elev));
     return { pos: c.clone().addScaledVector(dir, dist), target: c, dist, radius: rxz };
   };
@@ -804,30 +926,46 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
     const info = current;
     movers = info.group.children.filter((c) => c.userData.axis);
     explodedTags = [];
+    snapTags = [];
     dimGroup = null;
     if (labels) {
       // FLANGIA 1 / FLANGIA 2 con la sigla scelta, ancorate sopra ogni flangia
       ([0, 1] as const).forEach((i) => {
         const fr = info.ends[i];
         const def = info.flanges[i];
-        const flange = info.group.children.find((c) => c.name === (i === 0 ? "Flangia 1" : "Flangia 2"))!;
+        const flange = info.group.children.find((c) => c.name === (i === 0 ? "Flangia 1" : "Flangia 2"));
+        if (!flange) return;
         const fb = new THREE.Box3().setFromObject(flange);
         const inward = i === 0 ? fr.t.clone() : fr.t.clone().negate();
         const c = fr.p.clone().addScaledVector(inward, def.C / 2);
         const top = fb.max.y - info.group.position.y;
         const stem = Math.max(7, (fb.max.y - fb.min.y) * 0.42);
         const anchor = new THREE.Group();
-        anchor.userData = { axis: flange.userData.axis, dist: flange.userData.dist, kind: "tag" };
+        anchor.userData = { axis: flange.userData.axis ?? new V3(), dist: flange.userData.dist ?? 0, kind: "tag" };
         anchor.add(line([new V3(c.x, top + 0.6, c.z), new V3(c.x, top + stem, c.z)]));
         const obj = new CSS2DObject(tag(i === 0 ? labels!.flange1 : labels!.flange2, i === 0 ? labels!.f1 : labels!.f2));
+        snapTags.push({ obj, title: i === 0 ? labels!.flange1 : labels!.flange2, code: i === 0 ? labels!.f1 : labels!.f2 });
         obj.center.set(0.5, 1);
         obj.position.set(c.x, top + stem, c.z);
         anchor.add(obj);
         info.group.add(anchor);
         movers.push(anchor);
       });
+      // accessorio (copertura o guarnizione): etichetta con il codice, sempre visibile
+      const accMesh = info.group.children.find((c) => c.userData.kind === "accessory");
+      if (accMesh && labels.accessory) {
+        const ab = new THREE.Box3().setFromObject(accMesh);
+        const obj = new CSS2DObject(tag(labels.accessory, labels.accessoryCode ?? ""));
+        obj.center.set(0.5, 0);
+        obj.position.set(0, ab.min.y - info.group.position.y - 4, accMesh.position.z);
+        const anchor = new THREE.Group();
+        anchor.userData = { axis: accMesh.userData.axis, dist: accMesh.userData.dist, rest: accMesh.userData.rest, kind: "tag" };
+        anchor.add(obj);
+        info.group.add(anchor);
+        movers.push(anchor);
+      }
       // corpo e guaina: nominati solo nella vista esplosa
-      if (labels.body) {
+      if (labels.body && !accessory) {
         const el = tag(labels.body, "", "p3d-tag-part");
         const obj = new CSS2DObject(el);
         obj.center.set(0.5, 0);
@@ -849,7 +987,7 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
         explodedTags.push(el);
       }
     }
-    if (currentSpec.type !== "custom") {
+    if (currentSpec.type !== "custom" && !accessory) {
       // quota della lunghezza, disegnata nel 3D
       dimGroup = new THREE.Group();
       const d = dimLabels(currentSpec, info, fmt);
@@ -873,7 +1011,8 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
     if (!current) return;
     for (const m of movers) {
       if (!m.userData.base) m.userData.base = m.position.clone();
-      const k = Math.min(1.2, exploded + ((m.userData.pop as number | undefined) ?? 0));
+      const rest = (m.userData.rest as number | undefined) ?? 0;
+      const k = Math.min(1.2, rest + exploded * (1 - rest) + ((m.userData.pop as number | undefined) ?? 0));
       m.position.copy((m.userData.base as THREE.Vector3).clone().addScaledVector(m.userData.axis as THREE.Vector3, (m.userData.dist as number) * k));
       if (m.userData.ghost && m instanceof THREE.Mesh) {
         m.visible = exploded > 0.02;
@@ -951,17 +1090,18 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
     ground.scale.setScalar(r * 12);
   };
 
-  const setSpec = (next: PartSpec, nextLabels?: ViewerLabels) => {
+  const setSpec = (next: PartSpec, nextLabels?: ViewerLabels, nextAccessory?: Accessory | null) => {
     const prev = currentSpec;
     const had = current;
     currentSpec = next;
     if (nextLabels) labels = nextLabels;
+    if (nextAccessory !== undefined) accessory = nextAccessory;
     if (had) {
       scene.remove(had.group);
       removeTags(had.group);
       disposeGroup(had.group);
     }
-    current = buildPart(next, { ghostJacket: Boolean(labels?.jacket) });
+    current = buildPart(next, { ghostJacket: Boolean(labels?.jacket), accessory: accessory ?? undefined });
     scene.add(current.group);
     stage();
     decorate();
@@ -1052,7 +1192,48 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
     },
     snapshot: () => {
       renderer.render(scene, camera);
-      return renderer.domElement.toDataURL("image/png");
+      const src = renderer.domElement;
+      if (!snapTags.length) return src.toDataURL("image/png");
+      // foto con le etichette FLANGIA 1 / FLANGIA 2 disegnate sopra, nella posizione che hanno a schermo
+      const out = document.createElement("canvas");
+      out.width = src.width;
+      out.height = src.height;
+      const g = out.getContext("2d");
+      if (!g) return src.toDataURL("image/png");
+      g.drawImage(src, 0, 0);
+      const k = src.width / Math.max(1, container.clientWidth);
+      const pad = 6 * k;
+      for (const tg of snapTags) {
+        const p = tg.obj.getWorldPosition(new V3()).project(camera);
+        if (p.z > 1) continue;
+        const x = ((p.x + 1) / 2) * src.width;
+        const y = ((1 - p.y) / 2) * src.height;
+        g.font = `700 ${11 * k}px Arial, sans-serif`;
+        const w1 = g.measureText(tg.title).width;
+        g.font = `600 ${11 * k}px Consolas, monospace`;
+        const w2 = tg.code ? g.measureText(tg.code).width : 0;
+        const w = Math.max(w1, w2) + pad * 2;
+        const h = (tg.code ? 32 : 18) * k;
+        const bx = Math.min(Math.max(2, x - w / 2), src.width - w - 2);
+        const by = Math.max(2, y - h);
+        g.fillStyle = "rgba(255,255,255,0.92)";
+        g.strokeStyle = "#0066cc";
+        g.lineWidth = 1.5 * k;
+        g.beginPath();
+        g.roundRect(bx, by, w, h, 4 * k);
+        g.fill();
+        g.stroke();
+        g.fillStyle = "#1a1f26";
+        g.textBaseline = "top";
+        g.font = `700 ${11 * k}px Arial, sans-serif`;
+        g.fillText(tg.title, bx + pad, by + 4 * k);
+        if (tg.code) {
+          g.fillStyle = "#3b4654";
+          g.font = `600 ${11 * k}px Consolas, monospace`;
+          g.fillText(tg.code, bx + pad, by + 17 * k);
+        }
+      }
+      return out.toDataURL("image/png");
     },
     triangles: () => current?.triangles ?? 0,
     dispose: () => {
@@ -1145,6 +1326,10 @@ export async function mountStlPreview(container: HTMLElement, file: File): Promi
   camera.position.set(r * 1.6, r * 1.2, r * 2);
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
+  // la rotella e il pinch scorrono la pagina (niente zoom); il trascinamento in orizzontale ruota
+  // il modello, quello in verticale su touch scorre la pagina (OrbitControls metterebbe touch-action: none)
+  controls.enableZoom = false;
+  renderer.domElement.style.touchAction = "pan-y";
   let frame = 0;
   const draw = () => {
     cancelAnimationFrame(frame);

@@ -45,6 +45,9 @@ export function partReference(spec: PartSpec, opts: { other: string; flexName?: 
   if (t === "twist") {
     return ["TWIST", spec.wr, `${n(spec.rotation)}° ${spec.direction === "ccw" ? "CCW" : "CW"}`, `L${n(spec.length)}`, flanges].join(" · ");
   }
+  if (t === "transition") return ["TRANSIZIONE", `${spec.wr}→${spec.wr2 ?? "?"}`, `L${n(spec.length)}`, flanges].join(" · ");
+  if (t === "termination") return ["TERMINAZIONE", spec.wr, `L${n(spec.length)}`, fl(spec.f1)].join(" · ");
+  if (t === "straight" || t === "pressure" || t === "spacer") return [{ straight: "TRATTO", pressure: "PRESSURIZZATORE", spacer: "SPESSORE" }[t], spec.wr, `L${n(spec.length)}`, flanges].join(" · ");
   return [`DISASSATO-${spec.plane ?? "E"}`, spec.wr, `X${n(spec.offset)}`, `L${n(spec.length)}`, flanges].join(" · ");
 }
 

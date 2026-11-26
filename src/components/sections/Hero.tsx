@@ -16,7 +16,7 @@ export async function Hero() {
   const wr90 = SIZE_BY_WR.get("WR-90")!;
 
   return (
-    <section data-motion-host className="relative isolate flex min-h-[100dvh] flex-col overflow-hidden pt-16 lg:pt-[4.5rem]">
+    <section data-motion-host className="relative isolate flex min-h-[100svh] flex-col overflow-hidden pt-16 lg:pt-[4.5rem]">
       {/* Campo TE10: sfondo vivo dell'hero */}
       <div className="absolute inset-0 -z-10">
         <TE10Field label={t("fieldLabel")} className="opacity-70 lg:opacity-100" />

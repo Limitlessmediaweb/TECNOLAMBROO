@@ -972,8 +972,8 @@
     "downloadGlb": "GLB",
     "preparing": "Wird erstellt…",
     "loading3d": "3D-Modell wird geladen…",
-    "viewerLabel": "3D-Modell von {code}. Ziehen zum Drehen, Mausrad oder zwei Finger zum Zoomen.",
-    "viewerHint": "Ziehen zum Drehen · Mausrad oder zwei Finger zum Zoomen",
+    "viewerLabel": "3D-Modell von {code}. Ziehen zum Drehen; das Mausrad scrollt die Seite.",
+    "viewerHint": "Ziehen zum Drehen · das Mausrad scrollt die Seite",
     "error3d": "Das 3D-Modell wurde nicht geladen. Die Zeichnung ist weiterhin verfügbar.",
     "drawingNote": "Unverbindliche Zeichnung – die endgültige Zeichnung erhalten Sie mit dem Angebot",
     "drawingDate": "Datum",
@@ -1009,6 +1009,26 @@
       "custom": {
         "name": "Nach Zeichnung",
         "short": "STEP, STL oder PDF hochladen"
+      },
+      "straight": {
+        "name": "Starres Geradstück",
+        "short": "Gerader Hohlleiter TGR"
+      },
+      "transition": {
+        "name": "Übergang",
+        "short": "Zwischen zwei benachbarten Größen"
+      },
+      "termination": {
+        "name": "Abschluss",
+        "short": "Geschlossene Last, ein Flansch"
+      },
+      "pressure": {
+        "name": "Druckstück",
+        "short": "Kurzes Stück mit Lufteinlass"
+      },
+      "spacer": {
+        "name": "Distanzstück",
+        "short": "Dünner Adapter zwischen Flanschen"
       }
     },
     "flexName": {
@@ -1050,7 +1070,8 @@
       "bright": "Glanzgebeizt",
       "painted": "Lackiert",
       "silver": "Versilbert",
-      "surtec": "Surtec 650"
+      "surtec": "Surtec 650",
+      "tin": "Verzinnt"
     },
     "paintedHint": "Farbe und Lackart legen wir gemeinsam im Angebot fest.",
     "treatment": "Behandlung",
@@ -1401,7 +1422,8 @@
       "flange2": "Flansch 2",
       "length": "Länge",
       "finish": "Oberfläche",
-      "final": "Menge"
+      "final": "Menge",
+      "item": "Modell"
     },
     "q": {
       "type": "Welches Teil benötigen Sie?",
@@ -1413,7 +1435,12 @@
       "length_twist": "Welche Drehung und welche Länge?",
       "length_offset": "Welcher Versatz und welche Länge?",
       "finish": "Welche Oberfläche?",
-      "final": "Wie viele Stück benötigen Sie?"
+      "final": "Wie viele Stück benötigen Sie?",
+      "item_cover": "Welche Abdeckung benötigen Sie?",
+      "item_gasket": "Welche Dichtung benötigen Sie?",
+      "item_castbend": "Welchen Gussbogen benötigen Sie?",
+      "item_shim": "Welchen Shim brauchen Sie?",
+      "item_coax": "Welchen Hohlleiter-Koax-Übergang brauchen Sie?"
     },
     "hint": {
       "type": "Das 3D-Modell daneben ändert sich sofort.",
@@ -1422,7 +1449,8 @@
       "flange2": "Im 3D-Modell trägt er das Etikett FLANSCH 2.",
       "length": "Das Maß im 3D-Modell ändert sich bei der Auswahl.",
       "finish": "Das Metall des Modells ändert sich wie beim echten Teil.",
-      "final": "Sie können Ihre Zeichnung oder 3D-Datei anhängen und eine Notiz schreiben."
+      "final": "Sie können Ihre Zeichnung oder 3D-Datei anhängen und eine Notiz schreiben.",
+      "item": "Das sind die Katalogcodes. Andere Größen fertigen wir auf Anfrage: Schreiben Sie uns."
     },
     "types": {
       "twistable": {
@@ -1448,6 +1476,26 @@
       "offset": {
         "name": "Versatzstück",
         "short": "Verbindet versetzte Flansche"
+      },
+      "straight": {
+        "name": "Starres Geradstück",
+        "short": "Gerader Hohlleiter TGR"
+      },
+      "transition": {
+        "name": "Übergang",
+        "short": "Zwischen zwei benachbarten Größen"
+      },
+      "termination": {
+        "name": "Abschluss",
+        "short": "Geschlossene Last, ein Flansch"
+      },
+      "pressure": {
+        "name": "Druckstück",
+        "short": "Kurzes Stück mit Lufteinlass"
+      },
+      "spacer": {
+        "name": "Distanzstück",
+        "short": "Dünner Adapter zwischen Flanschen"
       }
     },
     "size": {
@@ -1455,7 +1503,9 @@
       "freqPlaceholder": "z. B. {value}",
       "suggested": "Für {freq} GHz ist {size} die passende Größe.",
       "none": "Keine unserer Größen deckt {freq} GHz ab.",
-      "onRequest": "Für diesen Typ auf Anfrage"
+      "onRequest": "Für diesen Typ auf Anfrage",
+      "second": "Größe auf Seite 2",
+      "secondHint": "Übergänge gibt es zwischen benachbarten Größen. Paare mit unserem Datenblatt stehen zuerst."
     },
     "flange": {
       "recommended": "Empfohlen",
@@ -1474,7 +1524,8 @@
         "square": "quadratisch",
         "rect": "rechteckig",
         "round": "rund"
-      }
+      },
+      "closed": "Geschlossen (Abschluss)"
     },
     "length": {
       "label": "Länge L",
@@ -1517,7 +1568,15 @@
       },
       "jacket": "Gummimantel",
       "jacketOn": "Mit Mantel",
-      "jacketOff": "Ohne Mantel"
+      "jacketOff": "Ohne Mantel",
+      "material": "Werkstoff des Körpers",
+      "cu": "Messing / Kupfer",
+      "al": "Aluminium",
+      "onRequest": "auf Anfrage",
+      "tin": {
+        "name": "Verzinnung",
+        "note": "Schützende Zinnschicht"
+      }
     },
     "final": {
       "qty": "Menge",
@@ -1548,7 +1607,7 @@
       "aria": "3D-Modell von {code}",
       "loading": "Das 3D-Modell wird vorbereitet…",
       "error": "Die 3D-Ansicht startet auf diesem Gerät nicht. Sie können trotzdem fortfahren: Ihre Auswahl bleibt gültig.",
-      "hint": "Ziehen zum Drehen · Mausrad oder zwei Finger zum Zoomen",
+      "hint": "Ziehen zum Drehen · das Mausrad scrollt die Seite",
       "tools": "Werkzeuge der 3D-Ansicht",
       "exploded": "Explosionsansicht",
       "assembled": "Zusammenbauen",
@@ -1560,7 +1619,84 @@
       "body": "HOHLLEITER",
       "bodyFlex": "WELLHOHLLEITER",
       "jacket": "GUMMIMANTEL",
-      "jacketOpt": "MANTEL (AUF ANFRAGE)"
+      "jacketOpt": "MANTEL (AUF ANFRAGE)",
+      "flange": "FLANSCH"
+    },
+    "acc": {
+      "group": "Zubehör und Teile auf Anfrage",
+      "cover": {
+        "name": "Flanschabdeckung",
+        "short": "Schutzkappe aus LDPE",
+        "tag": "ABDECKUNG"
+      },
+      "gasket": {
+        "name": "Dichtung",
+        "short": "Silikon 60 ShA",
+        "tag": "DICHTUNG"
+      },
+      "castbend": {
+        "name": "Gussbogen",
+        "short": "Kompakter gegossener Bogen, auf Anfrage"
+      },
+      "coverDesc": "{w} × {h} mm · Höhe {t} mm · LDPE blau",
+      "gasketDesc": "{w} × {h} mm · Querschnitt {s} mm · Silikon 60 ShA",
+      "other": "Andere Größen und andere Flansche: auf Anfrage.",
+      "onRequest": "Auf Anfrage",
+      "castBody": "Gussbögen fertigen wir auf Anfrage. Wählen Sie Größe und Ebene: Wir antworten mit Zeichnung und Angebot.",
+      "castNo3d": "Für dieses Teil kommen 3D-Modell und Maße mit dem Angebot.",
+      "shim": {
+        "name": "Shim",
+        "short": "0,2-mm-Blech zwischen den Flanschen",
+        "tag": "SHIM"
+      },
+      "coax": {
+        "name": "Hohlleiter-Koax-Übergang",
+        "short": "Vom Hohlleiter zum N-Stecker",
+        "tag": "HL-KOAX"
+      },
+      "shimDesc": "Stahl AISI 301 · 0,2 mm dick",
+      "coaxDesc": "N-Buchse · {mat} · Leistungsdaten auf Anfrage"
+    },
+    "sheet": {
+      "button": "Datenblatt herunterladen",
+      "preparing": "PDF wird erstellt…",
+      "error": "Das PDF konnte nicht erstellt werden. Bitte erneut versuchen.",
+      "title": "Datenblatt der Konfiguration",
+      "codeLabel": "Konfigurationscode",
+      "view3d": "3D-Ansicht",
+      "drawing": "Bemaßte Zeichnung",
+      "dataTitle": "Daten der Konfiguration",
+      "electricalTitle": "Elektrische und mechanische Daten",
+      "electricalSource": "Katalogdaten {code}",
+      "onRequestTitle": "Auf Anfrage",
+      "onRequestBody": "Für diese Konfiguration werden die elektrischen Daten (VSWR, Verluste, Leistung) mit dem Angebot mitgeteilt.",
+      "note": "Richtwerte, im Angebot zu bestätigen. Die endgültige Zeichnung kommt mit dem Angebot.",
+      "dateLabel": "Datum",
+      "brass": "Messing",
+      "rows": {
+        "waveguide": "Hohlleiter",
+        "inner": "Innenmaß a × b",
+        "band": "Band",
+        "material": "Werkstoff",
+        "size2": "Hohlleiter Seite 2"
+      },
+      "el": {
+        "il": "Einfügedämpfung",
+        "ilMax": "Einfügedämpfung max.",
+        "rl": "Rückflussdämpfung",
+        "vswr": "VSWR max.",
+        "cw": "CW-Leistung",
+        "rE": "Min. Radius E-Ebene",
+        "rH": "Min. Radius H-Ebene",
+        "twist": "Max. Verdrehung",
+        "pMax": "Max. Druck",
+        "pOp": "Betriebsdruck"
+      }
+    },
+    "catalog": {
+      "tbc": "Zu bestätigen",
+      "sizeOff": "Für diesen Typ nicht im Katalog",
+      "flangeOff": "Für dieses Teil in {size} nicht im Katalog: nicht wählbar"
     }
   },
   "journey": {

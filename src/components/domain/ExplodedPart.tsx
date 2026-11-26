@@ -42,7 +42,7 @@ export function ExplodedPart({ family, twist, labels, locale, title, caption }: 
 
       const mm = gsap.matchMedia();
       mm.add(`${MQ.motion} and ${MQ.desktop}`, () => {
-        build({ trigger: el, start: "top top", end: "+=110%", pin: true, scrub: 0.6, invalidateOnRefresh: true });
+        build({ trigger: el, start: "top top", end: "+=110%", pin: true, anticipatePin: 1, scrub: 0.6, invalidateOnRefresh: true });
       });
       mm.add(`${MQ.motion} and ${MQ.mobile}`, () => {
         build({ trigger: el, start: "top 80%", end: "center 45%", scrub: 0.6 });
@@ -56,7 +56,7 @@ export function ExplodedPart({ family, twist, labels, locale, title, caption }: 
   );
 
   return (
-    <figure ref={root} className="relative grid min-h-[60svh] content-center overflow-x-clip lg:min-h-[100dvh]">
+    <figure ref={root} className="relative grid min-h-[60svh] content-center overflow-x-clip lg:min-h-[100svh]">
       <div className="container-site">
         <div className="relative mx-auto max-w-5xl border border-line bg-surface/70 p-3 sm:p-6">
           <span aria-hidden="true" className="annot absolute left-3 top-2 text-muted sm:left-6 sm:top-4">

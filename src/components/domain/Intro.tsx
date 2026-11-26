@@ -111,7 +111,6 @@ export function Intro({ tagline, skipLabel, label }: Props) {
 
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    window.__lenis?.stop();
 
     let finished = false;
     const finish = (markSeen = true) => {
@@ -128,7 +127,6 @@ export function Intro({ tagline, skipLabel, label }: Props) {
       document.body.style.overflow = prevOverflow;
       delete html.dataset.intro;
       window.dispatchEvent(new Event("tl:intro-end"));
-      window.__lenis?.start();
     };
     finishRef.current = () => finish();
 

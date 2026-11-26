@@ -37,6 +37,7 @@ export function PinnedSteps({ heading, steps, className }: Props) {
             start: "top top",
             end: () => `+=${window.innerHeight * (steps.length * 0.65)}`,
             pin: true,
+            anticipatePin: 1,
             scrub: 0.6,
             invalidateOnRefresh: true,
             onUpdate: (self) => setActive(Math.min(steps.length - 1, Math.floor(self.progress * steps.length * 0.999))),
@@ -61,7 +62,7 @@ export function PinnedSteps({ heading, steps, className }: Props) {
 
   return (
     <section ref={root} className={cn("relative overflow-hidden", className)} data-active="0">
-      <div className="container-site grid min-h-[100dvh] content-center gap-10 py-20 lg:grid-cols-12 lg:gap-8 lg:py-24">
+      <div className="container-site grid min-h-[100svh] content-center gap-10 py-20 lg:grid-cols-12 lg:gap-8 lg:py-24">
         <div className="lg:col-span-5">{heading}</div>
 
         <div className="relative grid grid-cols-[2.5rem_1fr] gap-x-5 lg:col-span-6 lg:col-start-7 lg:grid-cols-[3rem_1fr]">

@@ -39,6 +39,7 @@ export function HorizontalScroll({ children, heading, className, trackClassName,
             start: "top top",
             end: () => `+=${distance()}`,
             pin: true,
+            anticipatePin: 1,
             scrub: 0.8,
             invalidateOnRefresh: true,
           },
@@ -54,7 +55,7 @@ export function HorizontalScroll({ children, heading, className, trackClassName,
 
   return (
     <section ref={wrap} className={cn("relative overflow-hidden", className)} aria-label={label}>
-      <div className="flex min-h-[100dvh] flex-col justify-center gap-10 py-20 lg:py-16">
+      <div className="flex min-h-[100svh] flex-col justify-center gap-10 py-20 lg:py-16">
         {heading ? <div className="container-site">{heading}</div> : null}
         <div
           ref={track}

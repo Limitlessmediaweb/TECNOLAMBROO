@@ -40,7 +40,7 @@ export function StlPreview({ files, emptyText, label }: { files: File[]; emptyTe
 
   return (
     <div className="relative aspect-[4/3] w-full overflow-hidden bg-[radial-gradient(120%_90%_at_50%_30%,var(--c-surface),var(--c-surface-2))]" data-stl-state={state}>
-      <div ref={box} role="img" aria-label={stl ? `${label}: ${stl.name}` : label} className="absolute inset-0 touch-none" data-lenis-prevent />
+      <div ref={box} role="img" aria-label={stl ? `${label}: ${stl.name}` : label} className="absolute inset-0 touch-pan-y" />
       {state === "empty" || state === "error" ? <p className="absolute inset-0 grid place-items-center p-6 text-center text-sm text-muted">{emptyText}</p> : null}
       {state === "loading" ? (
         <p className="pointer-events-none absolute inset-0 grid place-items-center" role="status">

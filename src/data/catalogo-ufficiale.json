@@ -1,0 +1,2418 @@
+{
+ "_": "Generato da scripts/catalogo-ufficiale.mjs da CATALOGO-UFFICIALE.csv: non modificare a mano.",
+ "products": [
+  {
+   "type": "twistable",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-22",
+   "flanges": [
+    "UG-383/U"
+   ],
+   "rec": [
+    "UG-383/U"
+   ]
+  },
+  {
+   "type": "twistable",
+   "code": "TFTG-320",
+   "status": "ok",
+   "data": "con dati elettrici",
+   "wr": "WR-28",
+   "flanges": [
+    "UG-599/U",
+    "IEC-UBR 320",
+    "IEC-PBR 320",
+    "IEC-CBR 320",
+    "UG-600A/U",
+    "IEC-UDR 320",
+    "IEC-PDR 320",
+    "UG-381/U"
+   ],
+   "rec": [
+    "IEC-UBR 320",
+    "IEC-PBR 320"
+   ]
+  },
+  {
+   "type": "twistable",
+   "code": "TFTG-260",
+   "status": "ok",
+   "data": "con dati elettrici",
+   "wr": "WR-34",
+   "flanges": [
+    "IEC-UBR 260",
+    "IEC-PBR 260",
+    "IEC-CBR 260",
+    "IEC-UDR 260",
+    "IEC-PDR 260"
+   ],
+   "rec": [
+    "IEC-UBR 260",
+    "IEC-PBR 260"
+   ]
+  },
+  {
+   "type": "twistable",
+   "code": "TFTG-220",
+   "status": "ok",
+   "data": "con dati elettrici",
+   "wr": "WR-42",
+   "flanges": [
+    "UG-595/U",
+    "IEC-UBR 220",
+    "IEC-PBR 220",
+    "IEC-CBR 220",
+    "UG-596A/U",
+    "IEC-UDR 220",
+    "IEC-PDR 220"
+   ],
+   "rec": [
+    "IEC-UBR 220",
+    "IEC-PBR 220"
+   ]
+  },
+  {
+   "type": "twistable",
+   "code": "TFTG-180",
+   "status": "ok",
+   "data": "con dati elettrici",
+   "wr": "WR-51",
+   "flanges": [
+    "IEC-UBR 180",
+    "IEC-PBR 180",
+    "IEC-CBR 180",
+    "IEC-UDR 180",
+    "IEC-PDR 180"
+   ],
+   "rec": [
+    "IEC-UBR 180",
+    "IEC-PBR 180",
+    "IEC-UDR 180",
+    "IEC-PDR 180"
+   ]
+  },
+  {
+   "type": "twistable",
+   "code": "TFTG-140",
+   "status": "ok",
+   "data": "con dati elettrici",
+   "wr": "WR-62",
+   "flanges": [
+    "UG-419/U",
+    "IEC-UBR 140",
+    "IEC-PBR 140",
+    "IEC-CBR 140",
+    "UG-541A/U",
+    "IEC-UDR 140",
+    "IEC-PDR 140"
+   ],
+   "rec": [
+    "IEC-UBR 140",
+    "IEC-PBR 140",
+    "IEC-UDR 140",
+    "IEC-PDR 140"
+   ]
+  },
+  {
+   "type": "twistable",
+   "code": "TFTG-120",
+   "status": "ok",
+   "data": "con dati elettrici",
+   "wr": "WR-75",
+   "flanges": [
+    "IEC-UBR 120",
+    "IEC-PBR 120",
+    "IEC-CBR 120",
+    "IEC-UDR 120",
+    "IEC-PDR 120"
+   ],
+   "rec": [
+    "IEC-UBR 120",
+    "IEC-PBR 120",
+    "IEC-UDR 120",
+    "IEC-PDR 120"
+   ]
+  },
+  {
+   "type": "twistable",
+   "code": "TFTG-100",
+   "status": "ok",
+   "data": "con dati elettrici",
+   "wr": "WR-90",
+   "flanges": [
+    "IEC-UBR 100",
+    "IEC-PBR 100",
+    "IEC-CBR 100",
+    "CPR 90 F",
+    "CPR 90 G",
+    "UG-39/U",
+    "UG-40B/U",
+    "IEC-UDR 100",
+    "IEC-PDR 100"
+   ],
+   "rec": [
+    "IEC-UBR 100",
+    "IEC-PBR 100",
+    "IEC-UDR 100",
+    "IEC-PDR 100"
+   ]
+  },
+  {
+   "type": "twistable",
+   "code": "TFTG-84",
+   "status": "ok",
+   "data": "con dati elettrici",
+   "wr": "WR-112",
+   "flanges": [
+    "IEC-UBR 84",
+    "IEC-PBR 84",
+    "IEC-CBR 84",
+    "UG-51/U",
+    "UG-52B/U",
+    "IEC-UDR 84",
+    "IEC-PDR 84",
+    "CPR 112 F",
+    "CPR 112 G"
+   ],
+   "rec": [
+    "IEC-UBR 84",
+    "IEC-PBR 84",
+    "IEC-UDR 84",
+    "IEC-PDR 84"
+   ]
+  },
+  {
+   "type": "twistable",
+   "code": "TFTG-70",
+   "status": "ok",
+   "data": "con dati elettrici",
+   "wr": "WR-137",
+   "flanges": [
+    "IEC-UDR 70",
+    "IEC-PDR 70",
+    "CPR 137 F",
+    "CPR 137 G"
+   ],
+   "rec": [
+    "IEC-UDR 70",
+    "IEC-PDR 70"
+   ]
+  },
+  {
+   "type": "twistable",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-159",
+   "flanges": [
+    "IEC-UDR 58",
+    "IEC-PDR 58",
+    "CPR 159 F",
+    "CPR 159 G",
+    "IEC-UAR 58",
+    "IEC-PAR 58",
+    "IEC-CAR 58"
+   ],
+   "rec": [
+    "IEC-UDR 58"
+   ]
+  },
+  {
+   "type": "twistable",
+   "code": "TFTG-48",
+   "status": "ok",
+   "data": "con dati elettrici",
+   "wr": "WR-187",
+   "flanges": [
+    "IEC-UDR 48",
+    "IEC-PDR 48",
+    "CPR 187 F",
+    "CPR 187 G",
+    "IEC-UAR 48",
+    "IEC-PAR 48",
+    "IEC-CAR 48"
+   ],
+   "rec": [
+    "IEC-UDR 48",
+    "IEC-PDR 48"
+   ]
+  },
+  {
+   "type": "twistable",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-229",
+   "flanges": [
+    "IEC-UDR 40",
+    "IEC-PDR 40",
+    "CPR 229 F",
+    "CPR 229 G"
+   ],
+   "rec": [
+    "IEC-UDR 40"
+   ]
+  },
+  {
+   "type": "twistable",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-284",
+   "flanges": [
+    "IEC-UDR 32",
+    "IEC-PDR 32",
+    "CPR 284 F",
+    "CPR 284 G",
+    "IEC-UAR 32",
+    "IEC-PAR 32",
+    "IEC-CAR 32"
+   ],
+   "rec": [
+    "IEC-UDR 32"
+   ]
+  },
+  {
+   "type": "seamless",
+   "status": "ok",
+   "wr": "WR-22",
+   "flanges": [
+    "UG-383/U"
+   ],
+   "rec": [
+    "UG-383/U"
+   ]
+  },
+  {
+   "type": "seamless",
+   "status": "ok",
+   "wr": "WR-28",
+   "flanges": [
+    "UG-599/U",
+    "IEC-UBR 320",
+    "IEC-PBR 320",
+    "IEC-CBR 320",
+    "UG-600A/U",
+    "IEC-UDR 320",
+    "IEC-PDR 320",
+    "UG-381/U"
+   ],
+   "rec": [
+    "UG-599/U"
+   ]
+  },
+  {
+   "type": "seamless",
+   "status": "ok",
+   "wr": "WR-42",
+   "flanges": [
+    "UG-595/U",
+    "IEC-UBR 220",
+    "IEC-PBR 220",
+    "IEC-CBR 220",
+    "UG-596A/U",
+    "IEC-UDR 220",
+    "IEC-PDR 220"
+   ],
+   "rec": [
+    "UG-595/U"
+   ]
+  },
+  {
+   "type": "seamless",
+   "status": "ok",
+   "wr": "WR-51",
+   "flanges": [
+    "IEC-UBR 180",
+    "IEC-PBR 180",
+    "IEC-CBR 180",
+    "IEC-UDR 180",
+    "IEC-PDR 180"
+   ],
+   "rec": [
+    "IEC-UBR 180"
+   ]
+  },
+  {
+   "type": "seamless",
+   "status": "ok",
+   "wr": "WR-62",
+   "flanges": [
+    "UG-419/U",
+    "IEC-UBR 140",
+    "IEC-PBR 140",
+    "IEC-CBR 140",
+    "UG-541A/U",
+    "IEC-UDR 140",
+    "IEC-PDR 140"
+   ],
+   "rec": [
+    "UG-419/U"
+   ]
+  },
+  {
+   "type": "seamless",
+   "status": "ok",
+   "wr": "WR-75",
+   "flanges": [
+    "IEC-UBR 120",
+    "IEC-PBR 120",
+    "IEC-CBR 120",
+    "IEC-UDR 120",
+    "IEC-PDR 120"
+   ],
+   "rec": [
+    "IEC-UBR 120"
+   ]
+  },
+  {
+   "type": "seamless",
+   "code": "TLFX-100",
+   "status": "ok",
+   "wr": "WR-90",
+   "flanges": [
+    "IEC-UBR 100",
+    "IEC-PBR 100",
+    "IEC-CBR 100",
+    "CPR 90 F",
+    "CPR 90 G",
+    "UG-39/U",
+    "UG-40B/U",
+    "IEC-UDR 100",
+    "IEC-PDR 100"
+   ],
+   "rec": [
+    "IEC-UBR 100",
+    "CPR 90 G"
+   ]
+  },
+  {
+   "type": "seamless",
+   "status": "ok",
+   "wr": "WR-112",
+   "flanges": [
+    "IEC-UBR 84",
+    "IEC-PBR 84",
+    "IEC-CBR 84",
+    "UG-51/U",
+    "UG-52B/U",
+    "IEC-UDR 84",
+    "IEC-PDR 84",
+    "CPR 112 F",
+    "CPR 112 G"
+   ],
+   "rec": [
+    "IEC-UBR 84"
+   ]
+  },
+  {
+   "type": "seamless",
+   "status": "ok",
+   "wr": "WR-137",
+   "flanges": [
+    "IEC-UDR 70",
+    "IEC-PDR 70",
+    "CPR 137 F",
+    "CPR 137 G"
+   ],
+   "rec": [
+    "IEC-UDR 70"
+   ]
+  },
+  {
+   "type": "seamless",
+   "code": "TLFX-48",
+   "status": "ok",
+   "wr": "WR-187",
+   "flanges": [
+    "IEC-UDR 48",
+    "IEC-PDR 48",
+    "CPR 187 F",
+    "CPR 187 G",
+    "IEC-UAR 48",
+    "IEC-PAR 48",
+    "IEC-CAR 48"
+   ],
+   "rec": [
+    "IEC-UDR 48"
+   ]
+  },
+  {
+   "type": "seamless",
+   "status": "ok",
+   "wr": "WR-229",
+   "flanges": [
+    "IEC-UDR 40",
+    "IEC-PDR 40",
+    "CPR 229 F",
+    "CPR 229 G"
+   ],
+   "rec": [
+    "IEC-UDR 40"
+   ]
+  },
+  {
+   "type": "seamless",
+   "code": "TLFX-32",
+   "status": "ok",
+   "wr": "WR-284",
+   "flanges": [
+    "IEC-UDR 32",
+    "IEC-PDR 32",
+    "CPR 284 F",
+    "CPR 284 G",
+    "IEC-UAR 32",
+    "IEC-PAR 32",
+    "IEC-CAR 32"
+   ],
+   "rec": [
+    "IEC-UDR 32"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "E",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-22",
+   "flanges": [
+    "UG-383/U"
+   ],
+   "rec": [
+    "UG-383/U"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "E",
+   "code": "TCE-320",
+   "status": "ok",
+   "data": "con dati elettrici",
+   "wr": "WR-28",
+   "flanges": [
+    "UG-599/U",
+    "IEC-UBR 320",
+    "IEC-PBR 320",
+    "IEC-CBR 320",
+    "UG-600A/U",
+    "IEC-UDR 320",
+    "IEC-PDR 320",
+    "UG-381/U"
+   ],
+   "rec": [
+    "IEC-PBR 320"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "E",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-34",
+   "flanges": [
+    "IEC-UBR 260",
+    "IEC-PBR 260",
+    "IEC-CBR 260",
+    "IEC-UDR 260",
+    "IEC-PDR 260"
+   ],
+   "rec": [
+    "IEC-UBR 260"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "E",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-42",
+   "flanges": [
+    "UG-595/U",
+    "IEC-UBR 220",
+    "IEC-PBR 220",
+    "IEC-CBR 220",
+    "UG-596A/U",
+    "IEC-UDR 220",
+    "IEC-PDR 220"
+   ],
+   "rec": [
+    "UG-595/U"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "E",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-51",
+   "flanges": [
+    "IEC-UBR 180",
+    "IEC-PBR 180",
+    "IEC-CBR 180",
+    "IEC-UDR 180",
+    "IEC-PDR 180"
+   ],
+   "rec": [
+    "IEC-UBR 180"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "E",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-62",
+   "flanges": [
+    "UG-419/U",
+    "IEC-UBR 140",
+    "IEC-PBR 140",
+    "IEC-CBR 140",
+    "UG-541A/U",
+    "IEC-UDR 140",
+    "IEC-PDR 140"
+   ],
+   "rec": [
+    "UG-419/U"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "E",
+   "code": "TCE-120",
+   "status": "ok",
+   "data": "con dati elettrici",
+   "wr": "WR-75",
+   "flanges": [
+    "IEC-UBR 120",
+    "IEC-PBR 120",
+    "IEC-CBR 120",
+    "IEC-UDR 120",
+    "IEC-PDR 120"
+   ],
+   "rec": [
+    "IEC-PBR 120"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "E",
+   "code": "TCE-100",
+   "status": "ok",
+   "data": "con dati elettrici",
+   "wr": "WR-90",
+   "flanges": [
+    "IEC-UBR 100",
+    "IEC-PBR 100",
+    "IEC-CBR 100",
+    "CPR 90 F",
+    "CPR 90 G",
+    "UG-39/U",
+    "UG-40B/U",
+    "IEC-UDR 100",
+    "IEC-PDR 100"
+   ],
+   "rec": [
+    "IEC-UBR 100",
+    "IEC-PBR 100"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "E",
+   "code": "TCE-84",
+   "status": "ok",
+   "wr": "WR-112",
+   "flanges": [
+    "IEC-UBR 84",
+    "IEC-PBR 84",
+    "IEC-CBR 84",
+    "UG-51/U",
+    "UG-52B/U",
+    "IEC-UDR 84",
+    "IEC-PDR 84",
+    "CPR 112 F",
+    "CPR 112 G"
+   ],
+   "rec": [
+    "CPR 112 F",
+    "CPR 112 G"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "E",
+   "code": "TCE-70",
+   "status": "ok",
+   "data": "con dati elettrici",
+   "wr": "WR-137",
+   "flanges": [
+    "IEC-UDR 70",
+    "IEC-PDR 70",
+    "CPR 137 F",
+    "CPR 137 G"
+   ],
+   "rec": [
+    "IEC-UDR 70",
+    "IEC-PDR 70",
+    "CPR 137 F",
+    "CPR 137 G"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "E",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-159",
+   "flanges": [
+    "IEC-UDR 58",
+    "IEC-PDR 58",
+    "CPR 159 F",
+    "CPR 159 G",
+    "IEC-UAR 58",
+    "IEC-PAR 58",
+    "IEC-CAR 58"
+   ],
+   "rec": [
+    "IEC-UDR 58"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "E",
+   "code": "TCE-48",
+   "status": "ok",
+   "wr": "WR-187",
+   "flanges": [
+    "IEC-UDR 48",
+    "IEC-PDR 48",
+    "CPR 187 F",
+    "CPR 187 G",
+    "IEC-UAR 48",
+    "IEC-PAR 48",
+    "IEC-CAR 48"
+   ],
+   "rec": [
+    "IEC-UDR 48",
+    "IEC-PDR 48"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "E",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-229",
+   "flanges": [
+    "IEC-UDR 40",
+    "IEC-PDR 40",
+    "CPR 229 F",
+    "CPR 229 G"
+   ],
+   "rec": [
+    "IEC-UDR 40"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "E",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-284",
+   "flanges": [
+    "IEC-UDR 32",
+    "IEC-PDR 32",
+    "CPR 284 F",
+    "CPR 284 G",
+    "IEC-UAR 32",
+    "IEC-PAR 32",
+    "IEC-CAR 32"
+   ],
+   "rec": [
+    "IEC-UDR 32"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "H",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-22",
+   "flanges": [
+    "UG-383/U"
+   ],
+   "rec": [
+    "UG-383/U"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "H",
+   "code": "TCH-320",
+   "status": "ok",
+   "data": "con dati elettrici",
+   "wr": "WR-28",
+   "flanges": [
+    "UG-599/U",
+    "IEC-UBR 320",
+    "IEC-PBR 320",
+    "IEC-CBR 320",
+    "UG-600A/U",
+    "IEC-UDR 320",
+    "IEC-PDR 320",
+    "UG-381/U"
+   ],
+   "rec": [
+    "IEC-UBR 320",
+    "IEC-PBR 320"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "H",
+   "code": "TCH-260",
+   "status": "ok",
+   "data": "con dati elettrici",
+   "wr": "WR-34",
+   "flanges": [
+    "IEC-UBR 260",
+    "IEC-PBR 260",
+    "IEC-CBR 260",
+    "IEC-UDR 260",
+    "IEC-PDR 260"
+   ],
+   "rec": [
+    "IEC-PBR 260"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "H",
+   "code": "TCH-220",
+   "status": "ok",
+   "data": "con dati elettrici",
+   "wr": "WR-42",
+   "flanges": [
+    "UG-595/U",
+    "IEC-UBR 220",
+    "IEC-PBR 220",
+    "IEC-CBR 220",
+    "UG-596A/U",
+    "IEC-UDR 220",
+    "IEC-PDR 220"
+   ],
+   "rec": [
+    "IEC-UBR 220",
+    "IEC-PBR 220"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "H",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-51",
+   "flanges": [
+    "IEC-UBR 180",
+    "IEC-PBR 180",
+    "IEC-CBR 180",
+    "IEC-UDR 180",
+    "IEC-PDR 180"
+   ],
+   "rec": [
+    "IEC-UBR 180"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "H",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-62",
+   "flanges": [
+    "UG-419/U",
+    "IEC-UBR 140",
+    "IEC-PBR 140",
+    "IEC-CBR 140",
+    "UG-541A/U",
+    "IEC-UDR 140",
+    "IEC-PDR 140"
+   ],
+   "rec": [
+    "UG-419/U"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "H",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-75",
+   "flanges": [
+    "IEC-UBR 120",
+    "IEC-PBR 120",
+    "IEC-CBR 120",
+    "IEC-UDR 120",
+    "IEC-PDR 120"
+   ],
+   "rec": [
+    "IEC-UBR 120"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "H",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-90",
+   "flanges": [
+    "IEC-UBR 100",
+    "IEC-PBR 100",
+    "IEC-CBR 100",
+    "CPR 90 F",
+    "CPR 90 G",
+    "UG-39/U",
+    "UG-40B/U",
+    "IEC-UDR 100",
+    "IEC-PDR 100"
+   ],
+   "rec": [
+    "IEC-UBR 100",
+    "CPR 90 G"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "H",
+   "code": "TCH-84",
+   "status": "ok",
+   "wr": "WR-112",
+   "flanges": [
+    "IEC-UBR 84",
+    "IEC-PBR 84",
+    "IEC-CBR 84",
+    "UG-51/U",
+    "UG-52B/U",
+    "IEC-UDR 84",
+    "IEC-PDR 84",
+    "CPR 112 F",
+    "CPR 112 G"
+   ],
+   "rec": [
+    "IEC-UDR 84",
+    "IEC-PDR 84"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "H",
+   "code": "TCH-70",
+   "status": "ok",
+   "data": "con dati elettrici",
+   "wr": "WR-137",
+   "flanges": [
+    "IEC-UDR 70",
+    "IEC-PDR 70",
+    "CPR 137 F",
+    "CPR 137 G"
+   ],
+   "rec": [
+    "IEC-UDR 70",
+    "IEC-PDR 70"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "H",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-159",
+   "flanges": [
+    "IEC-UDR 58",
+    "IEC-PDR 58",
+    "CPR 159 F",
+    "CPR 159 G",
+    "IEC-UAR 58",
+    "IEC-PAR 58",
+    "IEC-CAR 58"
+   ],
+   "rec": [
+    "IEC-UDR 58"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "H",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-187",
+   "flanges": [
+    "IEC-UDR 48",
+    "IEC-PDR 48",
+    "CPR 187 F",
+    "CPR 187 G",
+    "IEC-UAR 48",
+    "IEC-PAR 48",
+    "IEC-CAR 48"
+   ],
+   "rec": [
+    "IEC-UDR 48"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "H",
+   "code": "TCH-40",
+   "status": "ok",
+   "wr": "WR-229",
+   "flanges": [
+    "IEC-UDR 40",
+    "IEC-PDR 40",
+    "CPR 229 F",
+    "CPR 229 G"
+   ],
+   "rec": [
+    "IEC-UDR 40",
+    "IEC-PDR 40"
+   ]
+  },
+  {
+   "type": "bend",
+   "plane": "H",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-284",
+   "flanges": [
+    "IEC-UDR 32",
+    "IEC-PDR 32",
+    "CPR 284 F",
+    "CPR 284 G",
+    "IEC-UAR 32",
+    "IEC-PAR 32",
+    "IEC-CAR 32"
+   ],
+   "rec": [
+    "IEC-UDR 32"
+   ]
+  },
+  {
+   "type": "twist",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-22",
+   "flanges": [
+    "UG-383/U"
+   ],
+   "rec": [
+    "UG-383/U"
+   ]
+  },
+  {
+   "type": "twist",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-28",
+   "flanges": [
+    "UG-599/U",
+    "IEC-UBR 320",
+    "IEC-PBR 320",
+    "IEC-CBR 320",
+    "UG-600A/U",
+    "IEC-UDR 320",
+    "IEC-PDR 320",
+    "UG-381/U"
+   ],
+   "rec": [
+    "UG-599/U"
+   ]
+  },
+  {
+   "type": "twist",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-34",
+   "flanges": [
+    "IEC-UBR 260",
+    "IEC-PBR 260",
+    "IEC-CBR 260",
+    "IEC-UDR 260",
+    "IEC-PDR 260"
+   ],
+   "rec": [
+    "IEC-UBR 260"
+   ]
+  },
+  {
+   "type": "twist",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-42",
+   "flanges": [
+    "UG-595/U",
+    "IEC-UBR 220",
+    "IEC-PBR 220",
+    "IEC-CBR 220",
+    "UG-596A/U",
+    "IEC-UDR 220",
+    "IEC-PDR 220"
+   ],
+   "rec": [
+    "UG-595/U"
+   ]
+  },
+  {
+   "type": "twist",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-51",
+   "flanges": [
+    "IEC-UBR 180",
+    "IEC-PBR 180",
+    "IEC-CBR 180",
+    "IEC-UDR 180",
+    "IEC-PDR 180"
+   ],
+   "rec": [
+    "IEC-UBR 180"
+   ]
+  },
+  {
+   "type": "twist",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-62",
+   "flanges": [
+    "UG-419/U",
+    "IEC-UBR 140",
+    "IEC-PBR 140",
+    "IEC-CBR 140",
+    "UG-541A/U",
+    "IEC-UDR 140",
+    "IEC-PDR 140"
+   ],
+   "rec": [
+    "UG-419/U"
+   ]
+  },
+  {
+   "type": "twist",
+   "status": "ok",
+   "wr": "WR-75",
+   "flanges": [
+    "IEC-UBR 120",
+    "IEC-PBR 120",
+    "IEC-CBR 120",
+    "IEC-UDR 120",
+    "IEC-PDR 120"
+   ],
+   "rec": [
+    "IEC-UBR 120"
+   ]
+  },
+  {
+   "type": "twist",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-90",
+   "flanges": [
+    "IEC-UBR 100",
+    "IEC-PBR 100",
+    "IEC-CBR 100",
+    "CPR 90 F",
+    "CPR 90 G",
+    "UG-39/U",
+    "UG-40B/U",
+    "IEC-UDR 100",
+    "IEC-PDR 100"
+   ],
+   "rec": [
+    "IEC-UBR 100",
+    "CPR 90 G"
+   ]
+  },
+  {
+   "type": "twist",
+   "code": "TWR-84",
+   "status": "ok",
+   "wr": "WR-112",
+   "flanges": [
+    "IEC-UBR 84",
+    "IEC-PBR 84",
+    "IEC-CBR 84",
+    "UG-51/U",
+    "UG-52B/U",
+    "IEC-UDR 84",
+    "IEC-PDR 84",
+    "CPR 112 F",
+    "CPR 112 G"
+   ],
+   "rec": [
+    "IEC-UDR 84",
+    "IEC-PDR 84"
+   ]
+  },
+  {
+   "type": "twist",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-137",
+   "flanges": [
+    "IEC-UDR 70",
+    "IEC-PDR 70",
+    "CPR 137 F",
+    "CPR 137 G"
+   ],
+   "rec": [
+    "IEC-UDR 70"
+   ]
+  },
+  {
+   "type": "twist",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-159",
+   "flanges": [
+    "IEC-UDR 58",
+    "IEC-PDR 58",
+    "CPR 159 F",
+    "CPR 159 G",
+    "IEC-UAR 58",
+    "IEC-PAR 58",
+    "IEC-CAR 58"
+   ],
+   "rec": [
+    "IEC-UDR 58"
+   ]
+  },
+  {
+   "type": "twist",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-187",
+   "flanges": [
+    "IEC-UDR 48",
+    "IEC-PDR 48",
+    "CPR 187 F",
+    "CPR 187 G",
+    "IEC-UAR 48",
+    "IEC-PAR 48",
+    "IEC-CAR 48"
+   ],
+   "rec": [
+    "IEC-UDR 48"
+   ]
+  },
+  {
+   "type": "twist",
+   "status": "ok",
+   "wr": "WR-229",
+   "flanges": [
+    "IEC-UDR 40",
+    "IEC-PDR 40",
+    "CPR 229 F",
+    "CPR 229 G"
+   ],
+   "rec": [
+    "IEC-UDR 40"
+   ]
+  },
+  {
+   "type": "twist",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-284",
+   "flanges": [
+    "IEC-UDR 32",
+    "IEC-PDR 32",
+    "CPR 284 F",
+    "CPR 284 G",
+    "IEC-UAR 32",
+    "IEC-PAR 32",
+    "IEC-CAR 32"
+   ],
+   "rec": [
+    "IEC-UDR 32"
+   ]
+  },
+  {
+   "type": "offset",
+   "code": "TDS",
+   "status": "tbc",
+   "wr": "WR-22",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "offset",
+   "code": "TDS",
+   "status": "tbc",
+   "wr": "WR-28",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "offset",
+   "code": "TDS",
+   "status": "tbc",
+   "wr": "WR-34",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "offset",
+   "code": "TDS",
+   "status": "tbc",
+   "wr": "WR-42",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "offset",
+   "code": "TDS",
+   "status": "tbc",
+   "wr": "WR-51",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "offset",
+   "code": "TDS",
+   "status": "tbc",
+   "wr": "WR-62",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "offset",
+   "code": "TDS",
+   "status": "tbc",
+   "wr": "WR-75",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "offset",
+   "code": "TDS",
+   "status": "tbc",
+   "wr": "WR-90",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "offset",
+   "code": "TDS",
+   "status": "tbc",
+   "wr": "WR-112",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "offset",
+   "code": "TDS",
+   "status": "tbc",
+   "wr": "WR-137",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "offset",
+   "code": "TDS",
+   "status": "tbc",
+   "wr": "WR-159",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "offset",
+   "code": "TDS",
+   "status": "tbc",
+   "wr": "WR-187",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "offset",
+   "code": "TDS",
+   "status": "tbc",
+   "wr": "WR-229",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "offset",
+   "code": "TDS",
+   "status": "tbc",
+   "wr": "WR-284",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "straight",
+   "code": "TGR-400",
+   "status": "ok",
+   "data": "dati elettrici solo per misura e L del datasheet",
+   "wr": "WR-22",
+   "flanges": [
+    "UG-383/U"
+   ],
+   "rec": []
+  },
+  {
+   "type": "straight",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-28",
+   "flanges": [
+    "UG-599/U",
+    "IEC-UBR 320",
+    "IEC-PBR 320",
+    "IEC-CBR 320",
+    "UG-600A/U",
+    "IEC-UDR 320",
+    "IEC-PDR 320",
+    "UG-381/U"
+   ],
+   "rec": [
+    "UG-599/U"
+   ]
+  },
+  {
+   "type": "straight",
+   "code": "TGR-260",
+   "status": "ok",
+   "data": "dati elettrici solo per misura e L del datasheet",
+   "wr": "WR-34",
+   "flanges": [
+    "IEC-UBR 260",
+    "IEC-PBR 260",
+    "IEC-CBR 260",
+    "IEC-UDR 260",
+    "IEC-PDR 260"
+   ],
+   "rec": [
+    "IEC-PBR 260",
+    "IEC-UBR 260"
+   ]
+  },
+  {
+   "type": "straight",
+   "code": "TGR-220",
+   "status": "ok",
+   "data": "dati elettrici solo per misura e L del datasheet",
+   "wr": "WR-42",
+   "flanges": [
+    "UG-595/U",
+    "IEC-UBR 220",
+    "IEC-PBR 220",
+    "IEC-CBR 220",
+    "UG-596A/U",
+    "IEC-UDR 220",
+    "IEC-PDR 220"
+   ],
+   "rec": [
+    "IEC-PBR 220"
+   ]
+  },
+  {
+   "type": "straight",
+   "code": "TGR-180",
+   "status": "ok",
+   "data": "dati elettrici solo per misura e L del datasheet",
+   "wr": "WR-51",
+   "flanges": [
+    "IEC-UBR 180",
+    "IEC-PBR 180",
+    "IEC-CBR 180",
+    "IEC-UDR 180",
+    "IEC-PDR 180"
+   ],
+   "rec": [
+    "IEC-PBR 180",
+    "IEC-UBR 180"
+   ]
+  },
+  {
+   "type": "straight",
+   "code": "TGR-140",
+   "status": "ok",
+   "data": "dati elettrici solo per misura e L del datasheet",
+   "wr": "WR-62",
+   "flanges": [
+    "UG-419/U",
+    "IEC-UBR 140",
+    "IEC-PBR 140",
+    "IEC-CBR 140",
+    "UG-541A/U",
+    "IEC-UDR 140",
+    "IEC-PDR 140"
+   ],
+   "rec": [
+    "IEC-PBR 140"
+   ]
+  },
+  {
+   "type": "straight",
+   "code": "TGR-120",
+   "status": "ok",
+   "data": "dati elettrici solo per misura e L del datasheet",
+   "wr": "WR-75",
+   "flanges": [
+    "IEC-UBR 120",
+    "IEC-PBR 120",
+    "IEC-CBR 120",
+    "IEC-UDR 120",
+    "IEC-PDR 120"
+   ],
+   "rec": [
+    "IEC-PDR 120",
+    "IEC-UBR 120",
+    "IEC-UDR 120",
+    "IEC-PBR 120"
+   ]
+  },
+  {
+   "type": "straight",
+   "code": "TGR-100",
+   "status": "ok",
+   "data": "dati elettrici solo per misura e L del datasheet",
+   "wr": "WR-90",
+   "flanges": [
+    "IEC-UBR 100",
+    "IEC-PBR 100",
+    "IEC-CBR 100",
+    "CPR 90 F",
+    "CPR 90 G",
+    "UG-39/U",
+    "UG-40B/U",
+    "IEC-UDR 100",
+    "IEC-PDR 100"
+   ],
+   "rec": [
+    "IEC-PBR 100",
+    "IEC-UBR 100",
+    "IEC-PDR 100"
+   ]
+  },
+  {
+   "type": "straight",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-112",
+   "flanges": [
+    "IEC-UBR 84",
+    "IEC-PBR 84",
+    "IEC-CBR 84",
+    "UG-51/U",
+    "UG-52B/U",
+    "IEC-UDR 84",
+    "IEC-PDR 84",
+    "CPR 112 F",
+    "CPR 112 G"
+   ],
+   "rec": [
+    "IEC-UBR 84"
+   ]
+  },
+  {
+   "type": "straight",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-137",
+   "flanges": [
+    "IEC-UDR 70",
+    "IEC-PDR 70",
+    "CPR 137 F",
+    "CPR 137 G"
+   ],
+   "rec": [
+    "IEC-UDR 70"
+   ]
+  },
+  {
+   "type": "straight",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-159",
+   "flanges": [
+    "IEC-UDR 58",
+    "IEC-PDR 58",
+    "CPR 159 F",
+    "CPR 159 G",
+    "IEC-UAR 58",
+    "IEC-PAR 58",
+    "IEC-CAR 58"
+   ],
+   "rec": [
+    "IEC-UDR 58"
+   ]
+  },
+  {
+   "type": "straight",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-187",
+   "flanges": [
+    "IEC-UDR 48",
+    "IEC-PDR 48",
+    "CPR 187 F",
+    "CPR 187 G",
+    "IEC-UAR 48",
+    "IEC-PAR 48",
+    "IEC-CAR 48"
+   ],
+   "rec": [
+    "IEC-UDR 48"
+   ]
+  },
+  {
+   "type": "straight",
+   "code": "TGR-40",
+   "status": "ok",
+   "data": "dati elettrici solo per misura e L del datasheet",
+   "wr": "WR-229",
+   "flanges": [
+    "IEC-UDR 40",
+    "IEC-PDR 40",
+    "CPR 229 F",
+    "CPR 229 G"
+   ],
+   "rec": [
+    "CPR 229 F",
+    "CPR 229 G"
+   ]
+  },
+  {
+   "type": "straight",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-284",
+   "flanges": [
+    "IEC-UDR 32",
+    "IEC-PDR 32",
+    "CPR 284 F",
+    "CPR 284 G",
+    "IEC-UAR 32",
+    "IEC-PAR 32",
+    "IEC-CAR 32"
+   ],
+   "rec": [
+    "IEC-UDR 32"
+   ]
+  },
+  {
+   "type": "pressure",
+   "code": "TGP-400",
+   "status": "ok",
+   "data": "con dati elettrici a L 100",
+   "wr": "WR-22",
+   "flanges": [
+    "UG-383/U"
+   ],
+   "rec": []
+  },
+  {
+   "type": "pressure",
+   "code": "TGP-260",
+   "status": "ok",
+   "data": "con dati elettrici a L 100",
+   "wr": "WR-34",
+   "flanges": [
+    "IEC-UBR 260",
+    "IEC-PBR 260",
+    "IEC-CBR 260",
+    "IEC-UDR 260",
+    "IEC-PDR 260"
+   ],
+   "rec": [
+    "IEC-PBR 260",
+    "IEC-UBR 260"
+   ]
+  },
+  {
+   "type": "pressure",
+   "code": "TGP-180",
+   "status": "ok",
+   "data": "con dati elettrici a L 100",
+   "wr": "WR-51",
+   "flanges": [
+    "IEC-UBR 180",
+    "IEC-PBR 180",
+    "IEC-CBR 180",
+    "IEC-UDR 180",
+    "IEC-PDR 180"
+   ],
+   "rec": [
+    "IEC-PBR 180",
+    "IEC-UBR 180"
+   ]
+  },
+  {
+   "type": "pressure",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-28",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "pressure",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-42",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "pressure",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-62",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "pressure",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-75",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "pressure",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-90",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "pressure",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-112",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "pressure",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-137",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "pressure",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-159",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "pressure",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-187",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "pressure",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-229",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "pressure",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-284",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "transition",
+   "code": "TTG-70-84",
+   "status": "ok",
+   "wr": "WR-137",
+   "wr2": "WR-112",
+   "flanges": [
+    "IEC-UDR 70",
+    "IEC-PDR 70",
+    "CPR 137 F",
+    "CPR 137 G"
+   ],
+   "flanges2": [
+    "IEC-UBR 84",
+    "IEC-PBR 84",
+    "IEC-CBR 84",
+    "UG-51/U",
+    "UG-52B/U",
+    "IEC-UDR 84",
+    "IEC-PDR 84",
+    "CPR 112 F",
+    "CPR 112 G"
+   ],
+   "rec": [
+    "IEC-UDR 70"
+   ],
+   "rec2": [
+    "IEC-PBR 84"
+   ]
+  },
+  {
+   "type": "transition",
+   "code": "TTG-84-100",
+   "status": "ok",
+   "wr": "WR-112",
+   "wr2": "WR-90",
+   "flanges": [
+    "IEC-UBR 84",
+    "IEC-PBR 84",
+    "IEC-CBR 84",
+    "UG-51/U",
+    "UG-52B/U",
+    "IEC-UDR 84",
+    "IEC-PDR 84",
+    "CPR 112 F",
+    "CPR 112 G"
+   ],
+   "flanges2": [
+    "IEC-UBR 100",
+    "IEC-PBR 100",
+    "IEC-CBR 100",
+    "CPR 90 F",
+    "CPR 90 G",
+    "UG-39/U",
+    "UG-40B/U",
+    "IEC-UDR 100",
+    "IEC-PDR 100"
+   ],
+   "rec": [
+    "IEC-PDR 84",
+    "IEC-UBR 84"
+   ],
+   "rec2": [
+    "IEC-PBR 100",
+    "IEC-CBR 100"
+   ]
+  },
+  {
+   "type": "transition",
+   "code": "TTG-100-120",
+   "status": "ok",
+   "wr": "WR-90",
+   "wr2": "WR-75",
+   "flanges": [
+    "IEC-UBR 100",
+    "IEC-PBR 100",
+    "IEC-CBR 100",
+    "CPR 90 F",
+    "CPR 90 G",
+    "UG-39/U",
+    "UG-40B/U",
+    "IEC-UDR 100",
+    "IEC-PDR 100"
+   ],
+   "flanges2": [
+    "IEC-UBR 120",
+    "IEC-PBR 120",
+    "IEC-CBR 120",
+    "IEC-UDR 120",
+    "IEC-PDR 120"
+   ],
+   "rec": [
+    "IEC-UDR 100",
+    "IEC-PDR 100",
+    "IEC-PBR 100",
+    "IEC-UBR 100"
+   ],
+   "rec2": [
+    "IEC-UDR 120",
+    "IEC-PDR 120",
+    "IEC-PBR 120",
+    "IEC-UBR 120"
+   ]
+  },
+  {
+   "type": "termination",
+   "code": "TR-220",
+   "status": "ok",
+   "data": "con VSWR a L del datasheet",
+   "wr": "WR-42",
+   "flanges": [
+    "UG-595/U",
+    "IEC-UBR 220",
+    "IEC-PBR 220",
+    "IEC-CBR 220",
+    "UG-596A/U",
+    "IEC-UDR 220",
+    "IEC-PDR 220"
+   ],
+   "rec": [
+    "IEC-UBR 220"
+   ]
+  },
+  {
+   "type": "termination",
+   "code": "TR-140",
+   "status": "ok",
+   "data": "con VSWR a L del datasheet",
+   "wr": "WR-62",
+   "flanges": [
+    "UG-419/U",
+    "IEC-UBR 140",
+    "IEC-PBR 140",
+    "IEC-CBR 140",
+    "UG-541A/U",
+    "IEC-UDR 140",
+    "IEC-PDR 140"
+   ],
+   "rec": [
+    "IEC-PBR 140"
+   ]
+  },
+  {
+   "type": "termination",
+   "code": "TR-84",
+   "status": "ok",
+   "data": "con VSWR a L del datasheet",
+   "wr": "WR-112",
+   "flanges": [
+    "IEC-UBR 84",
+    "IEC-PBR 84",
+    "IEC-CBR 84",
+    "UG-51/U",
+    "UG-52B/U",
+    "IEC-UDR 84",
+    "IEC-PDR 84",
+    "CPR 112 F",
+    "CPR 112 G"
+   ],
+   "rec": [
+    "IEC-PBR 84"
+   ]
+  },
+  {
+   "type": "termination",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-22",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "termination",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-28",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "termination",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-34",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "termination",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-51",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "termination",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-75",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "termination",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-90",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "termination",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-137",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "termination",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-159",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "termination",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-187",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "termination",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-229",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "termination",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-284",
+   "flanges": [
+    "*"
+   ],
+   "rec": [],
+   "generic": true
+  },
+  {
+   "type": "spacer",
+   "code": "TSP-220",
+   "status": "ok",
+   "wr": "WR-42",
+   "flanges": [
+    "UG-595/U",
+    "IEC-UBR 220",
+    "IEC-PBR 220",
+    "IEC-CBR 220",
+    "UG-596A/U",
+    "IEC-UDR 220",
+    "IEC-PDR 220"
+   ],
+   "rec": [
+    "IEC-PBR 220"
+   ]
+  },
+  {
+   "type": "spacer",
+   "code": "TSP-100",
+   "status": "ok",
+   "wr": "WR-90",
+   "flanges": [
+    "IEC-UBR 100",
+    "IEC-PBR 100",
+    "IEC-CBR 100",
+    "CPR 90 F",
+    "CPR 90 G",
+    "UG-39/U",
+    "UG-40B/U",
+    "IEC-UDR 100",
+    "IEC-PDR 100"
+   ],
+   "rec": [
+    "IEC-PDR 100"
+   ]
+  },
+  {
+   "type": "spacer",
+   "code": "TLSPBR84",
+   "status": "ok",
+   "wr": "WR-112",
+   "flanges": [
+    "IEC-UBR 84",
+    "IEC-PBR 84",
+    "IEC-CBR 84",
+    "UG-51/U",
+    "UG-52B/U",
+    "IEC-UDR 84",
+    "IEC-PDR 84",
+    "CPR 112 F",
+    "CPR 112 G"
+   ],
+   "rec": [
+    "IEC-PBR 84"
+   ]
+  },
+  {
+   "type": "spacer",
+   "code": "TSP-48",
+   "status": "ok",
+   "wr": "WR-187",
+   "flanges": [
+    "IEC-UDR 48",
+    "IEC-PDR 48",
+    "CPR 187 F",
+    "CPR 187 G",
+    "IEC-UAR 48",
+    "IEC-PAR 48",
+    "IEC-CAR 48"
+   ],
+   "rec": [
+    "IEC-PDR 48"
+   ]
+  },
+  {
+   "type": "transition",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-28",
+   "wr2": "WR-22",
+   "flanges": [
+    "*"
+   ],
+   "flanges2": [
+    "*"
+   ],
+   "rec": [],
+   "rec2": [],
+   "generic": true
+  },
+  {
+   "type": "transition",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-34",
+   "wr2": "WR-28",
+   "flanges": [
+    "*"
+   ],
+   "flanges2": [
+    "*"
+   ],
+   "rec": [],
+   "rec2": [],
+   "generic": true
+  },
+  {
+   "type": "transition",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-42",
+   "wr2": "WR-34",
+   "flanges": [
+    "*"
+   ],
+   "flanges2": [
+    "*"
+   ],
+   "rec": [],
+   "rec2": [],
+   "generic": true
+  },
+  {
+   "type": "transition",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-51",
+   "wr2": "WR-42",
+   "flanges": [
+    "*"
+   ],
+   "flanges2": [
+    "*"
+   ],
+   "rec": [],
+   "rec2": [],
+   "generic": true
+  },
+  {
+   "type": "transition",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-62",
+   "wr2": "WR-51",
+   "flanges": [
+    "*"
+   ],
+   "flanges2": [
+    "*"
+   ],
+   "rec": [],
+   "rec2": [],
+   "generic": true
+  },
+  {
+   "type": "transition",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-75",
+   "wr2": "WR-62",
+   "flanges": [
+    "*"
+   ],
+   "flanges2": [
+    "*"
+   ],
+   "rec": [],
+   "rec2": [],
+   "generic": true
+  },
+  {
+   "type": "transition",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-159",
+   "wr2": "WR-137",
+   "flanges": [
+    "*"
+   ],
+   "flanges2": [
+    "*"
+   ],
+   "rec": [],
+   "rec2": [],
+   "generic": true
+  },
+  {
+   "type": "transition",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-187",
+   "wr2": "WR-159",
+   "flanges": [
+    "*"
+   ],
+   "flanges2": [
+    "*"
+   ],
+   "rec": [],
+   "rec2": [],
+   "generic": true
+  },
+  {
+   "type": "transition",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-229",
+   "wr2": "WR-187",
+   "flanges": [
+    "*"
+   ],
+   "flanges2": [
+    "*"
+   ],
+   "rec": [],
+   "rec2": [],
+   "generic": true
+  },
+  {
+   "type": "transition",
+   "status": "tbc",
+   "data": "dati «su richiesta»",
+   "wr": "WR-284",
+   "wr2": "WR-229",
+   "flanges": [
+    "*"
+   ],
+   "flanges2": [
+    "*"
+   ],
+   "rec": [],
+   "rec2": [],
+   "generic": true
+  }
+ ],
+ "flanges": {
+  "WR-22|UG-383/U": "ok",
+  "WR-28|UG-599/U": "ok",
+  "WR-28|IEC-UBR 320": "ok",
+  "WR-28|IEC-PBR 320": "ok",
+  "WR-28|IEC-CBR 320": "tbc",
+  "WR-28|UG-600A/U": "tbc",
+  "WR-28|IEC-UDR 320": "tbc",
+  "WR-28|IEC-PDR 320": "tbc",
+  "WR-28|UG-381/U": "tbc",
+  "WR-34|IEC-UBR 260": "ok",
+  "WR-34|IEC-PBR 260": "ok",
+  "WR-34|IEC-CBR 260": "tbc",
+  "WR-34|IEC-UDR 260": "tbc",
+  "WR-34|IEC-PDR 260": "tbc",
+  "WR-42|UG-595/U": "ok",
+  "WR-42|IEC-UBR 220": "ok",
+  "WR-42|IEC-PBR 220": "ok",
+  "WR-42|IEC-CBR 220": "tbc",
+  "WR-42|UG-596A/U": "tbc",
+  "WR-42|IEC-UDR 220": "tbc",
+  "WR-42|IEC-PDR 220": "tbc",
+  "WR-51|IEC-UBR 180": "ok",
+  "WR-51|IEC-PBR 180": "ok",
+  "WR-51|IEC-CBR 180": "tbc",
+  "WR-51|IEC-UDR 180": "ok",
+  "WR-51|IEC-PDR 180": "ok",
+  "WR-62|UG-419/U": "ok",
+  "WR-62|IEC-UBR 140": "ok",
+  "WR-62|IEC-PBR 140": "ok",
+  "WR-62|IEC-CBR 140": "tbc",
+  "WR-62|UG-541A/U": "tbc",
+  "WR-62|IEC-UDR 140": "ok",
+  "WR-62|IEC-PDR 140": "ok",
+  "WR-75|IEC-UBR 120": "ok",
+  "WR-75|IEC-PBR 120": "ok",
+  "WR-75|IEC-CBR 120": "tbc",
+  "WR-75|IEC-UDR 120": "ok",
+  "WR-75|IEC-PDR 120": "ok",
+  "WR-90|IEC-UBR 100": "ok",
+  "WR-90|IEC-PBR 100": "ok",
+  "WR-90|IEC-CBR 100": "tbc",
+  "WR-90|CPR 90 F": "tbc",
+  "WR-90|CPR 90 G": "ok",
+  "WR-90|UG-39/U": "tbc",
+  "WR-90|UG-40B/U": "tbc",
+  "WR-90|IEC-UDR 100": "ok",
+  "WR-90|IEC-PDR 100": "ok",
+  "WR-112|IEC-UBR 84": "ok",
+  "WR-112|IEC-PBR 84": "ok",
+  "WR-112|IEC-CBR 84": "tbc",
+  "WR-112|UG-51/U": "tbc",
+  "WR-112|UG-52B/U": "tbc",
+  "WR-112|IEC-UDR 84": "ok",
+  "WR-112|IEC-PDR 84": "ok",
+  "WR-112|CPR 112 F": "ok",
+  "WR-112|CPR 112 G": "ok",
+  "WR-137|IEC-UDR 70": "ok",
+  "WR-137|IEC-PDR 70": "ok",
+  "WR-137|CPR 137 F": "tbc",
+  "WR-137|CPR 137 G": "ok",
+  "WR-159|IEC-UDR 58": "ok",
+  "WR-159|IEC-PDR 58": "tbc",
+  "WR-159|CPR 159 F": "tbc",
+  "WR-159|CPR 159 G": "tbc",
+  "WR-159|IEC-UAR 58": "tbc",
+  "WR-159|IEC-PAR 58": "tbc",
+  "WR-159|IEC-CAR 58": "tbc",
+  "WR-187|IEC-UDR 48": "ok",
+  "WR-187|IEC-PDR 48": "ok",
+  "WR-187|CPR 187 F": "tbc",
+  "WR-187|CPR 187 G": "tbc",
+  "WR-187|IEC-UAR 48": "tbc",
+  "WR-187|IEC-PAR 48": "tbc",
+  "WR-187|IEC-CAR 48": "tbc",
+  "WR-229|IEC-UDR 40": "ok",
+  "WR-229|IEC-PDR 40": "tbc",
+  "WR-229|CPR 229 F": "ok",
+  "WR-229|CPR 229 G": "ok",
+  "WR-284|IEC-UDR 32": "ok",
+  "WR-284|IEC-PDR 32": "tbc",
+  "WR-284|CPR 284 F": "tbc",
+  "WR-284|CPR 284 G": "ok",
+  "WR-284|IEC-UAR 32": "tbc",
+  "WR-284|IEC-PAR 32": "tbc",
+  "WR-284|IEC-CAR 32": "tbc"
+ }
+}

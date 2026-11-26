@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { PART_TYPES, type PartType } from "@/data/configurator/types";
+import { CLASSIC_PART_TYPES, type PartType } from "@/data/configurator/types";
 import { defaultSpec, specToParams } from "@/data/configurator/defaults";
 import { useT } from "@/lib/client-i18n";
 import { track } from "@/lib/analytics";
@@ -30,7 +30,7 @@ export function TypeTiles({ thumbs }: { thumbs: Record<string, string> }) {
 
   return (
     <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
-      {PART_TYPES.map((d) => {
+      {CLASSIC_PART_TYPES.map((d) => {
         const thumb = thumbs[d.type === "bend" ? "bend-E" : d.type];
         return (
           <li key={d.type}>

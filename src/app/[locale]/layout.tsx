@@ -22,7 +22,7 @@ import { localizedHref } from "@/components/ui/TrackedLink";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Analytics } from "@/components/ui/Analytics";
 import { InlineScript, BOOT_SCRIPT } from "@/components/ui/InlineScript";
-import { SmoothScroll } from "@/components/motion/SmoothScroll";
+import { ScrollSync } from "@/components/motion/ScrollSync";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { CursorFollower } from "@/components/motion/CursorFollower";
 import { PageTransition } from "@/components/motion/PageTransition";
@@ -83,7 +83,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
           >
             {t("skip")}
           </a>
-          <SmoothScroll />
+          <ScrollSync />
           <ScrollProgress />
           <CursorFollower />
           <Header />

@@ -51,6 +51,8 @@ const CSP_REPORT_ONLY = [
 const DEMO = process.env.NEXT_PUBLIC_DEMO === "true" && process.env.VERCEL_ENV !== "production";
 
 const nextConfig: NextConfig = {
+  // Cartella di build alternativa (NEXT_DIST_DIR), per avviare due server di sviluppo sulla stessa copia senza che si sovrascrivano.
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   poweredByHeader: false,
   env: { TL_DEMO: DEMO ? "true" : "false" },
   // Il catalogo (catalogo/catalogo.csv) si legge alla build; incluso anche nelle funzioni che rendono
