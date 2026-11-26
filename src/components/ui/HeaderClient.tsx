@@ -78,7 +78,6 @@ export function MobileMenu({
 
   const open = () => {
     dialog.current?.showModal();
-    window.__lenis?.stop();
   };
   const close = () => dialog.current?.close();
 
@@ -95,7 +94,6 @@ export function MobileMenu({
       </button>
       <dialog
         ref={dialog}
-        onClose={() => window.__lenis?.start()}
         onClick={(e) => {
           if ((e.target as Element).closest("a")) close();
         }}

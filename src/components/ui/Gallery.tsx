@@ -19,7 +19,6 @@ export function Gallery({ photos, labels }: { photos: Photo[]; labels: { open: s
   const open = (i: number) => {
     setActive(i);
     dialog.current?.showModal();
-    window.__lenis?.stop();
   };
 
   return (
@@ -47,7 +46,6 @@ export function Gallery({ photos, labels }: { photos: Photo[]; labels: { open: s
 
       <dialog
         ref={dialog}
-        onClose={() => window.__lenis?.start()}
         onKeyDown={(e) => {
           if (e.key === "ArrowRight") go(1);
           if (e.key === "ArrowLeft") go(-1);

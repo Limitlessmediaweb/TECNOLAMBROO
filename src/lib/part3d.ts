@@ -826,6 +826,10 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
   controls.enableDamping = true;
   controls.dampingFactor = 0.08;
   controls.enablePan = false;
+  // la rotella e il pinch scorrono la pagina (niente zoom); il trascinamento in orizzontale ruota
+  // il modello, quello in verticale su touch scorre la pagina (OrbitControls metterebbe touch-action: none)
+  controls.enableZoom = false;
+  renderer.domElement.style.touchAction = "pan-y";
   controls.autoRotateSpeed = 0.9;
   controls.maxPolarAngle = Math.PI * 0.495;
 
@@ -1322,6 +1326,10 @@ export async function mountStlPreview(container: HTMLElement, file: File): Promi
   camera.position.set(r * 1.6, r * 1.2, r * 2);
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
+  // la rotella e il pinch scorrono la pagina (niente zoom); il trascinamento in orizzontale ruota
+  // il modello, quello in verticale su touch scorre la pagina (OrbitControls metterebbe touch-action: none)
+  controls.enableZoom = false;
+  renderer.domElement.style.touchAction = "pan-y";
   let frame = 0;
   const draw = () => {
     cancelAnimationFrame(frame);

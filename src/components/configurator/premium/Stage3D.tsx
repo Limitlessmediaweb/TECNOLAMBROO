@@ -98,7 +98,7 @@ export function Stage3D({
   const on = (v: boolean) => cn(tool, v ? "border-accent bg-accent text-on-accent" : "border-line-strong bg-[color-mix(in_srgb,var(--c-surface)_82%,transparent)] hover:border-accent");
   return (
     <div className={cn("p3d-stage relative overflow-hidden border border-line", className)} data-stage-state={state} data-triangles={triangles} data-exploded={exploded}>
-      <div ref={box} role="img" aria-label={t("stage.aria", { code })} className="absolute inset-0 touch-none" data-lenis-prevent />
+      <div ref={box} role="img" aria-label={t("stage.aria", { code })} className="absolute inset-0 touch-pan-y" />
       {state === "loading" ? (
         <p className="pointer-events-none absolute inset-0 grid place-items-center text-sm text-muted" role="status">
           <LoaderCircle aria-hidden="true" className="size-6 animate-spin motion-reduce:animate-none" strokeWidth={1.5} />
