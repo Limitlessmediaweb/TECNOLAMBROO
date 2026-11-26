@@ -1692,6 +1692,11 @@
         "pMax": "Max. Druck",
         "pOp": "Betriebsdruck"
       }
+    },
+    "catalog": {
+      "tbc": "Zu bestätigen",
+      "sizeOff": "Für diesen Typ nicht im Katalog",
+      "flangeOff": "Für dieses Teil in {size} nicht im Katalog: nicht wählbar"
     }
   }
 }

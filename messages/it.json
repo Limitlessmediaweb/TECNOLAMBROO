@@ -1692,6 +1692,11 @@
         "pMax": "Pressione max",
         "pOp": "Pressione di esercizio"
       }
+    },
+    "catalog": {
+      "tbc": "Da confermare",
+      "sizeOff": "Non a catalogo per questo tipo",
+      "flangeOff": "Non a catalogo su questo pezzo in {size}: non selezionabile"
     }
   }
 }

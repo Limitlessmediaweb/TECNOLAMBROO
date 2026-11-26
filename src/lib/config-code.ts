@@ -1,6 +1,7 @@
 import { SIZE_BY_WR, iecNumber } from "@/data/waveguides";
 import { OTHER_FLANGE, flangeById } from "@/data/flanges";
 import { isFlexible, type Finish, type PartSpec } from "@/data/configurator/types";
+import { FLANGE_LETTER } from "@/data/catalogo-ditta";
 
 /**
  * Codice di configurazione nello stile dei codici Tecnolambro: famiglia, numero IEC della guida,
@@ -32,7 +33,42 @@ export function flangeToken(id: string): string {
   return f.id.replace("-", "");
 }
 
+/**
+ * Formato del codice articolo. UNICO punto da cambiare per passare al formato compatto della ditta:
+ *  - "readable": TGR-100-100-UBR-PBR-BRL (sigle delle flange per esteso, finitura in coda) — oggi;
+ *  - "compact":  TGR-100/100-FG (lettere D E F G delle flange, come nei datasheet della ditta).
+ * [DA CONFERMARE con Riccardo e il papà, DOMANDE-PAPA.md n. 3]
+ */
+export const CODE_FORMAT: "readable" | "compact" = "readable";
+
+/** Codice articolo del pezzo configurato: l'unica funzione che lo genera (3D, riepilogo, richiesta, PDF). */
 export function configCode(spec: PartSpec): string {
+  return CODE_FORMAT === "compact" ? compactCode(spec) : readableCode(spec);
+}
+
+/** Lettere dei codici della ditta: D UDR, E PDR, F UBR, G PBR (catalogo-ditta.ts). Le altre flange restano per esteso. */
+const LETTER: Record<string, string> = Object.fromEntries(Object.entries(FLANGE_LETTER).map(([k, v]) => [v, k]));
+
+/**
+ * Formato compatto della ditta: FAMIGLIA-<n. IEC>/<L>-<lettere>, es. TGR-100/100-FG, TTG-84-100/100-EG,
+ * TR-220/74-F. Flange senza lettera: sigla per esteso separata da un punto (TTG-84-100/100-F.CBR100).
+ * Finitura e materiale non compaiono (nei datasheet non ci sono). [DA CONFERMARE: H e I delle CPR]
+ */
+export function compactCode(spec: PartSpec): string {
+  const parts = readableParts(spec);
+  const letters = parts.flanges.map((t) => LETTER[t] ?? t);
+  const tail = letters.every((l) => l.length === 1) ? letters.join("") : letters.join(".");
+  return `${parts.family}-${parts.sizes.join("-")}/${parts.geometry}-${tail}`;
+}
+
+type CodeParts = { family: string; sizes: string[]; geometry: string; flanges: string[]; tail: string[] };
+
+function readableCode(spec: PartSpec): string {
+  const p = readableParts(spec);
+  return [p.family, ...p.sizes, p.geometry, ...p.flanges, ...p.tail].join("-");
+}
+
+function readableParts(spec: PartSpec): CodeParts {
   const size = SIZE_BY_WR.get(spec.wr);
   const iec = size ? iecNumber(size) : spec.wr.replace("WR-", "WR");
   const flanges = [flangeToken(spec.f1), flangeToken(spec.f2)];
@@ -56,14 +92,14 @@ export function configCode(spec: PartSpec): string {
     const swap = Number(n2) < Number(iec);
     const sizes = swap ? [n2, iec] : [iec, n2];
     const tail = [spec.material === "al" ? "AL" : "", FINISH_CODE[spec.finish] ?? ""].filter(Boolean);
-    return [family, ...sizes, n(spec.length), ...(swap ? [...flanges].reverse() : flanges), ...tail].join("-");
+    return { family, sizes, geometry: n(spec.length), flanges: swap ? [...flanges].reverse() : flanges, tail };
   } else if (spec.type === "termination") {
     const tail = [spec.material === "al" ? "AL" : "", FINISH_CODE[spec.finish] ?? ""].filter(Boolean);
-    return [FAMILY.termination, iec, n(spec.length), flanges[0], ...tail].join("-");
+    return { family: FAMILY.termination, sizes: [iec], geometry: n(spec.length), flanges: [flanges[0]], tail };
   } else {
     family = FAMILY[spec.type] ?? "TL";
     geometry = n(spec.length);
   }
   const tail = [spec.material === "al" ? "AL" : "", FINISH_CODE[spec.finish] ?? "", isFlexible(spec.type) && spec.jacket ? "G" : ""].filter(Boolean);
-  return [family, iec, geometry, ...flanges, ...tail].join("-");
+  return { family, sizes: [iec], geometry, flanges, tail };
 }

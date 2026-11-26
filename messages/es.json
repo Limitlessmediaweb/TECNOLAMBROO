@@ -1692,6 +1692,11 @@
         "pMax": "Presión máx.",
         "pOp": "Presión de trabajo"
       }
+    },
+    "catalog": {
+      "tbc": "Por confirmar",
+      "sizeOff": "No está en catálogo para este tipo",
+      "flangeOff": "No está en catálogo para esta pieza en {size}: no seleccionable"
     }
   }
 }

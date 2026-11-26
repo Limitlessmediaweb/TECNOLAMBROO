@@ -1692,6 +1692,11 @@
         "pMax": "Max pressure",
         "pOp": "Operating pressure"
       }
+    },
+    "catalog": {
+      "tbc": "To be confirmed",
+      "sizeOff": "Not in our catalogue for this type",
+      "flangeOff": "Not in our catalogue for this part in {size}: not selectable"
     }
   }
 }

@@ -5,9 +5,10 @@ import NextLink from "next/link";
 import { ArrowLeft, ArrowRight, Check, FileDown, Link2, Minus, Plus, RotateCcw, Star, Upload, X } from "lucide-react";
 import { useClientLocale, useT } from "@/lib/client-i18n";
 import { BEND_ANGLES, FINISHES_BY_MATERIAL, FINISH_ON_REQUEST, TWIST_ROTATIONS, TYPE_DEF, hasFlange2, isFlexible, type Finish, type Material, type PartSpec, type PartType, type Plane } from "@/data/configurator/types";
-import { defaultSpec, specFromParams, specToParams, transitionPartners } from "@/data/configurator/defaults";
-import { FREE_LENGTH, MATERIAL, SEAMLESS_TABLE, SIZES, SIZE_BY_WR, bestSizeFor, iecNumber, isOnRequest, num, range, sizesFor, standardLengths } from "@/data/waveguides";
-import { OTHER_FLANGE, flangeFits, flangeLabel, flangeOutline, flangesFor, type FlangeDef } from "@/data/flanges";
+import { defaultSpec, specFromParams, specToParams } from "@/data/configurator/defaults";
+import { SHOW_TBC, blockedFlanges, catalogFlanges, catalogProduct, catalogSizes, defaultFlanges, firstSize, flangeAllowed, transitionPartners, typeInCatalog } from "@/data/catalogo";
+import { FREE_LENGTH, MATERIAL, SIZES, SIZE_BY_WR, bestSizeFor, iecNumber, num, range, sizesFor, standardLengths } from "@/data/waveguides";
+import { OTHER_FLANGE, flangeLabel, flangeOutline, type FlangeDef } from "@/data/flanges";
 import { specValid } from "@/lib/part";
 import { addItem } from "@/lib/request";
 import { saveItemFiles } from "@/lib/request-files";
@@ -16,10 +17,10 @@ import { track } from "@/lib/analytics";
 import { decimalSep } from "@/i18n/locales";
 import { cn } from "@/lib/cn";
 import type { Accessory, ViewFocus, ViewerLabels } from "@/lib/part3d";
-import { FINISH_SUFFIX, configCode, flangeToken } from "@/lib/config-code";
+import { FINISH_SUFFIX, configCode } from "@/lib/config-code";
 import { electricalFor, type ElectricalKey, type SheetRow } from "@/lib/datasheet";
 import { drawingDate, drawingSvg } from "@/lib/drawing";
-import { CAST_BEND_SIZES, COAX, COVERS, GASKETS, SHIMS, TFTG, TGR_LENGTHS, TTG, rigidSheets } from "@/data/catalogo-ditta";
+import { CAST_BEND_SIZES, COAX, COVERS, GASKETS, SHIMS, TGR_LENGTHS, rigidSheets } from "@/data/catalogo-ditta";
 import { COMPANY } from "@/data/site";
 import { useDrawingLabels, usePartText } from "../Configurator";
 import { FlangeIcon } from "./FlangeIcon";
@@ -74,11 +75,24 @@ const SWATCH: Record<Finish, string> = {
 /** Limiti geometrici: sotto o sopra questi il pezzo non si può costruire così (si passa da "su disegno"). */
 const LIMITS = { rigidLength: { min: 40, max: 2000 }, leg: { min: 20, max: 1500 }, offset: { min: 1, max: 300 } } as const;
 
-/** La misura è disponibile per il tipo? (la seamless non si fa in WR-34 e WR-159: in tabella sono "su richiesta") */
-function sizeAllowed(type: PartType, wr: string): boolean {
-  if (type !== "seamless") return true;
-  const row = SEAMLESS_TABLE.find((r) => r.wr === wr);
-  return !row || !isOnRequest(row);
+/** La misura è a catalogo per il tipo (e il piano della curva)? Fonte: src/data/catalogo.ts. */
+function sizeAllowed(type: PartType, wr: string, plane?: Plane): boolean {
+  return Boolean(catalogProduct(type, wr, plane));
+}
+
+/** Spec con misura, lato 2 e flange presi dal catalogo; tiene le flange scelte se sono ancora a catalogo. */
+function withCatalog(s: PartSpec, keep?: { f1?: string; f2?: string }): { spec: PartSpec; same: boolean } {
+  const wr = sizeAllowed(s.type, s.wr, s.plane) ? s.wr : firstSize(s.type, s.plane, s.wr);
+  let wr2: string | undefined;
+  if (s.type === "transition") {
+    const partners = transitionPartners(wr);
+    wr2 = s.wr2 && partners.includes(s.wr2) ? s.wr2 : partners[0];
+  }
+  const next: PartSpec = { ...s, wr, wr2 };
+  const [d1, d2] = defaultFlanges(next, OTHER_FLANGE);
+  const f1 = keep?.f1 && flangeAllowed(next, 1, keep.f1, OTHER_FLANGE) ? keep.f1 : d1;
+  const f2 = next.type === "termination" ? f1 : keep?.f2 && flangeAllowed(next, 2, keep.f2, OTHER_FLANGE) ? keep.f2 : d2;
+  return { spec: { ...next, f1, f2 }, same: next.type !== "transition" && f1 === f2 };
 }
 
 function tileOf(spec: PartSpec): TileKey {
@@ -170,7 +184,7 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
   const text = usePartText();
   const root = useRef<HTMLDivElement>(null);
 
-  const [spec, setSpecState] = useState<PartSpec>(() => ({ ...defaultSpec("twistable"), length: 300, finish: "bright" }));
+  const [spec, setSpecState] = useState<PartSpec>(() => withCatalog({ ...defaultSpec("twistable", firstSize("twistable")), length: 300, finish: "bright" }).spec);
   const [step, setStep] = useState(0);
   const [reached, setReached] = useState(0);
   const [same, setSame] = useState(true);
@@ -210,13 +224,10 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
       loaded.current = true;
       const fromUrl = specFromParams(new URLSearchParams(window.location.search));
       if (!fromUrl || fromUrl.type === "custom") return;
-      const wr = sizeAllowed(fromUrl.type, fromUrl.wr) ? fromUrl.wr : "WR-90";
-      const rec = flangesFor(wr)[0]?.id ?? OTHER_FLANGE;
-      const f1 = flangeFits(fromUrl.f1, wr) ? fromUrl.f1 : rec;
-      const wr2 = fromUrl.type === "transition" ? (fromUrl.wr2 && transitionPartners(wr).includes(fromUrl.wr2) ? fromUrl.wr2 : transitionPartners(wr)[0]) : undefined;
-      const f2 = fromUrl.type === "termination" ? f1 : flangeFits(fromUrl.f2, wr2 ?? wr) ? fromUrl.f2 : wr2 ? (flangesFor(wr2)[0]?.id ?? OTHER_FLANGE) : f1;
-      setSpecState({ ...fromUrl, wr, wr2, f1, f2 });
-      setSame(!wr2 && f1 === f2);
+      if (!typeInCatalog(fromUrl.type, fromUrl.plane)) return;
+      const next = withCatalog(fromUrl, { f1: fromUrl.f1, f2: fromUrl.f2 });
+      setSpecState(next.spec);
+      setSame(next.same);
       setReached(STEPS.length - 1);
     }, 0);
     return () => window.clearTimeout(id);
@@ -229,7 +240,6 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
   }, [spec, dirty]);
 
   const size = SIZE_BY_WR.get(spec.wr) ?? SIZE_BY_WR.get("WR-90")!;
-  const flanges = useMemo(() => flangesFor(size.wr), [size.wr]);
   const geo = TYPE_DEF[spec.type].geometry;
   const flex = isFlexible(spec.type);
   const tile = tileOf(spec);
@@ -259,12 +269,12 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
   };
   const chooseTile = (k: (typeof TILES)[number]) => {
     setAcc(null);
+    const plane = "plane" in k ? k.plane : undefined;
+    const wr = spec.wr !== "unknown" && sizeAllowed(k.type, spec.wr, plane) ? spec.wr : firstSize(k.type, plane);
+    const cat = withCatalog({ ...defaultSpec(k.type, wr), plane: plane ?? defaultSpec(k.type, wr).plane });
+    setSame(cat.same);
     setSpec((s) => {
-      const wr = s.wr !== "unknown" && sizeAllowed(k.type, s.wr) ? s.wr : "WR-90";
-      const next = defaultSpec(k.type, wr);
-      if (flangeFits(s.f1, wr)) next.f1 = s.f1;
-      if (k.type === "termination") next.f2 = next.f1;
-      else if (k.type !== "transition") next.f2 = flangeFits(s.f2, wr) ? s.f2 : next.f1;
+      const next = { ...cat.spec };
       // la finitura resta se il materiale la prevede
       next.material = isFlexible(k.type) ? undefined : s.material;
       const allowed = FINISHES_BY_MATERIAL[next.material ?? "cu"];
@@ -274,26 +284,19 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
       if (isFlexible(k.type) && isFlexible(s.type) && s.length) next.length = s.length;
       return next;
     });
-    if (k.type === "transition") setSame(false);
-    else if (spec.type === "transition") setSame(true);
     track("config_type", { type: k.key });
   };
+  /** cambio misura: si ripartono le flange consigliate dal catalogo per la nuova misura */
   const chooseSize = (wr: string) => {
-    if (!sizeAllowed(spec.type, wr)) return;
-    setSpec((s) => {
-      const rec = flangesFor(wr)[0]?.id ?? OTHER_FLANGE;
-      const f1 = flangeFits(s.f1, wr) ? s.f1 : rec;
-      if (s.type === "transition") {
-        const partners = transitionPartners(wr);
-        const wr2 = s.wr2 && partners.includes(s.wr2) ? s.wr2 : partners[0];
-        return { ...s, wr, wr2, f1, f2: wr2 && flangeFits(s.f2, wr2) ? s.f2 : (flangesFor(wr2 ?? wr)[0]?.id ?? OTHER_FLANGE) };
-      }
-      if (s.type === "termination") return { ...s, wr, f1, f2: f1 };
-      return { ...s, wr, f1, f2: same ? f1 : flangeFits(s.f2, wr) ? s.f2 : rec };
-    });
+    if (!sizeAllowed(spec.type, wr, spec.plane)) return;
+    const next = withCatalog({ ...spec, wr });
+    setSame(next.same);
+    setSpec(next.spec);
   };
-  const chooseSize2 = (wr2: string) =>
-    setSpec((s) => ({ ...s, wr2, f2: flangeFits(s.f2, wr2) ? s.f2 : (flangesFor(wr2)[0]?.id ?? OTHER_FLANGE) }));
+  const chooseSize2 = (wr2: string) => {
+    const next = withCatalog({ ...spec, wr2 }, { f1: spec.f1 });
+    setSpec(next.spec);
+  };
   const chooseFlange = (which: 1 | 2, fid: string) => {
     if (which === 1) patch(same || spec.type === "termination" ? { f1: fid, f2: fid } : { f1: fid });
     else patch({ f2: fid });
@@ -319,9 +322,9 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
   const stepOk: Record<StepId, boolean> = {
     item: acc === "castbend" || Boolean(cover ?? gasket ?? shim ?? coax),
     type: true,
-    size: sizeAllowed(spec.type, spec.wr) && (spec.type !== "transition" || Boolean(size2)),
-    flange1: flangeFits(spec.f1, spec.wr),
-    flange2: flangeFits(spec.f2, size2?.wr ?? spec.wr),
+    size: sizeAllowed(spec.type, spec.wr, spec.plane) && (spec.type !== "transition" || Boolean(size2 && catalogProduct(spec.type, spec.wr, undefined, size2.wr))),
+    flange1: flangeAllowed(spec, 1, spec.f1, OTHER_FLANGE),
+    flange2: !hasFlange2(spec.type) || flangeAllowed(spec, 2, spec.f2, OTHER_FLANGE),
     length: lengthOk && specValid(spec),
     finish: true,
     final: qty >= 1,
@@ -479,30 +482,20 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
     const { w, h } = flangeOutline(f);
     return f.shape === "round" ? t("flange.descRound", { w: mm(w), n: f.holes, c: mm(f.C) }) : t("flange.desc", { w: mm(w), h: mm(h), n: f.holes, d: mm(f.hole), c: mm(f.C) });
   };
-  /** sigle delle flange viste nei nostri datasheet per questo tipo, misura e lato (le "consigliate") */
-  const catalogFor = (which: 1 | 2): readonly string[] | undefined => {
-    if (spec.type === "twistable") return TFTG[spec.wr]?.flanges;
-    if (spec.type === "transition") {
-      const wr = which === 1 ? spec.wr : spec.wr2;
-      const out = TTG.flatMap((r) => (r.wr === wr && (r.wr2 === spec.wr || r.wr2 === spec.wr2) ? [r.flanges[0]] : r.wr2 === wr && (r.wr === spec.wr || r.wr === spec.wr2) ? [r.flanges[1]] : []));
-      return out.length ? out : undefined;
-    }
-    if (rigidNew && rigidNew !== "transition") {
-      const out = rigidSheets(rigidNew, spec.wr).flatMap((r) => r.flanges);
-      return out.length ? out : undefined;
-    }
-    return undefined;
-  };
+  const tbcBadge = (
+    <span className="inline-flex items-center rounded-full border border-[var(--c-warning,#b45309)] px-2 py-0.5 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-[var(--c-warning,#b45309)]" data-tbc>
+      {t("catalog.tbc")}
+    </span>
+  );
+  /** flange del catalogo per questo tipo, misura e lato: consigliate per prime, poi le altre; sotto quelle non previste */
   const flangeList = (which: 1 | 2) => {
     const value = which === 1 ? spec.f1 : spec.f2;
     const sz = which === 2 && size2 ? size2 : size;
-    const list = which === 2 && size2 ? flangesFor(size2.wr) : flanges;
-    const catalog = catalogFor(which);
-    const isRec = (f: FlangeDef) => (catalog ? catalog.includes(flangeToken(f.id)) : Boolean(f.rec));
-    const shownFlanges = [...list.filter(isRec), ...list.filter((f) => !isRec(f))];
+    const shownFlanges = catalogFlanges(spec, which);
+    const blocked = blockedFlanges(spec, which);
     return (
       <div role="radiogroup" aria-label={t(`steps.flange${which}`)} className="grid gap-2.5">
-        {shownFlanges.map((f) => (
+        {shownFlanges.map(({ def: f, rec, status }) => (
           <button key={f.id} type="button" role="radio" aria-checked={value === f.id} onClick={() => chooseFlange(which, f.id)} className={card(value === f.id)} data-flange={f.id}>
             <FlangeIcon flange={f} a={sz.a} b={sz.b} className="size-14 shrink-0" />
             <span className="grid min-w-0 gap-1">
@@ -510,7 +503,8 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
                 <span className="font-semibold leading-tight">
                   {t(`flange.styles.${f.style}`)} {t(`flange.shapes.${f.shape}`)}
                 </span>
-                {isRec(f) ? badge : null}
+                {rec ? badge : null}
+                {status === "tbc" ? tbcBadge : null}
               </span>
               <span className="font-mono text-[0.8125rem] font-medium text-primary-ink">{f.label}</span>
               <span className="text-xs text-muted">{flangeDesc(f)}</span>
@@ -525,6 +519,18 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
           </span>
           {dot(value === OTHER_FLANGE)}
         </button>
+        {blocked.length ? (
+          <div className="grid gap-1.5" data-flange-blocked>
+            {blocked.map((f) => (
+              <button key={f.id} type="button" role="radio" aria-checked={false} aria-disabled disabled className={cn(card(false, true), "py-2.5")} data-flange-off={f.id}>
+                <span className="grid gap-0.5">
+                  <span className="font-mono text-[0.8125rem] font-medium">{f.label}</span>
+                  <span className="text-xs text-muted">{t("catalog.flangeOff", { size: sz.wr })}</span>
+                </span>
+              </button>
+            ))}
+          </div>
+        ) : null}
         <p className="annot text-muted">{t("flange.source", { size: `${sz.wr} (${sz.iec})` })}</p>
       </div>
     );
@@ -581,11 +587,14 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
     type: (
       <>
       <div role="radiogroup" aria-label={t("steps.type")} className="grid gap-2.5 sm:grid-cols-2">
-        {TILES.map((k) => (
+        {TILES.filter((k) => typeInCatalog(k.type, "plane" in k ? k.plane : undefined)).map((k) => (
           <button key={k.key} type="button" role="radio" aria-checked={!acc && tile === k.key} onClick={() => chooseTile(k)} className={cn(card(!acc && tile === k.key), "text-primary-ink")} data-tile={k.key}>
             <TypeGlyph tile={k.key} />
             <span className="grid gap-0.5 text-fg">
-              <span className="font-semibold leading-tight">{t(`types.${k.key}.name`)}</span>
+              <span className="flex flex-wrap items-center gap-2 font-semibold leading-tight">
+                {t(`types.${k.key}.name`)}
+                {SHOW_TBC && !catalogSizes(k.type, "plane" in k ? k.plane : undefined).some((wr) => catalogProduct(k.type, wr, "plane" in k ? k.plane : undefined)?.status === "ok") ? tbcBadge : null}
+              </span>
               <span className="text-xs text-muted">{t(`types.${k.key}.short`)}</span>
             </span>
           </button>
@@ -617,8 +626,9 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
         ) : null}
         <div role="radiogroup" aria-label={t("steps.size")} className="grid grid-cols-2 gap-2.5">
           {SIZES.map((s) => {
-            const allowed = sizeAllowed(spec.type, s.wr);
-            const typical = flangesFor(s.wr).filter((f) => f.rec).map((f) => f.label).join(" · ");
+            const product = catalogProduct(spec.type, s.wr, spec.plane);
+            const allowed = Boolean(product);
+            const typical = allowed ? catalogFlanges({ ...spec, wr: s.wr, wr2: undefined }, 1).filter((f) => f.rec).map((f) => f.def.label).join(" · ") : "";
             const hot = suggested?.wr === s.wr;
             return (
               <button
@@ -635,12 +645,13 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
                 <span className="flex w-full items-center gap-2">
                   <span className="font-display text-lg font-bold wdth-wide">{s.wr.replace("-", "")}</span>
                   {hot ? badge : null}
+                  {product?.status === "tbc" ? tbcBadge : null}
                 </span>
                 <span className="annot tabular text-muted">
                   {mm(s.a)} × {mm(s.b)} mm
                 </span>
                 <span className="annot tabular text-primary-ink">{range(s.min, s.max, locale)} GHz</span>
-                <span className="annot text-muted">{allowed ? typical : t("size.onRequest")}</span>
+                <span className="annot text-muted">{allowed ? typical : t("catalog.sizeOff")}</span>
               </button>
             );
           })}
@@ -652,6 +663,7 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
               {transitionPartners(spec.wr).map((w) => (
                 <button key={w} type="button" role="radio" aria-checked={spec.wr2 === w} onClick={() => chooseSize2(w)} className={pill(spec.wr2 === w)} data-size2={w}>
                   {spec.wr.replace("-", "")} → {w.replace("-", "")}
+                  {catalogProduct("transition", spec.wr, undefined, w)?.status === "tbc" ? <span className="ml-1.5 text-[0.6875rem] font-semibold uppercase" data-tbc>· {t("catalog.tbc")}</span> : null}
                 </button>
               ))}
             </div>

@@ -27,7 +27,8 @@
     "datasheets": "node scripts/datasheets.mjs",
     "foto": "node scripts/foto.mjs",
     "test:premium": "node scripts/premium-e2e.mjs",
-    "datasheet:esempi": "node scripts/datasheet-esempi.mjs"
+    "datasheet:esempi": "node scripts/datasheet-esempi.mjs",
+    "catalogo:ufficiale": "node scripts/catalogo-ufficiale.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
