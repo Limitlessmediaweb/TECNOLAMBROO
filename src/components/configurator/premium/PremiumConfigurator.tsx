@@ -294,7 +294,7 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
     setSpec(next.spec);
   };
   const chooseSize2 = (wr2: string) => {
-    const next = withCatalog({ ...spec, wr2 }, { f1: spec.f1 });
+    const next = withCatalog({ ...spec, wr2 });
     setSpec(next.spec);
   };
   const chooseFlange = (which: 1 | 2, fid: string) => {
