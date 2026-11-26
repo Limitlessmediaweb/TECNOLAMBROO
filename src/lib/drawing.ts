@@ -225,7 +225,9 @@ export function drawingSvg(input: DrawingInput): string {
     }
     if (broken) for (const gx of [gap1, gap2]) out.push(`<path d="M${gx} ${cy - bh / 2 - 12} l-6 ${bh / 4 + 6} l12 ${bh / 4} l-12 ${bh / 4} l6 ${bh / 4 + 6}" fill="none" stroke="${Pl.ink}" stroke-width="1.2"/>`);
     line([56, cy], [944, cy], Pl.line, 0.9, "18 4 3 4");
-    for (const fx of [xL, x2]) {
+    const closed = spec.type === "termination";
+    if (closed) out.push(`<rect x="${x2 + ft - 8}" y="${cy - bh / 2 - 4}" width="8" height="${bh + 8}" fill="${Pl.ink}"/>`);
+    for (const fx of closed ? [xL] : [xL, x2]) {
       out.push(`<rect x="${fx}" y="${cy - fh / 2}" width="${ft}" height="${fh}" fill="${Pl.fill}" stroke="${Pl.accent}" stroke-width="1.8"/>`);
       line([fx, cy - fh / 2 + 18], [fx + ft, cy - fh / 2 + 18], Pl.line, 1, "4 3");
       line([fx, cy + fh / 2 - 18], [fx + ft, cy + fh / 2 - 18], Pl.line, 1, "4 3");
@@ -270,7 +272,8 @@ export function drawingSvg(input: DrawingInput): string {
     out.push(`<rect x="${scx - iw / 2}" y="${scy - ih / 2}" width="${iw}" height="${ih}" fill="${Pl.paper}" stroke="${Pl.ink}" stroke-width="1.4"/>`);
     dimLine([scx - iw / 2, scy + oh / 2 + 34], [scx + iw / 2, scy + oh / 2 + 34], `a = ${v(size.a)}`, 18);
     dimLine([scx + ow / 2 + 30, scy - ih / 2], [scx + ow / 2 + 30, scy + ih / 2], `b = ${v(size.b)}`, -14);
-    t(scx, 684, `${size.wr} · ${size.iec} · ${size.wg}   (mm)`, { anchor: "middle", size: 12, color: Pl.muted });
+    const s2 = spec.type === "transition" && spec.wr2 ? SIZE_BY_WR.get(spec.wr2) : undefined;
+    t(scx, 684, s2 ? `1: ${size.wr} · ${size.iec}  →  2: ${s2.wr} · ${s2.iec} (${v(s2.a)} × ${v(s2.b)})   (mm)` : `${size.wr} · ${size.iec} · ${size.wg}   (mm)`, { anchor: "middle", size: 12, color: Pl.muted });
   }
 
   /* ------------------------------------------------------------- cartiglio */
@@ -284,14 +287,12 @@ export function drawingSvg(input: DrawingInput): string {
   if (input.logoHref) out.push(`<image href="${esc(input.logoHref)}" x="${LOGO_BOX.x}" y="${LOGO_BOX.y}" width="${LOGO_BOX.w}" height="${LOGO_BOX.h}" preserveAspectRatio="xMidYMid meet"/>`);
   t(bx + 182, by + 22, L.titleBlock, { size: 11, color: Pl.muted });
   const code = input.code ?? size.wr;
-  const lines: string[] = [];
-  for (const part of code.split(" · ")) {
-    const last = lines[lines.length - 1];
-    if (last && `${last} · ${part}`.length <= 24) lines[lines.length - 1] = `${last} · ${part}`;
-    else lines.push(part);
-  }
-  const shown = lines.length > 2 ? [lines[0], lines.slice(1).join(" · ")] : lines;
-  shown.forEach((l, i) => t(bx + 182, by + (shown.length === 1 ? 52 : 44 + i * 19), l, { size: shown.length === 1 ? 16 : l.length > 30 ? 11.5 : 14, weight: 700 }));
+  // il codice deve stare tutto nella casella (larga 196 unità): va a capo dopo un "-" o un " · " e,
+  // se serve, si rimpicciolisce; mai tagliato
+  const { lines: shown, size: codeSize } = fitCode(code, bw - 182 - 10);
+  const lh = codeSize * 1.22;
+  const y0 = by + 40 - ((shown.length - 1) * lh) / 2 + codeSize * 0.35;
+  shown.forEach((l, i) => t(bx + 182, y0 + i * lh, l, { size: codeSize, weight: 700 }));
   t(bx + 10, by + 85, L.material.toUpperCase(), { size: 9, color: Pl.muted });
   t(bx + 10, by + 98, `OT 80 · ${MATERIAL.replace("OT 80 ", "")}`, { size: 11 });
   t(bx + 160, by + 85, L.date.toUpperCase(), { size: 9, color: Pl.muted });
@@ -301,6 +302,31 @@ export function drawingSvg(input: DrawingInput): string {
 
   const title = input.title ? `<title>${esc(input.title)}</title>` : "";
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}"${font}>${title}${out.join("")}</svg>`;
+}
+
+/**
+ * Divide il codice in righe che stanno nella larghezza `width` (unità del disegno), spezzando dopo
+ * "-" o " · ". Prova caratteri via via più piccoli fino a 3 righe. Larghezza media di un carattere
+ * maiuscolo in grassetto: 0,66 × corpo (stima prudente per Helvetica/Arial).
+ */
+export function fitCode(code: string, width: number): { lines: string[]; size: number } {
+  const parts = code.split(/(?<=-)|(?<= · )/);
+  const wrapAt = (max: number) => {
+    const out: string[] = [];
+    for (const p of parts) {
+      const last = out[out.length - 1];
+      if (last !== undefined && (last + p).trimEnd().length <= max) out[out.length - 1] = last + p;
+      else out.push(p);
+    }
+    return out.map((l) => l.trimEnd());
+  };
+  for (const [size, maxLines] of [[16, 1], [14, 2], [12, 2], [11, 3], [9.5, 3], [8, 4]] as const) {
+    const max = Math.floor(width / (size * 0.66));
+    const lines = wrapAt(max);
+    if (lines.length <= maxLines && lines.every((l) => l.length <= max)) return { lines, size };
+  }
+  const max = Math.floor(width / (8 * 0.66));
+  return { lines: (code.match(new RegExp(`.{1,${max}}`, "g")) ?? [code]).slice(0, 5), size: 8 };
 }
 
 /** Data del cartiglio nel formato della lingua. */

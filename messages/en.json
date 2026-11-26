@@ -1009,6 +1009,26 @@
       "custom": {
         "name": "To your drawing",
         "short": "Upload your STEP, STL or PDF"
+      },
+      "straight": {
+        "name": "Rigid straight",
+        "short": "Straight TGR waveguide"
+      },
+      "transition": {
+        "name": "Transition",
+        "short": "Between two adjacent sizes"
+      },
+      "termination": {
+        "name": "Termination",
+        "short": "Closed load, one flange"
+      },
+      "pressure": {
+        "name": "Pressure section",
+        "short": "Short section with air inlet"
+      },
+      "spacer": {
+        "name": "Spacer",
+        "short": "Thin adapter between flanges"
       }
     },
     "flexName": {
@@ -1050,7 +1070,8 @@
       "bright": "Bright",
       "painted": "Painted",
       "silver": "Silver plated",
-      "surtec": "Surtec 650"
+      "surtec": "Surtec 650",
+      "tin": "Tin plated"
     },
     "paintedHint": "We’ll agree colour and paint type in the quote.",
     "treatment": "Treatment",
@@ -1417,7 +1438,9 @@
       "final": "How many pieces do you need?",
       "item_cover": "Which cover do you need?",
       "item_gasket": "Which gasket do you need?",
-      "item_castbend": "Which cast bend do you need?"
+      "item_castbend": "Which cast bend do you need?",
+      "item_shim": "Which shim do you need?",
+      "item_coax": "Which waveguide-to-coax transition do you need?"
     },
     "hint": {
       "type": "The 3D model next to it changes at once.",
@@ -1453,6 +1476,26 @@
       "offset": {
         "name": "Offset",
         "short": "Joins misaligned flanges"
+      },
+      "straight": {
+        "name": "Rigid straight",
+        "short": "Straight TGR waveguide"
+      },
+      "transition": {
+        "name": "Transition",
+        "short": "Between two adjacent sizes"
+      },
+      "termination": {
+        "name": "Termination",
+        "short": "Closed load, one flange"
+      },
+      "pressure": {
+        "name": "Pressure section",
+        "short": "Short section with air inlet"
+      },
+      "spacer": {
+        "name": "Spacer",
+        "short": "Thin adapter between flanges"
       }
     },
     "size": {
@@ -1460,7 +1503,9 @@
       "freqPlaceholder": "e.g. {value}",
       "suggested": "For {freq} GHz the right size is {size}.",
       "none": "None of our sizes covers {freq} GHz.",
-      "onRequest": "On request for this type"
+      "onRequest": "On request for this type",
+      "second": "Size on side 2",
+      "secondHint": "Transitions are made between adjacent sizes. Pairs with one of our datasheets come first."
     },
     "flange": {
       "recommended": "Recommended",
@@ -1479,7 +1524,8 @@
         "square": "square",
         "rect": "rectangular",
         "round": "round"
-      }
+      },
+      "closed": "Closed (termination)"
     },
     "length": {
       "label": "Length L",
@@ -1522,7 +1568,15 @@
       },
       "jacket": "Rubber jacket",
       "jacketOn": "With jacket",
-      "jacketOff": "Without jacket"
+      "jacketOff": "Without jacket",
+      "material": "Body material",
+      "cu": "Brass / copper",
+      "al": "Aluminium",
+      "onRequest": "on request",
+      "tin": {
+        "name": "Tin plating",
+        "note": "Protective tin layer"
+      }
     },
     "final": {
       "qty": "Quantity",
@@ -1589,7 +1643,19 @@
       "other": "Other sizes and other flanges: on request.",
       "onRequest": "On request",
       "castBody": "Cast bends are made on request. Choose size and plane: we reply with the drawing and the quotation.",
-      "castNo3d": "For this part the 3D model and the dimensions come with the quotation."
+      "castNo3d": "For this part the 3D model and the dimensions come with the quotation.",
+      "shim": {
+        "name": "Shim",
+        "short": "0.2 mm sheet between flanges",
+        "tag": "SHIM"
+      },
+      "coax": {
+        "name": "Waveguide-to-coax transition",
+        "short": "From waveguide to N connector",
+        "tag": "WG-COAX"
+      },
+      "shimDesc": "AISI 301 steel · 0.2 mm thick",
+      "coaxDesc": "N female connector · {mat} · performance on request"
     },
     "sheet": {
       "button": "Download datasheet",
@@ -1611,7 +1677,8 @@
         "waveguide": "Waveguide",
         "inner": "Inner a × b",
         "band": "Band",
-        "material": "Material"
+        "material": "Material",
+        "size2": "Waveguide side 2"
       },
       "el": {
         "il": "Insertion loss",

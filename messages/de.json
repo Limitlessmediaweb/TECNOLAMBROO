@@ -1009,6 +1009,26 @@
       "custom": {
         "name": "Nach Zeichnung",
         "short": "STEP, STL oder PDF hochladen"
+      },
+      "straight": {
+        "name": "Starres Geradstück",
+        "short": "Gerader Hohlleiter TGR"
+      },
+      "transition": {
+        "name": "Übergang",
+        "short": "Zwischen zwei benachbarten Größen"
+      },
+      "termination": {
+        "name": "Abschluss",
+        "short": "Geschlossene Last, ein Flansch"
+      },
+      "pressure": {
+        "name": "Druckstück",
+        "short": "Kurzes Stück mit Lufteinlass"
+      },
+      "spacer": {
+        "name": "Distanzstück",
+        "short": "Dünner Adapter zwischen Flanschen"
       }
     },
     "flexName": {
@@ -1050,7 +1070,8 @@
       "bright": "Glanzgebeizt",
       "painted": "Lackiert",
       "silver": "Versilbert",
-      "surtec": "Surtec 650"
+      "surtec": "Surtec 650",
+      "tin": "Verzinnt"
     },
     "paintedHint": "Farbe und Lackart legen wir gemeinsam im Angebot fest.",
     "treatment": "Behandlung",
@@ -1417,7 +1438,9 @@
       "final": "Wie viele Stück benötigen Sie?",
       "item_cover": "Welche Abdeckung benötigen Sie?",
       "item_gasket": "Welche Dichtung benötigen Sie?",
-      "item_castbend": "Welchen Gussbogen benötigen Sie?"
+      "item_castbend": "Welchen Gussbogen benötigen Sie?",
+      "item_shim": "Welchen Shim brauchen Sie?",
+      "item_coax": "Welchen Hohlleiter-Koax-Übergang brauchen Sie?"
     },
     "hint": {
       "type": "Das 3D-Modell daneben ändert sich sofort.",
@@ -1453,6 +1476,26 @@
       "offset": {
         "name": "Versatzstück",
         "short": "Verbindet versetzte Flansche"
+      },
+      "straight": {
+        "name": "Starres Geradstück",
+        "short": "Gerader Hohlleiter TGR"
+      },
+      "transition": {
+        "name": "Übergang",
+        "short": "Zwischen zwei benachbarten Größen"
+      },
+      "termination": {
+        "name": "Abschluss",
+        "short": "Geschlossene Last, ein Flansch"
+      },
+      "pressure": {
+        "name": "Druckstück",
+        "short": "Kurzes Stück mit Lufteinlass"
+      },
+      "spacer": {
+        "name": "Distanzstück",
+        "short": "Dünner Adapter zwischen Flanschen"
       }
     },
     "size": {
@@ -1460,7 +1503,9 @@
       "freqPlaceholder": "z. B. {value}",
       "suggested": "Für {freq} GHz ist {size} die passende Größe.",
       "none": "Keine unserer Größen deckt {freq} GHz ab.",
-      "onRequest": "Für diesen Typ auf Anfrage"
+      "onRequest": "Für diesen Typ auf Anfrage",
+      "second": "Größe auf Seite 2",
+      "secondHint": "Übergänge gibt es zwischen benachbarten Größen. Paare mit unserem Datenblatt stehen zuerst."
     },
     "flange": {
       "recommended": "Empfohlen",
@@ -1479,7 +1524,8 @@
         "square": "quadratisch",
         "rect": "rechteckig",
         "round": "rund"
-      }
+      },
+      "closed": "Geschlossen (Abschluss)"
     },
     "length": {
       "label": "Länge L",
@@ -1522,7 +1568,15 @@
       },
       "jacket": "Gummimantel",
       "jacketOn": "Mit Mantel",
-      "jacketOff": "Ohne Mantel"
+      "jacketOff": "Ohne Mantel",
+      "material": "Werkstoff des Körpers",
+      "cu": "Messing / Kupfer",
+      "al": "Aluminium",
+      "onRequest": "auf Anfrage",
+      "tin": {
+        "name": "Verzinnung",
+        "note": "Schützende Zinnschicht"
+      }
     },
     "final": {
       "qty": "Menge",
@@ -1589,7 +1643,19 @@
       "other": "Andere Größen und andere Flansche: auf Anfrage.",
       "onRequest": "Auf Anfrage",
       "castBody": "Gussbögen fertigen wir auf Anfrage. Wählen Sie Größe und Ebene: Wir antworten mit Zeichnung und Angebot.",
-      "castNo3d": "Für dieses Teil kommen 3D-Modell und Maße mit dem Angebot."
+      "castNo3d": "Für dieses Teil kommen 3D-Modell und Maße mit dem Angebot.",
+      "shim": {
+        "name": "Shim",
+        "short": "0,2-mm-Blech zwischen den Flanschen",
+        "tag": "SHIM"
+      },
+      "coax": {
+        "name": "Hohlleiter-Koax-Übergang",
+        "short": "Vom Hohlleiter zum N-Stecker",
+        "tag": "HL-KOAX"
+      },
+      "shimDesc": "Stahl AISI 301 · 0,2 mm dick",
+      "coaxDesc": "N-Buchse · {mat} · Leistungsdaten auf Anfrage"
     },
     "sheet": {
       "button": "Datenblatt herunterladen",
@@ -1611,7 +1677,8 @@
         "waveguide": "Hohlleiter",
         "inner": "Innenmaß a × b",
         "band": "Band",
-        "material": "Werkstoff"
+        "material": "Werkstoff",
+        "size2": "Hohlleiter Seite 2"
       },
       "el": {
         "il": "Einfügedämpfung",

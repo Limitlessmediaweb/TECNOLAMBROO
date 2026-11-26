@@ -8,7 +8,7 @@
  * La pagina è composta in SVG e inserita nel PDF come immagine: così funziona in tutte le lingue del
  * sito (cinese compreso) senza incorporare font.
  */
-import { BENDS, TFTG, TFTG_LENGTHS, TFTG_PRESSURE, TLFX_SHEET, bendRow } from "@/data/catalogo-ditta";
+import { BENDS, TFTG, TFTG_LENGTHS, TFTG_PRESSURE, TLFX_SHEET, TTG, bendRow, rigidSheets } from "@/data/catalogo-ditta";
 import { PRINT } from "@/data/brand";
 import type { PartSpec } from "@/data/configurator/types";
 
@@ -52,6 +52,20 @@ export function electricalFor(spec: PartSpec, fmt: (v: number, decimals?: number
     if (r.il != null) values.push({ key: "ilMax", value: `${fmt(r.il, 2)} dB` });
     values.push({ key: "vswr", value: fmt(r.vswr, 2) });
     return { source: `${spec.plane === "H" ? "TCH" : "TCE"}-${spec.wr.replace("WR-", "WR")}`, values };
+  }
+  if (spec.type === "straight" || spec.type === "pressure" || spec.type === "termination" || spec.type === "spacer") {
+    // solo se misura E lunghezza sono quelle di un nostro datasheet
+    const r = rigidSheets(spec.type, spec.wr).find((x) => x.L === spec.length && x.vswr != null);
+    if (!r) return null;
+    const values: Electrical["values"] = [{ key: "vswr", value: fmt(r.vswr!, 2) }];
+    if (r.il) values.push({ key: r.il.includes("/m") ? "il" : "ilMax", value: r.il });
+    if (r.pMax) values.push({ key: "pMax", value: `${fmt(r.pMax)} psi` });
+    return { source: r.code, values };
+  }
+  if (spec.type === "transition") {
+    const r = TTG.find((x) => x.L === spec.length && x.vswr != null && ((x.wr === spec.wr && x.wr2 === spec.wr2) || (x.wr === spec.wr2 && x.wr2 === spec.wr)));
+    if (!r) return null;
+    return { source: r.code, values: [{ key: "vswr", value: fmt(r.vswr!, 2) }] };
   }
   return null;
 }

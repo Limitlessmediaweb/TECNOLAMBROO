@@ -4,7 +4,7 @@ import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from "rea
 import NextLink from "next/link";
 import { Box, Check, Download, FileDown, Info, Mail, PencilRuler, Plus, Share2, Smartphone } from "lucide-react";
 import { useClientLocale, useT } from "@/lib/client-i18n";
-import { BEND_ANGLES, FINISHES, PART_TYPES, TREATMENTS, TWIST_ROTATIONS, TYPE_DEF, type PartSpec, type PartType } from "@/data/configurator/types";
+import { BEND_ANGLES, FINISHES, CLASSIC_PART_TYPES, TREATMENTS, TWIST_ROTATIONS, TYPE_DEF, type PartSpec, type PartType } from "@/data/configurator/types";
 import { defaultSpec, specFromParams, specToParams } from "@/data/configurator/defaults";
 import { FREE_LENGTH, SEAMLESS_TABLE, SIZES, SIZE_BY_WR, TWIST_TABLE, bestSizeFor, isOnRequest, num, range, rlColumn, sizeLabel, sizesFor, standardLengths } from "@/data/waveguides";
 import { OTHER_FLANGE, flangeLabel, flangesFor } from "@/data/flanges";
@@ -58,6 +58,7 @@ export function usePartText() {
       const size = SIZE_BY_WR.get(spec.wr);
       const bits = [t(`types.${spec.type}.name`)];
       if (size) bits.push(sizeLabel(size), `${range(size.min, size.max, locale)} GHz`);
+      if (spec.type === "transition" && spec.wr2) bits.push(`→ ${spec.wr2}`);
       else if (spec.wr === "unknown") bits.push(t("sizeUnknown"));
       const geo = TYPE_DEF[spec.type].geometry;
       const mm = (v?: number | null) => `${num(v ?? 0, locale, 0, 1)} mm`;
@@ -66,7 +67,7 @@ export function usePartText() {
       if (geo === "twist") bits.push(`${num(spec.rotation ?? 90, locale, 0, 1)}° ${t(`dir.${spec.direction ?? "cw"}`)}`, `L ${mm(spec.length)}`);
       if (geo === "offset") bits.push(t(`plane.${spec.plane ?? "E"}`), `X ${mm(spec.offset)}`, `L ${mm(spec.length)}`);
       if (geo !== "custom") {
-        bits.push(`${t("flanges")}: ${flange(spec.f1)} / ${flange(spec.f2)}`);
+        bits.push(`${t("flanges")}: ${spec.type === "termination" ? flange(spec.f1) : `${flange(spec.f1)} / ${flange(spec.f2)}`}`);
         bits.push(`${t("finish")}: ${t(`finishes.${spec.finish}`)}`);
         bits.push(`${t("treatment")}: ${t(`treatments.${spec.treatment}`)}`);
       }
@@ -415,7 +416,7 @@ export function Configurator({ requestPath }: { requestPath: string }) {
             1,
             t("typeTitle"),
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-              {PART_TYPES.map((d) => (
+              {CLASSIC_PART_TYPES.map((d) => (
                 <label key={d.type} className="block">
                   <input type="radio" name={`${uid}-type`} value={d.type} checked={spec.type === d.type} onChange={() => chooseType(d.type)} className={radio} />
                   <span className={choice} data-type-tile={d.type}>

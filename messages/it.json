@@ -1009,6 +1009,26 @@
       "custom": {
         "name": "Su disegno",
         "short": "Carica il tuo STEP, STL o PDF"
+      },
+      "straight": {
+        "name": "Tratto rigido",
+        "short": "Guida dritta TGR"
+      },
+      "transition": {
+        "name": "Transizione",
+        "short": "Tra due misure vicine"
+      },
+      "termination": {
+        "name": "Terminazione",
+        "short": "Carico chiuso, una flangia"
+      },
+      "pressure": {
+        "name": "Pressurizzatore",
+        "short": "Tronchetto con ingresso aria"
+      },
+      "spacer": {
+        "name": "Spessore",
+        "short": "Adattatore sottile tra flange"
       }
     },
     "flexName": {
@@ -1050,7 +1070,8 @@
       "bright": "Brillantata",
       "painted": "Verniciata",
       "silver": "Argentata",
-      "surtec": "Surtec 650"
+      "surtec": "Surtec 650",
+      "tin": "Stagnata"
     },
     "paintedHint": "Colore e tipo di vernice li definiamo insieme nel preventivo.",
     "treatment": "Trattamento",
@@ -1417,7 +1438,9 @@
       "final": "Quanti pezzi ti servono?",
       "item_cover": "Quale copertura ti serve?",
       "item_gasket": "Quale guarnizione ti serve?",
-      "item_castbend": "Che cast bend ti serve?"
+      "item_castbend": "Che cast bend ti serve?",
+      "item_shim": "Quale shim ti serve?",
+      "item_coax": "Quale transizione guida-cavo ti serve?"
     },
     "hint": {
       "type": "Il modello 3D a fianco cambia subito.",
@@ -1453,6 +1476,26 @@
       "offset": {
         "name": "Disassato",
         "short": "Collega flange sfalsate"
+      },
+      "straight": {
+        "name": "Tratto rigido",
+        "short": "Guida dritta TGR"
+      },
+      "transition": {
+        "name": "Transizione",
+        "short": "Tra due misure vicine"
+      },
+      "termination": {
+        "name": "Terminazione",
+        "short": "Carico chiuso, una flangia"
+      },
+      "pressure": {
+        "name": "Pressurizzatore",
+        "short": "Tronchetto con ingresso aria"
+      },
+      "spacer": {
+        "name": "Spessore",
+        "short": "Adattatore sottile tra flange"
       }
     },
     "size": {
@@ -1460,7 +1503,9 @@
       "freqPlaceholder": "es. {value}",
       "suggested": "Per {freq} GHz la misura giusta è {size}.",
       "none": "Nessuna delle nostre misure copre {freq} GHz.",
-      "onRequest": "Su richiesta per questo tipo"
+      "onRequest": "Su richiesta per questo tipo",
+      "second": "Misura del lato 2",
+      "secondHint": "La transizione si fa tra misure vicine. Le coppie con un nostro datasheet sono le prime."
     },
     "flange": {
       "recommended": "Consigliata",
@@ -1479,7 +1524,8 @@
         "square": "quadrata",
         "rect": "rettangolare",
         "round": "tonda"
-      }
+      },
+      "closed": "Chiuso (terminazione)"
     },
     "length": {
       "label": "Lunghezza L",
@@ -1522,7 +1568,15 @@
       },
       "jacket": "Guaina in gomma",
       "jacketOn": "Con guaina",
-      "jacketOff": "Senza guaina"
+      "jacketOff": "Senza guaina",
+      "material": "Materiale del corpo",
+      "cu": "Ottone / rame",
+      "al": "Alluminio",
+      "onRequest": "su richiesta",
+      "tin": {
+        "name": "Stagnatura",
+        "note": "Strato di stagno protettivo"
+      }
     },
     "final": {
       "qty": "Quantità",
@@ -1589,7 +1643,19 @@
       "other": "Altre misure e altre flange: su richiesta.",
       "onRequest": "Su richiesta",
       "castBody": "Il cast bend si fa su richiesta. Scegli misura e piano: ti rispondiamo con il disegno e il preventivo.",
-      "castNo3d": "Per questo pezzo il modello 3D e le quote arrivano con il preventivo."
+      "castNo3d": "Per questo pezzo il modello 3D e le quote arrivano con il preventivo.",
+      "shim": {
+        "name": "Shim",
+        "short": "Lamierino da 0,2 mm tra le flange",
+        "tag": "SHIM"
+      },
+      "coax": {
+        "name": "Transizione guida-cavo",
+        "short": "Da guida a connettore N",
+        "tag": "GUIDA-CAVO"
+      },
+      "shimDesc": "Acciaio AISI 301 · spessore 0,2 mm",
+      "coaxDesc": "Connettore N femmina · {mat} · prestazioni su richiesta"
     },
     "sheet": {
       "button": "Scarica datasheet",
@@ -1611,7 +1677,8 @@
         "waveguide": "Guida",
         "inner": "Interno a × b",
         "band": "Banda",
-        "material": "Materiale"
+        "material": "Materiale",
+        "size2": "Guida lato 2"
       },
       "el": {
         "il": "Perdita di inserzione",

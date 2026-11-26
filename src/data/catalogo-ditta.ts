@@ -120,3 +120,99 @@ export const CAST_BEND_SIZES: readonly { wr: string; planes: readonly Plane[] }[
   { wr: "WR-284", planes: ["E"] },
   { wr: "WR-229", planes: ["E", "H"] },
 ];
+
+/* ======================================================================
+ * Famiglie in guida rigida aggiunte il 26/11/2026 (datasheet di catalogo nella cartella
+ * "DATASHEET CURVE Disass TRANS GUIDA CAVO ECC ECC"). Ogni riga = un datasheet nostro.
+ * I dati elettrici valgono SOLO per la configurazione del datasheet (stessa misura e stessa
+ * lunghezza): per le altre il sito scrive "su richiesta".
+ * Codici ufficiali della ditta: FAMIGLIA-<n. IEC>/<L>-<lettere flange> (D UDR, E PDR, F UBR, G PBR;
+ * H e I = CPR, da confermare quale delle due).
+ * ==================================================================== */
+
+/** Riga di un datasheet di catalogo in guida rigida. `flanges` = sigle viste nel datasheet. */
+export type RigidSheet = { code: string; wr: string; L: number; flanges: readonly string[]; vswr?: number; il?: string; pMax?: number; material?: "cu" | "al" };
+
+/** Tratti di guida rigida (TGR). */
+export const TGR: readonly RigidSheet[] = [
+  { code: "TGR-400/3000-FG", wr: "WR-22", L: 3000, flanges: ["PBR", "UBR"], vswr: 1.09, il: "0.2 dB/m" },
+  { code: "TGR-260/3000-FG", wr: "WR-34", L: 3000, flanges: ["PBR", "UBR"], vswr: 1.09, il: "0.15 dB/m" },
+  { code: "TGR-220/100-GG", wr: "WR-42", L: 100, flanges: ["PBR"], vswr: 1.06, il: "0.2 dB" },
+  { code: "TGR-180/3000-FG", wr: "WR-51", L: 3000, flanges: ["PBR", "UBR"], vswr: 1.08, il: "0.15 dB/m" },
+  { code: "TGR-120/50-EF", wr: "WR-75", L: 50, flanges: ["PDR", "UBR"], vswr: 1.06 },
+  { code: "TGR-120/50-DG", wr: "WR-75", L: 50, flanges: ["UDR", "PBR"], vswr: 1.05 },
+  { code: "TGR-100/100-FG", wr: "WR-90", L: 100, flanges: ["PBR", "UBR"], vswr: 1.03 },
+  { code: "TGR-100/80-EG", wr: "WR-90", L: 80, flanges: ["PBR", "PDR"], vswr: 1.03 },
+  { code: "TGR-40/150-HI", wr: "WR-229", L: 150, flanges: ["CPRF", "CPRG"], vswr: 1.06 },
+];
+/** Lunghezze viste nei datasheet TGR (mm); le altre si scelgono libere. */
+export const TGR_LENGTHS = [50, 100, 150, 300, 500, 1000, 2000, 3000] as const;
+
+/** Tronchetti pressurizzatori (TGP): ingresso aria, pressione massima 30 psi. */
+export const TGP: readonly RigidSheet[] = [
+  { code: "TGP-400/100-FG", wr: "WR-22", L: 100, flanges: ["PBR", "UBR"], vswr: 1.06, il: "0.15 dB", pMax: 30 },
+  { code: "TGP-260/100-FG", wr: "WR-34", L: 100, flanges: ["PBR", "UBR"], vswr: 1.06, il: "0.15 dB", pMax: 30 },
+  { code: "TGP-180/100-FG", wr: "WR-51", L: 100, flanges: ["PBR", "UBR"], vswr: 1.06, il: "0.15 dB", pMax: 30 },
+];
+
+/** Terminazioni (TR): una sola flangia, l'altra estremità chiusa. */
+export const TR: readonly RigidSheet[] = [
+  { code: "TR-220/74-F", wr: "WR-42", L: 74, flanges: ["UBR"], vswr: 1.08 },
+  { code: "TR-140/60-G", wr: "WR-62", L: 60, flanges: ["PBR"], vswr: 1.13, material: "al" },
+  { code: "TR-84/70-G", wr: "WR-112", L: 70, flanges: ["PBR"], vswr: 1.12, material: "al" },
+];
+
+/** Spessori (TSP): due flange della stessa misura, L = spessore. */
+export const TSP: readonly RigidSheet[] = [
+  { code: "TSP-220-GG", wr: "WR-42", L: 4, flanges: ["PBR"], vswr: 1.06 },
+  { code: "TSP-100-EF-EF", wr: "WR-90", L: 12, flanges: ["PDR"], vswr: 1.06 },
+  { code: "TLSPBR84", wr: "WR-112", L: 6, flanges: ["PBR"] },
+  { code: "TSP-48-EE", wr: "WR-187", L: 10, flanges: ["PDR"] },
+];
+
+/**
+ * Transizioni di guida (TTG) tra due misure vicine. `wr` = misura più piccola (numero IEC più basso
+ * nel codice), `wr2` = l'altra. Flange nell'ordine del codice.
+ */
+export type TransitionSheet = { code: string; wr: string; wr2: string; L: number; flanges: readonly [string, string]; vswr?: number };
+export const TTG: readonly TransitionSheet[] = [
+  { code: "TTG-70-84/100-DG", wr: "WR-137", wr2: "WR-112", L: 100, flanges: ["UDR", "PBR"], vswr: 1.1 },
+  { code: "TTG-84-100/100-EG", wr: "WR-112", wr2: "WR-90", L: 100, flanges: ["PDR", "PBR"], vswr: 1.1 },
+  { code: "TTG-84-100/100-FG", wr: "WR-112", wr2: "WR-90", L: 100, flanges: ["UBR", "PBR"], vswr: 1.1 },
+  { code: "TTG-84-100/100-F.CBR100", wr: "WR-112", wr2: "WR-90", L: 100, flanges: ["UBR", "CBR"], vswr: 1.1 },
+  { code: "TTG-100-120/100-DE", wr: "WR-90", wr2: "WR-75", L: 100, flanges: ["UDR", "PDR"] },
+  { code: "TTG-100-120/100-DG", wr: "WR-90", wr2: "WR-75", L: 100, flanges: ["UDR", "PBR"] },
+  { code: "TTG-100-120/100-ED", wr: "WR-90", wr2: "WR-75", L: 100, flanges: ["PDR", "UDR"], vswr: 1.06 },
+  { code: "TTG-100-120/100-GD", wr: "WR-90", wr2: "WR-75", L: 100, flanges: ["PBR", "UDR"], vswr: 1.06 },
+  { code: "TTG-100-120/50-GF", wr: "WR-90", wr2: "WR-75", L: 50, flanges: ["PBR", "UBR"], vswr: 1.06 },
+];
+/** Coppie di misure con almeno un datasheet TTG (in entrambi i versi). */
+export const TTG_PAIRS: readonly (readonly [string, string])[] = [
+  ["WR-137", "WR-112"],
+  ["WR-112", "WR-90"],
+  ["WR-90", "WR-75"],
+];
+
+/** Shim in acciaio AISI 301 da 0,2 mm (codici SHIM). */
+export type ShimRow = { code: string; wr: string; flange: string };
+export const SHIMS: readonly ShimRow[] = [
+  { code: "SHIM WR28", wr: "WR-28", flange: "PBR320" },
+  { code: "SHIM WR90PBR100", wr: "WR-90", flange: "PBR100" },
+  { code: "SHIM WR112", wr: "WR-112", flange: "PDR84" },
+  { code: "SHIM WR137", wr: "WR-137", flange: "PDR70" },
+];
+
+/** Transizioni guida-cavo (TTGC), connettore N femmina. Prestazioni su richiesta. */
+export type CoaxRow = { code: string; wr: string; flange: string; material: "cu" | "al" };
+export const COAX: readonly CoaxRow[] = [
+  { code: "TTGC-48/D", wr: "WR-187", flange: "UDR48", material: "al" },
+  { code: "TTGC-84/D", wr: "WR-112", flange: "UDR84", material: "al" },
+  { code: "TTGC-84/G", wr: "WR-112", flange: "PBR84", material: "al" },
+  { code: "TTGC-120/EN", wr: "WR-75", flange: "PDR120", material: "cu" },
+];
+
+/** Datasheet di catalogo per tipo rigido, misura e (se data) lunghezza. */
+export function rigidSheets(type: "straight" | "pressure" | "termination" | "spacer", wr: string): readonly RigidSheet[] {
+  const list = type === "straight" ? TGR : type === "pressure" ? TGP : type === "termination" ? TR : TSP;
+  return list.filter((r) => r.wr === wr);
+}

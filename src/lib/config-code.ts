@@ -9,9 +9,16 @@ import { isFlexible, type Finish, type PartSpec } from "@/data/configurator/type
  * Famiglie dai datasheet di catalogo: TFTG (flessibile twistabile), TCE / TCH (curva piano E / H),
  * TGF (flessibile seamless), TWR (twist rigido). [DA CONFERMARE con l'ufficio tecnico]: TDS per il
  * disassato (codice non trovato nei datasheet) e le sigle delle finiture diverse da ARG.
+ *
+ * 26/11/2026: tratto rigido TGR, transizione TTG, terminazione TR, pressurizzatore TGP, spessore TSP
+ * (famiglie dei datasheet di catalogo). Nei datasheet della ditta il codice è compatto
+ * (TGR-100/100-FG, lettere D E F G per le flange): qui resta il formato del configuratore, con le
+ * sigle delle flange per esteso. AL = corpo in alluminio, STG = stagnatura [sigle provvisorie].
  */
-const FAMILY: Record<string, string> = { twistable: "TFTG", seamless: "TGF", twist: "TWR", offset: "TDS" };
-const FINISH_CODE: Record<Finish, string> = { bright: "BRL", silver: "ARG", painted: "VRN", surtec: "S650", raw: "GRZ" };
+const FAMILY: Record<string, string> = { twistable: "TFTG", seamless: "TGF", twist: "TWR", offset: "TDS", straight: "TGR", termination: "TR", pressure: "TGP", spacer: "TSP", transition: "TTG" };
+const FINISH_CODE: Record<Finish, string> = { bright: "BRL", silver: "ARG", painted: "VRN", surtec: "S650", raw: "GRZ", tin: "STG" };
+/** Sigle di finitura riconosciute in coda al codice (per toglierle dal cartiglio). */
+export const FINISH_SUFFIX = /-(AL-)?(BRL|ARG|VRN|S650|GRZ|STG)(-G)?$/;
 
 const n = (v: number | null | undefined) => String(Math.round((v ?? 0) * 10) / 10);
 
@@ -41,10 +48,22 @@ export function configCode(spec: PartSpec): string {
   } else if (spec.type === "offset") {
     family = `${FAMILY.offset}${spec.plane === "H" ? "H" : "E"}`;
     geometry = `${n(spec.length)}X${n(spec.offset)}`;
+  } else if (spec.type === "transition") {
+    const s2 = spec.wr2 ? SIZE_BY_WR.get(spec.wr2) : undefined;
+    family = FAMILY.transition;
+    // come nei datasheet TTG: prima la misura con il numero IEC più basso, flange nello stesso ordine
+    const n2 = s2 ? iecNumber(s2) : "XX";
+    const swap = Number(n2) < Number(iec);
+    const sizes = swap ? [n2, iec] : [iec, n2];
+    const tail = [spec.material === "al" ? "AL" : "", FINISH_CODE[spec.finish] ?? ""].filter(Boolean);
+    return [family, ...sizes, n(spec.length), ...(swap ? [...flanges].reverse() : flanges), ...tail].join("-");
+  } else if (spec.type === "termination") {
+    const tail = [spec.material === "al" ? "AL" : "", FINISH_CODE[spec.finish] ?? ""].filter(Boolean);
+    return [FAMILY.termination, iec, n(spec.length), flanges[0], ...tail].join("-");
   } else {
     family = FAMILY[spec.type] ?? "TL";
     geometry = n(spec.length);
   }
-  const tail = [FINISH_CODE[spec.finish] ?? "", isFlexible(spec.type) && spec.jacket ? "G" : ""].filter(Boolean);
+  const tail = [spec.material === "al" ? "AL" : "", FINISH_CODE[spec.finish] ?? "", isFlexible(spec.type) && spec.jacket ? "G" : ""].filter(Boolean);
   return [family, iec, geometry, ...flanges, ...tail].join("-");
 }

@@ -212,10 +212,10 @@ function sweep(at: (d: number) => Frame, rings: Ring[], k: number, inward = fals
 /* ----------------------------------------------------------------- flangia */
 
 /** Flangia da disegnare: quella scelta se esiste per la misura, altrimenti la consigliata (o una quadrata generica). */
-export function flangeFor(spec: PartSpec, id: string): FlangeDef {
+export function flangeFor(spec: PartSpec, id: string, wr = spec.wr): FlangeDef {
   const chosen = flangeById(id);
-  if (chosen && flangeFits(id, spec.wr)) return chosen;
-  const first = flangesFor(spec.wr)[0];
+  if (chosen && flangeFits(id, wr)) return chosen;
+  const first = flangesFor(wr)[0];
   if (first) return first;
   const s = SIZE_BY_WR.get(spec.wr) ?? SIZE_BY_WR.get("WR-90")!;
   const A = Math.round(s.a * 1.8);
@@ -346,10 +346,13 @@ const FINISH_LOOK: Record<Finish, { color: string; metalness: number; roughness:
   silver: { color: "#e9e8e4", metalness: 1, roughness: 0.13, name: "Argentatura" },
   painted: { color: "#2b3442", metalness: 0.05, roughness: 0.5, clearcoat: 0.45, name: "Verniciatura" },
   surtec: { color: "#c5ccd2", metalness: 1, roughness: 0.36, iridescence: 0.35, name: "Surtec 650" },
+  tin: { color: "#d4d6d3", metalness: 1, roughness: 0.3, name: "Stagnatura" },
 };
 
 function materials(spec: PartSpec) {
-  const look = FINISH_LOOK[spec.finish] ?? FINISH_LOOK.raw;
+  const base = FINISH_LOOK[spec.finish] ?? FINISH_LOOK.raw;
+  // alluminio grezzo: grigio, non color ottone
+  const look = spec.material === "al" && spec.finish === "raw" ? { ...base, color: "#bfc4c8", roughness: 0.42, name: "Alluminio grezzo" } : base;
   const metal = (roughness: number) =>
     new THREE.MeshPhysicalMaterial({
       color: new THREE.Color(look.color),
@@ -484,7 +487,10 @@ export function buildPart(spec: PartSpec, opts: BuildOptions = {}): PartInfo {
   const mats = materials(spec);
   const segs = pathFor(spec);
   const { total, at } = sampler(segs);
-  const defs: [FlangeDef, FlangeDef] = [flangeFor(spec, spec.f1), flangeFor(spec, spec.f2)];
+  // transizione: la flangia 2 è della seconda misura
+  const wr2 = spec.type === "transition" && spec.wr2 && SIZE_BY_WR.has(spec.wr2) ? spec.wr2 : spec.wr;
+  const s2 = SIZE_BY_WR.get(wr2)!;
+  const defs: [FlangeDef, FlangeDef] = [flangeFor(spec, spec.f1), flangeFor(spec, spec.type === "termination" ? spec.f1 : spec.f2, wr2)];
   const from = Math.min(defs[0].C, total / 3);
   const to = Math.max(total - defs[1].C, (2 * total) / 3);
   const group = new THREE.Group();
@@ -571,8 +577,18 @@ export function buildPart(spec: PartSpec, opts: BuildOptions = {}): PartInfo {
     // guida rigida: parete esterna e parete interna con le proporzioni reali a × b
     const outer = { w: size.rigid.w, h: size.rigid.h, r: 0.6 };
     const inner = { w: size.s.a, h: size.s.b, r: 0.2 };
-    add(sweep(at, bodyD.map((d) => ({ d, ...outer })), k), mats.body, "Guida");
-    add(sweep(at, bodyD.map((d) => ({ d, ...inner })), k, true), mats.body, "Guida interno");
+    if (wr2 !== spec.wr) {
+      // transizione: la sezione passa da a × b della misura 1 a quella della misura 2 nel tratto centrale
+      const o2 = rigidOuter(s2);
+      const mix = (d: number) => THREE.MathUtils.smoothstep(d, from + (to - from) * 0.15, to - (to - from) * 0.15);
+      const lerp = (x: number, y: number, d: number) => x + (y - x) * mix(d);
+      const taper = between(from, to).flatMap((d, i, all) => (i ? [(all[i - 1] + d) / 2, d] : [d]));
+      add(sweep(at, taper.map((d) => ({ d, w: lerp(outer.w, o2.w, d), h: lerp(outer.h, o2.h, d), r: 0.6 })), k), mats.body, "Guida");
+      add(sweep(at, taper.map((d) => ({ d, w: lerp(inner.w, s2.a, d), h: lerp(inner.h, s2.b, d), r: 0.2 })), k, true), mats.body, "Guida interno");
+    } else {
+      add(sweep(at, bodyD.map((d) => ({ d, ...outer })), k), mats.body, "Guida");
+      add(sweep(at, bodyD.map((d) => ({ d, ...inner })), k, true), mats.body, "Guida interno");
+    }
   }
 
   // flange alle due estremità, con la faccia di accoppiamento sul fondo del percorso
@@ -600,7 +616,33 @@ export function buildPart(spec: PartSpec, opts: BuildOptions = {}): PartInfo {
     group.add(g);
   };
   flangeGroup(defs[0], startF, false, "Flangia 1");
-  flangeGroup(defs[1], endF, true, "Flangia 2");
+  if (spec.type === "termination") {
+    // terminazione: lato 2 chiuso da un fondello (il carico è all'interno)
+    const capT = Math.max(2, size.flangeT * 0.5);
+    const cap = new THREE.Mesh(new THREE.BoxGeometry(size.rigid.w + 1.2, size.rigid.h + 1.2, capT), mats.flange);
+    cap.applyMatrix4(frameMatrix(at(Math.max(0, total - capT / 2)), true));
+    cap.name = "Fondello";
+    cap.castShadow = true;
+    group.add(cap);
+  } else {
+    if (wr2 !== spec.wr) {
+      const geo = flangeGeometry(defs[1], s2.a, s2.b);
+      geos.set(defs[1].id, geo);
+    }
+    flangeGroup(defs[1], endF, true, "Flangia 2");
+  }
+  if (spec.type === "pressure") {
+    // ingresso dell'aria a metà del tronchetto
+    const m = at(total / 2);
+    const r = Math.max(2.5, Math.min(6, size.rigid.h * 0.22));
+    const hgt = size.rigid.h * 0.5 + r * 2.4;
+    const inlet = new THREE.Mesh(new THREE.CylinderGeometry(r, r, hgt, 24), mats.flange);
+    inlet.position.copy(m.p).addScaledVector(m.v, hgt / 2);
+    inlet.quaternion.setFromUnitVectors(new V3(0, 1, 0), m.v.clone().normalize());
+    inlet.name = "Ingresso aria";
+    inlet.castShadow = true;
+    group.add(inlet);
+  }
 
   let triangles = 0;
   group.traverse((o) => {
@@ -804,6 +846,8 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
   let movers: THREE.Object3D[] = [];
   let dimGroup: THREE.Group | null = null;
   let explodedTags: HTMLElement[] = [];
+  /** etichette FLANGIA 1 / FLANGIA 2 da ridisegnare nella foto del datasheet (le CSS2D non sono nel canvas) */
+  let snapTags: { obj: THREE.Object3D; title: string; code: string }[] = [];
   const camAnim = { from: new V3(), to: new V3(), tFrom: new V3(), tTo: new V3(), start: 0, ms: 600, active: false };
 
   /* ---------------------------------------------------------- inquadrature */
@@ -878,6 +922,7 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
     const info = current;
     movers = info.group.children.filter((c) => c.userData.axis);
     explodedTags = [];
+    snapTags = [];
     dimGroup = null;
     if (labels) {
       // FLANGIA 1 / FLANGIA 2 con la sigla scelta, ancorate sopra ogni flangia
@@ -895,6 +940,7 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
         anchor.userData = { axis: flange.userData.axis ?? new V3(), dist: flange.userData.dist ?? 0, kind: "tag" };
         anchor.add(line([new V3(c.x, top + 0.6, c.z), new V3(c.x, top + stem, c.z)]));
         const obj = new CSS2DObject(tag(i === 0 ? labels!.flange1 : labels!.flange2, i === 0 ? labels!.f1 : labels!.f2));
+        snapTags.push({ obj, title: i === 0 ? labels!.flange1 : labels!.flange2, code: i === 0 ? labels!.f1 : labels!.f2 });
         obj.center.set(0.5, 1);
         obj.position.set(c.x, top + stem, c.z);
         anchor.add(obj);
@@ -1142,7 +1188,48 @@ export async function mountViewer(container: HTMLElement, spec: PartSpec, fmt: (
     },
     snapshot: () => {
       renderer.render(scene, camera);
-      return renderer.domElement.toDataURL("image/png");
+      const src = renderer.domElement;
+      if (!snapTags.length) return src.toDataURL("image/png");
+      // foto con le etichette FLANGIA 1 / FLANGIA 2 disegnate sopra, nella posizione che hanno a schermo
+      const out = document.createElement("canvas");
+      out.width = src.width;
+      out.height = src.height;
+      const g = out.getContext("2d");
+      if (!g) return src.toDataURL("image/png");
+      g.drawImage(src, 0, 0);
+      const k = src.width / Math.max(1, container.clientWidth);
+      const pad = 6 * k;
+      for (const tg of snapTags) {
+        const p = tg.obj.getWorldPosition(new V3()).project(camera);
+        if (p.z > 1) continue;
+        const x = ((p.x + 1) / 2) * src.width;
+        const y = ((1 - p.y) / 2) * src.height;
+        g.font = `700 ${11 * k}px Arial, sans-serif`;
+        const w1 = g.measureText(tg.title).width;
+        g.font = `600 ${11 * k}px Consolas, monospace`;
+        const w2 = tg.code ? g.measureText(tg.code).width : 0;
+        const w = Math.max(w1, w2) + pad * 2;
+        const h = (tg.code ? 32 : 18) * k;
+        const bx = Math.min(Math.max(2, x - w / 2), src.width - w - 2);
+        const by = Math.max(2, y - h);
+        g.fillStyle = "rgba(255,255,255,0.92)";
+        g.strokeStyle = "#0066cc";
+        g.lineWidth = 1.5 * k;
+        g.beginPath();
+        g.roundRect(bx, by, w, h, 4 * k);
+        g.fill();
+        g.stroke();
+        g.fillStyle = "#1a1f26";
+        g.textBaseline = "top";
+        g.font = `700 ${11 * k}px Arial, sans-serif`;
+        g.fillText(tg.title, bx + pad, by + 4 * k);
+        if (tg.code) {
+          g.fillStyle = "#3b4654";
+          g.font = `600 ${11 * k}px Consolas, monospace`;
+          g.fillText(tg.code, bx + pad, by + 17 * k);
+        }
+      }
+      return out.toDataURL("image/png");
     },
     triangles: () => current?.triangles ?? 0,
     dispose: () => {

@@ -1009,6 +1009,26 @@
       "custom": {
         "name": "按图定制",
         "short": "上传您的 STEP、STL 或 PDF"
+      },
+      "straight": {
+        "name": "刚性直波导",
+        "short": "TGR 直波导段"
+      },
+      "transition": {
+        "name": "过渡段",
+        "short": "相邻两种规格之间"
+      },
+      "termination": {
+        "name": "终端负载",
+        "short": "封闭负载，单法兰"
+      },
+      "pressure": {
+        "name": "充气段",
+        "short": "带进气口的短段"
+      },
+      "spacer": {
+        "name": "垫片段",
+        "short": "法兰之间的薄型转接"
       }
     },
     "flexName": {
@@ -1050,7 +1070,8 @@
       "bright": "光亮",
       "painted": "喷漆",
       "silver": "镀银",
-      "surtec": "Surtec 650"
+      "surtec": "Surtec 650",
+      "tin": "镀锡"
     },
     "paintedHint": "颜色和涂料类型将在报价中与您确定。",
     "treatment": "工艺处理",
@@ -1417,7 +1438,9 @@
       "final": "需要多少件？",
       "item_cover": "您需要哪种法兰盖？",
       "item_gasket": "您需要哪种密封垫？",
-      "item_castbend": "您需要哪种铸造弯头？"
+      "item_castbend": "您需要哪种铸造弯头？",
+      "item_shim": "您需要哪种垫片？",
+      "item_coax": "您需要哪种波导同轴转换？"
     },
     "hint": {
       "type": "旁边的 3D 模型会立即变化。",
@@ -1453,6 +1476,26 @@
       "offset": {
         "name": "偏置波导",
         "short": "连接错位的法兰"
+      },
+      "straight": {
+        "name": "刚性直波导",
+        "short": "TGR 直波导段"
+      },
+      "transition": {
+        "name": "过渡段",
+        "short": "相邻两种规格之间"
+      },
+      "termination": {
+        "name": "终端负载",
+        "short": "封闭负载，单法兰"
+      },
+      "pressure": {
+        "name": "充气段",
+        "short": "带进气口的短段"
+      },
+      "spacer": {
+        "name": "垫片段",
+        "short": "法兰之间的薄型转接"
       }
     },
     "size": {
@@ -1460,7 +1503,9 @@
       "freqPlaceholder": "例如 {value}",
       "suggested": "{freq} GHz 适用的规格是 {size}。",
       "none": "我们的规格均不覆盖 {freq} GHz。",
-      "onRequest": "该类型需单独询问"
+      "onRequest": "该类型需单独询问",
+      "second": "第 2 端规格",
+      "secondHint": "过渡段只在相邻规格之间制作。有我们数据表的组合排在前面。"
     },
     "flange": {
       "recommended": "推荐",
@@ -1479,7 +1524,8 @@
         "square": "方形",
         "rect": "矩形",
         "round": "圆形"
-      }
+      },
+      "closed": "封闭（终端负载）"
     },
     "length": {
       "label": "长度 L",
@@ -1522,7 +1568,15 @@
       },
       "jacket": "橡胶护套",
       "jacketOn": "带护套",
-      "jacketOff": "不带护套"
+      "jacketOff": "不带护套",
+      "material": "本体材料",
+      "cu": "黄铜 / 铜",
+      "al": "铝",
+      "onRequest": "按需",
+      "tin": {
+        "name": "镀锡",
+        "note": "防护锡层"
+      }
     },
     "final": {
       "qty": "数量",
@@ -1589,7 +1643,19 @@
       "other": "其他规格和其他法兰：按需定制。",
       "onRequest": "按需定制",
       "castBody": "铸造弯头按需定制。请选择规格和平面：我们将回复图纸和报价。",
-      "castNo3d": "该零件的 3D 模型和尺寸将随报价提供。"
+      "castNo3d": "该零件的 3D 模型和尺寸将随报价提供。",
+      "shim": {
+        "name": "垫片",
+        "short": "法兰之间的 0.2 mm 薄片",
+        "tag": "垫片"
+      },
+      "coax": {
+        "name": "波导同轴转换",
+        "short": "波导转 N 型接头",
+        "tag": "波导-同轴"
+      },
+      "shimDesc": "AISI 301 钢 · 厚 0.2 mm",
+      "coaxDesc": "N 型母头 · {mat} · 性能按需提供"
     },
     "sheet": {
       "button": "下载数据表",
@@ -1611,7 +1677,8 @@
         "waveguide": "波导",
         "inner": "内腔 a × b",
         "band": "频段",
-        "material": "材料"
+        "material": "材料",
+        "size2": "第 2 端波导"
       },
       "el": {
         "il": "插入损耗",

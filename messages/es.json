@@ -1009,6 +1009,26 @@
       "custom": {
         "name": "Según plano",
         "short": "Cargue su STEP, STL o PDF"
+      },
+      "straight": {
+        "name": "Tramo rígido",
+        "short": "Guía recta TGR"
+      },
+      "transition": {
+        "name": "Transición",
+        "short": "Entre dos medidas cercanas"
+      },
+      "termination": {
+        "name": "Terminación",
+        "short": "Carga cerrada, una brida"
+      },
+      "pressure": {
+        "name": "Presurizador",
+        "short": "Tramo corto con entrada de aire"
+      },
+      "spacer": {
+        "name": "Separador",
+        "short": "Adaptador fino entre bridas"
       }
     },
     "flexName": {
@@ -1050,7 +1070,8 @@
       "bright": "Abrillantado",
       "painted": "Pintado",
       "silver": "Plateada",
-      "surtec": "Surtec 650"
+      "surtec": "Surtec 650",
+      "tin": "Estañada"
     },
     "paintedHint": "El color y el tipo de pintura los acordamos en el presupuesto.",
     "treatment": "Tratamiento",
@@ -1417,7 +1438,9 @@
       "final": "¿Cuántas piezas necesita?",
       "item_cover": "¿Qué tapa necesita?",
       "item_gasket": "¿Qué junta necesita?",
-      "item_castbend": "¿Qué codo de fundición necesita?"
+      "item_castbend": "¿Qué codo de fundición necesita?",
+      "item_shim": "¿Qué shim necesitas?",
+      "item_coax": "¿Qué transición guía-coaxial necesitas?"
     },
     "hint": {
       "type": "El modelo 3D de al lado cambia al instante.",
@@ -1453,6 +1476,26 @@
       "offset": {
         "name": "Desplazada",
         "short": "Une bridas desalineadas"
+      },
+      "straight": {
+        "name": "Tramo rígido",
+        "short": "Guía recta TGR"
+      },
+      "transition": {
+        "name": "Transición",
+        "short": "Entre dos medidas cercanas"
+      },
+      "termination": {
+        "name": "Terminación",
+        "short": "Carga cerrada, una brida"
+      },
+      "pressure": {
+        "name": "Presurizador",
+        "short": "Tramo corto con entrada de aire"
+      },
+      "spacer": {
+        "name": "Separador",
+        "short": "Adaptador fino entre bridas"
       }
     },
     "size": {
@@ -1460,7 +1503,9 @@
       "freqPlaceholder": "p. ej. {value}",
       "suggested": "Para {freq} GHz el tamaño adecuado es {size}.",
       "none": "Ninguno de nuestros tamaños cubre {freq} GHz.",
-      "onRequest": "Bajo pedido para este tipo"
+      "onRequest": "Bajo pedido para este tipo",
+      "second": "Medida del lado 2",
+      "secondHint": "La transición se hace entre medidas cercanas. Primero las parejas con una ficha nuestra."
     },
     "flange": {
       "recommended": "Recomendada",
@@ -1479,7 +1524,8 @@
         "square": "cuadrada",
         "rect": "rectangular",
         "round": "redonda"
-      }
+      },
+      "closed": "Cerrado (terminación)"
     },
     "length": {
       "label": "Longitud L",
@@ -1522,7 +1568,15 @@
       },
       "jacket": "Funda de goma",
       "jacketOn": "Con funda",
-      "jacketOff": "Sin funda"
+      "jacketOff": "Sin funda",
+      "material": "Material del cuerpo",
+      "cu": "Latón / cobre",
+      "al": "Aluminio",
+      "onRequest": "bajo pedido",
+      "tin": {
+        "name": "Estañado",
+        "note": "Capa protectora de estaño"
+      }
     },
     "final": {
       "qty": "Cantidad",
@@ -1589,7 +1643,19 @@
       "other": "Otros tamaños y otras bridas: bajo pedido.",
       "onRequest": "Bajo pedido",
       "castBody": "El codo de fundición se fabrica bajo pedido. Elija tamaño y plano: le respondemos con el plano y el presupuesto.",
-      "castNo3d": "Para esta pieza el modelo 3D y las cotas llegan con el presupuesto."
+      "castNo3d": "Para esta pieza el modelo 3D y las cotas llegan con el presupuesto.",
+      "shim": {
+        "name": "Shim",
+        "short": "Lámina de 0,2 mm entre bridas",
+        "tag": "SHIM"
+      },
+      "coax": {
+        "name": "Transición guía-coaxial",
+        "short": "De guía a conector N",
+        "tag": "GUÍA-COAX"
+      },
+      "shimDesc": "Acero AISI 301 · espesor 0,2 mm",
+      "coaxDesc": "Conector N hembra · {mat} · prestaciones bajo pedido"
     },
     "sheet": {
       "button": "Descargar ficha técnica",
@@ -1611,7 +1677,8 @@
         "waveguide": "Guía",
         "inner": "Interior a × b",
         "band": "Banda",
-        "material": "Material"
+        "material": "Material",
+        "size2": "Guía lado 2"
       },
       "el": {
         "il": "Pérdida de inserción",
