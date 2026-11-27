@@ -196,7 +196,7 @@ const OUT = {
     hello: (name: string) => `Buongiorno ${name},`,
     thanks: "grazie per la richiesta di preventivo.",
     number: "Numero di richiesta",
-    reply: `Vi rispondiamo con il preventivo entro ${quoteTime("it", "working")}.`,
+    reply: `Vi rispondiamo con il preventivo in ${quoteTime("it", "working")}.`,
     recap: "Riepilogo",
     code: "Pezzo",
     qty: "Quantità",

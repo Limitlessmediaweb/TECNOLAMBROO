@@ -11,8 +11,8 @@ const LEGAL_NAME_SHORT = "Tecnolambro S.a.s.";
 const PEC = "tecnolambrosnc@pec.it";
 /** Cellulare: primo numero mostrato e numero WhatsApp */
 const MOBILE = "+39 375 577 1084";
-/** Ore entro cui arriva il preventivo (per lingua: "24 ore", "24 ore lavorative", "24 h") */
-export const QUOTE_REPLY_HOURS = 24;
+/** Ore in cui arriva il preventivo: «24/48 ore» ovunque (sito, email, dati strutturati) */
+export const QUOTE_REPLY_HOURS = "24/48";
 
 const telHref = (n: string) => `tel:${n.replace(/[^\d+]/g, "")}`;
 
@@ -77,14 +77,14 @@ export function whatsappHref(locale: string): string {
 /* --------------------------------------------- tempo di risposta del preventivo */
 
 const QUOTE_TIME_FORMS: Record<Locale, { plain: string; working: string; short: string }> = {
-  it: { plain: "{h} ore", working: "{h} ore lavorative", short: "{h} h" },
-  en: { plain: "{h} hours", working: "{h} working hours", short: "{h} h" },
-  es: { plain: "{h} horas", working: "{h} horas laborables", short: "{h} h" },
-  zh: { plain: "{h}小时", working: "{h}个工作小时", short: "{h}小时" },
-  de: { plain: "{h} Stunden", working: "{h} Arbeitsstunden", short: "{h} h" },
+  it: { plain: "{h} ore", working: "{h} ore", short: "{h} h" },
+  en: { plain: "{h} hours", working: "{h} hours", short: "{h} h" },
+  es: { plain: "{h} horas", working: "{h} horas", short: "{h} h" },
+  zh: { plain: "{h}小时", working: "{h}小时", short: "{h}小时" },
+  de: { plain: "{h} Stunden", working: "{h} Stunden", short: "{h} h" },
 };
 
-/** "24 ore" · "24 ore lavorative" · "24 h" nella lingua indicata. */
+/** "24/48 ore" · "24/48 h" nella lingua indicata (la forma "working" è uguale: il tempo è uno solo). */
 export function quoteTime(locale: string, form: "plain" | "working" | "short" = "plain"): string {
   return pick(QUOTE_TIME_FORMS, locale)[form].replace("{h}", String(QUOTE_REPLY_HOURS));
 }

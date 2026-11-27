@@ -125,3 +125,29 @@ Il configuratore ora scrive il codice nel **formato compatto** della ditta. Dal 
 59. TFTG-48 e TFTG-70: nei datasheet manca il **peso** (sul sito resta «Su richiesta»). Li hai? ______
 60. Edizione/revisione dei datasheet generati dal configuratore: oggi «ED. mese/anno REV 00». Va bene così? **sì / no**
 61. La tolleranza di lunghezza **± 2 %** vale solo per le flessibili twistabili? Per rigidi, curve e transizioni quale tolleranza scriviamo? ______
+
+---
+
+# Aggiunte per il sito finale – venerdì 27/11/2026
+
+Sul sito queste frasi sono state scritte **senza** il dato mancante (niente «da confermare» visibile). Quando arriva la risposta la aggiungiamo.
+
+## Azienda e qualità
+
+20. «Azienda di famiglia guidata dalla famiglia Pasquini»: la formula va bene? Chi c'è oggi in azienda (nomi e ruoli da citare, se volete)? ______
+21. Collaudo al 100%: con quali strumenti (analizzatore di rete? calibri? banco prova)? Si può scrivere il nome dello strumento? ______
+22. Trattamenti termici: quali facciamo fare (ricottura, distensione, altro)? ______
+23. Il materiale a magazzino «parte in 48 ore» (FAQ): è ancora vero? **sì / no**
+24. Settori: oltre a radar, telecomunicazioni, ricerca e industria, ci sono clienti in altri settori da citare (spazio, difesa, medicale)? ______
+
+## Schede prodotto (oggi nascoste sul sito)
+
+25. Twistabile: dimensioni di WR-51 (TLFX-180) e codici TLFX di WR-34 e WR-159. ______
+26. Twistabile: raggio minimo di curvatura e torsione massima per misura. ______
+27. Twistabile WR-22: vale ancora il limite di lunghezza di 3 piedi? **sì / no**
+28. Flange disponibili per ogni misura (il configuratore propone UBR, PBR, PDR, UDR e CPR): giusto? **sì / no**
+29. Materiale delle flange. ______  Guarnizioni e rivestimento esterno: ci sono? di che materiale? ______
+30. Seamless: VSWR, attenuazione e potenze di WR-34 e WR-159; come si piega (piani E e H, torsione) e raggio minimo; materiale di corpo e guaina. ______
+31. Curve, twist e disassati: raggio minimo nei piani E e H, spessore di parete, VSWR e perdite tipiche, materiale della guida rigida (ottone? rame? alluminio?). ______
+32. Twist: lunghezza standard per ogni misura. ______
+33. Disassati: disassamento minimo e massimo per misura. Oggi il disassato **non compare** in home e in /prodotti perché nel catalogo non ha nessuna misura confermata. ______

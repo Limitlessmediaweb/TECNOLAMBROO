@@ -3,18 +3,18 @@
     "siteName": "Tecnolambro Microwave Components",
     "home": {
       "title": "Guide d’onda flessibili e componenti | Tecnolambro",
-      "description": "Guida d’onda flessibile twistabile e seamless, curve, twist e disassati. Progettiamo, costruiamo e collaudiamo dal 1987. Preventivo entro %quoteTime%."
+      "description": "Guida d’onda flessibile twistabile e seamless, curve, twist e disassati. Progettiamo, costruiamo e collaudiamo dal 1987. Preventivo in %quoteTime%."
     },
     "products": {
       "title": "Prodotti in guida d’onda flessibile | Tecnolambro",
-      "description": "Guida d’onda flessibile twistabile e seamless da WR-22 a WR-284, curve, twist e disassati su richiesta. Tabelle tecniche e preventivo entro %quoteTime%."
+      "description": "Guida d’onda flessibile twistabile e seamless da WR-22 a WR-284, curve, twist e disassati su richiesta. Tabelle tecniche e preventivo in %quoteTime%."
     },
     "family": {
       "title": "{name} | Tecnolambro"
     },
     "custom": {
       "title": "Componenti a microonde su disegno | Tecnolambro",
-      "description": "Inviate il disegno in PDF, DWG, DXF, STEP, IGES o STL: progettiamo, costruiamo e collaudiamo il pezzo. Preventivo entro %quoteTime%."
+      "description": "Inviate il disegno in PDF, DWG, DXF, STEP, IGES o STL: progettiamo, costruiamo e collaudiamo il pezzo. Preventivo in %quoteTime%."
     },
     "about": {
       "title": "Dal 1987 a Miradolo Terme | Tecnolambro",
@@ -26,7 +26,7 @@
     },
     "contact": {
       "title": "Contatti e preventivi | Tecnolambro",
-      "description": "Richiedi un preventivo per guide d’onda e componenti a microonde: risposta entro %quoteTime%. %phone%, info@tecnolambro.it, Miradolo Terme (PV)."
+      "description": "Richiedi un preventivo per guide d’onda e componenti a microonde: risposta in %quoteTime%. %phone%, info@tecnolambro.it, Miradolo Terme (PV)."
     },
     "faq": {
       "title": "Domande frequenti | Tecnolambro",
@@ -50,7 +50,7 @@
     },
     "shop": {
       "title": "Configura il tuo pezzo in guida d’onda | Tecnolambro",
-      "description": "Componi la guida d’onda flessibile: misura, lunghezza e flange, con disegno quotato e modello 3D. Prezzi su richiesta, preventivo entro %quoteTime%."
+      "description": "Componi la guida d’onda flessibile: misura, lunghezza e flange, con disegno quotato e modello 3D. Prezzi su richiesta, preventivo in %quoteTime%."
     },
     "tables": {
       "title": "Tabelle tecniche guida d’onda flessibile | Tecnolambro",
@@ -66,7 +66,7 @@
     },
     "treatments": {
       "title": "Trattamenti superficiali | Tecnolambro",
-      "description": "I trattamenti superficiali che eseguiamo sulle guide d’onda e i pezzi su cui si fanno. Preventivo entro %quoteTime%.",
+      "description": "I trattamenti superficiali che eseguiamo sulle guide d’onda e i pezzi su cui si fanno. Preventivo in %quoteTime%.",
       "itemTitle": "{name} | Trattamenti Tecnolambro",
       "itemDescription": "{name}: che cos’è, a cosa serve e su quali materiali si fa. Chiedete informazioni a Tecnolambro."
     },
@@ -78,7 +78,7 @@
     },
     "configurator3d": {
       "title": "Configuratore 3D di guide d’onda | Tecnolambro",
-      "description": "Configura la tua guida d’onda in 7 passi con il modello 3D: tipo, misura WR, flange, lunghezza e finitura. Nessun prezzo online, preventivo entro %quoteTime%."
+      "description": "Configura la tua guida d’onda in 7 passi con il modello 3D: tipo, misura WR, flange, lunghezza e finitura. Nessun prezzo online, preventivo in %quoteTime%."
     }
   },
   "nav": {
@@ -108,7 +108,8 @@
     "tables": "Tabelle tecniche",
     "call": "Chiama",
     "treatments": "Trattamenti",
-    "catalog": "Catalogo"
+    "catalog": "Catalogo",
+    "configurator": "Configuratore 3D"
   },
   "common": {
     "demoBadge": "Versione demo",
@@ -157,7 +158,7 @@
     "factFlexValue": "100%",
     "factFlex": "Pezzi collaudati prima della spedizione",
     "factReplyValue": "%quoteTimeShort%",
-    "factReply": "Preventivo entro %quoteTime%",
+    "factReply": "Preventivo in %quoteTime%",
     "cta": "Scopri l’azienda"
   },
   "productsSection": {
@@ -332,12 +333,12 @@
       "tableTitle": "Caratteristiche tecniche",
       "tablesLink": "Tutte le tabelle tecniche",
       "onRequestTitle": "Su richiesta o su disegno",
-      "onRequestBody": "Indicate tipo di pezzo, misura, angolo o disassamento e flange, oppure caricate il disegno: vi mandiamo il preventivo entro %quoteTime%.",
+      "onRequestBody": "Indicate tipo di pezzo, misura, angolo o disassamento e flange, oppure caricate il disegno: vi mandiamo il preventivo in %quoteTime%.",
       "applicationsTitle": "Dove si usa",
       "quoteTitle": "Serve una misura o una versione diversa?",
-      "quoteBody": "Indicate misura, lunghezza, flange e quantità: preventivo entro %quoteTime%. Prezzi su richiesta: ogni preventivo è personalizzato.",
+      "quoteBody": "Indicate misura, lunghezza, flange e quantità: preventivo in %quoteTime%. Prezzi su richiesta: ogni preventivo è personalizzato.",
       "shopTitle": "Configura il tuo pezzo",
-      "shopBody": "Misura, lunghezza e flange: disegno quotato e modello 3D subito, preventivo entro %quoteTime%.",
+      "shopBody": "Misura, lunghezza e flange: disegno quotato e modello 3D subito, preventivo in %quoteTime%.",
       "others": "Altre famiglie",
       "demoTitle": "Il pezzo in 3D",
       "demoBody": "Il pezzo standard in WR-90: ruotalo, guarda le quote e il disegno, poi personalizzalo nel configuratore.",
@@ -387,15 +388,15 @@
       },
       {
         "title": "Produzione",
-        "body": "Taglio, fresatura, tornitura, assemblaggio e giunzione: guida flessibile twistabile e seamless, curve, twist e disassati di produzione propria."
+        "body": "Taglio, fresatura, tornitura, assemblaggio e giunzione nella nostra officina."
       },
       {
-        "title": "Trattamenti",
-        "body": "Brillantatura, verniciatura, trattamenti termici e galvanici, con fornitori storici e selezionati, noti per la loro affidabilità e professionalità."
+        "title": "Finiture",
+        "body": "Brillantatura, verniciatura, trattamenti galvanici e termici secondo disegno."
       },
       {
         "title": "Collaudo finale al 100%",
-        "body": "Collaudiamo il 100% dei pezzi prima della spedizione."
+        "body": "Controllo elettrico e dimensionale su ogni pezzo prima della spedizione."
       }
     ]
   },
@@ -442,7 +443,7 @@
     "title": "Configura il pezzo, richiedi il preventivo.",
     "body": "Scegli tipo, misura, lunghezza e flange: vedi subito il disegno quotato e il modello 3D. Prezzi su richiesta: ogni preventivo è personalizzato.",
     "points": [
-      "Preventivo entro %quoteTime%",
+      "Preventivo in %quoteTime%",
       "Disegno PDF e modello 3D da scaricare",
       "Spedizione in tutto il mondo"
     ],
@@ -500,7 +501,7 @@
       },
       "shopVsQuote": {
         "q": "Posso acquistare online?",
-        "a": "No: ogni ordine parte da una richiesta di preventivo, perché i prezzi sono personalizzati. Configurate il pezzo o sceglietelo tra i prodotti pronti, aggiungete quantità e note e inviate la richiesta: rispondiamo entro %quoteTime%."
+        "a": "No: ogni ordine parte da una richiesta di preventivo, perché i prezzi sono personalizzati. Configurate il pezzo o sceglietelo tra i prodotti pronti, aggiungete quantità e note e inviate la richiesta: rispondiamo in %quoteTime%."
       },
       "drawing3d": {
         "q": "Fornite il disegno 3D?",
@@ -508,7 +509,7 @@
       },
       "clientDrawing": {
         "q": "Lavorate su disegno del cliente?",
-        "a": "Sì. Caricate STEP, IGES, STL, PDF, DWG o DXF nella richiesta di preventivo: l’ufficio tecnico lo valuta e vi risponde entro %quoteTimeWorking%."
+        "a": "Sì. Caricate STEP, IGES, STL, PDF, DWG o DXF nella richiesta di preventivo: l’ufficio tecnico lo valuta e vi risponde in %quoteTimeWorking%."
       },
       "hours": {
         "q": "Quali sono gli orari dell’ufficio?",
@@ -518,7 +519,7 @@
   },
   "quote": {
     "title": "Mandateci il disegno.",
-    "body": "Due righe e, se lo avete, il file: vi rispondiamo con il preventivo entro %quoteTimeWorking%.",
+    "body": "Due righe e, se lo avete, il file: vi rispondiamo con il preventivo in %quoteTimeWorking%.",
     "formLabel": "Richiesta di preventivo",
     "required": "obbligatorio",
     "optional": "facoltativo",
@@ -568,7 +569,7 @@
     "catalogPrefilled": "Codice {code} aggiunto al messaggio."
   },
   "finalCta": {
-    "title": "Preventivo entro %quoteTime%.",
+    "title": "Preventivo in %quoteTime%.",
     "body": "Prezzi su richiesta: ogni preventivo è personalizzato.",
     "quote": "Richiedi un preventivo",
     "shop": "Configura il tuo pezzo"
@@ -613,9 +614,9 @@
     "formatsTitle": "Formati accettati",
     "formatsBody": "PDF per disegni quotati, DWG e DXF per il 2D, STEP, IGES e STL per i modelli 3D.",
     "timeTitle": "Tempi",
-    "timeBody": "Preventivo entro %quoteTime%: tempi e modalità di consegna li stabiliamo nel preventivo.",
+    "timeBody": "Preventivo in %quoteTime%: tempi e modalità di consegna li stabiliamo nel preventivo.",
     "testTitle": "Collaudo",
-    "testBody": "Collaudiamo il 100% dei pezzi prima della spedizione.",
+    "testBody": "Ogni pezzo su misura passa il collaudo elettrico e dimensionale prima di partire.",
     "stepsTitle": "Dal disegno al pezzo",
     "formTitle": "Inviate il disegno"
   },
@@ -623,9 +624,7 @@
     "title": "Dal 1987, guide d’onda di produzione propria.",
     "intro": "Tecnolambro progetta, costruisce e collauda componenti meccanici a microonde e dispositivi in guida d’onda. È nata nel 1987 e lavora in collaborazione con le più grandi aziende di telecomunicazioni.",
     "productionTitle": "Produzione",
-    "productionBody": "Un sistema produttivo autonomo, con magazzino di materie prime e di manufatti: taglio, fresatura, tornitura, assemblaggio e giunzione. La guida d’onda flessibile twistabile e seamless è di nostra produzione.",
-    "treatmentsTitle": "Trattamenti",
-    "treatmentsBody": "Brillantatura, verniciatura, trattamenti termici e galvanici, con fornitori storici e selezionati, noti per la loro affidabilità e professionalità.",
+    "productionBody": "Taglio, fresatura, tornitura, assemblaggio e giunzione. La guida d’onda flessibile twistabile e seamless è di nostra produzione.",
     "labTitle": "Collaudo finale al 100%",
     "labBody": "Collaudiamo il 100% dei pezzi prima della spedizione, con controllo elettrico e dimensionale su ogni pezzo.",
     "officeTitle": "Progettazione",
@@ -634,10 +633,48 @@
     "operational": "Sede operativa e produzione",
     "legal": "Sede legale",
     "mapLink": "Apri in Google Maps",
-    "historyTitle": "Storia",
-    "imageAlt": "Modello 3D di una guida d’onda flessibile twistabile Tecnolambro",
-    "processLabel": "Come lavoriamo",
-    "workshopAlt": "L’officina Tecnolambro a Miradolo Terme"
+    "familyTitle": "Un'azienda di famiglia",
+    "familyBody": "Un'azienda guidata dalla famiglia Pasquini, con l'officina a Miradolo Terme, in provincia di Pavia.",
+    "familyBody2": "Chi ordina parla direttamente con chi progetta e costruisce il pezzo.",
+    "workshopTitle": "Officina e lavorazioni",
+    "workshopBody": "Tutto il ciclo è interno, dal disegno al collaudo: così teniamo sotto controllo qualità e tempi.",
+    "stockTitle": "Magazzino",
+    "stockBody": "Materie prime e semilavorati a magazzino per partire subito con la produzione.",
+    "qualityTitle": "Qualità certificata",
+    "qualityBody": "Sistema di gestione per la qualità ISO 9001:2015 e sistema di gestione ambientale ISO 14001:2015.",
+    "testBody": "Ogni pezzo viene controllato prima della spedizione, con verifica elettrica e dimensionale.",
+    "finishTitle": "Finiture e trattamenti",
+    "finishBody": "Le finiture si scelgono anche nel configuratore 3D. I trattamenti esterni li affidiamo a fornitori storici e selezionati.",
+    "finishes": [
+      {
+        "name": "Brillantatura",
+        "text": "Ottone lucidato a specchio."
+      },
+      {
+        "name": "Verniciatura",
+        "text": "Colore a richiesta del cliente."
+      },
+      {
+        "name": "Trattamenti galvanici",
+        "text": "Argentatura per ridurre le perdite, stagnatura protettiva e passivazione Surtec 650."
+      },
+      {
+        "name": "Trattamenti termici",
+        "text": "Eseguiti da fornitori qualificati, sul ciclo indicato a disegno."
+      }
+    ],
+    "photos": {
+      "site": "La sede di Miradolo Terme",
+      "siteAlt": "Esterno della sede Tecnolambro a Miradolo Terme",
+      "cnc": "Fresatura CNC",
+      "cncAlt": "Fresatura CNC di un componente in guida d’onda",
+      "flanges": "Montaggio delle flange",
+      "flangesAlt": "Montaggio delle flange su una guida d’onda",
+      "stock": "Magazzino materie prime",
+      "stockAlt": "Magazzino di materie prime e semilavorati",
+      "test": "Collaudo finale",
+      "testAlt": "Collaudo di un componente in guida d’onda"
+    }
   },
   "qualityPage": {
     "title": "Qualità e certificazioni",
@@ -659,7 +696,7 @@
   },
   "contactPage": {
     "title": "Contatti e preventivi",
-    "intro": "Scriveteci, chiamateci o inviate direttamente il disegno. Preventivo entro %quoteTime%.",
+    "intro": "Scriveteci, chiamateci o inviate direttamente il disegno. Preventivo in %quoteTime%.",
     "hoursTitle": "Orari",
     "company": "Dati societari"
   },
@@ -836,13 +873,13 @@
   },
   "shop": {
     "title": "Configura il tuo pezzo",
-    "intro": "Hai la misura? Componi il pezzo e vedilo in 3D. Hai un disegno? Caricalo. Niente prezzi online: il preventivo personalizzato arriva entro %quoteTime%.",
+    "intro": "Hai la misura? Componi il pezzo e vedilo in 3D. Hai un disegno? Caricalo. Niente prezzi online: il preventivo personalizzato arriva in %quoteTime%.",
     "breadcrumb": "Configura",
     "howTitle": "Come funziona",
     "how": [
       "Scegli o componi il pezzo",
       "Quantità e note",
-      "Invia: preventivo entro %quoteTime%"
+      "Invia: preventivo in %quoteTime%"
     ],
     "readyTitle": "Prodotti pronti",
     "readyBody": "Le misure standard: flessibili, curve E e H a 90° e twist a 90°. Aggiungile alla richiesta o personalizzale.",
@@ -1084,7 +1121,7 @@
     "notesTitle": "Note",
     "notesPlaceholder": "Es. pressurizzazione, finitura, consegna richiesta…",
     "customTitle": "Il tuo pezzo su disegno",
-    "customBody": "Descrivi il pezzo e carica il disegno o il modello 3D: lo valutiamo e ti mandiamo il preventivo entro %quoteTime%.",
+    "customBody": "Descrivi il pezzo e carica il disegno o il modello 3D: lo valutiamo e ti mandiamo il preventivo in %quoteTime%.",
     "customDescription": "Descrizione del pezzo",
     "customPlaceholder": "Es. curva piano H 45° con flange UG-39/U, uscita a 300 mm",
     "customDescriptionError": "Descrivi il pezzo in qualche parola.",
@@ -1128,7 +1165,7 @@
   },
   "request": {
     "title": "La tua richiesta",
-    "intro": "Controlla i pezzi, aggiungi quantità, note e file, poi invia: ti rispondiamo con il preventivo entro %quoteTimeWorking%.",
+    "intro": "Controlla i pezzi, aggiungi quantità, note e file, poi invia: ti rispondiamo con il preventivo in %quoteTimeWorking%.",
     "open": "La tua richiesta",
     "openWithCount": "La tua richiesta, {count} pezzi",
     "openWithOne": "La tua richiesta, 1 pezzo",
@@ -1204,13 +1241,13 @@
   },
   "requestSent": {
     "title": "Richiesta ricevuta.",
-    "body": "Vi rispondiamo con il preventivo entro %quoteTimeWorking%.",
+    "body": "Vi rispondiamo con il preventivo in %quoteTimeWorking%.",
     "number": "Numero di richiesta",
     "copy": "Vi abbiamo mandato una conferma per email con il riepilogo e i disegni dei pezzi configurati.",
     "nextTitle": "Cosa succede adesso",
     "next": [
       {
-        "title": "Preventivo entro %quoteTime%",
+        "title": "Preventivo in %quoteTime%",
         "body": "L’ufficio tecnico controlla i pezzi e i file e ti manda il preventivo personalizzato, con tempi e modalità di spedizione."
       },
       {
@@ -1272,7 +1309,7 @@
   "wrPage": {
     "title": "{wr} guida d’onda flessibile",
     "metaTitle": "{wr} guida d’onda flessibile {band} GHz | Tecnolambro",
-    "metaDescription": "Guida d’onda flessibile {wr} ({iec}, {wg}) per {band} GHz, twistabile e seamless: dimensioni, dati elettrici, flange. Preventivo entro %quoteTime%.",
+    "metaDescription": "Guida d’onda flessibile {wr} ({iec}, {wg}) per {band} GHz, twistabile e seamless: dimensioni, dati elettrici, flange. Preventivo in %quoteTime%.",
     "intro": "La guida d’onda flessibile {wr} ({iec} · {wg}) lavora da {band} GHz. La costruiamo twistabile e seamless, con le flange e la lunghezza che vi servono.",
     "category": "Guida d’onda flessibile",
     "configureTwistable": "Configura la twistabile",
@@ -1304,7 +1341,7 @@
     "flangesTitle": "Flange",
     "flangesBody": "Le flange IEC più comuni per questa misura. Altri tipi su richiesta: indicateli nelle note.",
     "ctaTitle": "Vi serve la {wr}?",
-    "ctaBody": "Mandateci misura, lunghezza e flange, oppure il disegno: il preventivo arriva entro %quoteTimeWorking%.",
+    "ctaBody": "Mandateci misura, lunghezza e flange, oppure il disegno: il preventivo arriva in %quoteTimeWorking%.",
     "neighbours": "Misure vicine",
     "lower": "Frequenza più bassa",
     "higher": "Frequenza più alta",
@@ -1404,7 +1441,9 @@
     "page": {
       "eyebrow": "Configuratore 3D",
       "title": "Configura la tua guida d’onda",
-      "intro": "Sette passi, un modello 3D che cambia a ogni scelta e le flange vere del catalogo Spinner. Alla fine ci mandi la richiesta: il preventivo lo facciamo noi."
+      "intro": "Sette passi, un modello 3D che cambia a ogni scelta e le flange standard IEC ed EIA. Alla fine ci mandi la richiesta: il preventivo lo facciamo noi, in 24/48 ore.",
+      "drawingTitle": "Hai un disegno? Caricalo",
+      "drawingText": "Se il pezzo non è a catalogo, descrivilo e allega il disegno o il modello 3D: entra nella stessa richiesta di preventivo, risposta in 24/48 ore."
     },
     "banner": {
       "title": "Nuovo: configuratore 3D in 7 passi",
@@ -1512,7 +1551,7 @@
       "other": "Altra flangia",
       "otherHint": "Scrivi la sigla nelle note dell’ultimo passo.",
       "same": "Uguale alla flangia 1",
-      "source": "Sigle e quote dal catalogo SPINNER TD-00077 per {size}.",
+      "source": "Sigle e quote secondo le norme IEC ed EIA per {size}.",
       "desc": "{w} × {h} mm · {n} fori Ø {d} · spessore {c} mm",
       "descRound": "Ø {w} mm · {n} fori · spessore {c} mm",
       "styles": {
@@ -1753,52 +1792,63 @@
   },
   "homeNext": {
     "products": {
-      "eyebrow": "La gamma",
-      "title": "Ogni pezzo della linea in guida d’onda",
-      "text": "Dal tratto rigido alla terminazione: le famiglie del catalogo Tecnolambro. Le misure indicate sono quelle del catalogo ufficiale.",
+      "eyebrow": "Prodotti",
+      "title": "Le famiglie di prodotto",
+      "text": "Misure WR e flange dal catalogo Tecnolambro. Ogni famiglia si configura in 3D o si chiede a preventivo.",
       "sizes": "{count, plural, one {# misura} other {# misure}}",
-      "tbc": "DA CONFERMARE",
-      "all": "Tutti i prodotti",
-      "open": "Scopri"
+      "all": "Tutti i prodotti"
     },
     "config": {
       "eyebrow": "Configuratore 3D",
-      "title": "Componi il pezzo, guardalo in 3D",
-      "text": "Scegli tipo, misura, flange, lunghezza e finitura: il modello si aggiorna a ogni scelta e alla fine scarichi il datasheet in PDF. Nessun prezzo online: la configurazione arriva a noi come richiesta di preventivo.",
-      "steps": [
-        "Tipo",
-        "Misura WR",
-        "Flangia 1 e 2",
-        "Lunghezza",
-        "Finitura",
-        "Quantità e note"
-      ],
-      "cta": "Configura il tuo pezzo",
-      "imgAlt": "Anteprima del configuratore: guida d’onda flessibile twistabile con le due flange, modello 3D",
-      "caption": "Anteprima dal configuratore"
+      "title": "Il vostro pezzo in 3D, prima di ordinarlo.",
+      "text": "Sette passi tra tipo, misura, flange, lunghezza e finitura: il modello cambia a ogni scelta e alla fine scaricate il datasheet in PDF.",
+      "cta": "Apri il configuratore",
+      "hint": "Trascinate per ruotare",
+      "imgAlt": "Guida d’onda flessibile twistabile WR-90 con le due flange, modello 3D del configuratore"
     },
-    "why": {
-      "eyebrow": "Perché Tecnolambro",
-      "title": "Costruiti in Italia, su misura",
-      "items": [
+    "custom": {
+      "eyebrow": "Su misura",
+      "title": "Non è a catalogo? Lo costruiamo dal vostro disegno.",
+      "text": "Caricate il file: l’ufficio tecnico lo verifica e vi risponde con il preventivo in %quoteTime%.",
+      "formatsLabel": "Formati accettati",
+      "cta": "Carica il disegno",
+      "more": "Come lavoriamo su misura"
+    },
+    "about": {
+      "eyebrow": "Chi siamo",
+      "title": "Un’azienda di famiglia, dal 1987.",
+      "text": "Progettiamo, costruiamo e collaudiamo guide d’onda e componenti a microonde nella nostra officina di Miradolo Terme (PV).",
+      "stats": [
         {
-          "title": "Produzione in Italia",
-          "text": "Progettiamo, costruiamo e collaudiamo in Italia, nella sede operativa di Miradolo Terme (PV)."
+          "value": "1987",
+          "label": "Dal 1987 a Miradolo Terme, azienda di famiglia"
         },
         {
-          "title": "Su misura",
-          "text": "Lunghezza, flange, angoli e finitura si scelgono pezzo per pezzo. Per una geometria fuori catalogo basta un disegno STEP, STL o PDF."
+          "value": "100%",
+          "label": "Collaudo al 100%: ogni pezzo è provato prima di partire"
         },
         {
-          "title": "Dal 1987",
-          "text": "Guide d’onda e componenti a microonde, con sistema di gestione certificato ISO 9001 e ISO 14001."
+          "value": "24/48 h",
+          "label": "Preventivo in %quoteTime%"
         }
       ],
-      "sectorsTitle": "Settori",
-      "sectors": [
+      "more": "L’azienda",
+      "photos": {
+        "cnc": "Lavorazione CNC",
+        "cncAlt": "Fresatura CNC di una curva in guida d’onda nell’officina Tecnolambro",
+        "flanges": "Montaggio delle flange",
+        "flangesAlt": "Guide d’onda flessibili con le flange montate",
+        "test": "Collaudo",
+        "testAlt": "Analizzatore di rete al banco di collaudo"
+      }
+    },
+    "sectors": {
+      "eyebrow": "Settori",
+      "title": "Dove lavorano i nostri pezzi",
+      "items": [
         {
           "title": "Radar",
-          "text": "Tratti rigidi, curve, twist e flessibili per collegare trasmettitore, antenna e ricevitore."
+          "text": "Tratti rigidi, curve, twist e flessibili tra trasmettitore, antenna e ricevitore."
         },
         {
           "title": "Telecomunicazioni",
@@ -1810,44 +1860,48 @@
         },
         {
           "title": "Industria",
-          "text": "Impianti e apparati a microonde. [DA CONFERMARE: applicazioni industriali da citare]"
-        }
-      ]
-    },
-    "process": {
-      "eyebrow": "Qualità e processo",
-      "title": "Come nasce un pezzo",
-      "steps": [
-        {
-          "title": "Richiesta",
-          "text": "Ci mandate la configurazione, un codice a catalogo o un disegno. Il preventivo arriva in %quoteTime%."
-        },
-        {
-          "title": "Disegno",
-          "text": "L’ufficio tecnico verifica misure, flange e tolleranze e prepara il disegno costruttivo."
-        },
-        {
-          "title": "Produzione",
-          "text": "Lavorazioni meccaniche, guida rigida o flessibile, montaggio delle flange e finitura scelta."
-        },
-        {
-          "title": "Collaudo",
-          "text": "Ogni pezzo è collaudato prima di partire. [DA CONFERMARE: misure eseguite e strumenti]"
-        },
-        {
-          "title": "Spedizione",
-          "text": "Imballo e spedizione in Italia e all’estero. [DA CONFERMARE: tempi di consegna tipici]"
+          "text": "Impianti e apparati a microonde, in serie o su disegno del cliente."
         }
       ]
     },
     "cta": {
       "eyebrow": "Preventivo",
       "title": "Avete un pezzo in mente?",
-      "text": "Mandateci la configurazione o il disegno: il preventivo arriva in %quoteTime%.",
+      "text": "Mandateci la configurazione, il codice o il disegno: il preventivo arriva in %quoteTime%.",
       "quote": "Richiedi un preventivo",
       "contacts": "Tutti i contatti",
-      "phone": "Telefono",
+      "phone": "Cellulare",
       "email": "Email"
+    }
+  },
+  "productsPage": {
+    "intro": "Le famiglie del catalogo Tecnolambro con le misure disponibili. Configurate il pezzo in 3D o chiedeteci il preventivo: risposta in %quoteTime%.",
+    "indexLabel": "Famiglie di prodotto",
+    "sizes": "{count, plural, one {# misura} other {# misure}}",
+    "configure": "Configura",
+    "quote": "Chiedi preventivo",
+    "familyPage": "Scheda completa: {name}",
+    "tableLabel": "{name}: misure, codici e flange",
+    "colSize": "Misura",
+    "colCode": "Codice",
+    "colFlanges": "Flange",
+    "plane": "piano {plane}",
+    "dimsTitle": "Dimensioni WR",
+    "dimsText": "Dimensioni interne ed esterne della guida d’onda e banda di frequenza, misura per misura.",
+    "customTitle": "Il pezzo che cercate non c’è?",
+    "customText": "Lo costruiamo dal vostro disegno: STEP, IGES, STL, PDF, DWG o DXF.",
+    "customCta": "Su misura",
+    "families": {
+      "straight": "Guida d’onda rigida dritta, con le flange alle due estremità e la lunghezza che vi serve.",
+      "twistable": "Si piega e si torce: collega flange non allineate o ruotate tra loro.",
+      "seamless": "Flessibile senza saldature, con guaina: per collegamenti che devono piegarsi.",
+      "bend": "Curve in piano E o H, a 90° o con l’angolo richiesto.",
+      "twist": "Ruota il piano di polarizzazione tra le due flange.",
+      "offset": "Collega due flange parallele ma sfalsate.",
+      "transition": "Passaggio tra due misure WR vicine.",
+      "termination": "Carico che chiude la linea su una sola flangia.",
+      "pressure": "Tronchetto con ingresso aria per pressurizzare la linea.",
+      "spacer": "Spessore sottile da montare tra due flange."
     }
   }
 }

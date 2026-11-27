@@ -108,7 +108,8 @@
     "tables": "技术参数表",
     "call": "致电",
     "treatments": "表面处理",
-    "catalog": "产品目录"
+    "catalog": "产品目录",
+    "configurator": "3D配置器"
   },
   "common": {
     "demoBadge": "演示版",
@@ -382,20 +383,20 @@
     "title": "我们的工作流程。",
     "steps": [
       {
-        "title": "设计",
-        "body": "从您的图纸或技术规范到元件的详细设计。"
+        "title": "Design",
+        "body": "From your drawing or specification to the manufacturing design of the part."
       },
       {
-        "title": "生产",
-        "body": "切割、铣削、车削、装配和连接：可扭转软波导和无缝软波导、弯波导、扭波导和偏移波导均为自主生产。"
+        "title": "Production",
+        "body": "Cutting, milling, turning, assembly and joining in our own workshop."
       },
       {
-        "title": "表面处理",
-        "body": "光亮处理、喷漆、热处理和电镀处理，由长期合作、以可靠和专业著称的精选供应商完成。"
+        "title": "Finishing",
+        "body": "Polishing, painting, galvanic and heat treatments to drawing."
       },
       {
-        "title": "100%终检",
-        "body": "我们在发货前对100%的部件进行检测。"
+        "title": "100% final test",
+        "body": "Electrical and dimensional inspection on every part before shipping."
       }
     ]
   },
@@ -615,7 +616,7 @@
     "timeTitle": "时间",
     "timeBody": "%quoteTime%内报价：交货时间和方式在报价中确定。",
     "testTitle": "检测",
-    "testBody": "我们在发货前对100%的部件进行检测。",
+    "testBody": "Every custom part passes electrical and dimensional testing before it ships.",
     "stepsTitle": "从图纸到部件",
     "formTitle": "发送您的图纸"
   },
@@ -623,9 +624,7 @@
     "title": "自1987年起，自主生产波导。",
     "intro": "Tecnolambro 设计、制造和检测微波机械元件及波导器件。公司成立于1987年，与各大电信企业合作。",
     "productionTitle": "生产",
-    "productionBody": "独立的生产体系，备有原材料和成品库存：切割、铣削、车削、装配和连接。可扭转软波导和无缝软波导均为我们自主生产。",
-    "treatmentsTitle": "表面处理",
-    "treatmentsBody": "光亮处理、喷漆、热处理和电镀处理，由长期合作、以可靠和专业著称的精选供应商完成。",
+    "productionBody": "Cutting, milling, turning, assembly and joining. Our twistable and seamless flexible waveguide is made in-house.",
     "labTitle": "100%终检",
     "labBody": "我们在发货前对100%的部件进行检测，每个部件均经过电气及尺寸检验。",
     "officeTitle": "设计",
@@ -634,10 +633,48 @@
     "operational": "工厂及生产",
     "legal": "注册地址",
     "mapLink": "在 Google 地图中打开",
-    "historyTitle": "发展历程",
-    "imageAlt": "Tecnolambro 可扭转软波导3D模型",
-    "processLabel": "工作流程",
-    "workshopAlt": "Tecnolambro 位于 Miradolo Terme 的车间"
+    "familyTitle": "A family company",
+    "familyBody": "A company run by the Pasquini family, with its workshop in Miradolo Terme, near Pavia, Italy.",
+    "familyBody2": "Whoever orders talks directly to the people who design and build the part.",
+    "workshopTitle": "Workshop and processes",
+    "workshopBody": "The whole cycle is in-house, from drawing to final test, so quality and lead times stay under our control.",
+    "stockTitle": "Stock",
+    "stockBody": "Raw materials and semi-finished parts in stock, so production can start straight away.",
+    "qualityTitle": "Certified quality",
+    "qualityBody": "ISO 9001:2015 quality management system and ISO 14001:2015 environmental management system.",
+    "testBody": "Every part is checked before shipping, with electrical and dimensional inspection.",
+    "finishTitle": "Finishes and treatments",
+    "finishBody": "Finishes can also be chosen in the 3D configurator. External treatments are entrusted to long-standing, selected suppliers.",
+    "finishes": [
+      {
+        "name": "Polishing",
+        "text": "Mirror-polished brass."
+      },
+      {
+        "name": "Painting",
+        "text": "Colour to customer specification."
+      },
+      {
+        "name": "Galvanic treatments",
+        "text": "Silver plating to reduce losses, protective tin plating and Surtec 650 passivation."
+      },
+      {
+        "name": "Heat treatments",
+        "text": "Carried out by qualified suppliers, to the cycle given on the drawing."
+      }
+    ],
+    "photos": {
+      "site": "Our site in Miradolo Terme",
+      "siteAlt": "Outside the Tecnolambro site in Miradolo Terme",
+      "cnc": "CNC milling",
+      "cncAlt": "CNC milling of a waveguide component",
+      "flanges": "Flange assembly",
+      "flangesAlt": "Assembling flanges on a waveguide",
+      "stock": "Raw material stock",
+      "stockAlt": "Stock of raw materials and semi-finished parts",
+      "test": "Final test",
+      "testAlt": "Testing a waveguide component"
+    }
   },
   "qualityPage": {
     "title": "质量与认证",
@@ -1404,7 +1441,9 @@
     "page": {
       "eyebrow": "3D 配置器",
       "title": "配置您的波导",
-      "intro": "七个步骤，3D 模型随每次选择实时变化，法兰取自 Spinner 目录的真实数据。最后把询价发给我们，由我们为您报价。"
+      "intro": "七个步骤，3D 模型随每次选择实时变化，采用 IEC 和 EIA 标准法兰。最后把询价发给我们，我们在 24/48 小时内报价。",
+      "drawingTitle": "有图纸？请上传",
+      "drawingText": "如果零件不在目录中，请描述并附上图纸或 3D 模型：它将加入同一份询价，24/48 小时内回复。"
     },
     "banner": {
       "title": "全新：7 步 3D 配置器",
@@ -1512,7 +1551,7 @@
       "other": "其他法兰",
       "otherHint": "请在最后一步的备注中写明型号。",
       "same": "与法兰 1 相同",
-      "source": "型号和尺寸取自 SPINNER TD-00077 目录，适用于 {size}。",
+      "source": "型号和尺寸符合 IEC 和 EIA 标准，适用于 {size}。",
       "desc": "{w} × {h} mm · {n} 孔 Ø {d} · 厚度 {c} mm",
       "descRound": "Ø {w} mm · {n} 孔 · 厚度 {c} mm",
       "styles": {
@@ -1753,52 +1792,63 @@
   },
   "homeNext": {
     "products": {
-      "eyebrow": "The range",
-      "title": "Every piece of the waveguide line",
-      "text": "From straight sections to terminations: the families of the Tecnolambro catalogue. Sizes shown are those in the official catalogue.",
+      "eyebrow": "Products",
+      "title": "Product families",
+      "text": "WR sizes and flanges from the Tecnolambro catalogue. Every family can be configured in 3D or quoted on request.",
       "sizes": "{count, plural, one {# size} other {# sizes}}",
-      "tbc": "TO BE CONFIRMED",
-      "all": "All products",
-      "open": "Explore"
+      "all": "All products"
     },
     "config": {
       "eyebrow": "3D configurator",
-      "title": "Build the part, see it in 3D",
-      "text": "Choose type, size, flanges, length and finish: the model updates with every choice and at the end you download the PDF datasheet. No prices online: the configuration reaches us as a quote request.",
-      "steps": [
-        "Type",
-        "WR size",
-        "Flange 1 and 2",
-        "Length",
-        "Finish",
-        "Quantity and notes"
-      ],
-      "cta": "Configure your part",
-      "imgAlt": "Configurator preview: twistable flexible waveguide with both flanges, 3D model",
-      "caption": "Preview from the configurator"
+      "title": "Your part in 3D, before you order it.",
+      "text": "Seven steps through type, size, flanges, length and finish: the model changes with every choice and at the end you download the PDF datasheet.",
+      "cta": "Open the configurator",
+      "hint": "Drag to rotate",
+      "imgAlt": "WR-90 twistable flexible waveguide with both flanges, 3D model from the configurator"
     },
-    "why": {
-      "eyebrow": "Why Tecnolambro",
-      "title": "Built in Italy, made to measure",
-      "items": [
+    "custom": {
+      "eyebrow": "Custom-built",
+      "title": "Not in the catalogue? We build it from your drawing.",
+      "text": "Upload the file: our engineering office checks it and replies with a quotation in %quoteTime%.",
+      "formatsLabel": "Accepted formats",
+      "cta": "Upload your drawing",
+      "more": "How custom work goes"
+    },
+    "about": {
+      "eyebrow": "About us",
+      "title": "A family company, since 1987.",
+      "text": "We design, build and test waveguides and microwave components in our own workshop in Miradolo Terme (PV), Italy.",
+      "stats": [
         {
-          "title": "Made in Italy",
-          "text": "We design, build and test in Italy, at our operational site in Miradolo Terme (PV)."
+          "value": "1987",
+          "label": "A family company in Miradolo Terme since 1987"
         },
         {
-          "title": "Made to measure",
-          "text": "Length, flanges, angles and finish are chosen part by part. For a geometry outside the catalogue, a STEP, STL or PDF drawing is enough."
+          "value": "100%",
+          "label": "100% tested: every part is checked before it ships"
         },
         {
-          "title": "Since 1987",
-          "text": "Waveguides and microwave components, with an ISO 9001 and ISO 14001 certified management system."
+          "value": "24/48 h",
+          "label": "Quotation in %quoteTime%"
         }
       ],
-      "sectorsTitle": "Sectors",
-      "sectors": [
+      "more": "The company",
+      "photos": {
+        "cnc": "CNC machining",
+        "cncAlt": "CNC milling of a waveguide bend in the Tecnolambro workshop",
+        "flanges": "Flange assembly",
+        "flangesAlt": "Flexible waveguides with flanges fitted",
+        "test": "Testing",
+        "testAlt": "Network analyser on the test bench"
+      }
+    },
+    "sectors": {
+      "eyebrow": "Sectors",
+      "title": "Where our parts work",
+      "items": [
         {
           "title": "Radar",
-          "text": "Straight sections, bends, twists and flexibles linking transmitter, antenna and receiver."
+          "text": "Rigid sections, bends, twists and flexibles between transmitter, antenna and receiver."
         },
         {
           "title": "Telecommunications",
@@ -1810,44 +1860,48 @@
         },
         {
           "title": "Industry",
-          "text": "Microwave systems and equipment. [TO BE COMPLETED: industrial applications to list]"
-        }
-      ]
-    },
-    "process": {
-      "eyebrow": "Quality and process",
-      "title": "How a part is made",
-      "steps": [
-        {
-          "title": "Request",
-          "text": "Send us the configuration, a catalogue code or a drawing. The quote arrives within %quoteTime%."
-        },
-        {
-          "title": "Drawing",
-          "text": "Our engineering office checks sizes, flanges and tolerances and prepares the manufacturing drawing."
-        },
-        {
-          "title": "Production",
-          "text": "Machining, rigid or flexible waveguide, flange assembly and the chosen finish."
-        },
-        {
-          "title": "Testing",
-          "text": "Every part is tested before it ships. [TO BE COMPLETED: tests performed and instruments]"
-        },
-        {
-          "title": "Shipping",
-          "text": "Packing and shipping in Italy and abroad. [TO BE COMPLETED: typical lead times]"
+          "text": "Microwave plants and equipment, in series or to the customer’s drawing."
         }
       ]
     },
     "cta": {
-      "eyebrow": "Quote",
+      "eyebrow": "Quotation",
       "title": "Have a part in mind?",
-      "text": "Send us the configuration or the drawing: the quote arrives within %quoteTime%.",
-      "quote": "Request a quote",
+      "text": "Send us the configuration, the code or the drawing: the quotation arrives in %quoteTime%.",
+      "quote": "Request a quotation",
       "contacts": "All contacts",
-      "phone": "Phone",
+      "phone": "Mobile",
       "email": "Email"
+    }
+  },
+  "productsPage": {
+    "intro": "The families in the Tecnolambro catalogue with the sizes available. Configure the part in 3D or ask us for a quotation: reply in %quoteTime%.",
+    "indexLabel": "Product families",
+    "sizes": "{count, plural, one {# size} other {# sizes}}",
+    "configure": "Configure",
+    "quote": "Request a quotation",
+    "familyPage": "Full page: {name}",
+    "tableLabel": "{name}: sizes, codes and flanges",
+    "colSize": "Size",
+    "colCode": "Code",
+    "colFlanges": "Flanges",
+    "plane": "{plane}-plane",
+    "dimsTitle": "WR dimensions",
+    "dimsText": "Internal and external waveguide dimensions and frequency band, size by size.",
+    "customTitle": "Can’t find the part you need?",
+    "customText": "We build it from your drawing: STEP, IGES, STL, PDF, DWG or DXF.",
+    "customCta": "Custom-built",
+    "families": {
+      "straight": "Straight rigid waveguide with flanges at both ends, in the length you need.",
+      "twistable": "Bends and twists: connects flanges that are misaligned or rotated.",
+      "seamless": "Seamless flexible waveguide with jacket, for links that need to bend.",
+      "bend": "E-plane or H-plane bends, at 90° or at the angle you need.",
+      "twist": "Rotates the polarisation plane between the two flanges.",
+      "offset": "Connects two parallel but offset flanges.",
+      "transition": "Transition between two adjacent WR sizes.",
+      "termination": "Load that closes the line on a single flange.",
+      "pressure": "Short section with air inlet to pressurise the line.",
+      "spacer": "Thin shim fitted between two flanges."
     }
   }
 }

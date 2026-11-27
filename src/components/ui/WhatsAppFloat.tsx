@@ -42,10 +42,10 @@ export function WhatsAppFloat() {
       rel="noopener"
       aria-label={t("whatsappLabel")}
       data-area="whatsapp_float"
-      className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-4 z-40 grid size-12 place-items-center rounded-full bg-accent text-on-accent shadow-[0_6px_20px_var(--c-shadow)] transition-transform active:scale-95 lg:hidden"
+      className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-3 z-40 grid size-10 place-items-center rounded-full bg-accent text-on-accent shadow-[0_6px_20px_var(--c-shadow)] transition-transform active:scale-95 lg:hidden"
       data-whatsapp-float
     >
-      <MessageCircle aria-hidden="true" className="size-6" strokeWidth={1.75} />
+      <MessageCircle aria-hidden="true" className="size-5" strokeWidth={1.75} />
     </a>
   );
 }
