@@ -834,3 +834,14 @@ html:lang(zh) {
   opacity: 0.55;
 }
 
+
+/* Parole lunghe (es. composti tedeschi) nei titoli: vanno a capo invece di allargare la pagina sul telefono */
+h1,
+h2,
+h3,
+h4 {
+  overflow-wrap: break-word;
+}
+:lang(de) :is(h1, h2, h3, h4) {
+  hyphens: auto;
+}

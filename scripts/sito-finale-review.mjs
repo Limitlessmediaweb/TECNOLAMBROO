@@ -83,7 +83,7 @@ for (const run of RUNS.filter((r) => !only || only.includes(r.name))) {
       };
       for (const b of document.querySelectorAll("a.btn, button.btn, .sj-btn, button[type='submit']")) {
         if (!visible(b)) continue;
-        const hasSub = b.querySelector("small, .annot, .sj-btn-sub, span.block");
+        const hasSub = b.querySelector("small, .annot, .sj-btn-sub, .sj-btn-note, span.block");
         if (lines(b) > (hasSub ? 2 : 1)) out.push(`bottone su più righe: ${label(b)}`);
       }
       for (const el of document.querySelectorAll("h1, h2, h3, p, a, button, dt, dd, li, figcaption")) {
