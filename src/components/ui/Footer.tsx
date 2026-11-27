@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { LogoTecnolambro } from "@/components/ui/LogoTecnolambro";
 import { getLocale, getTranslations } from "next-intl/server";
 import { LocalLink as Link } from "@/components/ui/LocalLink";
 import type { StaticPathname } from "@/i18n/routing";
@@ -31,10 +31,8 @@ export async function Footer() {
           <Wordmark />
           <p className="mt-5 max-w-[34ch] text-sm text-muted">{t("tagline")}</p>
           <IsoBadges href={await localizedHref({ pathname: "/azienda", hash: "qualita" })} className="mt-4" />
-          {/* Logo originale (sfondo chiaro): presentato su una targhetta per restare leggibile in entrambi i temi */}
-          <div className="mt-6 inline-block rounded-sm bg-plate p-3 ring-1 ring-line">
-            <Image src="/brand/logo.png" alt={t("logoAlt")} width={541} height={197} sizes="216px" className="h-auto w-[216px]" />
-          </div>
+          {/* Logo vettoriale: nitido su retina, colori adattati al tema (chiaro sul fondo scuro) */}
+          <LogoTecnolambro title={t("logoAlt")} className="mt-6 w-[240px]" />
         </div>
 
         <nav aria-label={t("navTitle")} className="lg:col-span-2">
@@ -66,7 +64,7 @@ export async function Footer() {
               WhatsApp
             </a>
             <a href={`mailto:${COMPANY.pec}`} className="tap text-fg hover:text-accent">
-              <span className="text-muted">{t("pec")}</span> {COMPANY.pec}
+              <span className="mr-1.5 text-muted">{t("pec")}</span>{COMPANY.pec}
             </a>
             <span className="text-muted">
               {op.street}
