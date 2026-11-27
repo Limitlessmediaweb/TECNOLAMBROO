@@ -32,12 +32,25 @@ function SizeHead({ size }: { size: Size }) {
  * Tabelle tecniche ufficiali (twistabile, seamless, dimensioni) in tab accessibili.
  * Su telefono la tabella scorre di lato dentro il suo contenitore, con la misura fissa a sinistra.
  */
-export function SpecTables({ defaultTab = "twist", configurePath, familyNames, headingLevel = 2 }: { defaultTab?: TableTab; configurePath: string; familyNames: Record<string, string>; headingLevel?: 2 | 3 }) {
+export function SpecTables({
+  defaultTab = "twist",
+  only,
+  configurePath,
+  familyNames,
+  headingLevel = 2,
+}: {
+  defaultTab?: TableTab;
+  /** una sola tabella, senza le schede (pagina Prodotti: tabella dentro la famiglia) */
+  only?: TableTab;
+  configurePath: string;
+  familyNames: Record<string, string>;
+  headingLevel?: 2 | 3;
+}) {
   const t = useT("tables");
   const locale = useClientLocale();
   const uid = useId();
   const labels = useDrawingLabels();
-  const [tab, setTab] = useState<TableTab>(defaultTab);
+  const [tab, setTab] = useState<TableTab>(only ?? defaultTab);
   const [ghz, setGhz] = useState("");
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const H = `h${headingLevel}` as "h2" | "h3";
@@ -82,6 +95,7 @@ export function SpecTables({ defaultTab = "twist", configurePath, familyNames, h
   return (
     <div className="grid gap-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
+        {only ? <span /> : (
         <div role="tablist" aria-label={t("tabsLabel")} className="inline-flex flex-wrap rounded-full border border-line-strong p-1">
           {TABS.map((k, i) => (
             <button
@@ -103,6 +117,7 @@ export function SpecTables({ defaultTab = "twist", configurePath, familyNames, h
             </button>
           ))}
         </div>
+        )}
         <div className="field w-full max-w-[18rem]">
           <label htmlFor={`${uid}-ghz`} className="field-label flex items-center gap-2">
             <SlidersHorizontal aria-hidden="true" className="size-4 text-muted" strokeWidth={1.75} />
@@ -118,7 +133,7 @@ export function SpecTables({ defaultTab = "twist", configurePath, familyNames, h
         </div>
       </div>
 
-      <div id={`${uid}-panel-${tab}`} role="tabpanel" aria-labelledby={`${uid}-tab-${tab}`} tabIndex={0} className="grid gap-5 outline-none">
+      <div id={`${uid}-panel-${tab}`} role={only ? undefined : "tabpanel"} aria-labelledby={only ? undefined : `${uid}-tab-${tab}`} tabIndex={only ? undefined : 0} className="grid gap-5 outline-none">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <H className="text-display-s font-bold">{tab === "twist" ? t("captionTwist") : tab === "seamless" ? t("captionSeamless") : t("captionDims")}</H>
           {tab !== "dims" ? (

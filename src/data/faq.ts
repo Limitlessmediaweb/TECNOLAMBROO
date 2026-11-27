@@ -26,3 +26,6 @@ export const FAQ: readonly FaqItem[] = [
 export const SHOP_FAQ = ["shopVsQuote", "drawing3d", "files", "leadTime"] as const;
 
 export const FAQ_PREVIEW = FAQ.filter((f) => f.preview);
+
+/** Le 8 domande più utili, in fondo a /contatti (#faq): disegno, file, ordine, tempi, quantità, collaudo, prodotto, export. */
+export const CONTACT_FAQ = ["clientDrawing", "files", "shopVsQuote", "leadTime", "moq", "testing", "flexTwist", "shippingWorld"] as const;

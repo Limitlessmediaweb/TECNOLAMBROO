@@ -3,7 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { FileText, Gauge, Plug, Boxes, FileCode2, Clock, FlaskConical } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 import { pageMetadata, breadcrumbsFor } from "@/lib/page";
-import { Breadcrumbs, PageHeader, WithTodo } from "@/components/ui/Bits";
+import { Breadcrumbs, PageHeader } from "@/components/ui/Bits";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { SplitReveal } from "@/components/motion/SplitReveal";
 import { Stagger } from "@/components/motion/Stagger";
@@ -82,9 +82,7 @@ export default async function CustomPage({ params }: PageProps<"/[locale]/su-mis
             <div key={title} className="flex flex-col gap-4 bg-bg p-7 lg:p-10">
               <Icon aria-hidden="true" className="size-6 text-primary-ink" strokeWidth={1.5} />
               <h2 className="text-display-s font-bold">{title}</h2>
-              <p className="text-muted">
-                <WithTodo text={body} />
-              </p>
+              <p className="text-muted">{body}</p>
             </div>
           ))}
         </div>
