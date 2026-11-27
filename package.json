@@ -33,13 +33,13 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@vercel/analytics": "^2.0.1",
-    "@vercel/blob": "^2.8.2",
+    "@vercel/blob": "^2.9.0",
     "clsx": "^2.1.1",
     "gsap": "^3.15.0",
     "lucide-react": "^1.52.0",
-    "next": "16.4.1",
+    "next": "^16.4.6",
     "next-intl": "^4.14.9",
-    "nodemailer": "^10.1.1",
+    "nodemailer": "^10.6.1",
     "pdf-lib": "^1.17.1",
     "react": "19.3.1",
     "react-dom": "19.3.1",
@@ -56,7 +56,7 @@
     "axe-core": "^4.14.0",
     "esbuild": "^0.25.12",
     "eslint": "^9",
-    "eslint-config-next": "16.4.1",
+    "eslint-config-next": "^16.4.6",
     "lighthouse": "^13.5.0",
     "pdfjs-dist": "^6.4.299",
     "playwright": "^1.63.0",
@@ -69,5 +69,10 @@
     "@swc/core@1.16.13": true,
     "unrs-resolver@1.12.2": true,
     "@parcel/watcher@2.6.0": true
+  },
+  "overrides": {
+    "@vercel/cli-config": {
+      "zod": "^4.6.6"
+    }
   }
 }
