@@ -4,20 +4,15 @@ import { LocalLink as Link } from "@/components/ui/LocalLink";
 import type { StaticPathname } from "@/i18n/routing";
 import { COMPANY, ENV, whatsappHref } from "@/data/site";
 import { Wordmark } from "./Header";
-import { ShopLink, localizedHref } from "./TrackedLink";
+import { localizedHref } from "./TrackedLink";
 import { IsoBadges } from "@/components/sections/Certifications";
-import { HAS_CATALOG, HAS_TREATMENTS } from "@/lib/catalog";
 import { ConsentPreferencesLink } from "./CookieBanner";
 
 const SITE: { href: StaticPathname; key: string }[] = [
   { href: "/prodotti", key: "products" },
-  { href: "/prodotti/tabelle", key: "tables" },
-  ...(HAS_CATALOG ? [{ href: "/catalogo" as const, key: "catalog" }] : []),
+  { href: "/configuratore", key: "configurator" },
   { href: "/su-misura", key: "custom" },
-  ...(HAS_TREATMENTS ? [{ href: "/trattamenti" as const, key: "treatments" }] : []),
   { href: "/azienda", key: "about" },
-  { href: "/qualita", key: "quality" },
-  { href: "/faq", key: "faq" },
   { href: "/contatti", key: "contact" },
 ];
 
@@ -35,7 +30,7 @@ export async function Footer() {
         <div className="lg:col-span-4">
           <Wordmark />
           <p className="mt-5 max-w-[34ch] text-sm text-muted">{t("tagline")}</p>
-          <IsoBadges href={await localizedHref("/qualita")} className="mt-4" />
+          <IsoBadges href={await localizedHref({ pathname: "/azienda", hash: "qualita" })} className="mt-4" />
           {/* Logo originale (sfondo chiaro): presentato su una targhetta per restare leggibile in entrambi i temi */}
           <div className="mt-6 inline-block rounded-sm bg-plate p-3 ring-1 ring-line">
             <Image src="/brand/logo.png" alt={t("logoAlt")} width={541} height={197} sizes="216px" className="h-auto w-[216px]" />
@@ -52,11 +47,6 @@ export async function Footer() {
                 </Link>
               </li>
             ))}
-            <li>
-              <ShopLink source="footer" className="tap inline-flex items-center gap-1 text-fg/90 hover:text-accent">
-                {nav("shop")}
-              </ShopLink>
-            </li>
           </ul>
         </nav>
 

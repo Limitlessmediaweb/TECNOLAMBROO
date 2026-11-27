@@ -23,7 +23,7 @@ import { localizedHref, type Href } from "@/components/ui/TrackedLink";
 export async function BandFinderSection({ formOnPage = true }: { formOnPage?: boolean }) {
   const t = await getTranslations("bandFinder");
   const contactPath = await localizedHref("/contatti");
-  const configurePath = await localizedHref("/shop");
+  const configurePath = await localizedHref("/configuratore");
   return (
     <section id="bande" className="section-y border-t border-line bg-surface/40" aria-labelledby="band-title">
       <div className="container-site">
@@ -94,7 +94,7 @@ export async function HistorySection({ headingLevel = 2 }: { headingLevel?: 2 | 
 
 export async function QualitySection() {
   const t = await getTranslations("qualitySection");
-  const qualityHref = await localizedHref("/qualita");
+  const qualityHref = await localizedHref({ pathname: "/azienda", hash: "qualita" });
   const controls = t.raw("controls") as string[];
   const icons = [Zap, Ruler, FlaskConical];
   return (
@@ -105,7 +105,7 @@ export async function QualitySection() {
             {t("title")}
           </SplitReveal>
           <p className="mt-5 max-w-[44ch] text-lead text-muted">{t("body")}</p>
-          <Link href="/qualita" className="mt-8 inline-flex min-h-11 items-center gap-2 font-medium underline decoration-accent underline-offset-4 hover:text-accent">
+          <Link href={{ pathname: "/azienda", hash: "qualita" }} className="mt-8 inline-flex min-h-11 items-center gap-2 font-medium underline decoration-accent underline-offset-4 hover:text-accent">
             {t("cta")}
             <ArrowRight aria-hidden="true" className="size-4" strokeWidth={1.75} />
           </Link>
@@ -193,7 +193,7 @@ export async function FaqPreviewSection() {
             {t("title")}
           </h2>
           <p className="mt-5 max-w-[36ch] text-muted">{t("body")}</p>
-          <Link href="/faq" className="btn btn-ghost mt-8">
+          <Link href={{ pathname: "/contatti", hash: "faq" }} className="btn btn-ghost mt-8">
             {c("allQuestions")}
             <ArrowRight aria-hidden="true" className="size-4" strokeWidth={1.75} />
           </Link>

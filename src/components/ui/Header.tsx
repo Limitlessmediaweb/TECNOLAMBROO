@@ -3,30 +3,21 @@ import { getTranslations } from "next-intl/server";
 import type { StaticPathname } from "@/i18n/routing";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
-import { QuoteLink, ShopLink, localizedHref } from "./TrackedLink";
-import { MobileMenu, NavList } from "./HeaderClient";
+import { QuoteLink, localizedHref } from "./TrackedLink";
+import { DarkHeaderSync, MobileMenu, NavList } from "./HeaderClient";
 import { RequestButton, RequestMenuLink } from "@/components/request/RequestButton";
 import { Phone } from "lucide-react";
 import { COMPANY } from "@/data/site";
-import { HAS_CATALOG, HAS_TREATMENTS } from "@/lib/catalog";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { cn } from "@/lib/cn";
 
+/** Menu della versione finale: cinque voci + il bottone «Preventivo». */
 const PRIMARY: { href: StaticPathname; key: string }[] = [
   { href: "/prodotti", key: "products" },
+  { href: "/configuratore", key: "configurator" },
   { href: "/su-misura", key: "custom" },
   { href: "/azienda", key: "about" },
-  { href: "/qualita", key: "quality" },
-  { href: "/configuratore", key: "shopShort" },
   { href: "/contatti", key: "contact" },
-];
-
-const SECONDARY: { href: StaticPathname; key: string }[] = [
-  { href: "/prodotti/tabelle", key: "tables" },
-  ...(HAS_CATALOG ? [{ href: "/catalogo" as const, key: "catalog" }] : []),
-  // solo se catalogo/catalogo.csv ha almeno un trattamento pubblicato
-  ...(HAS_TREATMENTS ? [{ href: "/trattamenti" as const, key: "treatments" }] : []),
-  { href: "/faq", key: "faq" },
 ];
 
 export function Wordmark({ className }: { className?: string }) {
@@ -49,12 +40,12 @@ export async function Header() {
   const toItems = async (list: typeof PRIMARY) =>
     Promise.all(list.map(async (item) => ({ href: await localizedHref(item.href), label: t(item.key) })));
   const primary = await toItems(PRIMARY);
-  const all = await toItems([...PRIMARY, ...SECONDARY]);
   const home = await localizedHref("/");
   const requestPath = await localizedHref("/shop/richiesta");
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-line/70 bg-scrim backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-line/70 bg-scrim backdrop-blur-md transition-colors duration-300">
+      <DarkHeaderSync />
       <div className="container-site flex h-16 items-center gap-2 sm:gap-4 lg:h-[4.5rem]">
         <NextLink href={home} className="mr-auto inline-flex min-h-11 min-w-0 items-center overflow-hidden rounded-sm">
           <Wordmark />
@@ -82,14 +73,11 @@ export async function Header() {
           </MagneticButton>
           <MobileMenu openLabel={t("menu")} closeLabel={t("close")} label={t("menuLabel")} wordmark={<Wordmark />}>
             <nav aria-label={t("menuLabel")} className="container-site flex-1 overflow-y-auto py-6">
-              <NavList items={all} variant="mobile" />
+              <NavList items={primary} variant="mobile" />
               <div className="mt-8 grid gap-3">
                 <QuoteLink source="mobile_menu" className="btn btn-primary w-full">
                   {t("quote")}
                 </QuoteLink>
-                <ShopLink source="mobile_menu" className="btn btn-ghost w-full">
-                  {t("shop")}
-                </ShopLink>
                 <RequestMenuLink href={requestPath} />
                 <a href={COMPANY.phoneHref} className="btn btn-ghost w-full tabular" data-area="mobile_menu">
                   <Phone aria-hidden="true" className="size-4" strokeWidth={1.75} />

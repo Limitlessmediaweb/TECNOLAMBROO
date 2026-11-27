@@ -28,22 +28,14 @@ export const routing = defineRouting({
   pathnames: localizedPathnames() as {
     "/": Record<Locale, string>;
     "/prodotti": Record<Locale, string>;
-    "/prodotti/tabelle": Record<Locale, string>;
     "/prodotti/[famiglia]": Record<Locale, string>;
     "/prodotti/guida-flessibile/[wr]": Record<Locale, string>;
     "/su-misura": Record<Locale, string>;
     "/azienda": Record<Locale, string>;
-    "/qualita": Record<Locale, string>;
-    "/trattamenti": Record<Locale, string>;
-    "/trattamenti/[codice]": Record<Locale, string>;
-    "/catalogo": Record<Locale, string>;
-    "/catalogo/[codice]": Record<Locale, string>;
     "/contatti": Record<Locale, string>;
-    "/faq": Record<Locale, string>;
     "/privacy": Record<Locale, string>;
     "/termini": Record<Locale, string>;
     "/cookie": Record<Locale, string>;
-    "/shop": Record<Locale, string>;
     "/configuratore": Record<Locale, string>;
     "/shop/richiesta": Record<Locale, string>;
     "/shop/richiesta/inviata": Record<Locale, string>;
@@ -53,4 +45,4 @@ export const routing = defineRouting({
 export type AppPathname = keyof typeof routing.pathnames;
 
 /** Rotte senza parametri, usabili come stringa nei link. */
-export type StaticPathname = Exclude<AppPathname, "/prodotti/[famiglia]" | "/prodotti/guida-flessibile/[wr]" | "/trattamenti/[codice]" | "/catalogo/[codice]">;
+export type StaticPathname = Exclude<AppPathname, "/prodotti/[famiglia]" | "/prodotti/guida-flessibile/[wr]">;

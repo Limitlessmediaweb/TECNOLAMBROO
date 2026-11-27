@@ -23,7 +23,7 @@ export default async function RequestPage({ params }: PageProps<"/[locale]/shop/
   return (
     <PageMessages namespaces={["configurator"]}>
       <PageHeader
-        crumbs={<Breadcrumbs items={[{ label: shop("breadcrumb"), href: "/shop" }, { label: t("title") }]} />}
+        crumbs={<Breadcrumbs items={[{ label: shop("breadcrumb"), href: "/configuratore" }, { label: t("title") }]} />}
         title={<h1 className="text-display-l font-extrabold uppercase wdth-wide">{t("title")}</h1>}
         intro={<p>{t("intro")}</p>}
       />
@@ -34,7 +34,7 @@ export default async function RequestPage({ params }: PageProps<"/[locale]/shop/
         <RequestForm
           privacyHref={await localizedHref("/privacy")}
           sentPath={await localizedHref("/shop/richiesta/inviata")}
-          shopPath={await localizedHref("/shop")}
+          shopPath={await localizedHref("/configuratore")}
           aside={<TrustBar vertical />}
         />
       </div>

@@ -55,7 +55,7 @@ export async function ShopLink({
   /** ancora nella pagina, es. "configura" */
   hash?: string;
 }) {
-  const path = await localizedHref(query || hash ? { pathname: "/shop", query, hash } : "/shop");
+  const path = await localizedHref(query || hash ? { pathname: "/configuratore", query, hash } : "/configuratore");
   return (
     <NextLink href={path} className={cn(className)} data-track="cta_shop_click" data-source={source}>
       {children}

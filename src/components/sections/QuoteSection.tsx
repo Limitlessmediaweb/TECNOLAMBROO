@@ -105,7 +105,7 @@ export async function QuoteSection({
         </div>
 
         <div className="lg:col-span-8">
-          <ShortQuoteForm privacyHref={privacyHref} shopPath={await localizedHref("/shop")} sentPath={await localizedHref("/shop/richiesta/inviata")} />
+          <ShortQuoteForm privacyHref={privacyHref} shopPath={await localizedHref("/configuratore")} sentPath={await localizedHref("/shop/richiesta/inviata")} />
         </div>
       </div>
     </section>

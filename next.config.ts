@@ -50,6 +50,33 @@ const CSP_REPORT_ONLY = [
  */
 const DEMO = process.env.NEXT_PUBLIC_DEMO === "true" && process.env.VERCEL_ENV !== "production";
 
+/**
+ * Pagine tolte nella versione finale (27/11/2026): redirect 301 alla pagina che ne ha preso il posto,
+ * in tutte le lingue (italiano senza prefisso; ES, DE e ZH con gli indirizzi tradotti o inglesi).
+ *  /shop (vecchio configuratore) → /configuratore · /catalogo → /prodotti · /trattamenti → /azienda#finiture
+ *  /prodotti/tabelle → /prodotti · /qualita → /azienda#qualita · /faq → /contatti#faq
+ * Restano /shop/richiesta e /shop/richiesta/inviata (la lista «La tua richiesta»).
+ */
+type Slugs = { it: string; en: string; es?: string; de?: string; zh?: string };
+const LOCALE_PREFIX = { it: "", en: "/en", es: "/es", de: "/de", zh: "/zh" } as const;
+const REMOVED: { from: Slugs; to: Slugs; hash?: string; children?: boolean }[] = [
+  { from: { it: "/shop", en: "/shop" }, to: { it: "/configuratore", en: "/configurator", es: "/configurador", de: "/konfigurator" } },
+  { from: { it: "/catalogo", en: "/catalogue", es: "/catalogo", de: "/katalog" }, to: { it: "/prodotti", en: "/products", es: "/productos", de: "/produkte" }, children: true },
+  { from: { it: "/trattamenti", en: "/treatments", es: "/tratamientos", de: "/oberflaechenbehandlungen" }, to: { it: "/azienda", en: "/company", es: "/empresa", de: "/unternehmen" }, hash: "finiture", children: true },
+  { from: { it: "/prodotti/tabelle", en: "/products/tables", es: "/productos/tablas", de: "/produkte/tabellen" }, to: { it: "/prodotti", en: "/products", es: "/productos", de: "/produkte" }, hash: "tabelle" },
+  { from: { it: "/qualita", en: "/quality", es: "/calidad", de: "/qualitaet" }, to: { it: "/azienda", en: "/company", es: "/empresa", de: "/unternehmen" }, hash: "qualita" },
+  { from: { it: "/faq", en: "/faq" }, to: { it: "/contatti", en: "/contact", es: "/contacto", de: "/kontakt" }, hash: "faq" },
+];
+const REMOVED_PAGES = REMOVED.flatMap(({ from, to, hash, children }) =>
+  (Object.keys(LOCALE_PREFIX) as (keyof typeof LOCALE_PREFIX)[]).flatMap((l) => {
+    const source = LOCALE_PREFIX[l] + (from[l] ?? from.en);
+    const destination = (LOCALE_PREFIX[l] + (to[l] ?? to.en) || "/") + (hash ? `#${hash}` : "");
+    const list = [{ source, destination, statusCode: 301 as const }];
+    if (children) list.push({ source: `${source}/:codice*`, destination, statusCode: 301 as const });
+    return list;
+  }),
+);
+
 const nextConfig: NextConfig = {
   // Cartella di build alternativa (NEXT_DIST_DIR), per avviare due server di sviluppo sulla stessa copia senza che si sovrascrivano.
   distDir: process.env.NEXT_DIST_DIR || ".next",
@@ -58,7 +85,7 @@ const nextConfig: NextConfig = {
   // Il catalogo (catalogo/catalogo.csv) si legge alla build; incluso anche nelle funzioni che rendono
   // pagine al volo (404, menu), dove serve per sapere se mostrare Catalogo e Trattamenti.
   outputFileTracingIncludes: { "/**": ["./catalogo/catalogo.csv"] },
-  // Pagine tolte o rinominate nella versione 2 (riunione del 7 ottobre 2026): redirect permanenti 308.
+  // Pagine tolte o rinominate (versione 2 del 7/10/2026 e versione finale del 27/11/2026): redirect permanenti 301.
   async redirects() {
     const family: [string, string][] = [
       ["/prodotti/rigida", "/prodotti/curve"],
@@ -94,10 +121,10 @@ const nextConfig: NextConfig = {
       ["/appointment", "/contatti"],
       ["/service", "/prodotti"],
       ["/service-type", "/prodotti"],
-      ["/cart", "/shop"],
-      ["/checkout", "/shop"],
-      ["/my-account", "/shop"],
-      ["/wishlist", "/shop"],
+      ["/cart", "/configuratore"],
+      ["/checkout", "/configuratore"],
+      ["/my-account", "/configuratore"],
+      ["/wishlist", "/configuratore"],
       ["/blog", "/"],
       ["/blog-type", "/"],
       ["/pagina-di-esempio", "/"],
@@ -112,11 +139,12 @@ const nextConfig: NextConfig = {
     ];
     return [
       ...HOST_REDIRECTS,
-      ...family.map(([source, destination]) => ({ source, destination, permanent: true })),
-      ...oldSite.map(([source, destination]) => ({ source, destination, permanent: true })),
+      ...REMOVED_PAGES,
+      ...family.map(([source, destination]) => ({ source, destination, statusCode: 301 as const })),
+      ...oldSite.map(([source, destination]) => ({ source, destination, statusCode: 301 as const })),
       ...handles.flatMap((h) => [
-        { source: `/shop/${h}`, destination: "/shop", permanent: true },
-        { source: `/en/shop/${h}`, destination: "/en/shop", permanent: true },
+        { source: `/shop/${h}`, destination: "/configuratore", statusCode: 301 as const },
+        { source: `/en/shop/${h}`, destination: "/en/configurator", statusCode: 301 as const },
       ]),
     ];
   },

@@ -47,7 +47,7 @@ export default async function RequestSentPage({ params }: PageProps<"/[locale]/s
           </ol>
         </section>
         <div className="mt-12">
-          <Link href="/shop" className="btn btn-ghost">
+          <Link href="/configuratore" className="btn btn-ghost">
             {t("back")}
             <ArrowRight aria-hidden="true" className="size-4" strokeWidth={1.75} />
           </Link>

@@ -72,7 +72,7 @@ export default async function FamilyPage({ params }: Props) {
   const materials = visibleTexts(t.raw(`items.${family.key}.materials`) as string[]);
   const href = { pathname: "/prodotti/[famiglia]" as const, params: { famiglia: familySlug(family, locale) } };
   const { names } = await familyTexts();
-  const shopPath = await localizedHref("/shop");
+  const shopPath = await localizedHref("/configuratore");
   const shopQuery = family.partType ? { tipo: TYPE_PARAM[family.partType] } : undefined;
   const model = familyModel(family);
   const COMPOSE: Record<string, string> = { bends: "composeBends", twists: "composeTwists", offsets: "composeOffsets" };
@@ -176,7 +176,7 @@ export default async function FamilyPage({ params }: Props) {
               {family.table ? page("tableTitle") : page("onRequestTitle")}
             </h2>
             {family.table ? (
-              <Link href="/prodotti/tabelle" className="inline-flex min-h-11 items-center gap-2 font-medium underline decoration-accent underline-offset-4 hover:text-accent">
+              <Link href={{ pathname: "/prodotti", hash: "tabelle" }} className="inline-flex min-h-11 items-center gap-2 font-medium underline decoration-accent underline-offset-4 hover:text-accent">
                 {page("tablesLink")}
                 <ArrowRight aria-hidden="true" className="size-4" strokeWidth={1.75} />
               </Link>

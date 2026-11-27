@@ -55,7 +55,7 @@ export default async function WrPage({ params }: Props) {
   const band = range(size.min, size.max, locale);
   const mm = (v: number | null | undefined, d = 1) => (v == null ? "—" : `${num(v, locale, 0, d)} mm`);
   const near = neighbours(wr);
-  const shopPath = await localizedHref("/shop");
+  const shopPath = await localizedHref("/configuratore");
   const twistable = familyByKey("twistable")!;
   const seamlessFamily = familyByKey("seamless")!;
   const title = t("title", { wr });
@@ -217,7 +217,7 @@ export default async function WrPage({ params }: Props) {
             </div>
           </div>
           <p className="mt-4 text-sm text-muted">{t("indicative")}</p>
-          <Link href="/prodotti/tabelle" className="mt-6 inline-flex min-h-11 items-center gap-2 font-medium underline decoration-accent underline-offset-4 hover:text-accent">
+          <Link href={{ pathname: "/prodotti", hash: "tabelle" }} className="mt-6 inline-flex min-h-11 items-center gap-2 font-medium underline decoration-accent underline-offset-4 hover:text-accent">
             {t("tablesLink")}
             <ArrowRight aria-hidden="true" className="size-4" strokeWidth={1.75} />
           </Link>

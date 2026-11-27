@@ -10,7 +10,7 @@ import { cn } from "@/lib/cn";
  */
 export async function TrustBar({ className, vertical = false }: { className?: string; vertical?: boolean }) {
   const t = await getTranslations("trust");
-  const qualityHref = await localizedHref("/qualita");
+  const qualityHref = await localizedHref({ pathname: "/azienda", hash: "qualita" });
   const items = [
     { icon: CalendarCheck, text: t("since", { year: COMPANY.founded }) },
     { icon: ShieldCheck, text: "ISO 9001 · ISO 14001", href: qualityHref },
