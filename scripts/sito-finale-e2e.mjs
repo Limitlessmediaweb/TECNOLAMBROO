@@ -64,13 +64,16 @@ for (const vp of VIEWPORTS) {
   check(!(await intro.isVisible().catch(() => false)), "«Salta» chiude l'intro");
   check((await page.evaluate(() => localStorage.getItem("tl-intro-seen"))) === "1", "intro segnata come vista");
   await shot("02-hero");
+  // banner cookie: si rifiutano le statistiche, come la scelta più prudente
+  const consent = page.locator("[data-consent-banner]");
+  if (await consent.isVisible().catch(() => false)) await consent.getByRole("button", { name: /Rifiuta/i }).click();
 
   // 2) percorso: Salta intro / Rivedi intro
   const skipIntro = page.locator(".sj-skipintro");
   check(await skipIntro.isVisible(), "«Salta intro» visibile nel percorso");
   await skipIntro.click();
   await page.waitForTimeout(1500);
-  check(await page.getByRole("button", { name: /Rivedi intro/i }).first().isVisible().catch(() => false), "dopo «Salta intro» compare «Rivedi intro»");
+  check(await page.getByRole("button", { name: /Rivedi intro/i }).first().waitFor({ state: "visible", timeout: 6000 }).then(() => true, () => false), "dopo «Salta intro» compare «Rivedi intro»");
   await shot("03-dopo-percorso");
   await page.locator("#dopo-il-percorso").scrollIntoViewIfNeeded();
   await page.waitForTimeout(800);
@@ -110,7 +113,7 @@ for (const vp of VIEWPORTS) {
   check(await box.getByText("disegno-test.pdf").first().isVisible(), "file del disegno allegato");
   await box.getByRole("button", { name: /Aggiungi/i }).first().click();
   await page.waitForTimeout(600);
-  check(await box.getByRole("link", { name: /richiesta/i }).first().isVisible(), "pezzo su disegno aggiunto alla richiesta");
+  check(await box.getByRole("link", { name: /tua richiesta/i }).first().waitFor({ state: "visible", timeout: 6000 }).then(() => true, () => false), "pezzo su disegno aggiunto alla richiesta");
   await shot("20-configuratore-disegno");
 
   // 6) modulo preventivo con allegato (invio simulato)

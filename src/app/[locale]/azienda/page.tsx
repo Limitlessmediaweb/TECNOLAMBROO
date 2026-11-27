@@ -93,21 +93,23 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/azienda
 
       {/* Qualità */}
       <section id="qualita" className="section-y scroll-mt-20 border-t border-line" aria-labelledby="quality-title">
-        <div className="container-site grid gap-10 lg:grid-cols-12 lg:gap-12">
-          <div className="grid content-start gap-5 lg:col-span-5">
-            <h2 id="quality-title" className="text-display-l font-bold">
-              {t("qualityTitle")}
-            </h2>
-            <p className="text-lead text-muted">{t("qualityBody")}</p>
-            <div className="border-l-2 border-accent pl-5">
-              <h3 className="text-display-s font-bold">{t("labTitle")}</h3>
-              <p className="mt-2 text-muted">{t("testBody")}</p>
+        <div className="container-site grid gap-10">
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-12">
+            <div className="grid content-start gap-5 lg:col-span-6">
+              <h2 id="quality-title" className="text-display-l font-bold">
+                {t("qualityTitle")}
+              </h2>
+              <p className="text-lead text-muted">{t("qualityBody")}</p>
+              <div className="border-l-2 border-accent pl-5">
+                <h3 className="text-display-s font-bold">{t("labTitle")}</h3>
+                <p className="mt-2 text-muted">{t("testBody")}</p>
+              </div>
             </div>
-            <PhotoSlot id="collaudo" alt={t("photos.testAlt")} caption={t("photos.test")} sizes="(min-width: 64rem) 38vw, 92vw" />
+            <div className="lg:col-span-6">
+              <PhotoSlot id="collaudo" alt={t("photos.testAlt")} caption={t("photos.test")} sizes="(min-width: 64rem) 45vw, 92vw" />
+            </div>
           </div>
-          <div className="lg:col-span-7">
-            <CertificationCards />
-          </div>
+          <CertificationCards />
         </div>
       </section>
 
