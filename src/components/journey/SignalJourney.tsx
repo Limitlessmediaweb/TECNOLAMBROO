@@ -4,7 +4,7 @@ import Image from "next/image";
 import NextLink from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { ArrowDown, ArrowRight, Play, RotateCcw } from "lucide-react";
+import { ArrowDown, ArrowRight, Play, RotateCcw, ShieldCheck } from "lucide-react";
 import { loadGsap, MQ } from "@/lib/motion";
 import { CHAPTER_EDGES, L, PANEL_WINDOWS, chapterOfP, clamp01, sOfP, sstep } from "@/lib/journey/path";
 import type { JourneyScene } from "@/lib/journey/scene";
@@ -22,7 +22,7 @@ export type JourneyText = Record<
   string
 >;
 
-type Props = { t: JourneyText; shopHref: string; quoteHref: string };
+type Props = { t: JourneyText; shopHref: string; quoteHref: string; isoHref: string; iso: readonly string[] };
 
 /** Capitolo (0..6) di ogni pannello di testo: la flessibile e la catena montata stanno nello stesso capitolo */
 const PANEL_CHAPTER = [0, 1, 2, 3, 4, 5, 5, 6];
@@ -52,7 +52,7 @@ const writeSkip = (on: boolean) => {
  *  - calm: prefers-reduced-motion, capitoli fermi con il pezzo che ruota piano;
  *  - static: senza WebGL (o senza JavaScript) i capitoli sono una pagina normale con le foto vere.
  */
-export function SignalJourney({ t, shopHref, quoteHref }: Props) {
+export function SignalJourney({ t, shopHref, quoteHref, isoHref, iso }: Props) {
   const rootRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const skipRef = useRef<HTMLButtonElement>(null);
@@ -77,9 +77,9 @@ export function SignalJourney({ t, shopHref, quoteHref }: Props) {
     root.dataset.mode = !webgl ? "static" : window.matchMedia(MQ.reduce).matches ? "calm" : "live";
     const html = document.documentElement;
     html.dataset.sjHeader = "on";
-    // Questa home non ha l'intro: lo scroll parte subito.
-    delete html.dataset.intro;
-    window.dispatchEvent(new Event("tl:intro-end"));
+    // L'intro animata (components/domain/Intro) copre la pagina solo alla prima visita: quando non
+    // c'è, lo scroll e le animazioni partono subito.
+    if (html.dataset.intro !== "play") window.dispatchEvent(new Event("tl:intro-end"));
     const host = document.createElement("div");
     host.className = "sj-skip-host";
     document.body.prepend(host);
@@ -332,9 +332,22 @@ export function SignalJourney({ t, shopHref, quoteHref }: Props) {
         kill?.();
       };
     };
-    void start();
+    // Con l'intro in corso la scena WebGL aspetta la fine: inizializzarla insieme bloccherebbe
+    // l'animazione sui telefoni meno potenti (e la rete di sicurezza CSS chiuderebbe l'intro).
+    let waitTimer = 0;
+    const startOnce = () => {
+      window.removeEventListener("tl:intro-end", startOnce);
+      window.clearTimeout(waitTimer);
+      if (!disposed) void start();
+    };
+    if (html.dataset.intro === "play") {
+      window.addEventListener("tl:intro-end", startOnce);
+      waitTimer = window.setTimeout(startOnce, 8000);
+    } else startOnce();
 
     return () => {
+      window.removeEventListener("tl:intro-end", startOnce);
+      window.clearTimeout(waitTimer);
       disposed = true;
       cancelAnimationFrame(raf);
       cleanBase();
@@ -353,7 +366,7 @@ export function SignalJourney({ t, shopHref, quoteHref }: Props) {
   );
 
   return (
-    <section ref={rootRef} className="sj" data-sj aria-label={t.aria}>
+    <section ref={rootRef} className="sj" data-sj data-tone="dark" aria-label={t.aria}>
       {skipHost
         ? createPortal(
             <button ref={skipRef} type="button" className="sj-skipintro" onClick={() => jump.current.toEnd(true)} aria-keyshortcuts="Escape" data-track="intro_skip">
@@ -395,10 +408,12 @@ export function SignalJourney({ t, shopHref, quoteHref }: Props) {
                 </div>
               </dl>
               <p className="sj-iso">
-                <span className="sj-plate">
-                  <Image src="/brand/logo.png" alt={t.logoAlt} width={541} height={197} sizes="132px" priority />
-                </span>
-                <span>{t.iso}</span>
+                {iso.map((standard) => (
+                  <a key={standard} href={isoHref} className="sj-iso-badge">
+                    <ShieldCheck aria-hidden="true" strokeWidth={1.75} />
+                    {standard}
+                  </a>
+                ))}
                 <NextLink href={shopHref} className="sj-skip" data-track="cta_shop_click" data-source="journey_hero">
                   {t.skip}
                   <ArrowRight aria-hidden="true" strokeWidth={1.75} />

@@ -5,6 +5,8 @@ import { buildMetadata } from "@/lib/seo";
 import { localizedHref } from "@/components/ui/TrackedLink";
 import { SignalJourney, type JourneyText } from "@/components/journey/SignalJourney";
 import { HomeNext } from "@/components/home/HomeNext";
+import { Intro } from "@/components/domain/Intro";
+import { CERTIFICATIONS } from "@/data/certifications";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]">): Promise<Metadata> {
   const { locale } = await params;
@@ -24,7 +26,7 @@ const KEYS = [
 ] as const;
 
 /**
- * Home «Il viaggio del segnale»: un'unica esperienza a scroll in 3D (components/journey),
+ * Home: intro animata (solo alla prima visita), poi «Segui il segnale», un'unica esperienza a scroll in 3D (components/journey),
  * poi le sezioni della home (components/home/HomeNext: gamma, configuratore, perché, processo, CTA)
  * e il footer del sito. I testi restano sul server e arrivano al componente come stringhe.
  */
@@ -32,15 +34,20 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("journey");
+  const intro = await getTranslations("intro");
   const footer = await getTranslations("footer");
   const text = { ...Object.fromEntries(KEYS.map((k) => [k, t(k)])), logoAlt: footer("logoAlt") } as JourneyText;
 
   return (
     <>
+      {/* Intro animata della prima visita (poi resta saltata); subito dopo, il percorso «Segui il segnale» */}
+      <Intro tagline={intro("tagline")} skipLabel={intro("skip")} label={intro("label")} />
       <SignalJourney
         t={text}
         shopHref={await localizedHref("/configuratore")}
         quoteHref={await localizedHref({ pathname: "/contatti", hash: "preventivo" })}
+        isoHref={await localizedHref({ pathname: "/azienda", hash: "qualita" })}
+        iso={CERTIFICATIONS.map((c) => c.standard)}
       />
       <HomeNext />
     </>

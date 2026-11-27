@@ -140,17 +140,27 @@
   text-transform: uppercase;
   color: var(--sj-muted);
 }
-/* Logo originale (fondo chiaro) su una targhetta, come nel footer */
-.sj-plate {
-  display: inline-block;
-  padding: 0.3rem 0.45rem;
-  border-radius: 2px;
-  background: #f5f8fa;
-  box-shadow: 0 10px 30px rgb(0 0 0 / 0.4);
+/* Badge ISO come nel footer: pillola con lo scudo, link alla qualità */
+.sj-iso-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.25rem;
+  padding: 0.25rem 0.8rem;
+  border: 1px solid var(--sj-line);
+  border-radius: 999px;
+  color: var(--sj-ink);
+  letter-spacing: 0.08em;
+  transition: border-color 0.2s, color 0.2s;
 }
-.sj-plate img {
-  width: 7.25rem;
-  height: auto;
+.sj-iso-badge:hover {
+  border-color: var(--c-accent);
+  color: var(--c-accent);
+}
+.sj-iso-badge svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  color: var(--c-accent);
 }
 .sj-skip {
   display: inline-flex;
@@ -708,28 +718,11 @@ html[data-js] .sj[data-ready] .sj-canvas {
   }
 }
 
-/* ------------------------------------- header scuro finché la scena è sullo schermo */
+/* Header scuro sopra la scena: regola comune in globals.css (html[data-sj-header] / [data-dark-header]) */
 
-html[data-sj-header] body > header,
-html[data-sj-header] header.fixed {
-  color-scheme: dark;
-  --c-bg: #09121a;
-  --c-surface: #0f1a24;
-  --c-surface-2: #162431;
-  --c-line: #273949;
-  --c-line-strong: #5e778d;
-  --c-fg: #ebf0f4;
-  --c-muted: #99a9b8;
-  --c-primary: #55ade7;
-  --c-primary-ink: #55ade7;
-  --c-secondary-ink: #a1adb7;
-  --c-accent: #3daef5;
-  --c-accent-hi: #6ac3fb;
-  --c-on-accent: #09121a;
-  --c-scrim: rgb(7 13 19 / 0.5);
-  --c-shadow: rgb(0 0 0 / 0.35);
-  color: var(--c-fg);
-  border-bottom-color: rgb(169 185 199 / 0.14);
+/* Durante l'intro animata il tasto «Salta intro» del percorso non si vede né si raggiunge */
+:root[data-intro="play"] .sj-skip-host {
+  visibility: hidden;
 }
 
 /* ------------------------------------------------- «Salta intro» e «Rivedi intro» */

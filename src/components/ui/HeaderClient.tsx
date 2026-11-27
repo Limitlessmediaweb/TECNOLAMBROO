@@ -117,3 +117,46 @@ export function MobileMenu({
     </>
   );
 }
+
+/**
+ * Header scuro e trasparente (con blur) quando sotto c'è una sezione scura: qualsiasi elemento con
+ * data-tone="dark" (percorso della home, sezioni dopo il percorso, scena del configuratore) che
+ * passa sotto la barra imposta html[data-dark-header]; i colori stanno in globals.css. Così sopra
+ * una sezione scura non compare mai la barra chiara del tema.
+ */
+export function DarkHeaderSync() {
+  const pathname = usePathname();
+  useEffect(() => {
+    const html = document.documentElement;
+    let frame = 0;
+    const check = () => {
+      frame = 0;
+      const y = 36;
+      let on = false;
+      for (const zone of document.querySelectorAll<HTMLElement>('[data-tone="dark"]')) {
+        const r = zone.getBoundingClientRect();
+        if (r.top <= y && r.bottom >= y && r.height > 0) {
+          on = true;
+          break;
+        }
+      }
+      if (on) html.dataset.darkHeader = "on";
+      else delete html.dataset.darkHeader;
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(check);
+    };
+    check();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    const late = window.setTimeout(check, 400);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.clearTimeout(late);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      delete html.dataset.darkHeader;
+    };
+  }, [pathname]);
+  return null;
+}

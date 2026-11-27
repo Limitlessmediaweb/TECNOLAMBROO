@@ -548,6 +548,40 @@
   }
 }
 
+/* -------------------------------------------- zone scure: header e intro */
+
+/*
+ * Colori scuri per l'header sopra una sezione scura (percorso della home: html[data-sj-header];
+ * qualsiasi [data-tone="dark"]: html[data-dark-header], vedi HeaderClient/DarkHeaderSync) e per
+ * l'intro animata, che apre sul fondo scuro dell'hero. Lo scrim resta trasparente con il blur.
+ */
+html[data-sj-header] body > header,
+html[data-sj-header] header.fixed,
+html[data-dark-header] header.fixed,
+.intro-overlay {
+  color-scheme: dark;
+  --c-bg: #070d13;
+  --c-surface: #0f1a24;
+  --c-surface-2: #162431;
+  --c-line: #273949;
+  --c-line-strong: #5e778d;
+  --c-fg: #ebf0f4;
+  --c-muted: #99a9b8;
+  --c-primary: #55ade7;
+  --c-primary-ink: #55ade7;
+  --c-secondary-ink: #a1adb7;
+  --c-accent: #3daef5;
+  --c-accent-hi: #6ac3fb;
+  --c-on-accent: #09121a;
+  --c-scrim: rgb(7 13 19 / 0.55);
+  --c-shadow: rgb(0 0 0 / 0.35);
+}
+html[data-sj-header] header.fixed,
+html[data-dark-header] header.fixed {
+  color: var(--c-fg);
+  border-bottom-color: rgb(169 185 199 / 0.14);
+}
+
 /* ----------------------------------------------------------------- intro */
 
 .intro-overlay {
@@ -752,4 +786,50 @@ html:lang(zh) {
   :lang(de) .hero-title {
     font-size: min(var(--text-display-xl), 9.4vw);
   }
+}
+
+/* -------------------------------------------- disegni delle famiglie e spazi foto */
+
+.hx-glyph {
+  width: 100%;
+  height: auto;
+}
+
+/* Spazio per una foto vera dell'officina (components/ui/PhotoSlot, lista in FOTO-DA-FARE.md) */
+.photo-slot {
+  margin: 0;
+  min-width: 0;
+}
+.photo-slot-frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--c-line);
+  border-radius: 0.5rem;
+  background: var(--c-surface-2);
+}
+.photo-slot figcaption {
+  margin-top: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+/* Immagine provvisoria senza foto: riquadro tecnico sobrio (guida d'onda al tratto su griglia) */
+.photo-slot-blank {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(var(--c-grid-major) 1px, transparent 1px) 0 0 / 2rem 2rem,
+    linear-gradient(90deg, var(--c-grid-major) 1px, transparent 1px) 0 0 / 2rem 2rem;
+}
+.photo-slot-blank svg {
+  width: 40%;
+  max-width: 12rem;
+  fill: none;
+  stroke: var(--c-primary);
+  stroke-width: 1.2;
+  opacity: 0.55;
 }

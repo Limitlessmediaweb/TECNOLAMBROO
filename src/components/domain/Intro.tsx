@@ -61,7 +61,7 @@ const WAVE_PATH = buildWavePath();
 type Props = { tagline: string; skipLabel: string; label: string };
 
 /**
- * Micro-storia iniziale (~4 s, una volta per sessione):
+ * Micro-storia iniziale (~4 s, solo alla prima visita: poi resta saltata, chiave tl-intro-seen nel localStorage):
  * 1. la guida si disegna a linee  2. un'onda ottone la percorre
  * 3. all'uscita, dalla flangia finale, le onde si aprono a ventaglio
  * 4. il wordmark si allarga (asse wdth di Archivo)  5. tendina verso l'alto.
@@ -104,7 +104,7 @@ export function Intro({ tagline, skipLabel, label }: Props) {
     if (!el) return;
 
     // Parte solo all'atterraggio sulla home: lo script inline nel <head> ha già controllato
-    // sessionStorage e ?nointro e ha impostato data-intro="play" prima del primo paint.
+    // localStorage, prefers-reduced-motion e ?nointro e ha impostato data-intro="play" prima del primo paint.
     if (html.dataset.intro !== "play" && !interrupted) return;
     interrupted = false;
     html.dataset.intro = "play";
@@ -118,7 +118,7 @@ export function Intro({ tagline, skipLabel, label }: Props) {
       finished = true;
       if (markSeen) {
         try {
-          sessionStorage.setItem(STORAGE_KEY, "1");
+          localStorage.setItem(STORAGE_KEY, "1");
         } catch {
           /* ignora */
         }
