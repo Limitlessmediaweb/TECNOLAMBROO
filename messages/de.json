@@ -383,20 +383,20 @@
     "title": "So arbeiten wir.",
     "steps": [
       {
-        "title": "Design",
-        "body": "From your drawing or specification to the manufacturing design of the part."
+        "title": "Konstruktion",
+        "body": "Von Ihrer Zeichnung oder Spezifikation zur Fertigungskonstruktion des Teils."
       },
       {
-        "title": "Production",
-        "body": "Cutting, milling, turning, assembly and joining in our own workshop."
+        "title": "Fertigung",
+        "body": "Schneiden, Fräsen, Drehen, Montage und Fügen in der eigenen Werkstatt."
       },
       {
-        "title": "Finishing",
-        "body": "Polishing, painting, galvanic and heat treatments to drawing."
+        "title": "Oberfläche",
+        "body": "Polieren, Lackieren, galvanische und Wärmebehandlungen nach Zeichnung."
       },
       {
-        "title": "100% final test",
-        "body": "Electrical and dimensional inspection on every part before shipping."
+        "title": "100 % Endprüfung",
+        "body": "Elektrische und maßliche Prüfung jedes Teils vor dem Versand."
       }
     ]
   },
@@ -616,7 +616,7 @@
     "timeTitle": "Termine",
     "timeBody": "Angebot innerhalb von %quoteTime%: Lieferzeit und Versandart legen wir im Angebot fest.",
     "testTitle": "Prüfung",
-    "testBody": "Every custom part passes electrical and dimensional testing before it ships.",
+    "testBody": "Jedes Sonderteil durchläuft vor dem Versand eine elektrische und maßliche Prüfung.",
     "stepsTitle": "Von der Zeichnung zum Teil",
     "formTitle": "Zeichnung senden"
   },
@@ -624,7 +624,7 @@
     "title": "Eigene Hohlleiter, seit 1987.",
     "intro": "Tecnolambro entwickelt, fertigt und prüft mechanische Mikrowellenkomponenten und Hohlleiterbauteile. Das 1987 gegründete Unternehmen arbeitet mit den größten Telekommunikationsunternehmen zusammen.",
     "productionTitle": "Fertigung",
-    "productionBody": "Cutting, milling, turning, assembly and joining. Our twistable and seamless flexible waveguide is made in-house.",
+    "productionBody": "Schneiden, Fräsen, Drehen, Montage und Fügen. Unsere verdrehbaren und nahtlosen flexiblen Hohlleiter fertigen wir selbst.",
     "labTitle": "100-%-Endprüfung",
     "labBody": "Wir prüfen 100% der Teile vor dem Versand, mit elektrischer und maßlicher Prüfung jedes Teils.",
     "officeTitle": "Konstruktion",
@@ -633,47 +633,47 @@
     "operational": "Werk und Fertigung",
     "legal": "Firmensitz",
     "mapLink": "In Google Maps öffnen",
-    "familyTitle": "A family company",
-    "familyBody": "A company run by the Pasquini family, with its workshop in Miradolo Terme, near Pavia, Italy.",
-    "familyBody2": "Whoever orders talks directly to the people who design and build the part.",
-    "workshopTitle": "Workshop and processes",
-    "workshopBody": "The whole cycle is in-house, from drawing to final test, so quality and lead times stay under our control.",
-    "stockTitle": "Stock",
-    "stockBody": "Raw materials and semi-finished parts in stock, so production can start straight away.",
-    "qualityTitle": "Certified quality",
-    "qualityBody": "ISO 9001:2015 quality management system and ISO 14001:2015 environmental management system.",
-    "testBody": "Every part is checked before shipping, with electrical and dimensional inspection.",
-    "finishTitle": "Finishes and treatments",
-    "finishBody": "Finishes can also be chosen in the 3D configurator. External treatments are entrusted to long-standing, selected suppliers.",
+    "familyTitle": "Ein Familienunternehmen",
+    "familyBody": "Ein von der Familie Pasquini geführtes Unternehmen mit eigener Werkstatt in Miradolo Terme bei Pavia (Italien).",
+    "familyBody2": "Wer bestellt, spricht direkt mit den Personen, die das Teil konstruieren und fertigen.",
+    "workshopTitle": "Werkstatt und Fertigung",
+    "workshopBody": "Der gesamte Ablauf erfolgt im Haus, von der Zeichnung bis zur Endprüfung: Qualität und Lieferzeiten bleiben unter unserer Kontrolle.",
+    "stockTitle": "Lager",
+    "stockBody": "Rohmaterial und Halbzeuge auf Lager, damit die Fertigung sofort beginnen kann.",
+    "qualityTitle": "Zertifizierte Qualität",
+    "qualityBody": "Qualitätsmanagementsystem nach ISO 9001:2015 und Umweltmanagementsystem nach ISO 14001:2015.",
+    "testBody": "Jedes Teil wird vor dem Versand elektrisch und maßlich geprüft.",
+    "finishTitle": "Oberflächen und Behandlungen",
+    "finishBody": "Oberflächen lassen sich auch im 3D-Konfigurator wählen. Externe Behandlungen übernehmen ausgewählte, langjährige Lieferanten.",
     "finishes": [
       {
-        "name": "Polishing",
-        "text": "Mirror-polished brass."
+        "name": "Polieren",
+        "text": "Hochglanzpoliertes Messing."
       },
       {
-        "name": "Painting",
-        "text": "Colour to customer specification."
+        "name": "Lackierung",
+        "text": "Farbe nach Kundenvorgabe."
       },
       {
-        "name": "Galvanic treatments",
-        "text": "Silver plating to reduce losses, protective tin plating and Surtec 650 passivation."
+        "name": "Galvanische Behandlungen",
+        "text": "Versilberung zur Verringerung der Verluste, Schutzverzinnung und Passivierung Surtec 650."
       },
       {
-        "name": "Heat treatments",
-        "text": "Carried out by qualified suppliers, to the cycle given on the drawing."
+        "name": "Wärmebehandlungen",
+        "text": "Durch qualifizierte Lieferanten, nach dem in der Zeichnung angegebenen Zyklus."
       }
     ],
     "photos": {
-      "site": "Our site in Miradolo Terme",
-      "siteAlt": "Outside the Tecnolambro site in Miradolo Terme",
-      "cnc": "CNC milling",
-      "cncAlt": "CNC milling of a waveguide component",
-      "flanges": "Flange assembly",
-      "flangesAlt": "Assembling flanges on a waveguide",
-      "stock": "Raw material stock",
-      "stockAlt": "Stock of raw materials and semi-finished parts",
-      "test": "Final test",
-      "testAlt": "Testing a waveguide component",
+      "site": "Unser Standort in Miradolo Terme",
+      "siteAlt": "Außenansicht des Tecnolambro-Standorts in Miradolo Terme",
+      "cnc": "CNC-Fräsen",
+      "cncAlt": "CNC-Fräsen eines Hohlleiterbauteils",
+      "flanges": "Flanschmontage",
+      "flangesAlt": "Montage der Flansche an einem Hohlleiter",
+      "stock": "Rohmateriallager",
+      "stockAlt": "Lager für Rohmaterial und Halbzeuge",
+      "test": "Endprüfung",
+      "testAlt": "Prüfung eines Hohlleiterbauteils",
       "flangesProvisional": "Flexible Hohlleiter mit montierten Flanschen"
     }
   },
@@ -1794,117 +1794,117 @@
   },
   "homeNext": {
     "products": {
-      "eyebrow": "Products",
-      "title": "Product families",
-      "text": "WR sizes and flanges from the Tecnolambro catalogue. Every family can be configured in 3D or quoted on request.",
-      "sizes": "{count, plural, one {# size} other {# sizes}}",
-      "all": "All products"
+      "eyebrow": "Produkte",
+      "title": "Produktfamilien",
+      "text": "WR-Größen und Flansche aus dem Tecnolambro-Katalog. Jede Familie ist im 3D-Konfigurator einstellbar oder auf Anfrage erhältlich.",
+      "sizes": "{count, plural, one {# Größe} other {# Größen}}",
+      "all": "Alle Produkte"
     },
     "config": {
-      "eyebrow": "3D configurator",
-      "title": "Your part in 3D, before you order it.",
-      "text": "Seven steps through type, size, flanges, length and finish: the model changes with every choice and at the end you download the PDF datasheet.",
-      "cta": "Open the configurator",
-      "hint": "Drag to rotate",
-      "imgAlt": "WR-90 twistable flexible waveguide with both flanges, 3D model from the configurator"
+      "eyebrow": "3D-Konfigurator",
+      "title": "Ihr Teil in 3D, bevor Sie es bestellen.",
+      "text": "Sieben Schritte durch Typ, Größe, Flansche, Länge und Oberfläche: Das Modell ändert sich mit jeder Wahl, am Ende laden Sie das PDF-Datenblatt herunter.",
+      "cta": "Konfigurator öffnen",
+      "hint": "Zum Drehen ziehen",
+      "imgAlt": "Verdrehbarer flexibler Hohlleiter WR-90 mit beiden Flanschen, 3D-Modell aus dem Konfigurator"
     },
     "custom": {
-      "eyebrow": "Custom-built",
-      "title": "Not in the catalogue? We build it from your drawing.",
-      "text": "Upload the file: our engineering office checks it and replies with a quotation in %quoteTime%.",
-      "formatsLabel": "Accepted formats",
-      "cta": "Upload your drawing",
-      "more": "How custom work goes"
+      "eyebrow": "Sonderanfertigung",
+      "title": "Nicht im Katalog? Wir fertigen nach Ihrer Zeichnung.",
+      "text": "Laden Sie die Datei hoch: Unser Konstruktionsbüro prüft sie und antwortet mit einem Angebot in %quoteTime%.",
+      "formatsLabel": "Akzeptierte Formate",
+      "cta": "Zeichnung hochladen",
+      "more": "So läuft eine Sonderanfertigung"
     },
     "about": {
-      "eyebrow": "About us",
-      "title": "A family company, since 1987.",
-      "text": "We design, build and test waveguides and microwave components in our own workshop in Miradolo Terme (PV), Italy.",
+      "eyebrow": "Unternehmen",
+      "title": "Ein Familienunternehmen, seit 1987.",
+      "text": "Wir konstruieren, fertigen und prüfen Hohlleiter und Mikrowellenkomponenten in unserer Werkstatt in Miradolo Terme (PV), Italien.",
       "stats": [
         {
           "value": "1987",
-          "label": "A family company in Miradolo Terme since 1987"
+          "label": "Familienunternehmen in Miradolo Terme seit 1987"
         },
         {
           "value": "100%",
-          "label": "100% tested: every part is checked before it ships"
+          "label": "100 % geprüft: jedes Teil wird vor dem Versand kontrolliert"
         },
         {
           "value": "24/48 h",
-          "label": "Quotation in %quoteTime%"
+          "label": "Angebot in %quoteTime%"
         }
       ],
-      "more": "The company",
+      "more": "Das Unternehmen",
       "photos": {
-        "cnc": "CNC machining",
-        "cncAlt": "CNC milling of a waveguide bend in the Tecnolambro workshop",
-        "flanges": "Flange assembly",
-        "flangesAlt": "Flexible waveguides with flanges fitted",
-        "test": "Testing",
-        "testAlt": "Network analyser on the test bench",
+        "cnc": "CNC-Bearbeitung",
+        "cncAlt": "CNC-Fräsen eines Hohlleiterbogens in der Tecnolambro-Werkstatt",
+        "flanges": "Flanschmontage",
+        "flangesAlt": "Flexible Hohlleiter mit montierten Flanschen",
+        "test": "Prüfung",
+        "testAlt": "Netzwerkanalysator am Prüfstand",
         "flangesProvisional": "Flexible Hohlleiter mit montierten Flanschen"
       }
     },
     "sectors": {
-      "eyebrow": "Sectors",
-      "title": "Where our parts work",
+      "eyebrow": "Branchen",
+      "title": "Wo unsere Teile arbeiten",
       "items": [
         {
           "title": "Radar",
-          "text": "Rigid sections, bends, twists and flexibles between transmitter, antenna and receiver."
+          "text": "Starre Abschnitte, Bögen, Twists und Flexible zwischen Sender, Antenne und Empfänger."
         },
         {
-          "title": "Telecommunications",
-          "text": "Radio links, ground stations and satellite links."
+          "title": "Telekommunikation",
+          "text": "Richtfunk, Bodenstationen und Satellitenverbindungen."
         },
         {
-          "title": "Research",
-          "text": "Laboratories and test benches: single parts, transitions and special geometries."
+          "title": "Forschung",
+          "text": "Labore und Prüfstände: Einzelteile, Übergänge und Sondergeometrien."
         },
         {
-          "title": "Industry",
-          "text": "Microwave plants and equipment, in series or to the customer’s drawing."
+          "title": "Industrie",
+          "text": "Mikrowellenanlagen und -geräte, in Serie oder nach Kundenzeichnung."
         }
       ]
     },
     "cta": {
-      "eyebrow": "Quotation",
-      "title": "Have a part in mind?",
-      "text": "Send us the configuration, the code or the drawing: the quotation arrives in %quoteTime%.",
-      "quote": "Request a quotation",
-      "contacts": "All contacts",
-      "phone": "Mobile",
-      "email": "Email"
+      "eyebrow": "Angebot",
+      "title": "Haben Sie ein bestimmtes Teil im Sinn?",
+      "text": "Senden Sie uns die Konfiguration, den Code oder die Zeichnung: Das Angebot kommt in %quoteTime%.",
+      "quote": "Angebot anfordern",
+      "contacts": "Alle Kontakte",
+      "phone": "Mobil",
+      "email": "E-Mail"
     }
   },
   "productsPage": {
-    "intro": "The families in the Tecnolambro catalogue with the sizes available. Configure the part in 3D or ask us for a quotation: reply in %quoteTime%.",
-    "indexLabel": "Product families",
-    "sizes": "{count, plural, one {# size} other {# sizes}}",
-    "configure": "Configure",
-    "quote": "Request a quotation",
-    "familyPage": "Full page: {name}",
-    "tableLabel": "{name}: sizes, codes and flanges",
-    "colSize": "Size",
+    "intro": "Die Familien des Tecnolambro-Katalogs mit den verfügbaren Größen. Konfigurieren Sie das Teil in 3D oder fordern Sie ein Angebot an: Antwort in %quoteTime%.",
+    "indexLabel": "Produktfamilien",
+    "sizes": "{count, plural, one {# Größe} other {# Größen}}",
+    "configure": "Konfigurieren",
+    "quote": "Angebot anfordern",
+    "familyPage": "Ganze Seite: {name}",
+    "tableLabel": "{name}: Größen, Codes und Flansche",
+    "colSize": "Größe",
     "colCode": "Code",
-    "colFlanges": "Flanges",
-    "plane": "{plane}-plane",
-    "dimsTitle": "WR dimensions",
-    "dimsText": "Internal and external waveguide dimensions and frequency band, size by size.",
-    "customTitle": "Can’t find the part you need?",
-    "customText": "We build it from your drawing: STEP, IGES, STL, PDF, DWG or DXF.",
-    "customCta": "Custom-built",
+    "colFlanges": "Flansche",
+    "plane": "{plane}-Ebene",
+    "dimsTitle": "WR-Abmessungen",
+    "dimsText": "Innen- und Außenmaße des Hohlleiters und Frequenzband, Größe für Größe.",
+    "customTitle": "Sie finden das gesuchte Teil nicht?",
+    "customText": "Wir fertigen es nach Ihrer Zeichnung: STEP, IGES, STL, PDF, DWG oder DXF.",
+    "customCta": "Sonderanfertigung",
     "families": {
-      "straight": "Straight rigid waveguide with flanges at both ends, in the length you need.",
-      "twistable": "Bends and twists: connects flanges that are misaligned or rotated.",
-      "seamless": "Seamless flexible waveguide with jacket, for links that need to bend.",
-      "bend": "E-plane or H-plane bends, at 90° or at the angle you need.",
-      "twist": "Rotates the polarisation plane between the two flanges.",
-      "offset": "Connects two parallel but offset flanges.",
-      "transition": "Transition between two adjacent WR sizes.",
-      "termination": "Load that closes the line on a single flange.",
-      "pressure": "Short section with air inlet to pressurise the line.",
-      "spacer": "Thin shim fitted between two flanges."
+      "straight": "Gerader starrer Hohlleiter mit Flanschen an beiden Enden, in der benötigten Länge.",
+      "twistable": "Biegt und verdreht sich: verbindet versetzte oder verdrehte Flansche.",
+      "seamless": "Nahtloser flexibler Hohlleiter mit Mantel, für Verbindungen, die sich biegen müssen.",
+      "bend": "E- oder H-Ebenen-Bögen, mit 90° oder dem benötigten Winkel.",
+      "twist": "Dreht die Polarisationsebene zwischen den beiden Flanschen.",
+      "offset": "Verbindet zwei parallele, aber versetzte Flansche.",
+      "transition": "Übergang zwischen zwei benachbarten WR-Größen.",
+      "termination": "Last, die die Leitung an einem einzelnen Flansch abschließt.",
+      "pressure": "Kurzes Stück mit Lufteinlass zur Druckbeaufschlagung der Leitung.",
+      "spacer": "Dünne Distanzscheibe zwischen zwei Flanschen."
     }
   }
 }

@@ -383,20 +383,20 @@
     "title": "我们的工作流程。",
     "steps": [
       {
-        "title": "Design",
-        "body": "From your drawing or specification to the manufacturing design of the part."
+        "title": "设计",
+        "body": "从您的图纸或技术要求到零件的制造设计。"
       },
       {
-        "title": "Production",
-        "body": "Cutting, milling, turning, assembly and joining in our own workshop."
+        "title": "生产",
+        "body": "在自有车间完成切割、铣削、车削、装配与连接。"
       },
       {
-        "title": "Finishing",
-        "body": "Polishing, painting, galvanic and heat treatments to drawing."
+        "title": "表面处理",
+        "body": "按图纸进行抛光、喷漆、电镀和热处理。"
       },
       {
-        "title": "100% final test",
-        "body": "Electrical and dimensional inspection on every part before shipping."
+        "title": "100% 最终测试",
+        "body": "每个零件发货前均进行电气和尺寸检验。"
       }
     ]
   },
@@ -616,7 +616,7 @@
     "timeTitle": "时间",
     "timeBody": "%quoteTime%内报价：交货时间和方式在报价中确定。",
     "testTitle": "检测",
-    "testBody": "Every custom part passes electrical and dimensional testing before it ships.",
+    "testBody": "每个定制零件发货前均通过电气和尺寸测试。",
     "stepsTitle": "从图纸到部件",
     "formTitle": "发送您的图纸"
   },
@@ -624,7 +624,7 @@
     "title": "自1987年起，自主生产波导。",
     "intro": "Tecnolambro 设计、制造和检测微波机械元件及波导器件。公司成立于1987年，与各大电信企业合作。",
     "productionTitle": "生产",
-    "productionBody": "Cutting, milling, turning, assembly and joining. Our twistable and seamless flexible waveguide is made in-house.",
+    "productionBody": "切割、铣削、车削、装配与连接。可扭转柔性波导和无缝柔性波导均为自主生产。",
     "labTitle": "100%终检",
     "labBody": "我们在发货前对100%的部件进行检测，每个部件均经过电气及尺寸检验。",
     "officeTitle": "设计",
@@ -633,47 +633,47 @@
     "operational": "工厂及生产",
     "legal": "注册地址",
     "mapLink": "在 Google 地图中打开",
-    "familyTitle": "A family company",
-    "familyBody": "A company run by the Pasquini family, with its workshop in Miradolo Terme, near Pavia, Italy.",
-    "familyBody2": "Whoever orders talks directly to the people who design and build the part.",
-    "workshopTitle": "Workshop and processes",
-    "workshopBody": "The whole cycle is in-house, from drawing to final test, so quality and lead times stay under our control.",
-    "stockTitle": "Stock",
-    "stockBody": "Raw materials and semi-finished parts in stock, so production can start straight away.",
-    "qualityTitle": "Certified quality",
-    "qualityBody": "ISO 9001:2015 quality management system and ISO 14001:2015 environmental management system.",
-    "testBody": "Every part is checked before shipping, with electrical and dimensional inspection.",
-    "finishTitle": "Finishes and treatments",
-    "finishBody": "Finishes can also be chosen in the 3D configurator. External treatments are entrusted to long-standing, selected suppliers.",
+    "familyTitle": "家族企业",
+    "familyBody": "由 Pasquini 家族经营的企业，车间位于意大利帕维亚附近的 Miradolo Terme。",
+    "familyBody2": "下单客户直接与设计和制造零件的人员沟通。",
+    "workshopTitle": "车间与工艺",
+    "workshopBody": "从图纸到最终测试，全部流程均在厂内完成，质量与交期始终可控。",
+    "stockTitle": "库存",
+    "stockBody": "原材料和半成品常备库存，可立即开始生产。",
+    "qualityTitle": "认证质量",
+    "qualityBody": "ISO 9001:2015 质量管理体系和 ISO 14001:2015 环境管理体系。",
+    "testBody": "每个零件发货前均经过电气和尺寸检验。",
+    "finishTitle": "表面处理",
+    "finishBody": "表面处理也可在 3D 配置器中选择。外部处理委托给长期合作的合格供应商。",
     "finishes": [
       {
-        "name": "Polishing",
-        "text": "Mirror-polished brass."
+        "name": "抛光",
+        "text": "镜面抛光黄铜。"
       },
       {
-        "name": "Painting",
-        "text": "Colour to customer specification."
+        "name": "喷漆",
+        "text": "颜色按客户要求。"
       },
       {
-        "name": "Galvanic treatments",
-        "text": "Silver plating to reduce losses, protective tin plating and Surtec 650 passivation."
+        "name": "电镀处理",
+        "text": "镀银以降低损耗，保护性镀锡及 Surtec 650 钝化。"
       },
       {
-        "name": "Heat treatments",
-        "text": "Carried out by qualified suppliers, to the cycle given on the drawing."
+        "name": "热处理",
+        "text": "由合格供应商按图纸规定的工艺执行。"
       }
     ],
     "photos": {
-      "site": "Our site in Miradolo Terme",
-      "siteAlt": "Outside the Tecnolambro site in Miradolo Terme",
-      "cnc": "CNC milling",
-      "cncAlt": "CNC milling of a waveguide component",
-      "flanges": "Flange assembly",
-      "flangesAlt": "Assembling flanges on a waveguide",
-      "stock": "Raw material stock",
-      "stockAlt": "Stock of raw materials and semi-finished parts",
-      "test": "Final test",
-      "testAlt": "Testing a waveguide component",
+      "site": "Miradolo Terme 厂区",
+      "siteAlt": "Tecnolambro Miradolo Terme 厂区外景",
+      "cnc": "CNC 铣削",
+      "cncAlt": "波导零件的 CNC 铣削",
+      "flanges": "法兰装配",
+      "flangesAlt": "在波导上装配法兰",
+      "stock": "原材料库存",
+      "stockAlt": "原材料和半成品库存",
+      "test": "最终测试",
+      "testAlt": "波导零件测试",
       "flangesProvisional": "已装配法兰的柔性波导"
     }
   },
@@ -1088,7 +1088,7 @@
     "radiusStd": "标准半径",
     "radiusStdShort": "标准 R",
     "radiusCustom": "定制半径",
-    "radiusValue": "半径 R（mm）",
+    "radiusValue": "半径 R (mm)",
     "leg1": "直段 L1（mm）",
     "leg2": "直段 L2（mm）",
     "rotationLabel": "旋转",
@@ -1794,117 +1794,117 @@
   },
   "homeNext": {
     "products": {
-      "eyebrow": "Products",
-      "title": "Product families",
-      "text": "WR sizes and flanges from the Tecnolambro catalogue. Every family can be configured in 3D or quoted on request.",
-      "sizes": "{count, plural, one {# size} other {# sizes}}",
-      "all": "All products"
+      "eyebrow": "产品",
+      "title": "产品系列",
+      "text": "Tecnolambro 目录中的 WR 尺寸和法兰。每个系列均可 3D 配置或按需报价。",
+      "sizes": "{count, plural, other {# 种尺寸}}",
+      "all": "全部产品"
     },
     "config": {
-      "eyebrow": "3D configurator",
-      "title": "Your part in 3D, before you order it.",
-      "text": "Seven steps through type, size, flanges, length and finish: the model changes with every choice and at the end you download the PDF datasheet.",
-      "cta": "Open the configurator",
-      "hint": "Drag to rotate",
-      "imgAlt": "WR-90 twistable flexible waveguide with both flanges, 3D model from the configurator"
+      "eyebrow": "3D 配置器",
+      "title": "下单前，先看到您的零件 3D 模型。",
+      "text": "七个步骤依次选择类型、尺寸、法兰、长度和表面处理：模型随每次选择实时变化，最后可下载 PDF 数据表。",
+      "cta": "打开配置器",
+      "hint": "拖动旋转",
+      "imgAlt": "带两端法兰的 WR-90 可扭转柔性波导，配置器 3D 模型"
     },
     "custom": {
-      "eyebrow": "Custom-built",
-      "title": "Not in the catalogue? We build it from your drawing.",
-      "text": "Upload the file: our engineering office checks it and replies with a quotation in %quoteTime%.",
-      "formatsLabel": "Accepted formats",
-      "cta": "Upload your drawing",
-      "more": "How custom work goes"
+      "eyebrow": "定制",
+      "title": "目录中没有？我们按您的图纸制造。",
+      "text": "上传文件：我们的技术部门审核后将在 %quoteTime% 内回复报价。",
+      "formatsLabel": "支持的格式",
+      "cta": "上传图纸",
+      "more": "定制流程"
     },
     "about": {
-      "eyebrow": "About us",
-      "title": "A family company, since 1987.",
-      "text": "We design, build and test waveguides and microwave components in our own workshop in Miradolo Terme (PV), Italy.",
+      "eyebrow": "关于我们",
+      "title": "家族企业，始于 1987 年。",
+      "text": "我们在意大利 Miradolo Terme (PV) 的自有车间设计、制造和测试波导及微波元件。",
       "stats": [
         {
           "value": "1987",
-          "label": "A family company in Miradolo Terme since 1987"
+          "label": "自 1987 年起扎根 Miradolo Terme 的家族企业"
         },
         {
           "value": "100%",
-          "label": "100% tested: every part is checked before it ships"
+          "label": "100% 测试：每个零件发货前均经检验"
         },
         {
           "value": "24/48 h",
-          "label": "Quotation in %quoteTime%"
+          "label": "%quoteTime% 内报价"
         }
       ],
-      "more": "The company",
+      "more": "公司介绍",
       "photos": {
-        "cnc": "CNC machining",
-        "cncAlt": "CNC milling of a waveguide bend in the Tecnolambro workshop",
-        "flanges": "Flange assembly",
-        "flangesAlt": "Flexible waveguides with flanges fitted",
-        "test": "Testing",
-        "testAlt": "Network analyser on the test bench",
+        "cnc": "CNC 加工",
+        "cncAlt": "Tecnolambro 车间内 CNC 铣削波导弯头",
+        "flanges": "法兰装配",
+        "flangesAlt": "已装配法兰的柔性波导",
+        "test": "测试",
+        "testAlt": "测试台上的网络分析仪",
         "flangesProvisional": "已装配法兰的柔性波导"
       }
     },
     "sectors": {
-      "eyebrow": "Sectors",
-      "title": "Where our parts work",
+      "eyebrow": "应用领域",
+      "title": "我们的零件应用于",
       "items": [
         {
-          "title": "Radar",
-          "text": "Rigid sections, bends, twists and flexibles between transmitter, antenna and receiver."
+          "title": "雷达",
+          "text": "发射机、天线和接收机之间的刚性段、弯头、扭波导和柔性波导。"
         },
         {
-          "title": "Telecommunications",
-          "text": "Radio links, ground stations and satellite links."
+          "title": "通信",
+          "text": "微波中继、地面站和卫星链路。"
         },
         {
-          "title": "Research",
-          "text": "Laboratories and test benches: single parts, transitions and special geometries."
+          "title": "科研",
+          "text": "实验室和测试台：单件、过渡段和特殊几何形状。"
         },
         {
-          "title": "Industry",
-          "text": "Microwave plants and equipment, in series or to the customer’s drawing."
+          "title": "工业",
+          "text": "微波设备与装置，批量生产或按客户图纸制造。"
         }
       ]
     },
     "cta": {
-      "eyebrow": "Quotation",
-      "title": "Have a part in mind?",
-      "text": "Send us the configuration, the code or the drawing: the quotation arrives in %quoteTime%.",
-      "quote": "Request a quotation",
-      "contacts": "All contacts",
-      "phone": "Mobile",
-      "email": "Email"
+      "eyebrow": "报价",
+      "title": "心中已有零件构想？",
+      "text": "发送配置、型号或图纸给我们：%quoteTime% 内收到报价。",
+      "quote": "申请报价",
+      "contacts": "全部联系方式",
+      "phone": "手机",
+      "email": "电子邮件"
     }
   },
   "productsPage": {
-    "intro": "The families in the Tecnolambro catalogue with the sizes available. Configure the part in 3D or ask us for a quotation: reply in %quoteTime%.",
-    "indexLabel": "Product families",
-    "sizes": "{count, plural, one {# size} other {# sizes}}",
-    "configure": "Configure",
-    "quote": "Request a quotation",
-    "familyPage": "Full page: {name}",
-    "tableLabel": "{name}: sizes, codes and flanges",
-    "colSize": "Size",
-    "colCode": "Code",
-    "colFlanges": "Flanges",
-    "plane": "{plane}-plane",
-    "dimsTitle": "WR dimensions",
-    "dimsText": "Internal and external waveguide dimensions and frequency band, size by size.",
-    "customTitle": "Can’t find the part you need?",
-    "customText": "We build it from your drawing: STEP, IGES, STL, PDF, DWG or DXF.",
-    "customCta": "Custom-built",
+    "intro": "Tecnolambro 目录中的产品系列及可选尺寸。可 3D 配置零件或向我们询价：%quoteTime% 内回复。",
+    "indexLabel": "产品系列",
+    "sizes": "{count, plural, other {# 种尺寸}}",
+    "configure": "配置",
+    "quote": "申请报价",
+    "familyPage": "完整页面：{name}",
+    "tableLabel": "{name}：尺寸、型号和法兰",
+    "colSize": "尺寸",
+    "colCode": "型号",
+    "colFlanges": "法兰",
+    "plane": "{plane} 面",
+    "dimsTitle": "WR 尺寸",
+    "dimsText": "按尺寸列出的波导内外尺寸及频段。",
+    "customTitle": "找不到所需零件？",
+    "customText": "我们按您的图纸制造：STEP、IGES、STL、PDF、DWG 或 DXF。",
+    "customCta": "定制",
     "families": {
-      "straight": "Straight rigid waveguide with flanges at both ends, in the length you need.",
-      "twistable": "Bends and twists: connects flanges that are misaligned or rotated.",
-      "seamless": "Seamless flexible waveguide with jacket, for links that need to bend.",
-      "bend": "E-plane or H-plane bends, at 90° or at the angle you need.",
-      "twist": "Rotates the polarisation plane between the two flanges.",
-      "offset": "Connects two parallel but offset flanges.",
-      "transition": "Transition between two adjacent WR sizes.",
-      "termination": "Load that closes the line on a single flange.",
-      "pressure": "Short section with air inlet to pressurise the line.",
-      "spacer": "Thin shim fitted between two flanges."
+      "straight": "两端带法兰的直刚性波导，长度按需。",
+      "twistable": "可弯曲可扭转：连接错位或旋转的法兰。",
+      "seamless": "带护套的无缝柔性波导，适用于需要弯曲的连接。",
+      "bend": "E 面或 H 面弯头，90° 或任意所需角度。",
+      "twist": "在两个法兰之间旋转极化面。",
+      "offset": "连接两个平行但错位的法兰。",
+      "transition": "两个相邻 WR 尺寸之间的过渡段。",
+      "termination": "在单个法兰上终接线路的负载。",
+      "pressure": "带进气口的短段，用于给线路加压。",
+      "spacer": "安装在两个法兰之间的薄垫片。"
     }
   }
 }

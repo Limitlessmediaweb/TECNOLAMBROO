@@ -383,20 +383,20 @@
     "title": "Cómo trabajamos.",
     "steps": [
       {
-        "title": "Design",
-        "body": "From your drawing or specification to the manufacturing design of the part."
+        "title": "Diseño",
+        "body": "De su plano o especificación al diseño de fabricación de la pieza."
       },
       {
-        "title": "Production",
-        "body": "Cutting, milling, turning, assembly and joining in our own workshop."
+        "title": "Producción",
+        "body": "Corte, fresado, torneado, montaje y unión en nuestro propio taller."
       },
       {
-        "title": "Finishing",
-        "body": "Polishing, painting, galvanic and heat treatments to drawing."
+        "title": "Acabado",
+        "body": "Pulido, pintura, tratamientos galvánicos y térmicos según plano."
       },
       {
-        "title": "100% final test",
-        "body": "Electrical and dimensional inspection on every part before shipping."
+        "title": "Prueba final al 100 %",
+        "body": "Control eléctrico y dimensional de cada pieza antes del envío."
       }
     ]
   },
@@ -616,7 +616,7 @@
     "timeTitle": "Plazos",
     "timeBody": "Presupuesto en %quoteTime%: el plazo y el método de entrega se fijan en el presupuesto.",
     "testTitle": "Pruebas",
-    "testBody": "Every custom part passes electrical and dimensional testing before it ships.",
+    "testBody": "Cada pieza a medida supera pruebas eléctricas y dimensionales antes del envío.",
     "stepsTitle": "Del plano a la pieza",
     "formTitle": "Envíe su plano"
   },
@@ -624,7 +624,7 @@
     "title": "Guías de ondas de fabricación propia, desde 1987.",
     "intro": "Tecnolambro diseña, fabrica y prueba componentes mecánicos de microondas y dispositivos en guía de ondas. Fundada en 1987, trabaja en colaboración con las mayores empresas de telecomunicaciones.",
     "productionTitle": "Producción",
-    "productionBody": "Cutting, milling, turning, assembly and joining. Our twistable and seamless flexible waveguide is made in-house.",
+    "productionBody": "Corte, fresado, torneado, montaje y unión. Nuestra guía de onda flexible twistable y seamless se fabrica internamente.",
     "labTitle": "Prueba final al 100 %",
     "labBody": "Probamos el 100 % de las piezas antes del envío, con control eléctrico y dimensional de cada pieza.",
     "officeTitle": "Diseño",
@@ -633,47 +633,47 @@
     "operational": "Sede operativa y producción",
     "legal": "Domicilio social",
     "mapLink": "Abrir en Google Maps",
-    "familyTitle": "A family company",
-    "familyBody": "A company run by the Pasquini family, with its workshop in Miradolo Terme, near Pavia, Italy.",
-    "familyBody2": "Whoever orders talks directly to the people who design and build the part.",
-    "workshopTitle": "Workshop and processes",
-    "workshopBody": "The whole cycle is in-house, from drawing to final test, so quality and lead times stay under our control.",
-    "stockTitle": "Stock",
-    "stockBody": "Raw materials and semi-finished parts in stock, so production can start straight away.",
-    "qualityTitle": "Certified quality",
-    "qualityBody": "ISO 9001:2015 quality management system and ISO 14001:2015 environmental management system.",
-    "testBody": "Every part is checked before shipping, with electrical and dimensional inspection.",
-    "finishTitle": "Finishes and treatments",
-    "finishBody": "Finishes can also be chosen in the 3D configurator. External treatments are entrusted to long-standing, selected suppliers.",
+    "familyTitle": "Una empresa familiar",
+    "familyBody": "Una empresa dirigida por la familia Pasquini, con su taller en Miradolo Terme, cerca de Pavía (Italia).",
+    "familyBody2": "Quien hace el pedido habla directamente con quien diseña y fabrica la pieza.",
+    "workshopTitle": "Taller y procesos",
+    "workshopBody": "Todo el ciclo es interno, del plano a la prueba final: calidad y plazos quedan bajo nuestro control.",
+    "stockTitle": "Almacén",
+    "stockBody": "Materias primas y semielaborados en stock, para empezar la producción enseguida.",
+    "qualityTitle": "Calidad certificada",
+    "qualityBody": "Sistema de gestión de la calidad ISO 9001:2015 y sistema de gestión ambiental ISO 14001:2015.",
+    "testBody": "Cada pieza se controla antes del envío, con verificación eléctrica y dimensional.",
+    "finishTitle": "Acabados y tratamientos",
+    "finishBody": "Los acabados también se pueden elegir en el configurador 3D. Los tratamientos externos se confían a proveedores seleccionados de larga confianza.",
     "finishes": [
       {
-        "name": "Polishing",
-        "text": "Mirror-polished brass."
+        "name": "Pulido",
+        "text": "Latón pulido a espejo."
       },
       {
-        "name": "Painting",
-        "text": "Colour to customer specification."
+        "name": "Pintura",
+        "text": "Color según especificación del cliente."
       },
       {
-        "name": "Galvanic treatments",
-        "text": "Silver plating to reduce losses, protective tin plating and Surtec 650 passivation."
+        "name": "Tratamientos galvánicos",
+        "text": "Plateado para reducir las pérdidas, estañado de protección y pasivación Surtec 650."
       },
       {
-        "name": "Heat treatments",
-        "text": "Carried out by qualified suppliers, to the cycle given on the drawing."
+        "name": "Tratamientos térmicos",
+        "text": "Realizados por proveedores cualificados, según el ciclo indicado en el plano."
       }
     ],
     "photos": {
-      "site": "Our site in Miradolo Terme",
-      "siteAlt": "Outside the Tecnolambro site in Miradolo Terme",
-      "cnc": "CNC milling",
-      "cncAlt": "CNC milling of a waveguide component",
-      "flanges": "Flange assembly",
-      "flangesAlt": "Assembling flanges on a waveguide",
-      "stock": "Raw material stock",
-      "stockAlt": "Stock of raw materials and semi-finished parts",
-      "test": "Final test",
-      "testAlt": "Testing a waveguide component",
+      "site": "Nuestra sede en Miradolo Terme",
+      "siteAlt": "Exterior de la sede de Tecnolambro en Miradolo Terme",
+      "cnc": "Fresado CNC",
+      "cncAlt": "Fresado CNC de un componente en guía de onda",
+      "flanges": "Montaje de las bridas",
+      "flangesAlt": "Montaje de las bridas en una guía de onda",
+      "stock": "Almacén de materias primas",
+      "stockAlt": "Almacén de materias primas y semielaborados",
+      "test": "Prueba final",
+      "testAlt": "Prueba de un componente en guía de onda",
       "flangesProvisional": "Guías de onda flexibles con las bridas montadas"
     }
   },
@@ -1794,117 +1794,117 @@
   },
   "homeNext": {
     "products": {
-      "eyebrow": "Products",
-      "title": "Product families",
-      "text": "WR sizes and flanges from the Tecnolambro catalogue. Every family can be configured in 3D or quoted on request.",
-      "sizes": "{count, plural, one {# size} other {# sizes}}",
-      "all": "All products"
+      "eyebrow": "Productos",
+      "title": "Familias de productos",
+      "text": "Tamaños WR y bridas del catálogo Tecnolambro. Cada familia se puede configurar en 3D o presupuestar bajo pedido.",
+      "sizes": "{count, plural, one {# tamaño} other {# tamaños}}",
+      "all": "Todos los productos"
     },
     "config": {
-      "eyebrow": "3D configurator",
-      "title": "Your part in 3D, before you order it.",
-      "text": "Seven steps through type, size, flanges, length and finish: the model changes with every choice and at the end you download the PDF datasheet.",
-      "cta": "Open the configurator",
-      "hint": "Drag to rotate",
-      "imgAlt": "WR-90 twistable flexible waveguide with both flanges, 3D model from the configurator"
+      "eyebrow": "Configurador 3D",
+      "title": "Su pieza en 3D, antes de pedirla.",
+      "text": "Siete pasos entre tipo, tamaño, bridas, longitud y acabado: el modelo cambia con cada elección y al final descarga la ficha técnica en PDF.",
+      "cta": "Abrir el configurador",
+      "hint": "Arrastre para girar",
+      "imgAlt": "Guía de onda flexible twistable WR-90 con ambas bridas, modelo 3D del configurador"
     },
     "custom": {
-      "eyebrow": "Custom-built",
-      "title": "Not in the catalogue? We build it from your drawing.",
-      "text": "Upload the file: our engineering office checks it and replies with a quotation in %quoteTime%.",
-      "formatsLabel": "Accepted formats",
-      "cta": "Upload your drawing",
-      "more": "How custom work goes"
+      "eyebrow": "A medida",
+      "title": "¿No está en el catálogo? Lo fabricamos según su plano.",
+      "text": "Suba el archivo: nuestra oficina técnica lo revisa y responde con un presupuesto en %quoteTime%.",
+      "formatsLabel": "Formatos aceptados",
+      "cta": "Subir su plano",
+      "more": "Cómo funciona el trabajo a medida"
     },
     "about": {
-      "eyebrow": "About us",
-      "title": "A family company, since 1987.",
-      "text": "We design, build and test waveguides and microwave components in our own workshop in Miradolo Terme (PV), Italy.",
+      "eyebrow": "La empresa",
+      "title": "Una empresa familiar, desde 1987.",
+      "text": "Diseñamos, fabricamos y probamos guías de onda y componentes de microondas en nuestro taller de Miradolo Terme (PV), Italia.",
       "stats": [
         {
           "value": "1987",
-          "label": "A family company in Miradolo Terme since 1987"
+          "label": "Empresa familiar en Miradolo Terme desde 1987"
         },
         {
           "value": "100%",
-          "label": "100% tested: every part is checked before it ships"
+          "label": "100 % probado: cada pieza se controla antes del envío"
         },
         {
           "value": "24/48 h",
-          "label": "Quotation in %quoteTime%"
+          "label": "Presupuesto en %quoteTime%"
         }
       ],
-      "more": "The company",
+      "more": "La empresa",
       "photos": {
-        "cnc": "CNC machining",
-        "cncAlt": "CNC milling of a waveguide bend in the Tecnolambro workshop",
-        "flanges": "Flange assembly",
-        "flangesAlt": "Flexible waveguides with flanges fitted",
-        "test": "Testing",
-        "testAlt": "Network analyser on the test bench",
+        "cnc": "Mecanizado CNC",
+        "cncAlt": "Fresado CNC de un codo en guía de onda en el taller Tecnolambro",
+        "flanges": "Montaje de las bridas",
+        "flangesAlt": "Guías de onda flexibles con las bridas montadas",
+        "test": "Prueba",
+        "testAlt": "Analizador de redes en el banco de pruebas",
         "flangesProvisional": "Guías de onda flexibles con las bridas montadas"
       }
     },
     "sectors": {
-      "eyebrow": "Sectors",
-      "title": "Where our parts work",
+      "eyebrow": "Sectores",
+      "title": "Dónde trabajan nuestras piezas",
       "items": [
         {
           "title": "Radar",
-          "text": "Rigid sections, bends, twists and flexibles between transmitter, antenna and receiver."
+          "text": "Tramos rígidos, codos, twists y flexibles entre transmisor, antena y receptor."
         },
         {
-          "title": "Telecommunications",
-          "text": "Radio links, ground stations and satellite links."
+          "title": "Telecomunicaciones",
+          "text": "Radioenlaces, estaciones terrenas y enlaces por satélite."
         },
         {
-          "title": "Research",
-          "text": "Laboratories and test benches: single parts, transitions and special geometries."
+          "title": "Investigación",
+          "text": "Laboratorios y bancos de prueba: piezas únicas, transiciones y geometrías especiales."
         },
         {
-          "title": "Industry",
-          "text": "Microwave plants and equipment, in series or to the customer’s drawing."
+          "title": "Industria",
+          "text": "Plantas y equipos de microondas, en serie o según el plano del cliente."
         }
       ]
     },
     "cta": {
-      "eyebrow": "Quotation",
-      "title": "Have a part in mind?",
-      "text": "Send us the configuration, the code or the drawing: the quotation arrives in %quoteTime%.",
-      "quote": "Request a quotation",
-      "contacts": "All contacts",
-      "phone": "Mobile",
-      "email": "Email"
+      "eyebrow": "Presupuesto",
+      "title": "¿Tiene una pieza en mente?",
+      "text": "Envíenos la configuración, el código o el plano: el presupuesto llega en %quoteTime%.",
+      "quote": "Solicitar presupuesto",
+      "contacts": "Todos los contactos",
+      "phone": "Móvil",
+      "email": "Correo electrónico"
     }
   },
   "productsPage": {
-    "intro": "The families in the Tecnolambro catalogue with the sizes available. Configure the part in 3D or ask us for a quotation: reply in %quoteTime%.",
-    "indexLabel": "Product families",
-    "sizes": "{count, plural, one {# size} other {# sizes}}",
-    "configure": "Configure",
-    "quote": "Request a quotation",
-    "familyPage": "Full page: {name}",
-    "tableLabel": "{name}: sizes, codes and flanges",
-    "colSize": "Size",
-    "colCode": "Code",
-    "colFlanges": "Flanges",
-    "plane": "{plane}-plane",
-    "dimsTitle": "WR dimensions",
-    "dimsText": "Internal and external waveguide dimensions and frequency band, size by size.",
-    "customTitle": "Can’t find the part you need?",
-    "customText": "We build it from your drawing: STEP, IGES, STL, PDF, DWG or DXF.",
-    "customCta": "Custom-built",
+    "intro": "Las familias del catálogo Tecnolambro con los tamaños disponibles. Configure la pieza en 3D o pídanos un presupuesto: respuesta en %quoteTime%.",
+    "indexLabel": "Familias de productos",
+    "sizes": "{count, plural, one {# tamaño} other {# tamaños}}",
+    "configure": "Configurar",
+    "quote": "Solicitar presupuesto",
+    "familyPage": "Página completa: {name}",
+    "tableLabel": "{name}: tamaños, códigos y bridas",
+    "colSize": "Tamaño",
+    "colCode": "Código",
+    "colFlanges": "Bridas",
+    "plane": "plano {plane}",
+    "dimsTitle": "Dimensiones WR",
+    "dimsText": "Dimensiones internas y externas de la guía de onda y banda de frecuencia, tamaño por tamaño.",
+    "customTitle": "¿No encuentra la pieza que necesita?",
+    "customText": "La fabricamos según su plano: STEP, IGES, STL, PDF, DWG o DXF.",
+    "customCta": "A medida",
     "families": {
-      "straight": "Straight rigid waveguide with flanges at both ends, in the length you need.",
-      "twistable": "Bends and twists: connects flanges that are misaligned or rotated.",
-      "seamless": "Seamless flexible waveguide with jacket, for links that need to bend.",
-      "bend": "E-plane or H-plane bends, at 90° or at the angle you need.",
-      "twist": "Rotates the polarisation plane between the two flanges.",
-      "offset": "Connects two parallel but offset flanges.",
-      "transition": "Transition between two adjacent WR sizes.",
-      "termination": "Load that closes the line on a single flange.",
-      "pressure": "Short section with air inlet to pressurise the line.",
-      "spacer": "Thin shim fitted between two flanges."
+      "straight": "Guía de onda rígida recta con bridas en ambos extremos, en la longitud que necesite.",
+      "twistable": "Se dobla y se tuerce: une bridas desalineadas o giradas.",
+      "seamless": "Guía de onda flexible sin costura con funda, para enlaces que deben curvarse.",
+      "bend": "Codos en plano E o plano H, a 90° o al ángulo que necesite.",
+      "twist": "Gira el plano de polarización entre las dos bridas.",
+      "offset": "Une dos bridas paralelas pero desplazadas.",
+      "transition": "Transición entre dos tamaños WR contiguos.",
+      "termination": "Carga que cierra la línea sobre una sola brida.",
+      "pressure": "Tramo corto con entrada de aire para presurizar la línea.",
+      "spacer": "Calce fino montado entre dos bridas."
     }
   }
 }
