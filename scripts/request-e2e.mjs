@@ -51,14 +51,15 @@ const readJson = (p) => JSON.parse(readFileSync(p, "utf8"));
 
 /* ------------------------------------------------------------- 1. richiesta completa */
 console.log("\n1. La tua richiesta (3 pezzi)");
-await page.goto(`${BASE}/shop?tipo=twistabile&wr=90&l=600&f1=UBR100&f2=PBR100#configura`, { waitUntil: "networkidle" });
+await page.goto(`${BASE}/shop?tipo=twistabile&wr=90&l=600&f1=UBR100&f2=PBR100#configura`, { waitUntil: "load" });
 await page.waitForFunction(() => document.querySelector("[data-part-code]")?.textContent?.includes("L600"));
 await page.locator("[data-add-configured]").click();
-await page.goto(`${BASE}/shop?tipo=curva&piano=E&wr=75&ang=90&l1=100&l2=100&f1=UBR120&f2=UBR120#configura`, { waitUntil: "networkidle" });
+await page.goto(`${BASE}/shop?tipo=curva&piano=E&wr=75&ang=90&l1=100&l2=100&f1=UBR120&f2=UBR120#configura`, { waitUntil: "load" });
 await page.waitForFunction(() => document.querySelector("[data-part-code]")?.textContent?.startsWith("CURVA-E · WR-75"));
 await page.locator("[data-add-configured]").click();
 
-await page.goto(`${BASE}/shop/richiesta`, { waitUntil: "networkidle" });
+await page.goto(`${BASE}/shop/richiesta`, { waitUntil: "load" });
+await page.waitForSelector("[data-request-item]", { timeout: 30000 }).catch(() => {});
 check((await page.locator("[data-request-item]").count()) === 2, "2 pezzi configurati in lista");
 check((await page.locator("[data-notes]").first().inputValue()) === "", "note vuote all'inizio");
 check((await page.locator("[data-notes]").first().getAttribute("placeholder"))?.startsWith("Es. pressurizzazione"), "segnaposto delle note");
@@ -133,12 +134,12 @@ check(client.to === "anna@example.test" && client.attachments.length === 2 && cl
 const chtml = readFileSync(join(folder(number), "cliente.html"), "utf8");
 check(chtml.includes("entro 24 ore lavorative") && chtml.includes("wa.me/393755771084") && chtml.includes("+39 375 577 1084"), "email al cliente: 24 ore, WhatsApp, cellulare");
 check(!chtml.includes("Pressurizzazione"), "le note non vengono ripetute al cliente");
-await page.goto(`${BASE}/shop/richiesta`, { waitUntil: "networkidle" });
+await page.goto(`${BASE}/shop/richiesta`, { waitUntil: "load" });
 check((await page.locator("[data-request-item]").count()) === 0, "richiesta svuotata dopo l'invio riuscito");
 
 /* ------------------------------------------------------------- 2. modulo breve */
 console.log("\n2. Modulo breve (contatti)");
-await page.goto(`${BASE}/contatti`, { waitUntil: "networkidle" });
+await page.goto(`${BASE}/contatti`, { waitUntil: "load" });
 const form = page.locator("[data-short-form]");
 check(await form.locator("[data-configure-link]").isVisible(), "link «Hai già una misura? Configura il pezzo →»");
 await form.locator("input[name=name]").fill("Marco Prova");
@@ -156,9 +157,9 @@ check(readJson(join(folder(n2), "ufficio.json")).attachments.some((a) => a.filen
 
 /* ------------------------------------------------------------- 3. invio fallito */
 console.log("\n3. Invio fallito");
-await page.goto(`${BASE}/shop?tipo=twist&wr=90#configura`, { waitUntil: "networkidle" });
+await page.goto(`${BASE}/shop?tipo=twist&wr=90#configura`, { waitUntil: "load" });
 await page.locator("[data-add-configured]").click();
-await page.goto(`${BASE}/shop/richiesta`, { waitUntil: "networkidle" });
+await page.goto(`${BASE}/shop/richiesta`, { waitUntil: "load" });
 await page.route("**/api/quote", (route) => route.fulfill({ status: 502, contentType: "application/json", body: JSON.stringify({ ok: false, error: "server" }) }));
 for (const [sel, v] of [["input[name=company]", "Prova Srl"], ["input[name=name]", "Luca Prova"], ["input[name=email]", "luca@example.test"], ["[data-country]", "Italia"]]) await page.locator(sel).fill(v);
 await page.locator("[data-privacy]").check();

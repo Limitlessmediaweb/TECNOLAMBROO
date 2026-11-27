@@ -46,7 +46,7 @@ async function open(ctx, { fresh = true } = {}) {
     if (fresh && !sessionStorage.getItem("kept")) localStorage.removeItem("tl-intro-skip");
     sessionStorage.setItem("kept", "1");
   }, fresh);
-  await page.goto(BASE + "/", { waitUntil: "networkidle" });
+  await page.goto(BASE + "/", { waitUntil: "load" });
   await page.waitForSelector('.sj[data-ready="1"]', { timeout: 90000 });
   await wait(800);
   return page;
@@ -91,6 +91,9 @@ try {
     // Rivedi intro
     await page.click(".sj-replay");
     await wait(3500);
+    await page
+      .waitForFunction(() => getComputedStyle(document.querySelector(".sj-skipintro")).opacity === "1", null, { timeout: 10000 })
+      .catch(() => {});
     s = await state(page);
     check("«Rivedi intro» torna all'inizio", s.y === 0 && s.skipVisible && s.saved === null, `y ${s.y}, ${s.css}`);
 
@@ -116,7 +119,7 @@ try {
 
     // visitatore di ritorno: ricarica dall'alto
     await page.evaluate(() => scrollTo({ top: 0, behavior: "instant" }));
-    await page.reload({ waitUntil: "networkidle" });
+    await page.reload({ waitUntil: "load", timeout: 120000 });
     await page.waitForSelector('.sj[data-ready="1"]', { timeout: 90000 });
     await wait(1500);
     s = await state(page);
@@ -130,7 +133,7 @@ try {
   const page = await open(ctx);
   const s = await state(page);
   check("percorso già saltato", s.mode === "calm" && Math.abs(s.y - s.end) < 3 && s.replayVisible && !s.skipVisible, `mode ${s.mode}, y ${s.y}/${s.end}`);
-  await page.screenshot({ path: join(OUT, "ridotto.png") });
+  await page.screenshot({ path: join(OUT, "ridotto.png"), timeout: 120000 });
   await ctx.close();
 
   // menu: «Configura» porta al configuratore

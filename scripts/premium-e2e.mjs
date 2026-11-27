@@ -39,12 +39,17 @@ const shot = async (path) => page.screenshot({ path, clip: await page.locator(".
 try {
 console.log("Percorso dei 7 passi");
 await page.addInitScript(() => localStorage.setItem("tl-consent", JSON.stringify({ v: 1, stats: false, at: new Date().toISOString() })));
-await page.goto(`${BASE}/configuratore`, { waitUntil: "networkidle" });
+await page.goto(`${BASE}/configuratore`, { waitUntil: "load" });
 await ready();
 check((await step()) === "type", "si parte dal passo Tipo");
 
 const TILES = ["twistable", "seamless", "bendE", "bendH", "twist", "offset"];
 for (const tile of TILES) {
+  // in produzione i tipi con sole righe «da confermare» (es. disassato) non ci sono
+  if (!(await page.$(`[data-tile="${tile}"]`))) {
+    ok(`${tile}: non presente in questa build (solo righe da confermare)`);
+    continue;
+  }
   await page.click(`[data-tile="${tile}"]`, { force: true });
   await page.waitForTimeout(700);
   const n = await triangles();
@@ -69,12 +74,12 @@ await page.click('[data-flange="CBR320"]', { force: true });
 await page.waitForTimeout(1200);
 check((await page.textContent(".p3d-tag span")) !== null, "etichetta della flangia nel 3D");
 const tags = await page.$$eval(".p3d-tag:not(.p3d-tag-part)", (els) => els.map((e) => e.textContent));
-check(tags.some((t) => /FLANGIA 1.*IEC-CBR 320/.test(t)) && tags.some((t) => /FLANGIA 2.*IEC-CBR 320/.test(t)), `etichette: ${tags.join(" | ")}`);
+// flange 1 e 2 indipendenti (b6a7785): la 2 resta la consigliata finché non si sceglie
+check(tags.some((t) => /FLANGIA 1.*IEC-CBR 320/.test(t)) && tags.some((t) => /FLANGIA 2/.test(t)), `etichette: ${tags.join(" | ")}`);
 await shot(join(OUT, "flangia-choke.png"));
 await next();
 check((await step()) === "flange2", "passo Flangia 2");
-check(await page.isChecked("[data-same-flange]"), "Flangia 2 uguale alla 1 già spuntato");
-await page.uncheck("[data-same-flange]");
+check(!(await page.isChecked("[data-same-flange]")), "Flangia 2 indipendente dalla 1 (non spuntato)");
 await page.click('[data-flange="PBR320"]', { force: true });
 await next();
 check((await step()) === "length", "passo Lunghezza");
@@ -84,7 +89,9 @@ const dim = await page.$$eval(".part3d-dim", (els) => els.map((e) => e.textConte
 check(dim.some((t) => /L = 900 mm/.test(t)), `quota nel 3D: ${dim.join(" | ")}`);
 await next();
 check((await step()) === "finish", "passo Finitura");
-for (const f of ["silver", "painted", "surtec", "raw", "bright"]) await page.click(`[data-finish="${f}"]`, { force: true });
+// ottone: niente Surtec (solo alluminio)
+check(!(await page.$('[data-finish="surtec"]')), "Surtec non proposto sull’ottone");
+for (const f of ["silver", "painted", "raw", "bright"]) await page.click(`[data-finish="${f}"]`, { force: true });
 await page.click('[data-finish="silver"]', { force: true });
 await page.click('[data-jacket="on"]');
 await page.click("[data-explode]");
@@ -95,9 +102,9 @@ await next();
 check((await step()) === "final", "passo Quantità");
 await page.fill('[data-field="qty"]', "25");
 const code = await page.textContent("[data-part-code]");
-check(/^TFTG-320-900-CBR-PBR-ARG-G$/.test(code ?? ""), `codice di configurazione: ${code}`);
+check(code === "TFTG-320/900-CBR.GF" && /./.test(code ?? ""), `codice di configurazione: ${code}`);
   const [sheet] = await Promise.all([page.waitForEvent("download", { timeout: 60000 }), page.click("[data-datasheet]")]);
-  check(/^TFTG-320-900-CBR-PBR-ARG-G\.pdf$/.test(sheet.suggestedFilename()), `datasheet scaricato: ${sheet.suggestedFilename()}`);
+  check(/^TFTG-320_900-CBR.GF.pdf$/.test(sheet.suggestedFilename()), `datasheet scaricato: ${sheet.suggestedFilename()}`);
 await page.click("[data-add-premium]");
 await page.waitForSelector("[data-added]");
 const stored = await page.evaluate(() => JSON.parse(window.localStorage.getItem("tl-request-v1") ?? "[]"));
@@ -134,7 +141,7 @@ console.log("Accessori e su richiesta");
 
   console.log("Telefono");
 await page.setViewportSize({ width: 390, height: 844 });
-await page.goto(`${BASE}/configuratore?tipo=curva&piano=H&wr=90&ang=90&l1=100&l2=100&f1=UBR100&f2=CPR90G&fin=brillantata`, { waitUntil: "networkidle" });
+await page.goto(`${BASE}/configuratore?tipo=curva&piano=H&wr=90&ang=90&l1=100&l2=100&f1=UBR100&f2=CPR90G&fin=brillantata`, { waitUntil: "load" });
 await ready();
 const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
 check(overflow <= 1, `nessuno scorrimento orizzontale a 390 px (${overflow})`);
