@@ -29,6 +29,7 @@ export function PhotoSlot({
   id,
   alt,
   caption,
+  provisionalCaption,
   orientation = "landscape",
   sizes = "(min-width: 64rem) 33vw, 92vw",
   className,
@@ -36,18 +37,24 @@ export function PhotoSlot({
   id: PhotoSlotId;
   alt: string;
   caption: string;
+  /** didascalia/alt da usare finché c'è la foto provvisoria (se mostra un soggetto diverso dallo scatto previsto) */
+  provisionalCaption?: string;
   orientation?: "landscape" | "portrait";
   sizes?: string;
   className?: string;
 }) {
-  const src = realPhoto(id) ?? PROVISIONAL[id] ?? null;
+  const real = realPhoto(id);
+  const src = real ?? PROVISIONAL[id] ?? null;
+  const label = !real && src && provisionalCaption ? provisionalCaption : null;
+  const altText = label ?? alt;
+  const captionText = label ?? caption;
   return (
-    <figure className={cn("photo-slot", className)} data-photo-slot={id} data-provisional={realPhoto(id) ? undefined : "1"}>
+    <figure className={cn("photo-slot", className)} data-photo-slot={id} data-provisional={real ? undefined : "1"}>
       <div className={cn("photo-slot-frame", orientation === "portrait" ? "aspect-[4/5]" : "aspect-[4/3]")}>
         {src ? (
-          <Image src={src} alt={alt} fill sizes={sizes} className="object-cover" />
+          <Image src={src} alt={altText} fill sizes={sizes} className="object-cover" />
         ) : (
-          <div className="photo-slot-blank" role="img" aria-label={alt}>
+          <div className="photo-slot-blank" role="img" aria-label={altText}>
             <svg viewBox="0 0 120 80" aria-hidden="true">
               <rect x="22" y="30" width="76" height="20" />
               <path d="M16 26v28M104 26v28M22 40h76" />
@@ -55,7 +62,7 @@ export function PhotoSlot({
           </div>
         )}
       </div>
-      <figcaption>{caption}</figcaption>
+      <figcaption>{captionText}</figcaption>
     </figure>
   );
 }

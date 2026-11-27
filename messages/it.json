@@ -633,8 +633,8 @@
     "operational": "Sede operativa e produzione",
     "legal": "Sede legale",
     "mapLink": "Apri in Google Maps",
-    "familyTitle": "Un'azienda di famiglia",
-    "familyBody": "Un'azienda guidata dalla famiglia Pasquini, con l'officina a Miradolo Terme, in provincia di Pavia.",
+    "familyTitle": "Un’azienda di famiglia",
+    "familyBody": "Un’azienda guidata dalla famiglia Pasquini, con l’officina a Miradolo Terme, in provincia di Pavia.",
     "familyBody2": "Chi ordina parla direttamente con chi progetta e costruisce il pezzo.",
     "workshopTitle": "Officina e lavorazioni",
     "workshopBody": "Tutto il ciclo è interno, dal disegno al collaudo: così teniamo sotto controllo qualità e tempi.",
@@ -673,7 +673,8 @@
       "stock": "Magazzino materie prime",
       "stockAlt": "Magazzino di materie prime e semilavorati",
       "test": "Collaudo finale",
-      "testAlt": "Collaudo di un componente in guida d’onda"
+      "testAlt": "Collaudo di un componente in guida d’onda",
+      "flangesProvisional": "Guide d’onda flessibili con le flange montate"
     }
   },
   "qualityPage": {
@@ -698,7 +699,8 @@
     "title": "Contatti e preventivi",
     "intro": "Scriveteci, chiamateci o inviate direttamente il disegno. Preventivo in %quoteTime%.",
     "hoursTitle": "Orari",
-    "company": "Dati societari"
+    "company": "Dati societari",
+    "faqIntro": "Le risposte alle domande più frequenti. Per tutto il resto, scriveteci."
   },
   "faqPage": {
     "title": "Domande frequenti",
@@ -1839,7 +1841,8 @@
         "flanges": "Montaggio delle flange",
         "flangesAlt": "Guide d’onda flessibili con le flange montate",
         "test": "Collaudo",
-        "testAlt": "Analizzatore di rete al banco di collaudo"
+        "testAlt": "Analizzatore di rete al banco di collaudo",
+        "flangesProvisional": "Guide d’onda flessibili con le flange montate"
       }
     },
     "sectors": {

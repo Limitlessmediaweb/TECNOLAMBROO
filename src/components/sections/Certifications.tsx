@@ -21,7 +21,8 @@ export async function CertificationCards() {
         const expired = isExpired(cert);
         return (
           <article key={cert.id} className="grid gap-5 border border-line bg-surface p-6 sm:grid-cols-[9rem_1fr] sm:p-7" data-cert={cert.id}>
-            <div>
+            {/* su telefono la miniatura resta piccola: il certificato intero si apre col PDF */}
+            <div className="max-w-[9rem] sm:max-w-none">
               {hasPdf && hasPreview ? (
                 <a href={cert.pdf} target="_blank" rel="noopener" className="block border border-line bg-bg transition-colors hover:border-accent" data-track="cert_download" data-source={`thumb_${cert.id}`}>
                   <Image src={cert.preview} alt={t("previewAlt", { standard: cert.standard })} width={420} height={594} sizes="144px" className="h-auto w-full" />

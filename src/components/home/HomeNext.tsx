@@ -153,7 +153,7 @@ export async function HomeNext() {
               <PhotoSlot id="cnc" alt={t("about.photos.cncAlt")} caption={t("about.photos.cnc")} sizes="(min-width: 64rem) 30vw, 92vw" />
             </div>
             <div data-hx-item>
-              <PhotoSlot id="montaggio-flange" alt={t("about.photos.flangesAlt")} caption={t("about.photos.flanges")} sizes="(min-width: 64rem) 30vw, 92vw" />
+              <PhotoSlot id="montaggio-flange" alt={t("about.photos.flangesAlt")} caption={t("about.photos.flanges")} provisionalCaption={t("about.photos.flangesProvisional")} sizes="(min-width: 64rem) 30vw, 92vw" />
             </div>
             <div data-hx-item>
               <PhotoSlot id="collaudo" alt={t("about.photos.testAlt")} caption={t("about.photos.test")} sizes="(min-width: 64rem) 30vw, 92vw" />

@@ -673,7 +673,8 @@
       "stock": "Raw material stock",
       "stockAlt": "Stock of raw materials and semi-finished parts",
       "test": "Final test",
-      "testAlt": "Testing a waveguide component"
+      "testAlt": "Testing a waveguide component",
+      "flangesProvisional": "Flexible Hohlleiter mit montierten Flanschen"
     }
   },
   "qualityPage": {
@@ -698,7 +699,8 @@
     "title": "Kontakt und Angebote",
     "intro": "Schreiben Sie uns, rufen Sie an oder senden Sie direkt Ihre Zeichnung. Angebot innerhalb von %quoteTime%.",
     "hoursTitle": "Öffnungszeiten",
-    "company": "Firmendaten"
+    "company": "Firmendaten",
+    "faqIntro": "Antworten auf die häufigsten Fragen. Für alles andere schreiben Sie uns."
   },
   "faqPage": {
     "title": "Häufige Fragen",
@@ -1839,7 +1841,8 @@
         "flanges": "Flange assembly",
         "flangesAlt": "Flexible waveguides with flanges fitted",
         "test": "Testing",
-        "testAlt": "Network analyser on the test bench"
+        "testAlt": "Network analyser on the test bench",
+        "flangesProvisional": "Flexible Hohlleiter mit montierten Flanschen"
       }
     },
     "sectors": {

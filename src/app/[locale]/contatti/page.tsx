@@ -74,7 +74,7 @@ export default async function ContactPage({ params }: PageProps<"/[locale]/conta
             <h2 id="faq-title" className="text-display-l font-bold">
               {faqPage("title")}
             </h2>
-            <p className="mt-4 max-w-[36ch] text-muted">{faqPage("notFoundBody")}</p>
+            <p className="mt-4 max-w-[36ch] text-muted">{t("faqIntro")}</p>
           </div>
           <div className="lg:col-span-8">
             <FaqAccordion headingLevel={3} items={faqItems.map((item) => ({ id: item.id, q: item.q, a: item.a }))} />

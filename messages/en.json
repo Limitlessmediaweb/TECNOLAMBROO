@@ -673,7 +673,8 @@
       "stock": "Raw material stock",
       "stockAlt": "Stock of raw materials and semi-finished parts",
       "test": "Final test",
-      "testAlt": "Testing a waveguide component"
+      "testAlt": "Testing a waveguide component",
+      "flangesProvisional": "Flexible waveguides with flanges fitted"
     }
   },
   "qualityPage": {
@@ -698,7 +699,8 @@
     "title": "Contact & quotes",
     "intro": "Write, call or send your drawing straight away. Quote in %quoteTime%.",
     "hoursTitle": "Opening hours",
-    "company": "Company details"
+    "company": "Company details",
+    "faqIntro": "Answers to the most frequent questions. For anything else, write to us."
   },
   "faqPage": {
     "title": "Frequently asked questions",
@@ -1839,7 +1841,8 @@
         "flanges": "Flange assembly",
         "flangesAlt": "Flexible waveguides with flanges fitted",
         "test": "Testing",
-        "testAlt": "Network analyser on the test bench"
+        "testAlt": "Network analyser on the test bench",
+        "flangesProvisional": "Flexible waveguides with flanges fitted"
       }
     },
     "sectors": {

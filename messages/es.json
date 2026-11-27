@@ -673,7 +673,8 @@
       "stock": "Raw material stock",
       "stockAlt": "Stock of raw materials and semi-finished parts",
       "test": "Final test",
-      "testAlt": "Testing a waveguide component"
+      "testAlt": "Testing a waveguide component",
+      "flangesProvisional": "Guías de onda flexibles con las bridas montadas"
     }
   },
   "qualityPage": {
@@ -698,7 +699,8 @@
     "title": "Contacto y presupuestos",
     "intro": "Escríbanos, llámenos o envíe directamente su plano. Presupuesto en %quoteTime%.",
     "hoursTitle": "Horario",
-    "company": "Datos de la empresa"
+    "company": "Datos de la empresa",
+    "faqIntro": "Respuestas a las preguntas más frecuentes. Para todo lo demás, escríbanos."
   },
   "faqPage": {
     "title": "Preguntas frecuentes",
@@ -1839,7 +1841,8 @@
         "flanges": "Flange assembly",
         "flangesAlt": "Flexible waveguides with flanges fitted",
         "test": "Testing",
-        "testAlt": "Network analyser on the test bench"
+        "testAlt": "Network analyser on the test bench",
+        "flangesProvisional": "Guías de onda flexibles con las bridas montadas"
       }
     },
     "sectors": {

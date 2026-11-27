@@ -85,7 +85,7 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/azienda
           </Stagger>
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             <PhotoSlot id="cnc" alt={t("photos.cncAlt")} caption={t("photos.cnc")} />
-            <PhotoSlot id="montaggio-flange" alt={t("photos.flangesAlt")} caption={t("photos.flanges")} />
+            <PhotoSlot id="montaggio-flange" alt={t("photos.flangesAlt")} caption={t("photos.flanges")} provisionalCaption={t("photos.flangesProvisional")} />
             <PhotoSlot id="magazzino" alt={t("photos.stockAlt")} caption={t("photos.stock")} />
           </div>
         </div>
