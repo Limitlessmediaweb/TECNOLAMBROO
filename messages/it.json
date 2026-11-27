@@ -1750,5 +1750,104 @@
     "ctaNote": "Risposta in 24/48 ore",
     "skipIntro": "Salta intro",
     "replayIntro": "Rivedi intro"
+  },
+  "homeNext": {
+    "products": {
+      "eyebrow": "La gamma",
+      "title": "Ogni pezzo della linea in guida d’onda",
+      "text": "Dal tratto rigido alla terminazione: le famiglie del catalogo Tecnolambro. Le misure indicate sono quelle del catalogo ufficiale.",
+      "sizes": "{count, plural, one {# misura} other {# misure}}",
+      "tbc": "DA CONFERMARE",
+      "all": "Tutti i prodotti",
+      "open": "Scopri"
+    },
+    "config": {
+      "eyebrow": "Configuratore 3D",
+      "title": "Componi il pezzo, guardalo in 3D",
+      "text": "Scegli tipo, misura, flange, lunghezza e finitura: il modello si aggiorna a ogni scelta e alla fine scarichi il datasheet in PDF. Nessun prezzo online: la configurazione arriva a noi come richiesta di preventivo.",
+      "steps": [
+        "Tipo",
+        "Misura WR",
+        "Flangia 1 e 2",
+        "Lunghezza",
+        "Finitura",
+        "Quantità e note"
+      ],
+      "cta": "Configura il tuo pezzo",
+      "imgAlt": "Anteprima del configuratore: guida d’onda flessibile twistabile con le due flange, modello 3D",
+      "caption": "Anteprima dal configuratore"
+    },
+    "why": {
+      "eyebrow": "Perché Tecnolambro",
+      "title": "Costruiti in Italia, su misura",
+      "items": [
+        {
+          "title": "Produzione in Italia",
+          "text": "Progettiamo, costruiamo e collaudiamo in Italia, nella sede operativa di Miradolo Terme (PV)."
+        },
+        {
+          "title": "Su misura",
+          "text": "Lunghezza, flange, angoli e finitura si scelgono pezzo per pezzo. Per una geometria fuori catalogo basta un disegno STEP, STL o PDF."
+        },
+        {
+          "title": "Dal 1987",
+          "text": "Guide d’onda e componenti a microonde, con sistema di gestione certificato ISO 9001 e ISO 14001."
+        }
+      ],
+      "sectorsTitle": "Settori",
+      "sectors": [
+        {
+          "title": "Radar",
+          "text": "Tratti rigidi, curve, twist e flessibili per collegare trasmettitore, antenna e ricevitore."
+        },
+        {
+          "title": "Telecomunicazioni",
+          "text": "Ponti radio, stazioni di terra e collegamenti satellitari."
+        },
+        {
+          "title": "Ricerca",
+          "text": "Laboratori e banchi di misura: pezzi singoli, transizioni e geometrie speciali."
+        },
+        {
+          "title": "Industria",
+          "text": "Impianti e apparati a microonde. [DA CONFERMARE: applicazioni industriali da citare]"
+        }
+      ]
+    },
+    "process": {
+      "eyebrow": "Qualità e processo",
+      "title": "Come nasce un pezzo",
+      "steps": [
+        {
+          "title": "Richiesta",
+          "text": "Ci mandate la configurazione, un codice a catalogo o un disegno. Il preventivo arriva in %quoteTime%."
+        },
+        {
+          "title": "Disegno",
+          "text": "L’ufficio tecnico verifica misure, flange e tolleranze e prepara il disegno costruttivo."
+        },
+        {
+          "title": "Produzione",
+          "text": "Lavorazioni meccaniche, guida rigida o flessibile, montaggio delle flange e finitura scelta."
+        },
+        {
+          "title": "Collaudo",
+          "text": "Ogni pezzo è collaudato prima di partire. [DA CONFERMARE: misure eseguite e strumenti]"
+        },
+        {
+          "title": "Spedizione",
+          "text": "Imballo e spedizione in Italia e all’estero. [DA CONFERMARE: tempi di consegna tipici]"
+        }
+      ]
+    },
+    "cta": {
+      "eyebrow": "Preventivo",
+      "title": "Avete un pezzo in mente?",
+      "text": "Mandateci la configurazione o il disegno: il preventivo arriva in %quoteTime%.",
+      "quote": "Richiedi un preventivo",
+      "contacts": "Tutti i contatti",
+      "phone": "Telefono",
+      "email": "Email"
+    }
   }
 }

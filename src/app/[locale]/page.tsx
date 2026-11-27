@@ -4,6 +4,7 @@ import type { Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/lib/seo";
 import { localizedHref } from "@/components/ui/TrackedLink";
 import { SignalJourney, type JourneyText } from "@/components/journey/SignalJourney";
+import { HomeNext } from "@/components/home/HomeNext";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]">): Promise<Metadata> {
   const { locale } = await params;
@@ -24,7 +25,8 @@ const KEYS = [
 
 /**
  * Home «Il viaggio del segnale»: un'unica esperienza a scroll in 3D (components/journey),
- * poi il footer del sito. I testi restano sul server e arrivano al componente come stringhe.
+ * poi le sezioni della home (components/home/HomeNext: gamma, configuratore, perché, processo, CTA)
+ * e il footer del sito. I testi restano sul server e arrivano al componente come stringhe.
  */
 export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
@@ -34,10 +36,13 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const text = { ...Object.fromEntries(KEYS.map((k) => [k, t(k)])), logoAlt: footer("logoAlt") } as JourneyText;
 
   return (
-    <SignalJourney
-      t={text}
-      shopHref={await localizedHref("/configuratore")}
-      quoteHref={await localizedHref({ pathname: "/contatti", hash: "preventivo" })}
-    />
+    <>
+      <SignalJourney
+        t={text}
+        shopHref={await localizedHref("/configuratore")}
+        quoteHref={await localizedHref({ pathname: "/contatti", hash: "preventivo" })}
+      />
+      <HomeNext />
+    </>
   );
 }

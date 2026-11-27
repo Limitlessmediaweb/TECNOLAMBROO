@@ -19,7 +19,7 @@ export async function DemoBadge() {
   );
 }
 
-const TODO_RE = /(\[(?:DA COMPLETARE|TO BE COMPLETED)[^\]]*\])/g;
+const TODO_RE = /(\[(?:DA COMPLETARE|DA CONFERMARE|TO BE COMPLETED)[^\]]*\])/g;
 
 /** Toglie i segnaposto [DA COMPLETARE] da un testo (per la versione pubblica). */
 export function stripPlaceholders(text: string): string {
@@ -37,7 +37,7 @@ export function WithTodo({ text }: { text: string }) {
   return (
     <>
       {parts.map((part, i) =>
-        /^\[(DA COMPLETARE|TO BE COMPLETED)/.test(part) ? (
+        /^\[(DA COMPLETARE|DA CONFERMARE|TO BE COMPLETED)/.test(part) ? (
           <span key={i} className="todo">
             {part}
           </span>

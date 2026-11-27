@@ -1750,5 +1750,104 @@
     "ctaNote": "Reply within 24/48 hours",
     "skipIntro": "Skip intro",
     "replayIntro": "Replay intro"
+  },
+  "homeNext": {
+    "products": {
+      "eyebrow": "The range",
+      "title": "Every piece of the waveguide line",
+      "text": "From straight sections to terminations: the families of the Tecnolambro catalogue. Sizes shown are those in the official catalogue.",
+      "sizes": "{count, plural, one {# size} other {# sizes}}",
+      "tbc": "TO BE CONFIRMED",
+      "all": "All products",
+      "open": "Explore"
+    },
+    "config": {
+      "eyebrow": "3D configurator",
+      "title": "Build the part, see it in 3D",
+      "text": "Choose type, size, flanges, length and finish: the model updates with every choice and at the end you download the PDF datasheet. No prices online: the configuration reaches us as a quote request.",
+      "steps": [
+        "Type",
+        "WR size",
+        "Flange 1 and 2",
+        "Length",
+        "Finish",
+        "Quantity and notes"
+      ],
+      "cta": "Configure your part",
+      "imgAlt": "Configurator preview: twistable flexible waveguide with both flanges, 3D model",
+      "caption": "Preview from the configurator"
+    },
+    "why": {
+      "eyebrow": "Why Tecnolambro",
+      "title": "Built in Italy, made to measure",
+      "items": [
+        {
+          "title": "Made in Italy",
+          "text": "We design, build and test in Italy, at our operational site in Miradolo Terme (PV)."
+        },
+        {
+          "title": "Made to measure",
+          "text": "Length, flanges, angles and finish are chosen part by part. For a geometry outside the catalogue, a STEP, STL or PDF drawing is enough."
+        },
+        {
+          "title": "Since 1987",
+          "text": "Waveguides and microwave components, with an ISO 9001 and ISO 14001 certified management system."
+        }
+      ],
+      "sectorsTitle": "Sectors",
+      "sectors": [
+        {
+          "title": "Radar",
+          "text": "Straight sections, bends, twists and flexibles linking transmitter, antenna and receiver."
+        },
+        {
+          "title": "Telecommunications",
+          "text": "Radio links, ground stations and satellite links."
+        },
+        {
+          "title": "Research",
+          "text": "Laboratories and test benches: single parts, transitions and special geometries."
+        },
+        {
+          "title": "Industry",
+          "text": "Microwave systems and equipment. [TO BE COMPLETED: industrial applications to list]"
+        }
+      ]
+    },
+    "process": {
+      "eyebrow": "Quality and process",
+      "title": "How a part is made",
+      "steps": [
+        {
+          "title": "Request",
+          "text": "Send us the configuration, a catalogue code or a drawing. The quote arrives within %quoteTime%."
+        },
+        {
+          "title": "Drawing",
+          "text": "Our engineering office checks sizes, flanges and tolerances and prepares the manufacturing drawing."
+        },
+        {
+          "title": "Production",
+          "text": "Machining, rigid or flexible waveguide, flange assembly and the chosen finish."
+        },
+        {
+          "title": "Testing",
+          "text": "Every part is tested before it ships. [TO BE COMPLETED: tests performed and instruments]"
+        },
+        {
+          "title": "Shipping",
+          "text": "Packing and shipping in Italy and abroad. [TO BE COMPLETED: typical lead times]"
+        }
+      ]
+    },
+    "cta": {
+      "eyebrow": "Quote",
+      "title": "Have a part in mind?",
+      "text": "Send us the configuration or the drawing: the quote arrives within %quoteTime%.",
+      "quote": "Request a quote",
+      "contacts": "All contacts",
+      "phone": "Phone",
+      "email": "Email"
+    }
   }
 }
