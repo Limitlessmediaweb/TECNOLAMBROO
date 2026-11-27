@@ -9,7 +9,7 @@ import { publicExists, publicImages } from "@/lib/public-files";
 import { PHOTO_DIRS } from "@/data/photos";
 import { COMPANY, yearsActive } from "@/data/site";
 
-/** L'azienda: frase forte e quattro dati veri (1987, anni di attività, collaudo al 100%, preventivo entro 24 ore). */
+/** L'azienda: frase forte e quattro dati veri (1987, anni di attività, collaudo al 100%, preventivo entro 24/48 ore). */
 export async function CompanySection() {
   const t = await getTranslations("company");
   const about = await getTranslations("aboutPage");

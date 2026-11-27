@@ -1404,7 +1404,7 @@
     "page": {
       "eyebrow": "Configuratore 3D",
       "title": "Configura la tua guida d’onda",
-      "intro": "Sette passi, un modello 3D che cambia a ogni scelta e le flange vere del catalogo Spinner. Alla fine ci mandi la richiesta: il preventivo lo facciamo noi."
+      "intro": "Sette passi, un modello 3D che cambia a ogni scelta e le flange standard IEC ed EIA. Alla fine ci mandi la richiesta: il preventivo lo facciamo noi."
     },
     "banner": {
       "title": "Nuovo: configuratore 3D in 7 passi",
@@ -1512,7 +1512,7 @@
       "other": "Altra flangia",
       "otherHint": "Scrivi la sigla nelle note dell’ultimo passo.",
       "same": "Uguale alla flangia 1",
-      "source": "Sigle e quote dal catalogo SPINNER TD-00077 per {size}.",
+      "source": "Sigle e quote delle flange standard IEC ed EIA per {size}.",
       "desc": "{w} × {h} mm · {n} fori Ø {d} · spessore {c} mm",
       "descRound": "Ø {w} mm · {n} fori · spessore {c} mm",
       "styles": {
@@ -1768,7 +1768,8 @@
       "steps": [
         "Tipo",
         "Misura WR",
-        "Flangia 1 e 2",
+        "Flangia 1",
+        "Flangia 2",
         "Lunghezza",
         "Finitura",
         "Quantità e note"
@@ -1810,7 +1811,7 @@
         },
         {
           "title": "Industria",
-          "text": "Impianti e apparati a microonde. [DA CONFERMARE: applicazioni industriali da citare]"
+          "text": "Impianti e apparati a microonde."
         }
       ]
     },
@@ -1832,11 +1833,11 @@
         },
         {
           "title": "Collaudo",
-          "text": "Ogni pezzo è collaudato prima di partire. [DA CONFERMARE: misure eseguite e strumenti]"
+          "text": "Ogni pezzo è collaudato prima di partire."
         },
         {
           "title": "Spedizione",
-          "text": "Imballo e spedizione in Italia e all’estero. [DA CONFERMARE: tempi di consegna tipici]"
+          "text": "Imballo e spedizione in Italia e all’estero."
         }
       ]
     },

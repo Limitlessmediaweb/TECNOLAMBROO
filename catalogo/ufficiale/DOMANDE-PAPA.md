@@ -125,3 +125,11 @@ Il configuratore ora scrive il codice nel **formato compatto** della ditta. Dal 
 59. TFTG-48 e TFTG-70: nei datasheet manca il **peso** (sul sito resta «Su richiesta»). Li hai? ______
 60. Edizione/revisione dei datasheet generati dal configuratore: oggi «ED. mese/anno REV 00». Va bene così? **sì / no**
 61. La tolleranza di lunghezza **± 2 %** vale solo per le flessibili twistabili? Per rigidi, curve e transizioni quale tolleranza scriviamo? ______
+
+## Testi della home rimasti senza dato (revisione 27/11/2026)
+
+Nella home ho tolto le frasi con il dato mancante. Appena arrivano le risposte si rimettono.
+
+62. **Industria**: quali **applicazioni industriali** vogliamo citare (es. riscaldamento a microonde, medicale, scientifico…)? ______
+63. **Collaudo**: quali **misure** si eseguono su ogni pezzo (VSWR/return loss, perdite, tenuta in pressione, dimensioni…) e con quali **strumenti** (analizzatore di reti, modello…)? ______
+64. **Spedizione**: qual è il **tempo di consegna tipico** per un pezzo su misura? E per quelli a magazzino (oggi sul sito: «spedizione in 48 ore»)? ______

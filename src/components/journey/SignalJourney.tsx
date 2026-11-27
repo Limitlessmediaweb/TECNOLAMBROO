@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import NextLink from "next/link";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { ArrowDown, ArrowRight, Play, RotateCcw } from "lucide-react";
 import { loadGsap, MQ } from "@/lib/motion";
@@ -22,7 +22,7 @@ export type JourneyText = Record<
   string
 >;
 
-type Props = { t: JourneyText; shopHref: string; quoteHref: string };
+type Props = { t: JourneyText; shopHref: string; quoteHref: string; isoSlot?: ReactNode };
 
 /** Capitolo (0..6) di ogni pannello di testo: la flessibile e la catena montata stanno nello stesso capitolo */
 const PANEL_CHAPTER = [0, 1, 2, 3, 4, 5, 5, 6];
@@ -52,7 +52,7 @@ const writeSkip = (on: boolean) => {
  *  - calm: prefers-reduced-motion, capitoli fermi con il pezzo che ruota piano;
  *  - static: senza WebGL (o senza JavaScript) i capitoli sono una pagina normale con le foto vere.
  */
-export function SignalJourney({ t, shopHref, quoteHref }: Props) {
+export function SignalJourney({ t, shopHref, quoteHref, isoSlot }: Props) {
   const rootRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const skipRef = useRef<HTMLButtonElement>(null);
@@ -395,10 +395,7 @@ export function SignalJourney({ t, shopHref, quoteHref }: Props) {
                 </div>
               </dl>
               <p className="sj-iso">
-                <span className="sj-plate">
-                  <Image src="/brand/logo.png" alt={t.logoAlt} width={541} height={197} sizes="132px" priority />
-                </span>
-                <span>{t.iso}</span>
+                {isoSlot}
                 <NextLink href={shopHref} className="sj-skip" data-track="cta_shop_click" data-source="journey_hero">
                   {t.skip}
                   <ArrowRight aria-hidden="true" strokeWidth={1.75} />

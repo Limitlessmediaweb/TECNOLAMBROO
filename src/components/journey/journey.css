@@ -152,6 +152,19 @@
   width: 7.25rem;
   height: auto;
 }
+/* badge ISO 9001 / 14001 (stessi del footer) sul fondo scuro della scena */
+.sj-iso a {
+  border-color: rgb(169 185 199 / 0.42);
+  background: rgb(7 13 19 / 0.45);
+  color: #f1f5f8;
+}
+.sj-iso a svg {
+  color: #6ac3fb;
+}
+.sj-iso a:hover {
+  border-color: #8fd0ff;
+  color: #8fd0ff;
+}
 .sj-skip {
   display: inline-flex;
   align-items: center;
@@ -711,7 +724,9 @@ html[data-js] .sj[data-ready] .sj-canvas {
 /* ------------------------------------- header scuro finché la scena è sullo schermo */
 
 html[data-sj-header] body > header,
-html[data-sj-header] header.fixed {
+html[data-sj-header] header.fixed,
+html[data-hx-header] body > header,
+html[data-hx-header] header.fixed {
   color-scheme: dark;
   --c-bg: #09121a;
   --c-surface: #0f1a24;

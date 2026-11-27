@@ -1404,7 +1404,7 @@
     "page": {
       "eyebrow": "3D configurator",
       "title": "Configure your waveguide",
-      "intro": "Seven steps, a 3D model that changes with every choice and the real flanges from the Spinner catalogue. At the end you send us the request and we prepare the quotation."
+      "intro": "Seven steps, a 3D model that changes with every choice and the standard IEC and EIA flanges. At the end you send us the request and we prepare the quotation."
     },
     "banner": {
       "title": "New: 3D configurator in 7 steps",
@@ -1512,7 +1512,7 @@
       "other": "Another flange",
       "otherHint": "Write its designation in the notes of the last step.",
       "same": "Same as flange 1",
-      "source": "Designations and dimensions from the SPINNER TD-00077 catalogue for {size}.",
+      "source": "Designations and dimensions of the standard IEC and EIA flanges for {size}.",
       "desc": "{w} × {h} mm · {n} holes Ø {d} · thickness {c} mm",
       "descRound": "Ø {w} mm · {n} holes · thickness {c} mm",
       "styles": {
@@ -1768,7 +1768,8 @@
       "steps": [
         "Type",
         "WR size",
-        "Flange 1 and 2",
+        "Flange 1",
+        "Flange 2",
         "Length",
         "Finish",
         "Quantity and notes"
@@ -1810,7 +1811,7 @@
         },
         {
           "title": "Industry",
-          "text": "Microwave systems and equipment. [TO BE COMPLETED: industrial applications to list]"
+          "text": "Microwave systems and equipment."
         }
       ]
     },
@@ -1832,11 +1833,11 @@
         },
         {
           "title": "Testing",
-          "text": "Every part is tested before it ships. [TO BE COMPLETED: tests performed and instruments]"
+          "text": "Every part is tested before it ships."
         },
         {
           "title": "Shipping",
-          "text": "Packing and shipping in Italy and abroad. [TO BE COMPLETED: typical lead times]"
+          "text": "Packing and shipping in Italy and abroad."
         }
       ]
     },

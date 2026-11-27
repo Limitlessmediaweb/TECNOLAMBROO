@@ -28,25 +28,10 @@ export function stripPlaceholders(text: string): string {
 
 /**
  * Segnaposto [DA COMPLETARE] / [TO BE COMPLETED] dentro un testo.
- * In anteprima (NEXT_PUBLIC_DEMO=true) restano evidenziati in giallo; nella versione pubblica
- * spariscono, e se il testo era solo un segnaposto non resta nulla.
+ * Non si mostrano mai (né in anteprima né online): se il testo era solo un segnaposto non resta nulla.
  */
 export function WithTodo({ text }: { text: string }) {
-  if (!ENV.demo) return <>{stripPlaceholders(text)}</>;
-  const parts = text.split(TODO_RE);
-  return (
-    <>
-      {parts.map((part, i) =>
-        /^\[(DA COMPLETARE|DA CONFERMARE|TO BE COMPLETED)/.test(part) ? (
-          <span key={i} className="todo">
-            {part}
-          </span>
-        ) : (
-          part
-        ),
-      )}
-    </>
-  );
+  return <>{stripPlaceholders(text)}</>;
 }
 
 /** true se il testo, tolti i segnaposto, è vuoto. */

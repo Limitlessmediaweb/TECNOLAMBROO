@@ -1,34 +1,65 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
-import { MQ, useLazyGSAP } from "@/lib/motion";
+import { useLayoutEffect, useRef, type ReactNode } from "react";
 
 /**
- * Animazioni leggere delle sezioni dopo il percorso: blocchi che salgono di poco e appaiono,
- * elenchi in sequenza, linea del processo che si disegna. Solo transform/opacity, una volta sola,
- * niente pin né scroll-jacking. Con prefers-reduced-motion (o senza JavaScript) tutto è già visibile.
+ * Entrata delle sezioni dopo il percorso: ogni blocco appare (max 0,5 s) appena il suo bordo
+ * superiore entra nel 90% dello schermo, una volta sola. Niente ScrollTrigger né pin: il controllo
+ * usa la posizione reale a ogni scroll, quindi nulla resta nascosto dopo salti o scroll veloci.
+ * Con prefers-reduced-motion (o senza JavaScript) tutto è subito visibile e non c'è animazione.
  */
 export function HomeReveal({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
 
-  useLazyGSAP(({ gsap }) => {
+  useLayoutEffect(() => {
     const root = ref.current;
     if (!root) return;
-    const mm = gsap.matchMedia();
-    mm.add(MQ.motion, () => {
-      root.querySelectorAll<HTMLElement>("[data-hx-reveal]").forEach((el) => {
-        gsap.from(el, { y: 28, autoAlpha: 0, duration: 0.9, scrollTrigger: { trigger: el, start: "top 88%", once: true } });
+    const html = document.documentElement;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const targets = reduced ? [] : Array.from(root.querySelectorAll<HTMLElement>("[data-hx-reveal], [data-hx-stagger]"));
+    if (!reduced) root.classList.add("hx-js");
+    let pending = targets.filter((el) => !el.classList.contains("is-in"));
+    let raf = 0;
+
+    const check = () => {
+      raf = 0;
+      const limit = window.innerHeight * 0.9;
+      pending = pending.filter((el) => {
+        if (el.getBoundingClientRect().top < limit) {
+          el.classList.add("is-in");
+          return false;
+        }
+        return true;
       });
-      root.querySelectorAll<HTMLElement>("[data-hx-stagger]").forEach((list) => {
-        const items = list.querySelectorAll<HTMLElement>("[data-hx-item]");
-        gsap.from(items, { y: 22, autoAlpha: 0, duration: 0.7, stagger: 0.07, scrollTrigger: { trigger: list, start: "top 86%", once: true } });
-      });
-      root.querySelectorAll<HTMLElement>("[data-hx-line]").forEach((list) => {
-        gsap.fromTo(list, { "--hx-line": 0 }, { "--hx-line": 1, ease: "none", scrollTrigger: { trigger: list, start: "top 80%", end: "bottom 60%", scrub: 0.6 } });
-      });
-    });
-    return () => mm.revert();
-  }, ref);
+      // header scuro finché sotto di lui c'è una sezione scura (le sezioni dopo il percorso)
+      const r = root.getBoundingClientRect();
+      const under = r.top < 40 && r.bottom > 40;
+      if (under !== (html.dataset.hxHeader === "on")) {
+        if (under) html.dataset.hxHeader = "on";
+        else delete html.dataset.hxHeader;
+      }
+    };
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(check);
+    };
+
+    check(); // prima del paint: quello già in vista non lampeggia
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    window.addEventListener("hashchange", schedule);
+    // rete di sicurezza: dopo layout tardivi (font, immagini) ricontrolla
+    const late = [300, 1200, 3000].map((ms) => window.setTimeout(schedule, ms));
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      window.removeEventListener("hashchange", schedule);
+      late.forEach(clearTimeout);
+      if (raf) cancelAnimationFrame(raf);
+      root.classList.remove("hx-js");
+      delete html.dataset.hxHeader;
+    };
+  }, []);
 
   return (
     <div ref={ref} className="hx-root">

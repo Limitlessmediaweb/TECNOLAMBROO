@@ -12,7 +12,7 @@ const PEC = "tecnolambrosnc@pec.it";
 /** Cellulare: primo numero mostrato e numero WhatsApp */
 const MOBILE = "+39 375 577 1084";
 /** Ore entro cui arriva il preventivo (per lingua: "24 ore", "24 ore lavorative", "24 h") */
-export const QUOTE_REPLY_HOURS = 24;
+export const QUOTE_REPLY_HOURS = "24/48";
 
 const telHref = (n: string) => `tel:${n.replace(/[^\d+]/g, "")}`;
 

@@ -4,6 +4,7 @@ import type { Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/lib/seo";
 import { localizedHref } from "@/components/ui/TrackedLink";
 import { SignalJourney, type JourneyText } from "@/components/journey/SignalJourney";
+import { IsoBadges } from "@/components/sections/Certifications";
 import { HomeNext } from "@/components/home/HomeNext";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]">): Promise<Metadata> {
@@ -41,6 +42,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         t={text}
         shopHref={await localizedHref("/configuratore")}
         quoteHref={await localizedHref({ pathname: "/contatti", hash: "preventivo" })}
+        isoSlot={<IsoBadges href={await localizedHref("/qualita")} />}
       />
       <HomeNext />
     </>

@@ -1404,7 +1404,7 @@
     "page": {
       "eyebrow": "3D-Konfigurator",
       "title": "Konfigurieren Sie Ihren Hohlleiter",
-      "intro": "Sieben Schritte, ein 3D-Modell, das sich bei jeder Auswahl ändert, und die echten Flansche aus dem Spinner-Katalog. Am Ende senden Sie uns die Anfrage, das Angebot erstellen wir."
+      "intro": "Sieben Schritte, ein 3D-Modell, das sich bei jeder Auswahl ändert, und die Standardflansche nach IEC und EIA. Am Ende senden Sie uns die Anfrage, das Angebot erstellen wir."
     },
     "banner": {
       "title": "Neu: 3D-Konfigurator in 7 Schritten",
@@ -1512,7 +1512,7 @@
       "other": "Anderer Flansch",
       "otherHint": "Schreiben Sie die Bezeichnung in die Notizen des letzten Schritts.",
       "same": "Wie Flansch 1",
-      "source": "Bezeichnungen und Maße aus dem SPINNER-Katalog TD-00077 für {size}.",
+      "source": "Bezeichnungen und Maße der Standardflansche nach IEC und EIA für {size}.",
       "desc": "{w} × {h} mm · {n} Bohrungen Ø {d} · Dicke {c} mm",
       "descRound": "Ø {w} mm · {n} Bohrungen · Dicke {c} mm",
       "styles": {
@@ -1768,7 +1768,8 @@
       "steps": [
         "Type",
         "WR size",
-        "Flange 1 and 2",
+        "Flange 1",
+        "Flange 2",
         "Length",
         "Finish",
         "Quantity and notes"
@@ -1810,7 +1811,7 @@
         },
         {
           "title": "Industry",
-          "text": "Microwave systems and equipment. [TO BE COMPLETED: industrial applications to list]"
+          "text": "Microwave systems and equipment."
         }
       ]
     },
@@ -1832,11 +1833,11 @@
         },
         {
           "title": "Testing",
-          "text": "Every part is tested before it ships. [TO BE COMPLETED: tests performed and instruments]"
+          "text": "Every part is tested before it ships."
         },
         {
           "title": "Shipping",
-          "text": "Packing and shipping in Italy and abroad. [TO BE COMPLETED: typical lead times]"
+          "text": "Packing and shipping in Italy and abroad."
         }
       ]
     },

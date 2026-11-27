@@ -9,7 +9,7 @@ import type { PartType } from "@/data/configurator/types";
 import { SHOW_TBC, catalogProduct, catalogSizes } from "@/data/catalogo";
 import { WR_LIST } from "@/data/waveguides";
 import { familyForType, familySlug } from "@/data/families";
-import { COMPANY, ENV } from "@/data/site";
+import { COMPANY } from "@/data/site";
 import { PartGlyph } from "./PartGlyph";
 import { HomeReveal } from "./HomeReveal";
 import "./home-next.css";
@@ -33,23 +33,9 @@ function catalogCards(locale: Locale): Card[] {
   });
 }
 
-/** Segnaposto [DA CONFERMARE …]: evidenziati in anteprima, tolti nella versione pubblica. */
-const TODO_SPLIT = /(\[(?:DA COMPLETARE|DA CONFERMARE|TO BE COMPLETED)[^\]]*\])/g;
+/** Segnaposto [DA CONFERMARE …]: mai mostrati nei testi pubblici (le domande stanno in DOMANDE-PAPA.md). */
 function Todo({ text }: { text: string }) {
-  if (!(ENV.demo || SHOW_TBC)) return <>{stripPlaceholders(text)}</>;
-  return (
-    <>
-      {text.split(TODO_SPLIT).map((part, i) =>
-        /^\[(DA |TO BE )/.test(part) ? (
-          <mark key={i} className="hx-todo">
-            {part}
-          </mark>
-        ) : (
-          part
-        ),
-      )}
-    </>
-  );
+  return <>{stripPlaceholders(text)}</>;
 }
 
 const range = (s: string[]) => (s.length === 1 ? s[0] : `${s[0]} – ${s[s.length - 1]}`);
@@ -77,7 +63,6 @@ export async function HomeNext() {
         <section className="hx-section" aria-labelledby="hx-products">
           <header className="hx-head" data-hx-reveal>
             <p className="hx-eyebrow">
-              <span className="hx-eyebrow-n">08</span>
               {t("products.eyebrow")}
             </p>
             <h2 id="hx-products" className="hx-title">
@@ -119,7 +104,6 @@ export async function HomeNext() {
         <section className="hx-section hx-config" aria-labelledby="hx-config">
           <div className="hx-config-copy" data-hx-reveal>
             <p className="hx-eyebrow">
-              <span className="hx-eyebrow-n">09</span>
               {t("config.eyebrow")}
             </p>
             <h2 id="hx-config" className="hx-title">
@@ -154,7 +138,6 @@ export async function HomeNext() {
         <section className="hx-section" aria-labelledby="hx-why">
           <header className="hx-head" data-hx-reveal>
             <p className="hx-eyebrow">
-              <span className="hx-eyebrow-n">10</span>
               {t("why.eyebrow")}
             </p>
             <h2 id="hx-why" className="hx-title">
@@ -176,7 +159,7 @@ export async function HomeNext() {
           </h3>
           <ul className="hx-sectors" data-hx-stagger>
             {sectors.map((s) => {
-              const text = ENV.demo || SHOW_TBC ? s.text : stripPlaceholders(s.text);
+              const text = stripPlaceholders(s.text);
               return (
                 <li key={s.title} data-hx-item>
                   <span className="hx-sector-name">{s.title}</span>
@@ -195,7 +178,6 @@ export async function HomeNext() {
         <section className="hx-section" aria-labelledby="hx-process">
           <header className="hx-head" data-hx-reveal>
             <p className="hx-eyebrow">
-              <span className="hx-eyebrow-n">11</span>
               {t("process.eyebrow")}
             </p>
             <h2 id="hx-process" className="hx-title">
@@ -221,7 +203,6 @@ export async function HomeNext() {
         <section className="hx-section hx-cta" aria-labelledby="hx-cta">
           <div className="hx-cta-inner" data-hx-reveal>
             <p className="hx-eyebrow">
-              <span className="hx-eyebrow-n">12</span>
               {t("cta.eyebrow")}
             </p>
             <h2 id="hx-cta" className="hx-title hx-title--xl">

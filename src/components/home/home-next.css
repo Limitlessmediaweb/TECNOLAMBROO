@@ -554,3 +554,24 @@
 .hx-contacts a:hover {
   color: var(--sj-ice);
 }
+
+/* ------------------------------------------------------------------ entrata (max 0,5 s) */
+@media (prefers-reduced-motion: no-preference) {
+  .hx-js [data-hx-reveal]:not(.is-in),
+  .hx-js [data-hx-stagger]:not(.is-in) > [data-hx-item] {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  .hx-js [data-hx-reveal],
+  .hx-js [data-hx-stagger] > [data-hx-item] {
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  }
+  .hx-js [data-hx-stagger] > [data-hx-item]:nth-child(2) { transition-delay: 0.04s; }
+  .hx-js [data-hx-stagger] > [data-hx-item]:nth-child(3) { transition-delay: 0.08s; }
+  .hx-js [data-hx-stagger] > [data-hx-item]:nth-child(n + 4) { transition-delay: 0.1s; }
+  .hx-js .hx-process[data-hx-line]:not(.is-in) { --hx-line: 0; }
+  .hx-js .hx-process[data-hx-line]::after { transition: transform 0.5s ease-out; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-hx-reveal], [data-hx-item] { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
