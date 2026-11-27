@@ -7,7 +7,7 @@ import { useClientLocale, useT } from "@/lib/client-i18n";
 import { BEND_ANGLES, FINISHES_BY_MATERIAL, FINISH_ON_REQUEST, TWIST_ROTATIONS, TYPE_DEF, hasFlange2, isFlexible, type Finish, type Material, type PartSpec, type PartType, type Plane } from "@/data/configurator/types";
 import { defaultSpec, specFromParams, specToParams } from "@/data/configurator/defaults";
 import { SHOW_TBC, blockedFlanges, catalogFlanges, catalogProduct, catalogSizes, defaultFlanges, firstSize, flangeAllowed, transitionPartners, typeInCatalog } from "@/data/catalogo";
-import { FREE_LENGTH, MATERIAL, SIZES, SIZE_BY_WR, bestSizeFor, iecNumber, num, range, sizesFor, standardLengths } from "@/data/waveguides";
+import { FREE_LENGTH, SIZES, SIZE_BY_WR, bestSizeFor, iecNumber, num, range, sizesFor, standardLengths } from "@/data/waveguides";
 import { OTHER_FLANGE, flangeLabel, flangeOutline, type FlangeDef } from "@/data/flanges";
 import { specValid } from "@/lib/part";
 import { addItem } from "@/lib/request";
@@ -18,7 +18,6 @@ import { decimalSep } from "@/i18n/locales";
 import { cn } from "@/lib/cn";
 import type { Accessory, ViewFocus, ViewerLabels } from "@/lib/part3d";
 import { FINISH_SUFFIX, configCode } from "@/lib/config-code";
-import { electricalFor, type ElectricalKey, type SheetRow } from "@/lib/datasheet";
 import { drawingDate, drawingSvg } from "@/lib/drawing";
 import { CAST_BEND_SIZES, COAX, COVERS, GASKETS, SHIMS, TGR_LENGTHS, rigidSheets } from "@/data/catalogo-ditta";
 import { COMPANY } from "@/data/site";
@@ -44,7 +43,6 @@ const RIGID_LENGTHS: Record<RigidNew, { std: readonly number[]; min: number; max
   pressure: { std: [100], min: 50, max: 500 },
   spacer: { std: [4, 6, 10, 12], min: 1, max: 50 },
 };
-const EL_KEYS: readonly ElectricalKey[] = ["il", "ilMax", "rl", "vswr", "cw", "rE", "rH", "twist", "pMax", "pOp"];
 
 /** Le scelte del passo 1: la curva è divisa in piano E e piano H. */
 const TILES = [
@@ -945,50 +943,25 @@ export function PremiumConfigurator({ requestPath }: { requestPath: string }) {
   const question = id === "item" ? t(`q.item_${acc ?? "cover"}`) : id === "length" && geo !== "length" ? t(`q.length_${geo}`) : t(`q.${id}`);
 
   /* ---------------------------------------------------------- datasheet */
-  const sheetRows = (): SheetRow[] => {
-    const rows: SheetRow[] = [
-      { label: t("sheet.rows.waveguide"), value: `${size.wr.replace("-", "")} · ${size.iec} · ${size.wg}` },
-      { label: t("sheet.rows.inner"), value: `${mm(size.a)} × ${mm(size.b)} mm` },
-      { label: t("sheet.rows.band"), value: `${range(size.min, size.max, locale)} GHz` },
-      { label: t("steps.length"), value: lengthText },
-      { label: t("steps.flange1"), value: f1Name },
-      { label: t("steps.flange2"), value: hasFlange2(spec.type) ? f2Name : t("flange.closed") },
-      { label: t("steps.finish"), value: t(`finish.${spec.finish}.name`) },
-      { label: t("sheet.rows.material"), value: flex ? `${t("sheet.brass")} ${MATERIAL}` : material === "al" ? t("finish.al") : t("sheet.brass") },
-    ];
-    if (size2) rows.splice(1, 0, { label: t("sheet.rows.size2"), value: `${size2.wr.replace("-", "")} · ${size2.iec} · ${mm(size2.a)} × ${mm(size2.b)} mm` });
-    if (flex) rows.push({ label: t("finish.jacket"), value: spec.jacket ? t("finish.jacketOn") : t("finish.jacketOff") });
-    return rows;
-  };
   const downloadSheet = async () => {
     setSheetState("busy");
     try {
-      const [{ datasheetPdf }, { downloadBytes }] = await Promise.all([import("@/lib/datasheet"), import("@/lib/pdf")]);
+      const [{ datasheetPdf }, { sheetFields, editionFor }, { downloadBytes }] = await Promise.all([import("@/lib/datasheet"), import("@/lib/datasheet-fields"), import("@/lib/pdf")]);
       const drawing = drawingSvg({ spec, flangeA: `${f1Tag} · ${f1Name}`, flangeB: hasFlange2(spec.type) ? `${f2Tag} · ${f2Name}` : t("flange.closed"), code: code.replace(FINISH_SUFFIX, ""), locale, labels: drawLabels, palette: "print", date: drawingDate(locale) });
       const op = COMPANY.operationalAddress;
+      const edition = editionFor();
+      // campi e testi in italiano / inglese come nel datasheet ufficiale, in qualunque lingua del sito
+      const fields = sheetFields({ spec, code, f1: f1Name, f2: hasFlange2(spec.type) ? f2Name : null, edition });
       const bytes = await datasheetPdf({
         code,
-        product: t(`types.${tile}.name`),
-        rows: sheetRows(),
-        electrical: electricalFor(spec, (v, d = 0) => num(v, locale, d, d)),
-        date: drawingDate(locale),
+        product: fields[0].value ?? t(`types.${tile}.name`),
+        fields,
+        edition,
+        note: "Dati di catalogo indicativi, da confermare in offerta. «Su richiesta»: dato non a catalogo per questo pezzo. / Indicative catalogue data, confirmed in the quotation. «On request»: not catalogued for this part.",
+        date: drawingDate("it"),
         view3d: stage.current?.snapshot() ?? null,
         drawingSvg: drawing,
         company: { name: COMPANY.brandFull, address: `${op.street} · ${op.postalCode} ${op.city} (${op.province}) · Italy`, contact: `${COMPANY.email} · ${COMPANY.phone2}` },
-        texts: {
-          title: t("sheet.title"),
-          codeLabel: t("sheet.codeLabel"),
-          view3d: t("sheet.view3d"),
-          drawing: t("sheet.drawing"),
-          dataTitle: t("sheet.dataTitle"),
-          electricalTitle: t("sheet.electricalTitle"),
-          electricalSource: t("sheet.electricalSource"),
-          onRequestTitle: t("sheet.onRequestTitle"),
-          onRequestBody: t("sheet.onRequestBody"),
-          note: t("sheet.note"),
-          dateLabel: t("sheet.dateLabel"),
-          el: Object.fromEntries(EL_KEYS.map((k) => [k, t(`sheet.el.${k}`)])) as Record<ElectricalKey, string>,
-        },
       });
       downloadBytes(bytes, `${code.replace(/[^A-Za-z0-9._-]+/g, "_")}.pdf`, "application/pdf");
       setSheetState("idle");

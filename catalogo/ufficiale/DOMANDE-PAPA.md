@@ -103,3 +103,25 @@ Per famiglia. Dove si può, basta un **sì / no** (cerchia). Le risposte servono
 48. I file solo CorelDRAW (twist, disassati, cast bend, tappi): si possono esportare in PDF? **sì / no**
 49. I file «in dubbio» dell'inventario (fatti per un ordine?): li controlli tu? **sì / no**
 50. I dati elettrici (VSWR, perdite, potenza) dei datasheet si possono mettere sul sito? **sì / no**
+
+## Datasheet nuovo dal configuratore (27/11/2026)
+
+Il configuratore ora scrive il codice nel **formato compatto** della ditta. Dal datasheet TFTG-120 abbiamo ricavato:
+**F = UBR**, **G = PBR**, **D = UDR**, **E = PDR** (FF.GF = UBR+PBR, GF.GF = PBR+PBR, DF.EF = UDR+PDR).
+
+51. Nelle twistabili ogni flangia ha **due lettere** (FF, GF, DF, EF): cosa vuol dire la **seconda F**? (Flangia? Ottone? Sempre F?) ______
+52. Lettere che **non** si possono ricavare dai datasheet (oggi nel codice restano per esteso, es. `TTG-84-100/100-F.CBR100`):
+    - **CBR** (IEC-CBR, flangia a choke) → lettera ______
+    - **CPR** G e F → H = ______ I = ______ (vedi domanda 1)
+    - **UAR / PAR / CAR** (flange tonde IEC) → ______ ______ ______
+    - **UG-…** (es. UG-383/U, UG-599/U) → ______
+    - flangia «fuori elenco» (oggi XX) → ______
+53. Il codice compatto non contiene la finitura (argentatura, verniciatura…): due pezzi uguali con finitura diversa hanno lo **stesso codice**? **sì / no** (Nel datasheet TFTG-120-300 c'è anche «GFNI.GFNI»: NI = nichelato?) ______
+54. «**5.8 ps**» nella pressurizzazione di esercizio è **5.8 psi**? **sì / no**
+55. Nel tipo prodotto c'è «Brass **Silver Plated**», ma nella finitura flange del TFTG-48 c'è «Brass **un-plated**» (e negli altri «Nichel plated»): quale vale per le flange? ______
+56. Return Loss del TFTG-120: **25.7 dB a 600 mm** e **24.9 dB a 900 e 1200 mm**. È giusto che 900 e 1200 abbiano lo stesso valore? **sì / no**
+57. Pesi diversi per le stesse misure: TFTG-120 900 mm **FF.GF e GF.GF 550 g** contro **DF.EF 580 g** (e 600 mm 390 g contro 420 g). La differenza è dovuta alle flange UDR/PDR più pesanti? Confermi i pesi? **sì / no**
+58. Correggere il refuso «**paiting**» in «**painting**» nei datasheet originali: **sì / no** (nel nostro datasheet è già scritto giusto)
+59. TFTG-48 e TFTG-70: nei datasheet manca il **peso** (sul sito resta «Su richiesta»). Li hai? ______
+60. Edizione/revisione dei datasheet generati dal configuratore: oggi «ED. mese/anno REV 00». Va bene così? **sì / no**
+61. La tolleranza di lunghezza **± 2 %** vale solo per le flessibili twistabili? Per rigidi, curve e transizioni quale tolleranza scriviamo? ______

@@ -37,9 +37,9 @@ export function flangeToken(id: string): string {
  * Formato del codice articolo. UNICO punto da cambiare per passare al formato compatto della ditta:
  *  - "readable": TGR-100-100-UBR-PBR-BRL (sigle delle flange per esteso, finitura in coda) — oggi;
  *  - "compact":  TGR-100/100-FG (lettere D E F G delle flange, come nei datasheet della ditta).
- * [DA CONFERMARE con Riccardo e il papà, DOMANDE-PAPA.md n. 3]
+ * 27/11/2026: scelto il compatto, come nei datasheet della ditta (es. TFTG-120/600-FF.GF).
  */
-export const CODE_FORMAT: "readable" | "compact" = "readable";
+export const CODE_FORMAT: "readable" | "compact" = "compact";
 
 /** Codice articolo del pezzo configurato: l'unica funzione che lo genera (3D, riepilogo, richiesta, PDF). */
 export function configCode(spec: PartSpec): string {
@@ -57,7 +57,12 @@ const LETTER: Record<string, string> = Object.fromEntries(Object.entries(FLANGE_
 export function compactCode(spec: PartSpec): string {
   const parts = readableParts(spec);
   const letters = parts.flanges.map((t) => LETTER[t] ?? t);
-  const tail = letters.every((l) => l.length === 1) ? letters.join("") : letters.join(".");
+  // Flessibili twistabili: ogni flangia è "<lettera>F", separate da un punto, come nei datasheet TFTG
+  // (FF.GF = UBR + PBR, GF.GF = PBR + PBR, DF.EF = UDR + PDR). [DA CONFERMARE: cosa indica la seconda F]
+  if (spec.type === "twistable") {
+    return `${parts.family}-${parts.sizes.join("-")}/${parts.geometry}-${letters.map((l) => (l.length === 1 ? `${l}F` : l)).join(".")}`;
+  }
+  const tail =letters.every((l) => l.length === 1) ? letters.join("") : letters.join(".");
   return `${parts.family}-${parts.sizes.join("-")}/${parts.geometry}-${tail}`;
 }
 
