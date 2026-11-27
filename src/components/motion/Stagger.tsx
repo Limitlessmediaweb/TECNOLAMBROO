@@ -13,7 +13,7 @@ type Props = {
 };
 
 /** Figli che entrano in sequenza. Stesse regole di Reveal: solo transform, testo sempre a piena opacità. */
-export function Stagger({ children, as: Tag = "div", className, selector = ":scope > *", stagger = 0.08 }: Props) {
+export function Stagger({ children, as: Tag = "div", className, selector = ":scope > *", stagger = 0.05 }: Props) {
   const ref = useRef<HTMLElement>(null);
 
   useLazyGSAP(
@@ -23,11 +23,11 @@ export function Stagger({ children, as: Tag = "div", className, selector = ":sco
         const items = ref.current?.querySelectorAll<HTMLElement>(selector);
         if (!items?.length) return;
         gsap.from(items, {
-          y: 40,
-          duration: 1,
+          y: 20,
+          duration: 0.5,
           stagger,
-          ease: "power3.out",
-          scrollTrigger: { trigger: ref.current, start: "top 88%", toggleActions: "play none none none" },
+          ease: "power2.out",
+          scrollTrigger: { trigger: ref.current, start: "top 90%", toggleActions: "play none none none" },
         });
       });
       return () => mm.revert();

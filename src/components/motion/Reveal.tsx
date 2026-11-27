@@ -17,7 +17,7 @@ type Props = {
  * Entrata allo scroll. Il contenuto è sempre leggibile: si anima solo il transform,
  * mai l'opacità (nessun testo sbiadito in attesa dello scroll). Senza JS o con reduced motion resta fermo.
  */
-export function Reveal({ children, as: Tag = "div", className, y = 36, delay = 0 }: Props) {
+export function Reveal({ children, as: Tag = "div", className, y = 20, delay = 0 }: Props) {
   const ref = useRef<HTMLElement>(null);
 
   useLazyGSAP(
@@ -26,10 +26,10 @@ export function Reveal({ children, as: Tag = "div", className, y = 36, delay = 0
       mm.add(MQ.motion, () => {
         gsap.from(ref.current, {
           y,
-          duration: 1.1,
-          delay,
-          ease: "power3.out",
-          scrollTrigger: { trigger: ref.current, start: "top 92%", toggleActions: "play none none none" },
+          duration: 0.5,
+          delay: Math.min(delay, 0.1),
+          ease: "power2.out",
+          scrollTrigger: { trigger: ref.current, start: "top 90%", toggleActions: "play none none none" },
         });
       });
       return () => mm.revert();

@@ -5,7 +5,8 @@ import { MQ, useLazyGSAP } from "@/lib/motion";
 
 /**
  * Animazioni leggere delle sezioni dopo il percorso: blocchi che salgono di poco e appaiono,
- * elenchi in sequenza, linea del processo che si disegna. Solo transform/opacity, una volta sola,
+ * elenchi in sequenza. Partono presto (top 90%) e durano al massimo 0,5 s: mai sezioni vuote o
+ * sbiadite mentre si scorre. Solo transform/opacity, una volta sola,
  * niente pin né scroll-jacking. Con prefers-reduced-motion (o senza JavaScript) tutto è già visibile.
  */
 export function HomeReveal({ children }: { children: ReactNode }) {
@@ -17,14 +18,11 @@ export function HomeReveal({ children }: { children: ReactNode }) {
     const mm = gsap.matchMedia();
     mm.add(MQ.motion, () => {
       root.querySelectorAll<HTMLElement>("[data-hx-reveal]").forEach((el) => {
-        gsap.from(el, { y: 28, autoAlpha: 0, duration: 0.9, scrollTrigger: { trigger: el, start: "top 88%", once: true } });
+        gsap.from(el, { y: 20, autoAlpha: 0, duration: 0.5, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 90%", once: true } });
       });
       root.querySelectorAll<HTMLElement>("[data-hx-stagger]").forEach((list) => {
         const items = list.querySelectorAll<HTMLElement>("[data-hx-item]");
-        gsap.from(items, { y: 22, autoAlpha: 0, duration: 0.7, stagger: 0.07, scrollTrigger: { trigger: list, start: "top 86%", once: true } });
-      });
-      root.querySelectorAll<HTMLElement>("[data-hx-line]").forEach((list) => {
-        gsap.fromTo(list, { "--hx-line": 0 }, { "--hx-line": 1, ease: "none", scrollTrigger: { trigger: list, start: "top 80%", end: "bottom 60%", scrub: 0.6 } });
+        gsap.from(items, { y: 16, autoAlpha: 0, duration: 0.45, stagger: 0.05, ease: "power2.out", scrollTrigger: { trigger: list, start: "top 90%", once: true } });
       });
     });
     return () => mm.revert();

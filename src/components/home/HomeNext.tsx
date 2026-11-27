@@ -1,85 +1,42 @@
-import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
-import { ArrowRight, ArrowUpRight, Mail, Phone } from "lucide-react";
+import { ArrowRight, ArrowUpRight, FileUp, Mail, MessageCircle, Phone, ShieldCheck } from "lucide-react";
 import { LocalLink as Link } from "@/components/ui/LocalLink";
-import type { Href } from "@/components/ui/TrackedLink";
-import { stripPlaceholders } from "@/components/ui/Bits";
+import { PhotoSlot } from "@/components/ui/PhotoSlot";
 import type { Locale } from "@/i18n/routing";
-import type { PartType } from "@/data/configurator/types";
-import { SHOW_TBC, catalogProduct, catalogSizes } from "@/data/catalogo";
-import { WR_LIST } from "@/data/waveguides";
-import { familyForType, familySlug } from "@/data/families";
-import { COMPANY, ENV } from "@/data/site";
+import { CERTIFICATIONS } from "@/data/certifications";
+import { COMPANY, whatsappHref } from "@/data/site";
+import { productFamilies } from "@/lib/product-families";
 import { PartGlyph } from "./PartGlyph";
 import { HomeReveal } from "./HomeReveal";
+import { HomePart3D } from "./HomePart3D";
 import "./home-next.css";
 
-/** Ordine delle famiglie nella home: dalla guida rigida agli accessori. */
-const ORDER: PartType[] = ["straight", "twistable", "seamless", "bend", "twist", "offset", "transition", "termination", "pressure", "spacer"];
-
-type Card = { type: PartType; sizes: string[]; tbc: boolean; href: Href };
-
-/** Famiglie presenti nel catalogo di questa build (in produzione solo le righe confermate). */
-function catalogCards(locale: Locale): Card[] {
-  return ORDER.flatMap((type) => {
-    const set = new Set(type === "bend" ? [...catalogSizes("bend", "E"), ...catalogSizes("bend", "H")] : catalogSizes(type));
-    const sizes = WR_LIST.filter((wr) => set.has(wr));
-    if (!sizes.length) return [];
-    const rows = sizes.flatMap((wr) => (type === "bend" ? [catalogProduct(type, wr, "E"), catalogProduct(type, wr, "H")] : [catalogProduct(type, wr)])).filter(Boolean);
-    const tbc = rows.every((r) => r!.status === "tbc");
-    const family = familyForType(type);
-    const href: Href = family ? { pathname: "/prodotti/[famiglia]", params: { famiglia: familySlug(family, locale) } } : "/prodotti";
-    return [{ type, sizes, tbc, href }];
-  });
-}
-
-/** Segnaposto [DA CONFERMARE …]: evidenziati in anteprima, tolti nella versione pubblica. */
-const TODO_SPLIT = /(\[(?:DA COMPLETARE|DA CONFERMARE|TO BE COMPLETED)[^\]]*\])/g;
-function Todo({ text }: { text: string }) {
-  if (!(ENV.demo || SHOW_TBC)) return <>{stripPlaceholders(text)}</>;
-  return (
-    <>
-      {text.split(TODO_SPLIT).map((part, i) =>
-        /^\[(DA |TO BE )/.test(part) ? (
-          <mark key={i} className="hx-todo">
-            {part}
-          </mark>
-        ) : (
-          part
-        ),
-      )}
-    </>
-  );
-}
-
-const range = (s: string[]) => (s.length === 1 ? s[0] : `${s[0]} – ${s[s.length - 1]}`);
-const two = (n: number) => String(n).padStart(2, "0");
+/** Massimo di card dei prodotti in home (le altre famiglie sono in /prodotti). */
+const MAX_CARDS = 8;
+const FORMATS = ["STEP", "IGES", "STL", "PDF", "DWG", "DXF"];
 
 /**
- * Sezioni della home dopo il percorso «Il viaggio del segnale»: gamma (dal catalogo ufficiale),
- * configuratore, perché Tecnolambro, processo e CTA finale. Stessi colori e font della scena,
- * animazioni leggere con GSAP (HomeReveal) e nessuna dipendenza dal 3D.
+ * Home dopo l'intro e il percorso «Segui il segnale», corta e con un solo obiettivo per sezione:
+ * configurare un pezzo o chiedere un preventivo.
+ *  a) prodotti  b) configuratore 3D  c) su misura  d) chi siamo  e) settori  f) preventivo
+ * Tutte le sezioni sono scure come la scena (data-tone="dark": header scuro con blur).
  */
 export async function HomeNext() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("homeNext");
   const types = await getTranslations("configurator.types");
-  const cards = catalogCards(locale);
-  const steps = t.raw("config.steps") as string[];
-  const why = t.raw("why.items") as { title: string; text: string }[];
-  const sectors = t.raw("why.sectors") as { title: string; text: string }[];
-  const process = t.raw("process.steps") as { title: string; text: string }[];
+  // famiglie del catalogo con almeno una misura confermata: quelle tutte «da confermare» non vanno in evidenza
+  const cards = productFamilies(locale).slice(0, MAX_CARDS);
+  const stats = t.raw("about.stats") as { value: string; label: string }[];
+  const sectors = t.raw("sectors.items") as { title: string; text: string }[];
 
   return (
     <HomeReveal>
-      <div className="hx" id="dopo-il-percorso">
-        {/* Gamma */}
+      <div className="hx" id="dopo-il-percorso" data-tone="dark">
+        {/* a) Prodotti */}
         <section className="hx-section" aria-labelledby="hx-products">
           <header className="hx-head" data-hx-reveal>
-            <p className="hx-eyebrow">
-              <span className="hx-eyebrow-n">08</span>
-              {t("products.eyebrow")}
-            </p>
+            <p className="hx-eyebrow">{t("products.eyebrow")}</p>
             <h2 id="hx-products" className="hx-title">
               {t("products.title")}
             </h2>
@@ -96,11 +53,10 @@ export async function HomeNext() {
                     <span className="hx-card-name">{types(`${c.type}.name`)}</span>
                     <span className="hx-card-short">{types(`${c.type}.short`)}</span>
                     <span className="hx-card-meta">
-                      <span>{range(c.sizes)}</span>
+                      <span>{c.range}</span>
                       <span aria-hidden="true">·</span>
                       <span>{t("products.sizes", { count: c.sizes.length })}</span>
                     </span>
-                    {c.tbc && SHOW_TBC ? <span className="hx-badge">{t("products.tbc")}</span> : null}
                   </span>
                   <ArrowUpRight className="hx-card-arrow" aria-hidden="true" strokeWidth={1.5} />
                 </Link>
@@ -115,115 +71,118 @@ export async function HomeNext() {
           </p>
         </section>
 
-        {/* Configuratore */}
+        {/* b) Configuratore 3D: il punto dell'innovazione */}
         <section className="hx-section hx-config" aria-labelledby="hx-config">
           <div className="hx-config-copy" data-hx-reveal>
-            <p className="hx-eyebrow">
-              <span className="hx-eyebrow-n">09</span>
-              {t("config.eyebrow")}
-            </p>
-            <h2 id="hx-config" className="hx-title">
+            <p className="hx-eyebrow">{t("config.eyebrow")}</p>
+            <h2 id="hx-config" className="hx-title hx-title--xl">
               {t("config.title")}
             </h2>
             <p className="hx-lead">{t("config.text")}</p>
-            <ol className="hx-steps">
-              {steps.map((s, i) => (
-                <li key={s}>
-                  <span className="hx-steps-n">{two(i + 1)}</span>
-                  {s}
-                </li>
-              ))}
-            </ol>
             <Link href="/configuratore" className="sj-btn sj-btn--primary hx-btn" data-track="cta_shop_click" data-source="home_config">
               {t("config.cta")}
               <ArrowRight aria-hidden="true" strokeWidth={1.75} />
             </Link>
           </div>
-          <figure className="hx-shot" data-hx-reveal>
-            <div className="hx-shot-frame">
-              {/* fotogramma vero del configuratore (etichette in italiano o in inglese) */}
-              <Image src={locale === "it" ? "/home/configuratore.webp" : "/home/configurator-en.webp"} alt={t("config.imgAlt")} width={1600} height={1000} sizes="(min-width: 64rem) 46vw, 92vw" />
-              <span className="hx-shot-corner hx-shot-corner--tl" aria-hidden="true" />
-              <span className="hx-shot-corner hx-shot-corner--br" aria-hidden="true" />
+          <div className="hx-config-stage" data-hx-reveal>
+            <HomePart3D poster={locale === "it" ? "/home/configuratore.webp" : "/home/configurator-en.webp"} alt={t("config.imgAlt")} locale={locale} hint={t("config.hint")} />
+          </div>
+        </section>
+
+        {/* c) Su misura */}
+        <section className="hx-section hx-custom" aria-labelledby="hx-custom">
+          <div className="hx-custom-inner" data-hx-reveal>
+            <FileUp className="hx-custom-icon" aria-hidden="true" strokeWidth={1.25} />
+            <div>
+              <p className="hx-eyebrow">{t("custom.eyebrow")}</p>
+              <h2 id="hx-custom" className="hx-title">
+                {t("custom.title")}
+              </h2>
+              <p className="hx-lead">{t("custom.text")}</p>
+              <p className="hx-formats">
+                <span className="sr-only">{t("custom.formatsLabel")}: </span>
+                {FORMATS.map((f) => (
+                  <span key={f}>{f}</span>
+                ))}
+              </p>
+              <div className="hx-cta-row">
+                <Link href={{ pathname: "/configuratore", hash: "disegno" }} className="sj-btn sj-btn--primary hx-btn" data-track="cta_drawing_click" data-source="home_custom">
+                  {t("custom.cta")}
+                  <ArrowRight aria-hidden="true" strokeWidth={1.75} />
+                </Link>
+                <Link href="/su-misura" className="hx-link">
+                  {t("custom.more")}
+                  <ArrowRight aria-hidden="true" strokeWidth={1.75} />
+                </Link>
+              </div>
             </div>
-            <figcaption>{t("config.caption")}</figcaption>
-          </figure>
+          </div>
         </section>
 
-        {/* Perché Tecnolambro */}
-        <section className="hx-section" aria-labelledby="hx-why">
+        {/* d) Chi siamo in tre numeri */}
+        <section className="hx-section" aria-labelledby="hx-about">
           <header className="hx-head" data-hx-reveal>
-            <p className="hx-eyebrow">
-              <span className="hx-eyebrow-n">10</span>
-              {t("why.eyebrow")}
-            </p>
-            <h2 id="hx-why" className="hx-title">
-              {t("why.title")}
+            <p className="hx-eyebrow">{t("about.eyebrow")}</p>
+            <h2 id="hx-about" className="hx-title">
+              {t("about.title")}
+            </h2>
+            <p className="hx-lead">{t("about.text")}</p>
+          </header>
+          <dl className="hx-stats" data-hx-stagger>
+            {stats.map((s) => (
+              <div key={s.label} data-hx-item>
+                <dt>{s.label}</dt>
+                <dd>{s.value}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="hx-iso" data-hx-reveal>
+            {CERTIFICATIONS.map((c) => (
+              <Link key={c.id} href={{ pathname: "/azienda", hash: "qualita" }} className="sj-iso-badge">
+                <ShieldCheck aria-hidden="true" strokeWidth={1.75} />
+                {c.standard}
+              </Link>
+            ))}
+            <Link href="/azienda" className="hx-link">
+              {t("about.more")}
+              <ArrowRight aria-hidden="true" strokeWidth={1.75} />
+            </Link>
+          </div>
+          <div className="hx-photos" data-hx-stagger>
+            <div data-hx-item>
+              <PhotoSlot id="cnc" alt={t("about.photos.cncAlt")} caption={t("about.photos.cnc")} sizes="(min-width: 64rem) 30vw, 92vw" />
+            </div>
+            <div data-hx-item>
+              <PhotoSlot id="montaggio-flange" alt={t("about.photos.flangesAlt")} caption={t("about.photos.flanges")} sizes="(min-width: 64rem) 30vw, 92vw" />
+            </div>
+            <div data-hx-item>
+              <PhotoSlot id="collaudo" alt={t("about.photos.testAlt")} caption={t("about.photos.test")} sizes="(min-width: 64rem) 30vw, 92vw" />
+            </div>
+          </div>
+        </section>
+
+        {/* e) Settori */}
+        <section className="hx-section" aria-labelledby="hx-sectors">
+          <header className="hx-head" data-hx-reveal>
+            <p className="hx-eyebrow">{t("sectors.eyebrow")}</p>
+            <h2 id="hx-sectors" className="hx-title">
+              {t("sectors.title")}
             </h2>
           </header>
-          <ul className="hx-why" data-hx-stagger>
-            {why.map((w) => (
-              <li key={w.title} data-hx-item>
-                <h3 className="hx-h3">{w.title}</h3>
-                <p>
-                  <Todo text={w.text} />
-                </p>
-              </li>
-            ))}
-          </ul>
-          <h3 className="hx-sub" data-hx-reveal>
-            {t("why.sectorsTitle")}
-          </h3>
           <ul className="hx-sectors" data-hx-stagger>
-            {sectors.map((s) => {
-              const text = ENV.demo || SHOW_TBC ? s.text : stripPlaceholders(s.text);
-              return (
-                <li key={s.title} data-hx-item>
-                  <span className="hx-sector-name">{s.title}</span>
-                  {text ? (
-                    <span className="hx-sector-text">
-                      <Todo text={s.text} />
-                    </span>
-                  ) : null}
-                </li>
-              );
-            })}
+            {sectors.map((s) => (
+              <li key={s.title} data-hx-item>
+                <span className="hx-sector-name">{s.title}</span>
+                <span className="hx-sector-text">{s.text}</span>
+              </li>
+            ))}
           </ul>
         </section>
 
-        {/* Processo */}
-        <section className="hx-section" aria-labelledby="hx-process">
-          <header className="hx-head" data-hx-reveal>
-            <p className="hx-eyebrow">
-              <span className="hx-eyebrow-n">11</span>
-              {t("process.eyebrow")}
-            </p>
-            <h2 id="hx-process" className="hx-title">
-              {t("process.title")}
-            </h2>
-          </header>
-          <ol className="hx-process" data-hx-stagger data-hx-line>
-            {process.map((p, i) => (
-              <li key={p.title} data-hx-item>
-                <span className="hx-process-n" aria-hidden="true">
-                  {two(i + 1)}
-                </span>
-                <h3 className="hx-h3">{p.title}</h3>
-                <p>
-                  <Todo text={p.text} />
-                </p>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        {/* CTA finale */}
+        {/* f) Preventivo */}
         <section className="hx-section hx-cta" aria-labelledby="hx-cta">
           <div className="hx-cta-inner" data-hx-reveal>
-            <p className="hx-eyebrow">
-              <span className="hx-eyebrow-n">12</span>
-              {t("cta.eyebrow")}
-            </p>
+            <p className="hx-eyebrow">{t("cta.eyebrow")}</p>
             <h2 id="hx-cta" className="hx-title hx-title--xl">
               {t("cta.title")}
             </h2>
@@ -246,6 +205,17 @@ export async function HomeNext() {
                 </dt>
                 <dd>
                   <a href={COMPANY.phoneHref} data-track="contact_phone_click" data-source="home_final">
+                    {COMPANY.phone}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt>
+                  <MessageCircle aria-hidden="true" strokeWidth={1.5} />
+                  WhatsApp
+                </dt>
+                <dd>
+                  <a href={whatsappHref(locale)} target="_blank" rel="noopener" data-track="contact_whatsapp_click" data-source="home_final">
                     {COMPANY.phone}
                   </a>
                 </dd>

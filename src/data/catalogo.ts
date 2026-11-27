@@ -3,9 +3,9 @@
  * Il dato è src/data/catalogo-ufficiale.json, generato da CATALOGO-UFFICIALE.csv con
  * `npm run catalogo:ufficiale` (scripts/catalogo-ufficiale.mjs): non si scrive a mano.
  *
- * Le righe "da confermare" (status "tbc") si vedono solo in anteprima, con il badge DA CONFERMARE;
- * in produzione non esistono. Il flag: NEXT_PUBLIC_CATALOGO_DA_CONFERMARE = "1" le mostra, "0" le
- * nasconde; se manca, si vedono in sviluppo e nelle preview di Vercel, mai in produzione.
+ * Le righe "da confermare" (status "tbc") non esistono nel sito: si vedono, con il badge DA CONFERMARE,
+ * solo con NEXT_PUBLIC_CATALOGO_DA_CONFERMARE = "1" (controllo interno). Le domande aperte sono in
+ * catalogo/ufficiale/DOMANDE-PAPA.md.
  *
  * Le quote delle flange restano in src/data/flanges.ts (norma Spinner): una flangia del catalogo
  * senza quote lì non si può disegnare e non entra nel configuratore.
@@ -17,7 +17,7 @@ import type { PartType, Plane } from "./configurator/types";
 
 export type CatStatus = "ok" | "tbc";
 
-type RawProduct = {
+export type RawProduct = {
   type: PartType;
   plane?: Plane;
   wr: string;
@@ -33,11 +33,9 @@ type RawProduct = {
 };
 
 function showTbc(): boolean {
-  const flag = process.env.NEXT_PUBLIC_CATALOGO_DA_CONFERMARE;
-  if (flag === "1") return true;
-  if (flag === "0") return false;
-  const env = process.env.NEXT_PUBLIC_VERCEL_ENV;
-  return env ? env !== "production" : process.env.NODE_ENV !== "production";
+  // Versione finale: le righe «da confermare» non si vedono da nessuna parte, nemmeno in anteprima,
+  // salvo con NEXT_PUBLIC_CATALOGO_DA_CONFERMARE="1" esplicito (es. per un controllo con il titolare).
+  return process.env.NEXT_PUBLIC_CATALOGO_DA_CONFERMARE === "1";
 }
 /** In questa build si vedono anche le righe da confermare (anteprima). */
 export const SHOW_TBC = showTbc();
@@ -138,6 +136,11 @@ export function defaultFlanges(s: Side, other = "other"): [string, string] {
   if (s.type === "transition") return [f1, catalogFlanges(s, 2)[0]?.def.id ?? other];
   const recs = l1.filter((f) => f.rec);
   return [f1, s.type === "termination" ? f1 : (recs[1]?.def.id ?? f1)];
+}
+
+/** Righe confermate di un tipo (sempre senza le «da confermare», qualunque sia il flag). */
+export function confirmedProducts(type: PartType): RawProduct[] {
+  return ALL.filter((p) => p.type === type && p.status === "ok");
 }
 
 /** Numeri per i controlli e il report. */
